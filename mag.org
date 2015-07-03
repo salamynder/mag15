@@ -1,0 +1,88 @@
+\pagenumbering{roman}
+\listoffigures
+\listoftables
+* Eingrenzung des Themas
+Diese Arbeit beschreibt und evaluiert eine mit dem »Grammatical Framework« (GF) implementierte Ressourcen-Grammatik für das Chinesische. GF ist eine Programmiersprache zum Programmieren multilingualer Applikationen und unterscheidet daher zwischen konkreten (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt und abstrakte Grammatiken dienen als Dreh- und Angelpunkt für die multiplen konkreten Grammatiken, indem diese eine semantische Interlingua beschreiben. 
+* Programmieren mit GF
+** hello
+** 
+** 
+** 
+** 
+** 
+* Evaluation der chinesischen Ressourcen Grammatik
+** eng_chi2.txt:
+*** 把 nur auf Dinge beziehbar?
+- mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) 
+to answer to him that she sleeps
+把他回答说她睡 BAD 回答他说她睡了
+- mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)))
+to paint itself black
+画自己黑 BAD 把它自己画黑
+
+
+** 
+** 
+* End
+\printbibliography
+* zotero							   :noexport:
+# Local Variables:
+# zotero-collection: #("4" 0 1 (name "ChinGrammar"))
+# Ende:
+* Header							    :ARCHIVE: :noexport:
+#+TODO: TODO | WAITING DONE
+#+LATEX_CLASS: cn-article
+#+TITLE: Grundlagen maschineller multilingualer Übersetzung anhand des »Grammatical Framework« (GF) mit besonderer Berücksichtigung des Hoch-Chinesischen
+#+AUTHOR: René Tobner
+#+LANGUAGE: de-de
+#+OPTIONS: H:4 skip:nil ^:nil timestamp:nil
+
+#+LATEX_HEADER: \usepackage[ngerman]{babel}
+#+LATEX_HEADER: \addbibresource{mag.bib}
+
+#+LATEX_HEADER: % Make commands for the quotes
+#+LATEX_HEADER: \newcommand{\mq}[1]{\enquote{#1}}
+#+LATEX_HEADER: \newcommand*{\openquote}{\tikz[remember picture,overlay,xshift=-15pt,yshift=-10pt]
+#+LATEX_HEADER:      \node (OQ) {\quotefont\fontsize{60}{60}\selectfont``};\kern0pt}
+#+LATEX_HEADER: \newcommand*{\closequote}{\tikz[remember picture,overlay,xshift=15pt,yshift=10pt]
+#+LATEX_HEADER:      \node (CQ) {\quotefont\fontsize{60}{60}\selectfont''};}
+#+LATEX_HEADER: % select a colour for the shading
+#+LATEX_HEADER: %\definecolor{shadecolor}{named}{gray}
+#+LATEX_HEADER: % wrap everything in its own environment
+#+LATEX_HEADER: \newenvironment{shadequote}%
+#+LATEX_HEADER: {\begin{quote}\openquote}
+#+LATEX_HEADER: {\hfill\closequote\end{quote}}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: \newcommand{\xelatex}{\XeLaTeX\xspace} 
+#+LATEX_HEADER: \newcommand{\latex}{\LaTeX\xspace}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: %\newglossary[<log-ext>]{<name>}{<in-ext>}{<out-ext>}{<title>}[<counter>]
+#+LATEX_HEADER: %\newglossary[alg]{atom}{aot}{atn}{Zeichen-Ebene}
+#+LATEX_HEADER: %\newglossary[slg]{sets}{sot}{stn}{Zeichensatz-Ebene}
+#+LATEX_HEADER: %\newglossary[ulg]{unicode-specific}{uot}{utn}{Unicode-Spezifisches}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: %\makeglossaries
+#+LATEX_HEADER: %\loadglsentries{glossar}
+#+LATEX_HEADER: % For BIBER
+#+LATEX_HEADER: \DeclareSourcemap{
+#+LATEX_HEADER:  \maps[datatype=bibtex, overwrite]{
+#+LATEX_HEADER:    \map{
+#+LATEX_HEADER:      \step[fieldset=language, null] % exclude bib language field from printing
+#+LATEX_HEADER:      \step[fieldset=month, null] 
+#+LATEX_HEADER:    }
+#+LATEX_HEADER:  }
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newcommand\mpDr[1]{\marginpar{\fontspec[Scale=0.7]{Droid Sans}#1}}
+#+LATEX_HEADER: \newcommand\zb{z. B.}
+#+LATEX_HEADER: \newcommand\di{d. I.}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: %Elision in citation ... took so long to find this, don't know if this the best way :(
+#+LATEX_HEADER: \newcommand*\elide{\textup{[\dots]}\xspace}
+#+LATEX_HEADER: % Using "[" and "]" in the pre/postnote of citation seems a big problem, therefore new command for [sic]
+#+LATEX_HEADER: \newcommand*\sic{\textup{[sic]}\xspace}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: \hyphenation{dash}
+#+LATEX_HEADER: \newfontfamily\dejavus[Mapping=tex-ansi]{DejaVu Sans}
+#+LATEX_HEADER: \newfontfamily\scpro[Mapping=tex-ansi]{Source Code Pro}
+#+LATEX_HEADER: \newfontfamily\linmono[Mapping=tex-ansi]{Linux Libertine Mono}
+#+LATEX_HEADER: \newfontfamily\linansi[Mapping=tex-ansi]{Linux Libertine}
