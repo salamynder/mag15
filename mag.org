@@ -1,11 +1,73 @@
-\pagenumbering{roman}
-\listoffigures
-\listoftables
 * Eingrenzung des Themas
-Diese Arbeit beschreibt und evaluiert eine mit dem »Grammatical Framework« (GF) implementierte Ressourcen-Grammatik für das Chinesische. GF ist eine Programmiersprache zum Programmieren multilingualer Applikationen und unterscheidet daher zwischen konkreten (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt und abstrakte Grammatiken dienen als Dreh- und Angelpunkt für die multiplen konkreten Grammatiken, indem diese eine semantische Interlingua beschreiben. 
-* Programmieren mit GF
-** hello
-** 
+Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
+* Grammatiken programmieren mit GF
+** Überblick
+GF ist eine Programmiersprache zum Programmieren multilingualer Applikationen. Dass wir beim Übersetzungsvorgang einen multilingualen Ansatz benötigen, liegt auf der Hand, aber wie ist er realisiert in GF? GF zwischen konkreten Grammatiken (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische oder syntaktische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für (mindestens eine) konkrete Grammatiken{??}, indem diese eine semantische Interlingua bereitstellen. Ein Beispiel[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] soll dies Verdeutlichen.
+
+Zunächst skizzieren wir beispielhaft die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken.
+
+*** Beispiel: Marie und John (1)
+Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Abbildung \ref{mj1}) ermöglichen die Übersetzung beschriebener semantischer Einheiten vom Chinesischen ins Deutsche und umgekehrt:
+
+#+name: mj1
+#+CAPTION[Hello-GF]: Ein erster Einblick
+#+begin_src bash
+
+abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of Zero = { 
+  cat                          lincat                          lincat                      
+    S; NP; VP; V2;               S, NP, VP, V2 = Str;             S, NP, VP, V2 = Str;
+  fun                          lin                             lin
+    Pred : NP -> VP -> S;        Pred np vp = np ++ vp;           Pred np vp = np ++ vp;
+    Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np;          Compl v2 np = v2 ++ np;
+    John, Mary : NP;             John = "Johann";                 John = "约翰";
+    Love : V2;                   Mary = "Marie";                  Mary = "玛丽";
+                                 Love = "liebt";                  Love = "爱";
+}                            }                               }
+                                                           
+#+end_src
+
+Sind diese drei Dateien vorbereitet, so können wir mit der GF-Shell arbeiten:
+
+#+BEGIN_SRC bash
+Languages: ZeroChi ZeroGer
+Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
+Pred John (Compl Love Mary)
+#+END_SRC
+
+#+BEGIN_SRC bash
+Languages: ZeroChi ZeroGer
+Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
+Johann liebt Marie
+#+END_SRC
+
+Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enhält nach dem Prompt oder Eingabeaufforderung am Anfang der Zeile (bestehend aus dem abstrakten Modulnamen sowie ">") die Anweisung für die Übersetzung, die sich folgerdermaßen unterteilt:
+
+1. Eine Zeichenkette oder auch String (»约翰 爱 玛丽«) wird mittels des Kommandos »parse« eingelesen und verarbeitet.
+2. Das Ergebnis der Verarbeitung wird durch den Operator »Vertikale Linie«, »|«, auch Pipe genannt, weitergeleitet …
+3. … an das Kommando »linearize«
+
+
+#+ATTR_LATEX: :options [itemsep=0pt]
+
+simple Übersetzungsgrammatik mittels dreier GF-Module: Zero.gf, ZeroGer.gf, ZeroChi.gf
+- Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
+
+I have put a minimal grammar in
+
+  http://cloud.grammaticalframework.org/gfse/
+
+entitled "Eyes", and you can play with it and extend it as you want. The main idea is that
+
+- NP has Number as inherent feature (field in a record)
+- N has Number as variable feature (argument in a table)
+
+Determiners set the Number of an NP, and select the number of N. Thus "this" sets an NP to be Sg, and selects the Sg form of the N.
+
+With "your", you must think in a bit tricky way. There are, so to say, two variants of it: YourSg and YourPl. Many languages actually differentiate them (e.g. French and German) but in English they are the same string. But otherwise they work like This and These.
+
+You should read the GF book chapter 3 for more details, and then 4 and 9 for even more details. If you don't have the book, the book slides may give enough information.
+
+
 ** 
 ** 
 ** 
@@ -27,6 +89,8 @@ to paint itself black
 \printbibliography
 * zotero							   :noexport:
 # Local Variables:
+# zotero-collection: #("4" 0 1 (name "ChinGrammar"))
+# End:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
 # Ende:
 * Header							    :ARCHIVE: :noexport:
@@ -86,3 +150,10 @@ to paint itself black
 #+LATEX_HEADER: \newfontfamily\scpro[Mapping=tex-ansi]{Source Code Pro}
 #+LATEX_HEADER: \newfontfamily\linmono[Mapping=tex-ansi]{Linux Libertine Mono}
 #+LATEX_HEADER: \newfontfamily\linansi[Mapping=tex-ansi]{Linux Libertine}
+
+# Local Variables:
+# zotero-collection: #("4" 0 1 (name "ChinGrammar"))
+# End:
+\pagenumbering{roman}
+\listoffigures
+\listoftables
