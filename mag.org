@@ -35,12 +35,11 @@ Pred John (Compl Love Mary)
 #+END_SRC
 
 #+BEGIN_SRC bash
-Languages: ZeroChi ZeroGer
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
 #+END_SRC
 
-Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enhält nach dem Prompt oder Eingabeaufforderung am Anfang der Zeile (bestehend aus dem abstrakten Modulnamen sowie ">") die Anweisung für die Übersetzung, die sich folgerdermaßen unterteilt:
+Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enhält nach dem sogenannten Prompt oder Eingabeaufforderung am Anfang der Zeile (bestehend aus dem Namen der abstrakten Grammatik sowie »>«) die Anweisung für die Übersetzung, die sich folgerdermaßen unterteilt:
 
 1. Eine Zeichenkette oder auch String (»约翰 爱 玛丽«) wird mittels des Kommandos »parse« eingelesen und verarbeitet.
 2. Das Ergebnis der Verarbeitung wird durch den Operator »Vertikale Linie«, »|«, auch Pipe genannt, weitergeleitet …
