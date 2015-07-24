@@ -3,15 +3,15 @@ concrete FoodGer of Food = {
     Comment = {s : Str} ;
     Item    = {s : Str ; g : Gender ; n : Number} ;
     Kind    = {s : Number => Str ; g : Gender} ;
-    Quality = {s : Number => Str } ;
+    Quality = {s : Gender => Number => Str } ;
   lin
-    Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s ! item.n } ;
+    Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s ! item.g ! item.n } ;
 
     This kind = {s = "Dieser" ++ kind.s ! Sg ; n = Sg ; g = kind.g} ;
     These kind = {s = "Diese" ++ kind.s ! Pl ; n = Pl ; g = kind.g} ;
     -- That kind = "Jener" ++ kind ;
 
-    Mod qual kind = {s = \\n => qual.s ! n
+    Mod qual kind = {s = \\n => qual.s ! kind.g ! n
                              ++ kind.s ! n ;
                      g = kind.g
       } ;
@@ -26,7 +26,13 @@ concrete FoodGer of Food = {
     -- Fresh = "frisch" ;
     -- Warm = "warm" ;
     Italian = {
-      s = table {Sg => "italienische" ; Pl => "italienischen" } ;
+      s =
+        table { Fem  => table {Sg => "italienische" ; Pl => "italienischen" } ;
+
+        -- Food> gr | l
+        -- Dieser Wein ist italienische
+                Masc => table {Sg => "italienisch" ; Pl => "italienische" } 
+        } 
       } ;
     -- Expensive = "teuer" ;
     -- Delicious = "lecker" ;
