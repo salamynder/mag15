@@ -1,0 +1,3 @@
+--# -path=.:Beispiele:GF-2.7/doc/tutorial/resource>
+-- Passende regN usw. definieren ...
+-- Gegebenfalls besser resource-1.0/german/ParadigmsGer.gf benutzen

@@ -34,6 +34,16 @@ concrete FoodGer of Food = {
                 Masc => table {Sg => "italienisch" ; Pl => "italienische" } 
         } 
       } ;
+
+    Delicious = {
+      s =
+        table { Fem  => table {Sg => "leckere" ; Pl => "leckeren" } ;
+
+        -- Food> gr | l
+        -- Dieser Wein ist italienische
+                Masc => table {Sg => "leckere" ; Pl => "leckeren" } 
+        } 
+      } ;
     -- Expensive = "teuer" ;
     -- Delicious = "lecker" ;
     -- Boring = "geschmacklos" ;
