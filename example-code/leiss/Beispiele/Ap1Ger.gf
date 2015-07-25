@@ -32,7 +32,7 @@ lin
 
    Mistake      = {s = "Fehler"} ;
    Error        = {s = "Irrtum"} ;
-   Big          = {s = table{pos => "gross" ; cmp => "grösser" ; sup => "grösst"}} ;
+   Big          = {s = table{pos => "gross" ; cmp => "grÃ¶sser" ; sup => "grÃ¶sst"}} ;
    Is           = {s = "ist"} ;
    The          = {s = "der"} ;
    An           = {s = "ein"} ;
