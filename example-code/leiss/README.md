@@ -10,3 +10,7 @@ am 24. Juli 2015
 - DeclEng.gfr -> DeclEngRes.gf
     - in den letzten beiden Dateien auch alle Namespace-Identifier entsprechend der Dateinamensänderung umbenannt (Bsp. aus DeclEngRes.gf, Z. 6: "s : {DeclEng.Comp} => Str" ausgetauscht in "s : {DeclEngRes.Comp} => Str")
 
+UPDATE:
+
+- entrosten recht erfolgreich: ApEngDecl funktioniert so zwar nicht, aber dieselbe Grammatik wird Ap2Eng verfeinert und funktioniert von vornherein
+- Ap2eng darf studiert werden
