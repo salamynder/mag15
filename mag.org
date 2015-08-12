@@ -88,7 +88,25 @@ to paint itself black
 画自己黑 BAD 把它自己画黑
 
 
-** 
+** Komplement des Resultats (结果补语) -- shi-de -- »Buch ist ausverkauft«?
+- es scheint noch nichts dafür definiert zu sein
+- versuche Satz zu bilden: "Dieses Buch ist ausverkauft"
+- ~/d/n/G/l/s/chinese git:master ❯❯❯
+- gf AllChi.gfo
+- AllChiAbs> p "这 本 书 卖 光 " => The sentence is not complete
+- tab comletion after guang -> guang hua 光滑:
+LexiconChi.gf
+182:smooth_A = mkA "光滑" ;
+
+sysu/Assign_4.gf
+425:glaze_V = mkV "变得光滑" ; -- 1
+
+sysu/Assign_6.gf
+27:glossy_A = mkA "光滑" ; -- 7
+
+- Satz müsste eher mit 售完 gebildet werden! (noch nicht in RGL-Chi)
+- und dann ist auch die Frage, ob shi...de dafür benutzt wird, wahrscheinlich schon: 这本书是售完的. (Beschreibung Motsch, S. 127: "Betonung der Eigenschaft des Beschriebenen"), es geht aber auch: »这本书已售完« (Shanghai Dt-Chin., 134)
+
 ** 
 * End
 \printbibliography
