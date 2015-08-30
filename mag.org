@@ -1,16 +1,18 @@
 * Eingrenzung des Themas
 Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
+- \cite{thompson_type_1991}
 * Grammatiken programmieren mit GF
 ** Überblick
-GF ist eine Programmiersprache zum Programmieren multilingualer Applikationsgrammatiken[fn:: Eine Applikation ist eine Anwendung(-software). TODO: Diesen Begriff genauer klären, wie ist eine application grammar in GF zu verstehen? cf. gf-book, Einleitung]. Dass wir beim Übersetzungsvorgang einen multilingualen Ansatz benötigen, liegt auf der Hand, aber wie ist er realisiert in GF? GF zwischen konkreten Grammatiken (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische oder syntaktische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für (mindestens eine) konkrete Grammatiken{??}, indem diese eine semantische Interlingua bereitstellen. Ein Beispiel[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] soll dies Verdeutlichen.
+GF ist eine Programmiersprache zum Programmieren multilingualer Applikationsgrammatiken.[fn:: Eine Applikation ist eine Anwendung(-software). TODO: Diesen Begriff genauer klären, wie ist eine application grammar in GF zu verstehen? cf. gf-book, Einleitung] Dass wir beim Übersetzungsvorgang einen multilingualen Ansatz benötigen, liegt auf der Hand, aber wie ist er realisiert in GF? GF zwischen konkreten Grammatiken (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische oder syntaktische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für (mindestens eine) konkrete Grammatiken{??}, indem diese eine semantische Interlingua bereitstellen.
 
+Die nun verwendeten Beispiel-Dateien befinden sich (genau so wie dieser Text) in einem öffentlich zugänglichen Git-Repositorium.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
 
 *** Beispiel: Marie und John (1)
-Zunächst skizzieren wir beispielhaft die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken.
+Zunächst skizzieren wir beispielhaft[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken. Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander ihre konkrete Sprache beschreiben können. 
 
 Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Abbildung \ref{mj1}) ermöglichen die Übersetzung beschriebener semantischer Einheiten vom Chinesischen ins Deutsche und umgekehrt:
 
-TODO: das folgende Beispiel ist zu wenig ausbaufähig, lieber die Foods-Grammatik und dann auch mit Zähleinheitswörtern!
+%TODO: das folgende Beispiel ist zu wenig ausbaufähig, lieber die Foods-Grammatik und dann auch mit Zähleinheitswörtern! // Außerdem stört, dass in diesem Beispiel syntaktische Cats und in Food semantische Cats (Comment, Item, Kind, Quality) verwendet werden??? Die syntaktischen Cats machen es aber sehr schön übersichtlich!
 
 #+name: mj1
 #+CAPTION[Hello-GF]: Ein erster Einblick
@@ -32,7 +34,22 @@ abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of
 - Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
 - fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
 
-Sind diese drei Dateien vorbereitet, so können wir mit der GF-Shell arbeiten:
+Testen wir zunächst diese drei Module in der GF Shell, die uns einen interaktiven Umgang mit den von uns erstellten Grammatiken ermöglicht.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.]
+
+#+BEGIN_SRC bash
+Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
+Johann liebt Marie
+#+END_SRC
+
+Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enthält nach dem sogenannten Prompt am Anfang der Zeile (bestehend aus dem Namen der abstrakten Grammatik sowie »>«) eine Übersetzungs-Anweisung vom Chinesischen ins Deutsche. Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
+
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+1. Eine Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. In den Code-Beispielen wird das Leerzeichen in Strings als ␣ (U+2423, Open Box)angedeutet. Siehe auch: TODO: cf. Chinesisch-Parsing-Problem.]
+2. Das Ergebnis der Verarbeitung wird durch den Pipe-Operator (»|«), weitergeleitet \ldots{}
+3. \ldots{} an ~linearize~, das die Übersetzung in Zeile 2 generiert.
+
+Sowohl dem Kommando ~parse~ als auch ~linearize~ 
+
 
 #+BEGIN_SRC bash
 Languages: ZeroChi ZeroGer
@@ -40,19 +57,7 @@ Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
 
-#+BEGIN_SRC bash
-Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
-Johann liebt Marie
-#+END_SRC
-
-Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enhält nach dem sogenannten Prompt oder Eingabeaufforderung am Anfang der Zeile (bestehend aus dem Namen der abstrakten Grammatik sowie »>«) die Anweisung für die Übersetzung, die sich folgerdermaßen unterteilt:
-
-1. Eine Zeichenkette oder auch String (»约翰 爱 玛丽«) wird mittels des Kommandos »parse« eingelesen und verarbeitet.
-2. Das Ergebnis der Verarbeitung wird durch den Operator »Vertikale Linie«, »|«, auch Pipe genannt, weitergeleitet …
-3. … an das Kommando »linearize«
-
-
-#+ATTR_LATEX: :options [itemsep=0pt]
+#+ATTR_LATEX: :options itemsep=0pt
 
 simple Übersetzungsgrammatik mittels dreier GF-Module: Zero.gf, ZeroGer.gf, ZeroChi.gf
 - Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
@@ -173,6 +178,18 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: \newfontfamily\scpro[Mapping=tex-ansi]{Source Code Pro}
 #+LATEX_HEADER: \newfontfamily\linmono[Mapping=tex-ansi]{Linux Libertine Mono}
 #+LATEX_HEADER: \newfontfamily\linansi[Mapping=tex-ansi]{Linux Libertine}
+#+LATEX_HEADER: \newcommand{\mysinglespacing}{%
+#+LATEX_HEADER:   \setstretch{1}% no correction afterwards
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \lstnewenvironment{my-inlst}{\lstset{basicstyle=\small\ttfamily\setstretch{1},language=bash}}{}
+#+LATEX_HEADER:  \newcommand*{\inlst}{\lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash]}
+#+LATEX_HEADER: %\newcommand{\inlst}[1]{%
+#+LATEX_HEADER: %   \lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash]!#1!
+#+LATEX_HEADER: %}
+#+LATEX_HEADER: \newcommand{\stylst}{basicstyle=\small\ttfamily\setstretch{1}}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: 
+#+LATEX_HEADER: 
 
 # Local Variables:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
