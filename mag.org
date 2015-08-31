@@ -15,9 +15,8 @@ Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj
 TODO: Störend, dass in diesem Beispiel syntaktische Cats und in Food semantische Cats (Comment, Item, Kind, Quality) verwendet werden??? Die syntaktischen Cats machen es aber sehr schön übersichtlich!
 
 #+name: mj1
-#+CAPTION[Hello-GF]: Ein erster Einblick
+#+CAPTION[Hello-GF]: 3 Module einer multilingualen Grammatik
 #+begin_src bash
-
 abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of Zero = { 
   cat                          lincat                          lincat                      
     S; NP; VP; V2;               S, NP, VP, V2 = Str;             S, NP, VP, V2 = Str;
@@ -40,46 +39,86 @@ Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
 #+END_SRC
 
-In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. scope) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt. Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
+In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. scope) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt.
+
+Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
 
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-1. Eine Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. Um dies hervorzuheben wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) /angedeutet/. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
+1. Eine chinesische Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse -lang=ZeroChi~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. Um dies hervorzuheben wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) /angedeutet/. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
 2. Das Ergebnis der Verarbeitung wird durch den sog. Pipe-Operator, ~|~, weitergeleitet \ldots{}
-3. \ldots{} an ~linearize~, das die Übersetzung in Zeile 3 generiert.
+3. \ldots{} an ~linearize~, das eine deutsche Übersetzung mittels ~-lang=ZeroGer~ in Zeile 3 generiert.
 
-TODO: Wohin mit der Hilfe-Box?
+# \infoBox[Hilfe?]{Zu allen Kommandos ist eine Hilfe per \verb~help~ abrufbar. So liefert \inlst$help parse$ beispielsweise eine Übersicht über das \verb~parse~-Kommando.}
 
-\infoBox[Hilfe?]{Zu allen Kommandos ist eine Hilfe per \verb~help~ abrufbar. So liefert \inlst$help parse$ beispielsweise eine Übersicht über das \verb~parse~-Kommando.}
+Aus der Beobachtung dieses Ablaufs ergeben sich mindestens zwei Fragen:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+1. Was genau wird von dem Pipe-Operator weitergeleitet?
+2. Wie genau steht dieser Ablauf im Verhältnis zu den von uns oben angeführten drei Grammatiken? (Auflistung \ref{mj1})
 
-Sowohl ~parse~ als auch ~linearize~ kann mitgeteilt werden, welche Sprachen sie behandeln, was im Beispiel jeweils über die ~lang~-Flag geschieht: \inlst$-lang=ZeroChi$. Bleibt diese Flag unbesetzt, so werden alle Sprachen im Geltungsbereich für das Kommando benutzt.
-
-Sehen wir uns die eben benutzten Kommandos an im einzelnen an: 
+Frage 1 können wir oberflächlich in der Shell beantworten, indem wir die Pipe und ~linearize~ weglassen. 
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
-
-~parse~ liefert hier die semantischen Einheiten unseres geparsten Satzes zurück. Die Struktur zwischen diesen Einheiten ähnelt der eines Baumes: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ (die Prädikation, TODO: Hadomot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen!) von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen. Wir können das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] benutzen, um uns diesen Sachverhalt zu verdeutlichen:
-
+Was ~parse~ nun zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. »Abstrakter Syntax Baum« (Abstract Syntax Tree, kurz ADT) in Klammernotation. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung  einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 #+END_SRC
-
-Damit sollte sich ein Programm unserer Wahl mit der PNG-Bilddatei öffnen, das uns folgenden (umgedrehten) Baum zeigt:
+Damit sollte sich ein Programm unserer Wahl (hier der Firefox-Browser) mit der PNG-Bilddatei öffnen, das uns einen auf den Kopf gestellten Baum zeigt:
 
 # :float t -> center image!
-#+CAPTION[vt-1]: ~visualize\_tree~ produziert Graph mit AST (»Abstact Syntax Tree«)
-#+NAME: 1-jlm
+#+CAPTION[vt-1]: ~visualize\_tree~ produziert Graphen-Darstellung eines AST (»Abstact Syntax Tree«)
+#+NAME: jlm-abs-graph
 #+ATTR_LATEX: :width 0.35\textwidth :float t
 [[./example-code/Zero/1-JohannesLiebtMarie.png]]
+Nun sollte ersichtlich sein, was gemeint ist, wenn wir dem Ausdruck \inlst$Pred John (Compl Love Mary)$ eine Baumstruktur zusprechen: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen, wobei sich ~Compl~ wiederum verzweigt in ~Love~ und ~Mary~.[fn:: (~Pred~: die Prädikation, TODO: Hadumot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen! TODO: Fußnote oder Infobox zu semantischen/syntaktischen Bezeichnern!)]
+
+Vergleichen wir nun diesen Graphen mit unserem abstrakten Syntaxmodul (Zero.gf), so zeigt sich eine Übereinstimmung zwischen den geparsten semantischen Einheiten des AST und den Namen der Funktions-Deklarationen im ~fun~-Block:
+#+name: mjAbs
+# +CAPTION[Hello-Abs]
+#+begin_src bash
+abstract Zero = {
+  cat                       -- Kategorien
+    S; NP; VP; V2;
+  fun                       -- Beginn des "fun" Blocks
+    Pred : NP -> VP -> S;
+    Compl : V2 -> NP -> VP;
+    John, Mary : NP;
+    Love : V2;
+}
+#+end_src
+Die jeweils durch ein Semikolon getrennten Funktionen im ~fun~-Blocks geben an, wie die verschiedenen Kategorien im ~cat~-Block produziert werden. Dies geschieht über sog. Typen-Deklarationen hinter dem Doppelpunkt. \inlst$Pred : NP -> VP -> S;$ bedeutet etwa, dass eine Funktion namens ~Pred~ zwei Argumente nimmt, zunächst eines vom Typ ~NP~ (Nounphrase) und dann eines vom Typ ~VP~ (Verbphrase), um schließlich ein Objekt vom Typ ~S~ (Sentence) zu produzieren. Zur Erinnerung ist diese erste Funktion oder Regel in Abbildung \ref{jlm-eval-graph} rechteckig markiert
 
 
+#+CAPTION[eval-1]: Evaluations-Reihenfolge
+#+NAME: jlm-eval-graph
+#+ATTR_LATEX: :width 0.35\textwidth :float t
+[[./example-code/Zero/1-JohannesLiebtMarie-Eval-Order.png]]
+
+Außerdem zeigt uns der Graph die Kategorien (~cat~)
+#+BEGIN_SRC bash 
+Zero> linearize Pred John Compl
+Couldn't match expected type VP
+       against inferred type V2 -> NP -> VP
+#+END_SRC
+
+#+begin_src bash
+abstract Zero = {           concrete ZeroChi of Zero = {
+  cat                         lincat
+    S; NP; VP; V2;               S, NP, VP, V2 = Str;
+  fun                         lin
+    Pred : NP -> VP -> S;        Pred np vp = np ++ vp;
+    Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np;
+    John, Mary : NP;             John = "约翰";
+    Love : V2;                   Mary = "玛丽";
+                                 Love = "爱";
+}                           }
+#+end_src
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 Pred John (Compl Love Mary)
 #+END_SRC
 
-Die Darstellungsweise der Ausgabe lässt vielleicht nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. 
 
 - Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
 - fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
@@ -206,7 +245,7 @@ sysu/Assign_6.gf
 #+LATEX_HEADER:   \setstretch{1}% no correction afterwards
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \lstnewenvironment{my-inlst}{\lstset{basicstyle=\small\ttfamily\setstretch{1},language=bash}}{}
-#+LATEX_HEADER:  \newcommand*{\inlst}{\lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash]}
+#+LATEX_HEADER:  \newcommand*{\inlst}{\lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash,breaklines=true]}
 #+LATEX_HEADER: %\newcommand{\inlst}[1]{%
 #+LATEX_HEADER: %   \lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash]!#1!
 #+LATEX_HEADER: %}
