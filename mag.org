@@ -10,9 +10,9 @@ Die nun verwendeten Beispiel-Dateien befinden sich (genau so wie dieser Text) in
 *** Beispiel: Marie und John (1)
 Zunächst skizzieren wir beispielhaft[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken. Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander ihre konkrete Sprache beschreiben können. 
 
-Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Abbildung \ref{mj1}) ermöglichen die Übersetzung beschriebener semantischer Einheiten vom Chinesischen ins Deutsche und umgekehrt:
+Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}) ermöglichen die Übersetzung beschriebener semantischer Einheiten vom Chinesischen ins Deutsche und umgekehrt:
 
-%TODO: das folgende Beispiel ist zu wenig ausbaufähig, lieber die Foods-Grammatik und dann auch mit Zähleinheitswörtern! // Außerdem stört, dass in diesem Beispiel syntaktische Cats und in Food semantische Cats (Comment, Item, Kind, Quality) verwendet werden??? Die syntaktischen Cats machen es aber sehr schön übersichtlich!
+TODO: Störend, dass in diesem Beispiel syntaktische Cats und in Food semantische Cats (Comment, Item, Kind, Quality) verwendet werden??? Die syntaktischen Cats machen es aber sehr schön übersichtlich!
 
 #+name: mj1
 #+CAPTION[Hello-GF]: Ein erster Einblick
@@ -28,38 +28,62 @@ abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of
     Love : V2;                   Mary = "Marie";                  Mary = "玛丽";
                                  Love = "liebt";                  Love = "爱";
 }                            }                               }
-                                                           
 #+end_src
-
-- Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
-- fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
 
 Testen wir zunächst diese drei Module in der GF Shell, die uns einen interaktiven Umgang mit den von uns erstellten Grammatiken ermöglicht.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.]
 
+#+name: pl1
+#+CAPTION[parse-lin-1]: Shell: Chin.-Deutsch
 #+BEGIN_SRC bash
+Languages: ZeroChi ZeroGer
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
 #+END_SRC
 
-Zeile 1 zeigt die geladenen konkreten Grammatiken hinter der Label »Languages« an, die wir für eine Übersetzung heranziehen können. Zeile 2 enthält nach dem sogenannten Prompt am Anfang der Zeile (bestehend aus dem Namen der abstrakten Grammatik sowie »>«) eine Übersetzungs-Anweisung vom Chinesischen ins Deutsche. Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
+In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. scope) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt. Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
 
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-1. Eine Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. In den Code-Beispielen wird das Leerzeichen in Strings als ␣ (U+2423, Open Box)angedeutet. Siehe auch: TODO: cf. Chinesisch-Parsing-Problem.]
-2. Das Ergebnis der Verarbeitung wird durch den Pipe-Operator (»|«), weitergeleitet \ldots{}
-3. \ldots{} an ~linearize~, das die Übersetzung in Zeile 2 generiert.
+1. Eine Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. Um dies hervorzuheben wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) /angedeutet/. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
+2. Das Ergebnis der Verarbeitung wird durch den sog. Pipe-Operator, ~|~, weitergeleitet \ldots{}
+3. \ldots{} an ~linearize~, das die Übersetzung in Zeile 3 generiert.
 
-Sowohl dem Kommando ~parse~ als auch ~linearize~ 
+TODO: Wohin mit der Hilfe-Box?
 
+\infoBox[Hilfe?]{Zu allen Kommandos ist eine Hilfe per \verb~help~ abrufbar. So liefert \inlst$help parse$ beispielsweise eine Übersicht über das \verb~parse~-Kommando.}
 
+Sowohl ~parse~ als auch ~linearize~ kann mitgeteilt werden, welche Sprachen sie behandeln, was im Beispiel jeweils über die ~lang~-Flag geschieht: \inlst$-lang=ZeroChi$. Bleibt diese Flag unbesetzt, so werden alle Sprachen im Geltungsbereich für das Kommando benutzt.
+
+Sehen wir uns die eben benutzten Kommandos an im einzelnen an: 
 #+BEGIN_SRC bash
-Languages: ZeroChi ZeroGer
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
 
-#+ATTR_LATEX: :options itemsep=0pt
+~parse~ liefert hier die semantischen Einheiten unseres geparsten Satzes zurück. Die Struktur zwischen diesen Einheiten ähnelt der eines Baumes: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ (die Prädikation, TODO: Hadomot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen!) von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen. Wir können das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] benutzen, um uns diesen Sachverhalt zu verdeutlichen:
 
-simple Übersetzungsgrammatik mittels dreier GF-Module: Zero.gf, ZeroGer.gf, ZeroChi.gf
+#+BEGIN_SRC bash
+Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
+#+END_SRC
+
+Damit sollte sich ein Programm unserer Wahl mit der PNG-Bilddatei öffnen, das uns folgenden (umgedrehten) Baum zeigt:
+
+# :float t -> center image!
+#+CAPTION[vt-1]: ~visualize\_tree~ produziert Graph mit AST (»Abstact Syntax Tree«)
+#+NAME: 1-jlm
+#+ATTR_LATEX: :width 0.35\textwidth :float t
+[[./example-code/Zero/1-JohannesLiebtMarie.png]]
+
+
+#+BEGIN_SRC bash
+Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
+Pred John (Compl Love Mary)
+#+END_SRC
+
+Die Darstellungsweise der Ausgabe lässt vielleicht nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. 
+
+- Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
+- fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
+
 - Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
 
 I have put a minimal grammar in
@@ -190,6 +214,18 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: 
 #+LATEX_HEADER: 
 #+LATEX_HEADER: 
+#+LATEX_HEADER: \usepackage{infobox} %thx to  https://github.com/lkiesow/thesis-latex/blob/master/tex/latex/infobox/infobox.sty              
+#+LATEX_HEADER: %%%% Custom Command for floating Infoboxes
+#+LATEX_HEADER: %%%% usage: \infobox{<title>}{<text>}
+#+LATEX_HEADER: %\usepackage{picins} funktioniert nicht gut mit Liste (float-Umgebung) -- jetzt ohne Float mit infobox-package                
+#+LATEX_HEADER: %\newcommand{\infobox}[2]{
+#+LATEX_HEADER: %    \parpic(0.34\textwidth,0pt)[lf]{
+#+LATEX_HEADER: %        \parbox[b]{0.32\textwidth}{
+#+LATEX_HEADER: %             {\bf #1}  \small{{{#2}}}
+#+LATEX_HEADER: %        }
+#+LATEX_HEADER: %    }
+#+LATEX_HEADER: %    \bigskip
+#+LATEX_HEADER: %}
 
 # Local Variables:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
