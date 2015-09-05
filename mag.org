@@ -1,22 +1,31 @@
+\pagenumbering{roman}
+\listoffigures
+\lstlistoflistings
+# \listoftables
 * Eingrenzung des Themas
+\pagenumbering{arabic}
 Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
 - \cite{thompson_type_1991}
-* Grammatiken programmieren mit GF
-** Überblick
+
 GF ist eine Programmiersprache zum Programmieren multilingualer Applikationsgrammatiken.[fn:: Eine Applikation ist eine Anwendung(-software). TODO: Diesen Begriff genauer klären, wie ist eine application grammar in GF zu verstehen? cf. gf-book, Einleitung] Dass wir beim Übersetzungsvorgang einen multilingualen Ansatz benötigen, liegt auf der Hand, aber wie ist er realisiert in GF? GF zwischen konkreten Grammatiken (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische oder syntaktische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für (mindestens eine) konkrete Grammatiken{??}, indem diese eine semantische Interlingua bereitstellen.
 
+-> pivot lang -> indirekte Übersetzung (Interlingua)
+* Relevanz von GF
+** für die Maschinelle Übersetzung (MÜ)
+** für das Chinesische
+* Grammatiken mit GF - ein Tutorium
+** Präliminarien und Überblick
 Die nun verwendeten Beispiel-Dateien befinden sich (genau so wie dieser Text) in einem öffentlich zugänglichen Git-Repositorium.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
 
-*** Beispiel: Marie und John (1)
-Zunächst skizzieren wir beispielhaft[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken. Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander ihre konkrete Sprache beschreiben können. 
+Zunächst skizzieren wir beispielhaft[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken. Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
 
-Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}) ermöglichen die Übersetzung beschriebener semantischer Einheiten vom Chinesischen ins Deutsche und umgekehrt:
-
-TODO: Störend, dass in diesem Beispiel syntaktische Cats und in Food semantische Cats (Comment, Item, Kind, Quality) verwendet werden??? Die syntaktischen Cats machen es aber sehr schön übersichtlich!
+** Module und Regeln
+Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}), deren Inhalt der Übersicht halber nebeneinander abgedruckt wird, ermöglichen eine Übersetzung, der in ihnen beschriebenen semantischen Einheiten, vom Chinesischen ins Deutsche und umgekehrt:
 
 #+name: mj1
-#+CAPTION[Hello-GF]: 3 Module einer multilingualen Grammatik
-#+begin_src bash
+#+CAPTION[Hallo GF]: 3 Module einer multilingualen Grammatik aus den Dateien: Zero.gf, ZeroGer.gf und ZeroChi.gf
+#+BEGIN_SRC bash
+--Zero.gf:                   --ZeroGer.gf:                   --ZeroChi.gf:
 abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of Zero = { 
   cat                          lincat                          lincat                      
     S; NP; VP; V2;               S, NP, VP, V2 = Str;             S, NP, VP, V2 = Str;
@@ -27,8 +36,21 @@ abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of
     Love : V2;                   Mary = "Marie";                  Mary = "玛丽";
                                  Love = "liebt";                  Love = "爱";
 }                            }                               }
-#+end_src
+#+END_SRC
+Jedes der Module besteht zunächst aus einer Kopfzeile (dem Header, siehe Zeile 2 von \ref{mj1}), der angibt, ob es sich um eine abstrakte oder konkrete Grammatik handelt, gefolgt vom Namen des Moduls. Der Modulname entspricht dem Namen der Datei, in der sich das Modul befindet, ohne Dateiendung (Extension). So befindet sich etwa das abstrakte Modul ~Zero~ in der Datei ~Zero.gf~.
 
+Nach dem Modul-Header wird der Modul-Hauptteil (der Body)mit »= {« eingeleitet und mit »}« abgeschlossen, wobei wir es innerhalb des Hauptteils mit verschiedenen Urteilen oder Regeln (judgements or rules) zu tun haben.[fn:: \cite[45]{ranta_grammatical_2011}] Abstrakte Module, wie ~Zero~, benutzen hauptsächlich zwei Arten von Regeln, die mit folgenden Schlüsselwörtern eingeleitet werden:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- $\ast$ ~cat~ :: *Kategorien-Deklarationen*, die die Kategorien (Typen von Bäumen) beschreiben
+- $\ast$ ~fun~ :: *Funktions-Deklarationen*, die die verschiedenen Kategorien miteinander in Beziehung setzen
+
+Konkrete Module, wie ~ZeroGer~ und ~ZeroChi~, führen im Header nach dem Schlüsselwort ~conrete~ ebenso ihren Namen, müssen aber noch hinzufügen, auf welche abstrakte Grammatik sie sich beziehen. In unserem Fall zeigt ~of Zero~ an, dass sie sich auf das 
+Modul in Zero.gf beziehen. Daraufhin beginnt auch hier der Modul-Body, in dem wir auch wieder zwei Arten von Regeln vorfinden:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- $\ast$ ~lincat~ :: *Linearisierungs-Typ-Definitionen*, die den Typ der Ausgabe-Objekte des \inlst$linearize$-Kommandos definieren[fn:: Cf. Besprechung von ~tables~ und ~records~. LINK-TODO!]
+- $\ast$ ~lin~ :: *Linearisierungs-Regeln* für Kategorien
+
+** GF-Shell
 Testen wir zunächst diese drei Module in der GF Shell, die uns einen interaktiven Umgang mit den von uns erstellten Grammatiken ermöglicht.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.]
 
 #+name: pl1
@@ -55,12 +77,16 @@ Aus der Beobachtung dieses Ablaufs ergeben sich mindestens zwei Fragen:
 1. Was genau wird von dem Pipe-Operator weitergeleitet?
 2. Wie genau steht dieser Ablauf im Verhältnis zu den von uns oben angeführten drei Grammatiken? (Auflistung \ref{mj1})
 
-Frage 1 können wir oberflächlich in der Shell beantworten, indem wir die Pipe und ~linearize~ weglassen. 
+Frage 1 können wir oberflächlich in der Shell beantworten, indem wir den Pipe-Operator und ~linearize~ weglassen. 
+#+name: mj-hello-ast
+#+CAPTION[AST: Klammernotation]: AST in Klammernotation
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
-Was ~parse~ nun zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. »Abstrakter Syntax Baum« (Abstract Syntax Tree, kurz ADT) in Klammernotation. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung  einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
+
+** Abstrakter Syntax Baum (AST)
+Was ~parse~ in Auflistung \ref{mj-hello-ast}zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. »Abstrakter Syntax Baum« (Abstract Syntax Tree, kurz AST) in Klammernotation. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 #+END_SRC
@@ -80,20 +106,56 @@ Vergleichen wir nun diesen Graphen mit unserem abstrakten Syntaxmodul (Zero.gf),
 abstract Zero = {
   cat                       -- Kategorien
     S; NP; VP; V2;
-  fun                       -- Beginn des "fun" Blocks
+  fun                       -- Beginn des fun-Blocks
     Pred : NP -> VP -> S;
     Compl : V2 -> NP -> VP;
     John, Mary : NP;
     Love : V2;
 }
 #+end_src
-Die jeweils durch ein Semikolon getrennten Funktionen im ~fun~-Blocks geben an, wie die verschiedenen Kategorien im ~cat~-Block produziert werden. Dies geschieht über sog. Typen-Deklarationen hinter dem Doppelpunkt. \inlst$Pred : NP -> VP -> S;$ bedeutet etwa, dass eine Funktion namens ~Pred~ zwei Argumente nimmt, zunächst eines vom Typ ~NP~ (Nounphrase) und dann eines vom Typ ~VP~ (Verbphrase), um schließlich ein Objekt vom Typ ~S~ (Sentence) zu produzieren. Zur Erinnerung ist diese erste Funktion oder Regel in Abbildung \ref{jlm-eval-graph} rechteckig markiert
-
+Die jeweils durch ein Semikolon getrennten Funktionen im ~fun~-Blocks geben an, wie die verschiedenen Kategorien des ~cat~-Blocks produziert werden. Dies geschieht über sog. Typen-Deklarationen hinter dem Doppelpunkt. \inlst$Pred : NP -> VP -> S;$ bedeutet etwa, dass eine Funktion namens ~Pred~ zwei Argumente nimmt, zunächst eines vom Typ ~NP~ (Nominalphrase) und dann eines vom Typ ~VP~ (Verbphrase), um schließlich ein Objekt vom Typ ~S~ (Sentence) zu produzieren. Zur Erinnerung ist diese erste Funktion oder Regel in Abbildung \ref{jlm-eval-graph} /rechteckig/ umrandet.[fn:: TODO: Funktion oder Regel: logisch/semantisch?!]
 
 #+CAPTION[eval-1]: Evaluations-Reihenfolge
 #+NAME: jlm-eval-graph
 #+ATTR_LATEX: :width 0.35\textwidth :float t
 [[./example-code/Zero/1-JohannesLiebtMarie-Eval-Order.png]]
+
+Abbildung \ref{jlm-eval-graph} macht aber auch klar, dass das zweite Argument von ~Pred~ (vom Typ ~VP~) sich nun wiederum aus zwei Komponenten zusammensetzt, was im Bild trapezförmig markiert ist und durch die Regel \inlst$Compl : V2 -> NP -> VP;$ in der abstrakten Grammatik beschrieben wird. Damit können wir jetzt auch die Parallele zur Klammernotation ziehen und sehen, dass mit ihr wirklich sehr kompakt der gesamte Baum beschrieben wird. So besagt \inlst$Pred John (Compl Love Mary)$, dass zunächst die Funktion ~Pred~ ihre erstes Argument ~John~ (vom Typ ~NP~) zugespielt bekommt und dass dann aber -- um das zweite Argument für ~Pred~ zu erhalten -- vorrangig die Funktion ~Compl~ mit ihren eigenen Argumenten, ~Love~ und ~Mary~, abgearbeitet werden muss. Und gerade diese Vorrangigkeit oder /Präzedenz/ wird mit den runden Klammern um ~Compl Love Mary~ beschrieben.
+** Type Checking
+Die Relation zwischen Funktions-Anwendung (engl. function application, das Befüllen oder Sättigen einer Funktion mit ihren Argumenten) im AST und den Kategorien/Typen können wir auch sehr gut in der Shell illustrieren: Wir füttern dafür das Kommando ~linearize~ (das ja einen AST nimmt, um einen String zu produzieren) mit unvollständigen Bäumen und beobachten was passiert.
+
+#+CAPTION: Typ-Fehler: keine Argumente
+#+NAME: compl-no-args
+#+BEGIN_SRC bash
+Zero> linearize Pred John Compl
+Couldn't match expected type VP
+       against inferred type V2 -> NP -> VP
+In the expression: Compl
+#+END_SRC
+Hier sehen wir nach dem Aufruf von ~linearize~ mit einem unvollständigen AST, wie die Linearisierung fehlschlägt und demzufolge kein String ausgegeben wird. Stattdessen teilt uns der Typ-Checker (type checker) mit, dass der von uns bereitgestellte AST nicht seinen Erwartungen entspricht. Insbesondere bereitet der Ausdruck ~Compl~ Probleme, dessen Typ nicht mit jenem übereinstimmt, der als zweites Argument von ~Pred~ erwartet wird. Zur Erinnerung:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- \inlst$Pred : NP -> VP -> S;$
+- \inlst$Compl : V2 -> NP -> VP;$
+~Pred~ erwartet ein Objekt vom Typ ~VP~ als zweites Argument; der Ausdruck ~Compl~ ist aber als Funktion noch vollkommen ungesättigt -- ihm wurden also noch keine Argumente übergeben --, weswegen der Compiler den Typ vollkommen korrekt als \inlst$V2 -> NP -> VP$ inferiert (Zeile 3), was aber eben laut Typen-Definition nicht das zweite Argument von ~Pred~ sein kann. Daher der ausgegebene Typ-Fehler (type error) und der Abbruch des Kommandos. Beachten wir hingegen die Präzedenz-Klammerung (die runden Klammern sind also zwingend notwendig) und sättigen ~Compl~ mit allen notwendigen Ausdrücken (Funktionsargumenten), bekommen wir natürlich die Linearisierung unseres AST als Strings:
+
+#+CAPTION[AST: Komplette Funktionsanwendung]: Kein Typ-Fehler: Funktion ~Compl~ vollständig mit Argumenten gesättigt
+#+NAME: compl-all-args
+#+BEGIN_SRC bash
+Zero> linearize Pred John (Compl Love Mary)
+约翰 爱 玛丽
+Johann liebt Marie
+#+END_SRC
+
+Damit hätten wir die Fälle gezeigt, in denen die ~Compl~-Funktion, entweder keine Argumente erhält (Abb. \ref{compl-no-args}) oder alle (Abb. \ref{compl-all-args}). Der Vollständigkeit halber sei auch noch gezeigt, dass eine partielle Sättigung der Funktion (im Fall von ~Compl~ also mit nur einem Argument) möglich ist und wie dieser Fall vom Compiler interpretiert wird:
+#+caption[AST: Partielle Funktionsanwendung]: Typ-Fehler: Funktion ~Compl~ partiell gesättigt
+#+NAME: compl-part-args
+#+BEGIN_SRC bash
+Zero> linearize Pred John (Compl Love)
+Couldn't match expected type VP
+       against inferred type NP -> VP
+In the expression: Compl Love
+#+END_SRC
+In Auflistung \ref{compl-part-args} wird die Funktion ~Compl~ auf ein Argument vom Typ ~V2~ (Verb mit Platz für zwei Objekte: Subjekt und Objekt, ~Love~) angewandt, was für den Typ-Inferenz-Mechanismus des Compilers laut Zeile 3 bedeutet, dass der Ausdruck ~Compl Love~ den Typ ~NP -> VP~ besitzt. (\inlst$Compl Love : NP -> VP$)
 
 Außerdem zeigt uns der Graph die Kategorien (~cat~)
 #+BEGIN_SRC bash 
@@ -114,15 +176,26 @@ abstract Zero = {           concrete ZeroChi of Zero = {
                                  Love = "爱";
 }                           }
 #+end_src
+
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 Pred John (Compl Love Mary)
+#+END_SRC
+
+#+CAPTION[tabpress]: Inkrementelles Parsing und Vorschläge für das 
+#+NAME: jlm-tab
+#+BEGIN_SRC bash 
+Zero> linearize Pred 
+Compl  John   Love   Mary   Pred -- Warum wird Compl vorgeschlagen?! -- das ist kein richtiges Inkrementelles Parsing; klar ist ja auch linearize... :P
 #+END_SRC
 
 
 - Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
 - fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
 
+
+** Records und Tables
+Eyes:
 - Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
 
 I have put a minimal grammar in
@@ -134,17 +207,13 @@ entitled "Eyes", and you can play with it and extend it as you want. The main id
 - NP has Number as inherent feature (field in a record)
 - N has Number as variable feature (argument in a table)
 
-Determiners set the Number of an NP, and select the number of N. Thus "this" sets an NP to be Sg, and selects the Sg form of the N.
+Determiners set the Number of an NP, and select the number of N. Thus »this« sets an NP to be Sg, and selects the Sg form of the N.
 
 With "your", you must think in a bit tricky way. There are, so to say, two variants of it: YourSg and YourPl. Many languages actually differentiate them (e.g. French and German) but in English they are the same string. But otherwise they work like This and These.
 
 You should read the GF book chapter 3 for more details, and then 4 and 9 for even more details. If you don't have the book, the book slides may give enough information.
 
-
-** 
-** 
-** 
-** 
+** Notizen über das verwendete Vokabular
 * Evaluation der chinesischen Ressourcen Grammatik
 ** eng_chi2.txt:
 *** 把 nur auf Dinge beziehbar?
