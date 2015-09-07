@@ -1,0 +1,11 @@
+#+BEGIN_LaTeX
+Hiermit erkläre ich, dass ich die Masterarbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken als solche kenntlich gemacht habe.
+
+Die Arbeit habe ich bisher keinem anderen Prüfungsamt in gleicher oder vergleichbarer Form vorgelegt. Sie wurde bisher nicht veröffentlicht.
+\vspace{3cm}
+
+\begin{tabularx}{.9\textwidth}{XXX}
+	\hspace{3cm}   && \hspace{3cm} \\ \cline{1-1}\cline{3-3}
+	Datum     && Unterschrift
+\end{tabularx}
+#+END_LaTeX
