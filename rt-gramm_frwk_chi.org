@@ -17,22 +17,31 @@ GF ist eine Programmiersprache zum Programmieren multilingualer Applikationsgram
 * Relevanz von GF
 ** für die Maschinelle Übersetzung (MÜ)
 ** für das Chinesische
-* Grammatiken mit GF - ein Tutorium
+* Tutorium
 ** Präliminarien und Überblick
-Die nun verwendeten Beispiel-Dateien befinden sich (genau so wie dieser Text) in einem öffentlich zugänglichen Git-Repositorium.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
+Die nun verwendeten Beispiel-Grammatiken liegen (wie auch dieser Text) in einem öffentlich zugänglichen Archiv und stehen so zum eigenen Experimentieren bereit.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
 
-Zunächst skizzieren wir beispielhaft[fn:: Zuerst verwendet in \cite{ranta_gf-lrec-2010.pdf_2010} und sodann auch in \cite{_grammatical_2014}.] die oben beschriebene Interaktion zwischen abstrakten und konkreten Grammatiken. Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
+Der Ablauf der Tutoriums-Sektion gliedert sich in die aufeinander aufbauende Exposition folgender Punkte:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- Module und Regeln für Grammatiken :: Grundlegende Terminologie in Modulen, die zusammen eine multilinguale Grammatik bilden (abstrakte und konkrete Grammatiken)
+- Interaktion mit den Grammatiken :: Demonstration der Grammatik (Übersetzung etc.) in der GF-Shell
+- Erläuterung des Datenmodell :: Mit Hilfe des Gelernten und Beobachteten das Datenmodell erläutern[fn:: Mit der Erläuterung des Datenmodell wird gleichzeitig eine praxisnahe Einführung in die Verwendung von Typen in GF sowie die curryfizierte Funktionsanwendung (curried function application) gegeben. Dies hat nicht nur den für uns hier praktischen Vorteil, dass Fehlermeldungen beim Kompilieren der Grammatiken eingeordnet werden können, sondern bietet auch generell eine Grundlage für das Verständnis /Funktionaler Programmierung/ (FP). REFTODO: Sektion über FP-Geschichte?!]
+
+TODO: Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
 
 ** Module und Regeln
-Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}), deren Inhalt der Übersicht halber nebeneinander abgedruckt wird, ermöglichen eine Übersetzung, der in ihnen beschriebenen semantischen Einheiten, vom Chinesischen ins Deutsche und umgekehrt:
+Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}), deren Inhalt nur der Übersicht halber nebeneinander abgedruckt wird, ermöglichen eine Übersetzung der in ihnen beschriebenen semantischen Einheiten vom Chinesischen ins Deutsche und umgekehrt:
 
 #+name: mj1
-#+CAPTION[Hallo GF]: 3 Module einer multilingualen Grammatik aus den Dateien: Zero.gf, ZeroGer.gf und ZeroChi.gf
+#+CAPTION[Hallo GF]: 3 Module einer multilingualen Grammatik (./example-code/Zero/)
 #+BEGIN_SRC bash
 --Zero.gf:                   --ZeroGer.gf:                   --ZeroChi.gf:
 abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of Zero = { 
   cat                          lincat                          lincat                      
-    S; NP; VP; V2;               S, NP, VP, V2 = Str;             S, NP, VP, V2 = Str;
+    S;   -- sentence             S, NP, VP, V2 = Str;             S, NP, VP, V2 = Str;
+    NP;  -- noun phrase
+    VP;  -- verb phrase
+    V2;  -- two place verb
   fun                          lin                             lin
     Pred : NP -> VP -> S;        Pred np vp = np ++ vp;           Pred np vp = np ++ vp;
     Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np;          Compl v2 np = v2 ++ np;
@@ -41,23 +50,39 @@ abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of
                                  Love = "liebt";                  Love = "爱";
 }                            }                               }
 #+END_SRC
-Jedes der Module besteht zunächst aus einer Kopfzeile (dem Header, siehe Zeile 2 von \ref{mj1}), der angibt, ob es sich um eine abstrakte oder konkrete Grammatik handelt, gefolgt vom Namen des Moduls. Der Modulname entspricht dem Namen der Datei, in der sich das Modul befindet, ohne Dateiendung (Extension). So befindet sich etwa das abstrakte Modul ~Zero~ in der Datei ~Zero.gf~.
+
+Jedes der Module besteht zunächst aus einer Kopfzeile (dem Header, siehe Zeile 2 von \ref{mj1}), der angibt, ob es sich um eine abstrakte oder konkrete Grammatik handelt, gefolgt vom Namen des Moduls. Der Modulname entspricht dem Namen der Datei, in der sich das Modul befindet, ohne Dateiendung (Extension). So befindet sich etwa das abstrakte Modul ~Zero~ in der Datei ~Zero.gf~. Einzeilige Kommentare können mit ~--~, mehrzeilige mit ~{-~ und ~-}~ in den Quellcode geschrieben werden.[fn:: Die Zero-Grammatik ist eine Abwandlung der Beispiele in \cite{ranta_gf-lrec-2010.pdf_2010} sowie \cite{_grammatical_2014}.]
 
 Nach dem Modul-Header wird der Modul-Hauptteil (der Body)mit »= {« eingeleitet und mit »}« abgeschlossen, wobei wir es innerhalb des Hauptteils mit verschiedenen Urteilen oder Regeln (judgements or rules) zu tun haben.[fn:: \cite[45]{ranta_grammatical_2011}] Abstrakte Module, wie ~Zero~, benutzen hauptsächlich zwei Arten von Regeln, die mit folgenden Schlüsselwörtern eingeleitet werden:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - $\ast$ ~cat~ :: *Kategorien-Deklarationen*, die die Kategorien (Typen von Bäumen) beschreiben
-- $\ast$ ~fun~ :: *Funktions-Deklarationen*, die die verschiedenen Kategorien miteinander in Beziehung setzen
+- $\ast$ ~fun~ :: *Funktions-Typen-Deklarationen*, die die verschiedenen Kategorien miteinander in Beziehung setzen
 
-Konkrete Module, wie ~ZeroGer~ und ~ZeroChi~, führen im Header nach dem Schlüsselwort ~conrete~ ebenso ihren Namen, müssen aber noch hinzufügen, auf welche abstrakte Grammatik sie sich beziehen. In unserem Fall zeigt ~of Zero~ an, dass sie sich auf das 
-Modul in Zero.gf beziehen. Daraufhin beginnt auch hier der Modul-Body, in dem wir auch wieder zwei Arten von Regeln vorfinden:
+Konkrete Module, wie ~ZeroGer~ und ~ZeroChi~, haben im Header nach dem Schlüsselwort ~conrete~ ebenso ihren Namen, müssen aber auch noch anführen, auf welche abstrakte Grammatik sie sich beziehen. In unserem Fall zeigt ~of Zero~ an, dass sie sich auf das 
+Modul in der Datei Zero.gf beziehen. Daraufhin beginnt auch hier der Modul-Body, in dem wir auch wieder zwei Arten von Regeln vorfinden:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - $\ast$ ~lincat~ :: *Linearisierungs-Typ-Definitionen*, die den Typ der Ausgabe-Objekte des \inlst$linearize$-Kommandos definieren[fn:: Cf. Besprechung von ~tables~ und ~records~. LINK-TODO!]
 - $\ast$ ~lin~ :: *Linearisierungs-Regeln* für Kategorien
 
-** GF-Shell
-Testen wir zunächst diese drei Module in der GF Shell, die uns einen interaktiven Umgang mit den von uns erstellten Grammatiken ermöglicht.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.]
+Man beachte die Korrespondenz zwischen den ~fun~-Regeln im abstrakten Modul und den verschiedenen ~lin~-Regeln der konkreten Grammatiken: Zum Beispiel wird mit dem Ausdruck ~Compl~ in der abstrakten Grammatik eine Funktion mit dazugehöriger Typen-Deklaration hinter dem Doppelpunkt eingeführt. Die Typen-Deklaration beschreibt, welchen Typ die Objekte haben dürfen, die die Funktion ~Compl~ als Argumente nimmt.
+#+BEGIN_SRC bash
+abstract Zero = {             concrete Zero___ of Zero = {
+[...]
+    Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np; -- ident. Definition in
+[...]                                                    -- ZeroChi und ZeroGer
+}                             }
+#+END_SRC
+Im Beispiel von ~Compl~ etwa bedeutet die Typen-Deklaration \inlst$V2 -> NP -> VP;$, dass zwei Argumente, zunächst vom Typ V2 und dann vom Typ NP, benötigt werden, um ein Objekt vom Typ VP zu erzeugen. Wir sagen, die Argument-Typen (engl. /argument type/) der Funktion ~Compl~ sind V2 und NP und der Wert-Typ (engl. /value type/) derselben ist VP.
 
-Die Grammatiken in die GF-Shell zu laden, ist am einfachsten, wenn wir zunächst in das Verzeichnis navigieren, wo unsere Grammatik-Module liegen. Im jeweiligen Kommandozeilen-Interpreter[fn:: Unter Windows sollten standardmäßig zwei Shells zur Verfügung stehen: cmd.exe und Powershell; (Mac) OS X: iTerm] des Betriebssystems sollte nach der Installation von GF ein ~gf~-Programm verfügbar sein, sodass wir die GF-Shell damit starten können. Beim Aufruf kann man entweder gleich die betreffenden Grammatik-Modul-Dateien angeben (\inlst$>gf ZeroChi.gf ZeroGer.gf$) und man landet in der GF-Shell:
+Welche konkreten Objekte dann mit dieser abstrakten Typen-Deklaration verbunden werden, ist ersichtlich aus den Linearisierungs-Regeln der konkreten Grammatiken. Die beiden konkreten Grammatiken ZeroChi und ZeroGer haben in unserem Beispiel dieselbe Definition von ~Compl~, nämlich \inlst$Compl v2 np = v2 ++ np;$. Die Komponenten dieser Definition sind:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- »Compl« :: der Name der Funktion für die Funktions-Definition, der mit dem Namen der Funktions-Typ-Deklaration übereinstimmen muss
+- »v2« und »np« :: die Argumente der Funktions-Definition, die prinzipiell beliebig gewählt werden dürfen, die aber hier namentlich darauf hinweisen, dass das Objekt, das sie referenzieren, vom Typ V2 bzw. NP ist
+- »=« :: das Gleichheitszeichen leitet den Funktionskörper (engl. /body/) ein
+- »v2 ++ np« :: hier werden die beiden Argumente der Funktion verkettet 
+
+** Interaktion in der GF-Shell
+Die GF-Shell bietet über verschiedene Kommandos einen interaktiven Zugang zu den Grammatiken.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.] Um die Grammatiken der letzten Sektion in der Shell zu testen, müssen wir zunächst die Grammatik-Module laden, was am einfachsten geschieht, wenn wir zunächst in das Verzeichnis navigieren, wo sich dieselben befinden. Im jeweiligen Kommandozeilen-Interpreter[fn:: Unter Windows sollten standardmäßig zwei Shells zur Verfügung stehen: cmd.exe und Powershell; (Mac) OS X: iTerm] des Betriebssystems sollte nach der Installation von GF ein ~gf~-Programm verfügbar sein, sodass wir die GF-Shell damit starten können. Beim Aufruf kann man entweder gleich die betreffenden Grammatik-Modul-Dateien angeben (\inlst$>gf ZeroChi.gf ZeroGer.gf$), sodass man mit den geladenen Grammatiken arbeiten kann:
 
 #+BEGIN_LATEX
 \vspace{5mm}
@@ -89,7 +114,7 @@ Zero>
 %\vspace{5mm}
 #+END_LATEX
 
-Oder man startet die GF-Shell einfach mit ~gf~ (und ohne jedwede Datei-Argumente) und importiert dann mittels ~import~ von der GF-Shell aus die Modul-Dateien:
+Oder man startet die GF-Shell einfach mit ~gf~ (also ohne jedwede Datei-Argumente) und importiert dann mittels des ~import~-Kommandos von der GF-Shell aus die Modul-Dateien:
 
 #+BEGIN_LATEX
 \vspace{5mm}
@@ -108,19 +133,19 @@ Zero>
 In jedem Fall sollte es dann möglich sein, folgende Kommando-Kombination auszuführen:
 
 #+name: pl1
-#+CAPTION[parse-lin-1]: Shell: Chin.-Deutsch
+#+CAPTION[Übersetzungskommandos in der GF-Shell]: GF-Shell: Standard-Übersetzungs-Kommandoabfolge: ~parse~, »|« (Pipe), ~linearize~   
 #+BEGIN_SRC bash
 Languages: ZeroChi ZeroGer
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
 #+END_SRC
 
-In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. scope) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt.
+In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. /scope/) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik (sofern geladen) sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der angesprochenen Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt.
 
-Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, benötigt. Der genaue Ablauf sieht folgendermaßen aus:
+Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, und ein Operator benötigt, der die Ausgabe des ersten Kommandos an das zweite weiterleitet. Der genaue Ablauf sieht folgendermaßen aus:
 
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-1. Eine chinesische Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse -lang=ZeroChi~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, immer in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, dass die einzelen Wörter im String durch ein Leerzeichen getrennt sind. Um dies hervorzuheben wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) /angedeutet/. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
+1. Eine chinesische Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse -lang=ZeroChi~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, die einzelen Wörter (Tokens) im String durch ein Leerzeichen zu trennen. Um dies /hervorzuheben/ wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) umgesetzt. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
 2. Das Ergebnis der Verarbeitung wird durch den sog. Pipe-Operator, ~|~, weitergeleitet \ldots{}
 3. \ldots{} an ~linearize~, das eine deutsche Übersetzung mittels ~-lang=ZeroGer~ in Zeile 3 generiert.
 
@@ -139,8 +164,10 @@ Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
 
-** Abstrakter Syntax Baum (AST)
-Was ~parse~ in Auflistung \ref{mj-hello-ast}zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. »Abstrakter Syntax Baum« (Abstract Syntax Tree, kurz AST) in Klammernotation. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
+Um diese Ausgabe zu interpretieren und auch die zweite Frage zu beantworten, müssen wir uns eingehend mit Bäumen als Datenstrukturen auseinandersetzen.
+** Datenmodellierung und Prüfung
+*** Abstrakter Syntax Baum/Tree (AST)
+Was ~parse~ in Auflistung \ref{mj-hello-ast} zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. /Abstrakter Syntax Baum/ (Abstract Syntax Tree, kurz AST) in /Klammernotation/. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
 #+BEGIN_SRC bash
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 #+END_SRC
@@ -151,7 +178,7 @@ Damit sollte sich ein Programm unserer Wahl (hier der Firefox-Browser) mit der P
 #+NAME: jlm-abs-graph
 #+ATTR_LATEX: :width 0.35\textwidth :float t
 [[./example-code/Zero/1-JohannesLiebtMarie.png]]
-Nun sollte ersichtlich sein, was gemeint ist, wenn wir dem Ausdruck \inlst$Pred John (Compl Love Mary)$ eine Baumstruktur zusprechen: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen, wobei sich ~Compl~ wiederum verzweigt in ~Love~ und ~Mary~.[fn:: (~Pred~: die Prädikation, TODO: Hadumot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen! TODO: Fußnote oder Infobox zu semantischen/syntaktischen Bezeichnern!)]
+Nun sollte ersichtlich sein, was gemeint ist, wenn wir dem Ausdruck \inlst$Pred John (Compl Love Mary)$ eine Baumstruktur zusprechen: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen, wobei sich ~Compl~ wiederum verzweigt in ~Love~ und ~Mary~.[fn:: (~Pred~: die Prädikation, TODO: Hadumot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen! TODO: Fußnote oder Infobox zu semantischen/syntaktischen Bezeichnern!)][fn:: Abkürzung für Prädikation (engl. /predication/), cf. REFTODO-Seite noch nicht richtig: \cite{busmann_lexikon_2008}.]
 
 Vergleichen wir nun diesen Graphen mit unserem abstrakten Syntaxmodul (Zero.gf), so zeigt sich eine Übereinstimmung zwischen den geparsten semantischen Einheiten des AST und den Namen der Funktions-Deklarationen im ~fun~-Block:
 #+name: mjAbs
@@ -174,9 +201,9 @@ Die jeweils durch ein Semikolon getrennten Funktionen im ~fun~-Blocks geben an, 
 #+ATTR_LATEX: :width 0.35\textwidth :float t
 [[./example-code/Zero/1-JohannesLiebtMarie-Eval-Order.png]]
 
-Abbildung \ref{jlm-eval-graph} macht aber auch klar, dass das zweite Argument von ~Pred~ (vom Typ ~VP~) sich nun wiederum aus zwei Komponenten zusammensetzt, was im Bild trapezförmig markiert ist und durch die Regel \inlst$Compl : V2 -> NP -> VP;$ in der abstrakten Grammatik beschrieben wird. Damit können wir jetzt auch die Parallele zur Klammernotation ziehen und sehen, dass mit ihr wirklich sehr kompakt der gesamte Baum beschrieben wird. So besagt \inlst$Pred John (Compl Love Mary)$, dass zunächst die Funktion ~Pred~ ihre erstes Argument ~John~ (vom Typ ~NP~) zugespielt bekommt und dass dann aber -- um das zweite Argument für ~Pred~ zu erhalten -- vorrangig die Funktion ~Compl~ mit ihren eigenen Argumenten, ~Love~ und ~Mary~, abgearbeitet werden muss. Und gerade diese Vorrangigkeit oder /Präzedenz/ wird mit den runden Klammern um ~Compl Love Mary~ beschrieben.
-** Type Checking
-Die Relation zwischen Funktions-Anwendung (engl. function application, das Befüllen oder Sättigen einer Funktion mit ihren Argumenten) im AST und den Kategorien/Typen können wir auch sehr gut in der Shell illustrieren: Wir füttern dafür das Kommando ~linearize~ (das ja einen AST nimmt, um einen String zu produzieren) mit unvollständigen Bäumen und beobachten was passiert.
+Abbildung \ref{jlm-eval-graph} macht aber auch klar, dass das zweite Argument von ~Pred~ (vom Typ ~VP~) sich nun wiederum aus zwei Komponenten zusammensetzt, was im Bild trapezförmig markiert ist und durch die Regel \inlst$Compl : V2 -> NP -> VP;$ in der abstrakten Grammatik beschrieben wird. Damit können wir jetzt auch die Parallele zur Klammernotation ziehen und sehen, dass mit ihr wirklich sehr kompakt der gesamte Baum beschrieben wird. So besagt \inlst$Pred John (Compl Love Mary)$, dass zunächst die Funktion ~Pred~ ihre erstes Argument ~John~ (vom Typ ~NP~) zugespielt bekommt und dass dann aber -- um das zweite Argument für ~Pred~ zu erhalten -- vorrangig die Funktion ~Compl~ mit ihren eigenen Argumenten, ~Love~ und ~Mary~, abgearbeitet oder evaluiert werden muss. Und gerade diese Vorrangigkeit oder /Präzedenz/ der Evaluation wird mit den runden Klammern um ~Compl Love Mary~ beschrieben.
+*** Prüfung des Datenmodells: Type Checking
+Die Relation zwischen Funktions-Anwendung (engl. /function application/, das Befüllen oder Sättigen einer Funktion mit ihren Argumenten) im AST und den Kategorien/Typen können wir auch sehr gut in der Shell illustrieren: Wir füttern dafür das Kommando ~linearize~ (das ja einen AST nimmt, um einen String zu produzieren) mit unvollständigen Bäumen und beobachten was passiert.
 
 #+CAPTION: Typ-Fehler: keine Argumente
 #+NAME: compl-no-args
@@ -186,11 +213,11 @@ Couldn't match expected type VP
        against inferred type V2 -> NP -> VP
 In the expression: Compl
 #+END_SRC
-Hier sehen wir nach dem Aufruf von ~linearize~ mit einem unvollständigen AST, wie die Linearisierung fehlschlägt und demzufolge kein String ausgegeben wird. Stattdessen teilt uns der Typ-Checker (type checker) mit, dass der von uns bereitgestellte AST nicht seinen Erwartungen entspricht. Insbesondere bereitet der Ausdruck ~Compl~ Probleme, dessen Typ nicht mit jenem übereinstimmt, der als zweites Argument von ~Pred~ erwartet wird. Zur Erinnerung:
+Hier sehen wir nach dem Aufruf von ~linearize~ mit einem unvollständigen AST, wie die Linearisierung fehlschlägt und demzufolge kein String ausgegeben wird. Stattdessen teilt uns der Typ-Checker (engl. /type checker/) mit, dass der von uns bereitgestellte AST nicht den von uns in der Grammatik formulierten Erwartungen entspricht. Insbesondere bereitet der Ausdruck ~Compl~ Probleme, dessen Typ nicht mit jenem übereinstimmt, der als zweites Argument von ~Pred~ erwartet wird. Zur Erinnerung:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - \inlst$Pred : NP -> VP -> S;$
 - \inlst$Compl : V2 -> NP -> VP;$
-~Pred~ erwartet ein Objekt vom Typ ~VP~ als zweites Argument; der Ausdruck ~Compl~ ist aber als Funktion noch vollkommen ungesättigt -- ihm wurden also noch keine Argumente übergeben --, weswegen der Compiler den Typ vollkommen korrekt als \inlst$V2 -> NP -> VP$ inferiert (Zeile 3), was aber eben laut Typen-Definition nicht das zweite Argument von ~Pred~ sein kann. Daher der ausgegebene Typ-Fehler (type error) und der Abbruch des Kommandos. Beachten wir hingegen die Präzedenz-Klammerung (die runden Klammern sind also zwingend notwendig) und sättigen ~Compl~ mit allen notwendigen Ausdrücken (Funktionsargumenten), bekommen wir natürlich die Linearisierung unseres AST als Strings:
+~Pred~ erwartet ein Objekt vom Typ ~VP~ als zweites Argument; der Ausdruck ~Compl~ ist aber als Funktion noch vollkommen ungesättigt -- ihm wurden also noch keine Argumente übergeben --, weswegen der Compiler den Typ vollkommen korrekt als \inlst$V2 -> NP -> VP$ ableitet oder inferiert (Zeile 3), was aber eben laut Typen-Definition nicht das zweite Argument von ~Pred~ sein kann. Daher der ausgegebene Typ-Fehler (type error) und der Abbruch des Kommandos. Beachten wir hingegen die Präzedenz-Klammerung (die runden Klammern sind also zwingend notwendig) und sättigen ~Compl~ mit allen notwendigen Ausdrücken (Funktionsargumenten), bekommen wir natürlich die Linearisierung unseres AST als Strings:
 
 #+CAPTION[AST: Komplette Funktionsanwendung]: Kein Typ-Fehler: Funktion ~Compl~ vollständig mit Argumenten gesättigt
 #+NAME: compl-all-args
@@ -209,7 +236,23 @@ Couldn't match expected type VP
        against inferred type NP -> VP
 In the expression: Compl Love
 #+END_SRC
-In Auflistung \ref{compl-part-args} wird die Funktion ~Compl~ auf ein Argument vom Typ ~V2~ (Verb mit Platz für zwei Objekte: Subjekt und Objekt, ~Love~) angewandt, was für den Typ-Inferenz-Mechanismus des Compilers laut Zeile 3 bedeutet, dass der Ausdruck ~Compl Love~ den Typ ~NP -> VP~ besitzt. (\inlst$Compl Love : NP -> VP$)
+In Auflistung \ref{compl-part-args} wird die Funktion ~Compl~ auf ein Argument vom Typ ~V2~ (Verb mit Platz für zwei Objekte: Subjekt und Objekt, ~Love~) angewandt, was für den Typ-Inferenz-Mechanismus des Compilers laut Zeile 3 bedeutet, dass der Ausdruck ~Compl Love~ den Typ ~NP -> VP~ besitzt (\inlst$Compl Love : NP -> VP$). Auf diese spezielle Art der Funktionsanwendung, die partielle Applikation, sei an dieser Stelle schon hingewiesen, weil hiermit ein Merkmal funktionaler Programmiersprachen expliziert wird, das uns auch in GF als FP immer wieder begegnen wird: Jeder Ausdruck, den wir benutzen, um etwas zu berechnen oder um Daten zu modellieren, ist eine Funktion. Vielfach nehmen Funktionen zwar Argumente entgegen und verarbeiten diese, wie etwa ~Compl~ in der Zero-Grammatik:
+
+#+BEGIN_SRC bash
+    Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np;
+#+END_SRC
+
+Andere Ausdrücke, die keine Argumente nehmen, sind aber ebenso Funktionen, wie: 
+
+#+BEGIN_SRC bash
+    Love : V2;                   Love = "爱";
+    John : NP;                   John = "约翰";
+    Mary : NP;                   Mary = "玛丽";
+#+END_SRC
+
+
+
+
 
 Außerdem zeigt uns der Graph die Kategorien (~cat~)
 #+BEGIN_SRC bash 
