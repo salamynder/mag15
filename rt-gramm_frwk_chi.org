@@ -10,10 +10,77 @@
 \pagenumbering{arabic}
 Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
 - \cite{thompson_type_1991}
+** Wozu ist GF gut? Wo liegen die Vorteile?
+*** Klärung des Begriffs »multilinguale Applikationsgrammatik«
+GF ist eine Programmiersprache zum Programmieren *multilingualer Applikationsgrammatiken*. Der Aspekt der Multilingualität bedeutet für die Erstellung einer Applikationsgrammatik, dass immer zwischen sog. *konkreten Grammatiken* und *abstrakten Grammatiken* unterschieden wird. Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für konkreten Grammatiken, indem der Programmierer mit der abstrakten Grammatik ein semantisches Modell vorgibt, an das die konkreten Grammatiken gebunden sind. Dieses semantische Modell bezieht sich auf eine bestimmte Sprachdomäne und somit auch auf einen bestimmten Anwendungsfall, der sich software-technisch als Applikation, also als ein Programm bzw. eine Anwendung für einen bestimmten Zweck, manifestiert.
 
-GF ist eine Programmiersprache zum Programmieren multilingualer Applikationsgrammatiken.[fn:: Eine Applikation ist eine Anwendung(-software). TODO: Diesen Begriff genauer klären, wie ist eine application grammar in GF zu verstehen? cf. gf-book, Einleitung] Dass wir beim Übersetzungsvorgang einen multilingualen Ansatz benötigen, liegt auf der Hand, aber wie ist er realisiert in GF? GF zwischen konkreten Grammatiken (für bestimmte Übersetzungszielsprachen) und abstrakten Grammatiken (semantische oder syntaktische Interlingua). Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für (mindestens eine) konkrete Grammatiken{??}, indem diese eine semantische Interlingua bereitstellen.
+Zum Beispiel könnte unser Vorhaben eine Applikationsgrammatik für einen Tierpark sein, der an bestimmten Aussichtsplätzen und auf gewissen Endgeräten, wie etwa Touchscreens, eine Applikation bereitstellt, die Informationen zu den Tieren in verschiedenen Sprachen bietet. Im Kontext der Sprachdomäne /Tierpark/ wäre es dann klar, dass es sich bei einem Strauß nicht um einen Blumenstrauß, sondern vielmehr um einen Vogelstrauß handeln muss. Der Programmierer als Domänenexperte hat dann die Verantwortung, den Sachverhalt, dass es sich bei dem Strauß um ein Tier handeln soll, in entsprechender Weise in der Applikationsgrammatik zu hinterlegen.
 
--> pivot lang -> indirekte Übersetzung (Interlingua)
+*** Applikationsgrammatik mit Beispiel-Code, Hinweis auf RGL
+\infoBox[Info]{Die Einzelheiten zu den verschieden Begrifflichkeiten der Grammatiken werden ausführlich im Tutoriums-Kapitel abgehandelt. In dieser Sektion geht es dagegen vornehmlich darum, einen knappen aber informativen Einblick in die Leistungsfähigkeit des GF-Systems, insbesondere auch der »Resource Grammar Library« (RGL) zu geben.}
+
+Betrachten wir dazu den Satz »der Vogelstrauß frißt Beeren«, dann können wir diesen folgendermaßen in einer konkreten Grammatik für das Deutsche formalisieren:
+#+name: zoo1
+#+CAPTION[ZooGer]: Ausschnitt aus der konkreten Grammatik ZooGer.gf (./example-code/Zoo/)
+#+INCLUDE: "example-code/Zoo/ZooGer.gf" :lines "5-11" src bash
+In diesem Ausschnitt der konkreten Grammatik sind die sog. Linearisierungs-Regeln der konkreten Grammatik abgebildet. Allgemein haben sie die Form:
+#+BEGIN_SRC bash
+Name_der_Regel ( Argumente ) = Zeichenkette
+                       [ LHS | RHS ]
+#+END_SRC
+Das heißt, auf der linken Seite vom Gleichheitszeichen, der *LHS* (engl. left hand side), wird eine Name für eine Regel vergeben, darauf folgen mögliche Argumente, und rechts vom Gleichheitszeichen, der *RHS* (engl. right hand side), werden Zeichenketten angegeben, die produziert werden, wenn die dazugehörige Regel angewandt wird. Zeichenketten sind die fundamentale Datenstruktur in GF und stehen immer zwischen nicht-typographischen Anführungszeichen, i. e. \inlst$""$.
+
+Die Regeln sind unterteilt in konstante Regeln (\inlst$VStrauß, Fressen, Beere$) und solche Regeln, die diese Konstanten untereinander in Beziehung setzen (\inlst$Pred$). Setzen wir die Konstanten als Argumente für \inlst$Pred$ ein, erhalten wir den gesuchten Beispielsatz:
+#+BEGIN_SRC bash
+Pred VStrauß Fressen Beere = "der" ++ "Vogelstrauß" ++ "frißt" ++ "Beeren" ;
+#+END_SRC
+Nehmen wir nun eine zweite Grammatik hinzu, die eine Übersetzung unseres Satzes in Chinesische bereitstellt.
+#+name: zoo2
+#+CAPTION[ZooChi]: Ausschnitt aus der konkreten Grammatik ZooChi.gf (./example-code/Zoo/)
+#+INCLUDE: "example-code/Zoo/ZooChi.gf" :lines "5-9" src bash
+Und auch hier können wir durch Einsetzen der Konstanten in die Kombinationsregel \inlst$Pred$ erkennen, was linearisiert wird:
+#+BEGIN_SRC bash
+Pred VStrauß Fressen Beere = "鸵鸟" ++ "吃" ++ "浆果" ;
+#+END_SRC
+Man beachte nun, dass die LHS der \inlst$Pred$-Regel sowohl in der chinesischen als auch in der deutschen Grammatik exakt dieselbe ist, nämlich \inlst$Pred VStrauß Fressen Beere$. Diese LHS kann also als Schnittstelle für die Übersetzung zwischen verschiedenen Sprachen dienen: Wir wissen, wenn wir das semantische Modell \inlst$Pred VStrauß Fressen Beere$ in einer konkreten Grammatik implementiert haben, dass uns linearisierbare Zeichenketten für das Chinesische und für das Deutsche zur Verfügung steht.
+
+Zudem ist ein Ausbau der übersetzbaren Sprachen leichthin möglich: Wenn wir wissen, dass das semantische Modell den Anforderungen unserer Anwendung (Applikation) entspricht (unser Tierpark also allein aus Straußen besteht, die nichts anderes tun, als Beeren zu fressen), dann können wir ohne Skrupel weitere Sprachen in Form von konkreten Grammatiken hinzufügen. Wir werden im Tutoriums-Kapitel genau beleuchten, wie das semantische Modell in abstrakten Grammatiken definiert und in konkreten Grammatiken implementiert wird (nur letzteres haben die Ausschnitte jetzt gezeigt). Aber schon hier sollte klar sein, wie das semantische Modell (abstrakte Grammatik) als stabiler Dreh- und Angelpunkt fungiert.
+**** Einfache Flexibilität: Permutation, Reduplikation, Suppression 
+Bietet uns das semantischen Modells nun Stabilität der ausdrückbaren Bedeutungen, so erlauben uns die konkreten Grammatiken in ihrem Zuschnitt auf eine bestimmte Zielsprache Flexibilität. Die bisherigen Beispiele waren nur in dem Sinne flexibel, als sie zeigten, dass Zeichenketten für eine bestimmte Sprache konfigurierbar sind: In der deutschen Grammatik nutzen wir \inlst$Fressen = "frißt"$; in der chinesischen \inlst$Fressen = "吃"$. Auch bot die identische Hauptsatzstruktur beider Sprachen keinerlei Anlass über eine Flexibilität nachzudenken, die über das bloße Vokabular hinausgehen: Beide Sprachen greifen auf die Satzgliedstellung Subjekt-Prädikat-Objekt (S-P-O) zurück. Ganz anders wäre es dagegen im Lateinischen, wo durchgängig die Stellung Subjekt-Objekt-Prädikat (S-O-P) herrscht. Eine einfache Grammatik für das Lateinische, die diesen Zusammenhang sicherstellt, zeigt folgende Auflistung:
+#+CAPTION[ZooLat]: Ausschnitt aus der konkreten Grammatik ZooLat.gf (./example-code/Zoo/)
+#+INCLUDE: "example-code/Zoo/ZooLat.gf" :lines "5-13" src bash
+Die Möglichkeit Zeichenketten durch Kombinationsregeln unterschiedlich anzuordnen gehört zu den grundlegenden Freiheiten, die GF auf Zeichenketten-Ebene offeriert. Weitere Möglichkeiten, die allein mit Zeichenketten operieren sind:
+#+ATTR_LATEX: :options [style=multiline,itemsep=4pt,parsep=0pt,leftmargin=3cm]
+- Reduplikation :: \inlst$Pred vstr fres beer = vstr ++ fres ++ fres ++ beer => "鸵鸟 吃 吃 浆果"$, zu Deutsch: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs dient im Chinesischen dazu die zeitliche Ausdehnung der Handlung abzuschwächen [Attenuation][fn::\cite[149]{xiao_aspect_2004}])
+- Suppression :: \inlst$Pred vstr fres beer = vstr ++ beer$ (Also durch die Aufnahme eines Arguments durch \inlst$Pred$, aber Nicht-Anwendung in der Zeichenketten-Linearisierung. Anwendungsfall wäre z. B. das Entfallen des direkten Artikels bei Übersetzung vom Deutschen ins Russische.)
+**** Jenseits von Zeichenketten und Modularisierung: weitere Flexibilität
+Eine zusätzlich Ebene der Flexibilität wird durch Datensätze und Tabellen (/records/ respektive /tables/, siehe Tutoriums-Kapitel, [[rectables]]) geschaffen. Sie dienen dazu morphologische und syntaktische Informationen einer Sprache in Konstanten zu kodieren. Beispielsweise können wir alle grammatischen Kasus und das grammatische Geschlecht des deutschen Lexems »Beere« in folgender Datenstruktur hinterlegen:
+#+BEGIN_SRC bash
+{s = table
+       ParamX.Number
+       [table ResGer.Case ["Beere"; "Beere"; "Beere"; "Beere"];
+        table ResGer.Case ["Beeren"; "Beeren"; "Beeren"; "Beeren"]];
+ g = ResGer.Fem;
+}
+#+END_SRC
+Und natürlich lässt sich auch mittels Hilfsfunktionen, die Erstellung dieser syntaktischen Datenstrukturen, in vielen Fällen auch über eine Regel, automatisieren. So geht in folgender Auflistung...
+#+BEGIN_SRC bash
+  reg1N : (x1 : Str) -> Gender -> N = \beere,g -> 
+    case <beere,g> of {
+      <_,  Fem> => 
+        let beere : Str = case beere of {_ + "e" => beere + "n" ; _ => beere + "en"} ; 
+            beeren = beere
+        in mk6N beere beere beere beere beere beeren g ;
+#+END_SRC
+
+**** Beispiel zur Resource Grammar Library (RGL)
+dfadf
+
+GF: multilingual, Applikationsgrammatiken?
+TODO: Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
+
+-> pivot lang -> indirekte Übersetzung (Interlingua)\cite{carstensen_computerlinguistik_2004}: REFTODO: Seite! Gibt eine Darstellung von Interlingua bei MÜ und verweist auch auf Maegaard für das Thema Sackgasse bei Interlingua MÜ:
+- TODO:\cite{maegaard_mlim:_2001}:»Ideally, systems will employ statistical techniques to augment linguistic insights, allowing the system builder, a computational linguist, to specify the knowledge in the form most convenient to him or her, and have the system perform the tedious work of data collection, generalization, and rule creation. Such collaboration will capitalize on the (complementary) strengths of linguist and computer, and result in much more rapid construction of MT systems for new languages, with greater coverage and higher quality. Still, how exactly to achieve this optimal collaboration is far from clear. Chapter 6 discusses this tradeoff in more detail.« Fragen die GF beantworten kann? Natürlich werden Regeln nicht von GF erzeugt und statistische Methoden werden auch nicht standardmaäßig beim Parsen benutzt. Der Abschnitt lässt sich also so nicht benutzen, sondern vielmehr geht aus auf die Stärken bei GF was Arbeitsteilung/Modularisierung einzugehen. Robusteres Parsing ein zweites Thema zu den Stärken.
 * Relevanz von GF
 ** für die Maschinelle Übersetzung (MÜ)
 ** für das Chinesische
@@ -26,8 +93,6 @@ Der Ablauf der Tutoriums-Sektion gliedert sich in die aufeinander aufbauende Exp
 - Module und Regeln für Grammatiken :: Grundlegende Terminologie in Modulen, die zusammen eine multilinguale Grammatik bilden (abstrakte und konkrete Grammatiken)
 - Interaktion mit den Grammatiken :: Demonstration der Grammatik (Übersetzung etc.) in der GF-Shell
 - Erläuterung des Datenmodell :: Mit Hilfe des Gelernten und Beobachteten das Datenmodell erläutern[fn:: Mit der Erläuterung des Datenmodell wird gleichzeitig eine praxisnahe Einführung in die Verwendung von Typen in GF sowie die curryfizierte Funktionsanwendung (curried function application) gegeben. Dies hat nicht nur den für uns hier praktischen Vorteil, dass Fehlermeldungen beim Kompilieren der Grammatiken eingeordnet werden können, sondern bietet auch generell eine Grundlage für das Verständnis /Funktionaler Programmierung/ (FP). REFTODO: Sektion über FP-Geschichte?!]
-
-TODO: Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
 
 ** Module und Regeln
 Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj1}), deren Inhalt nur der Übersicht halber nebeneinander abgedruckt wird, ermöglichen eine Übersetzung der in ihnen beschriebenen semantischen Einheiten vom Chinesischen ins Deutsche und umgekehrt:
@@ -51,9 +116,9 @@ abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of
 }                            }                               }
 #+END_SRC
 
-Jedes der Module besteht zunächst aus einer Kopfzeile (dem Header, siehe Zeile 2 von \ref{mj1}), der angibt, ob es sich um eine abstrakte oder konkrete Grammatik handelt, gefolgt vom Namen des Moduls. Der Modulname entspricht dem Namen der Datei, in der sich das Modul befindet, ohne Dateiendung (Extension). So befindet sich etwa das abstrakte Modul ~Zero~ in der Datei ~Zero.gf~. Einzeilige Kommentare können mit ~--~, mehrzeilige mit ~{-~ und ~-}~ in den Quellcode geschrieben werden.[fn:: Die Zero-Grammatik ist eine Abwandlung der Beispiele in \cite{ranta_gf-lrec-2010.pdf_2010} sowie \cite{_grammatical_2014}.]
+Jedes der Module besteht zunächst aus einer Kopfzeile (dem Header, siehe Zeile 2 von \ref{mj1}), der angibt, ob es sich um eine abstrakte oder konkrete Grammatik handelt, gefolgt vom Namen des Moduls. Der Modulname entspricht dem Namen der Datei, in der sich das Modul befindet, ohne Dateiendung. So befindet sich etwa das abstrakte Modul ~Zero~ in der Datei ~Zero.gf~. Einzeilige Kommentare können mit ~--~, mehrzeilige mit ~{-~ und ~-}~ in den Quellcode geschrieben werden.[fn:: Die Zero-Grammatik ist eine Abwandlung der Beispiele in \cite{ranta_gf-lrec-2010.pdf_2010} sowie \cite{_grammatical_2014}.]
 
-Nach dem Modul-Header wird der Modul-Hauptteil (der Body)mit »= {« eingeleitet und mit »}« abgeschlossen, wobei wir es innerhalb des Hauptteils mit verschiedenen Urteilen oder Regeln (judgements or rules) zu tun haben.[fn:: \cite[45]{ranta_grammatical_2011}] Abstrakte Module, wie ~Zero~, benutzen hauptsächlich zwei Arten von Regeln, die mit folgenden Schlüsselwörtern eingeleitet werden:
+Nach dem Modul-Header wird der Modul-Hauptteil (der Body) mit »= {« eingeleitet und mit »}« abgeschlossen, wobei wir es innerhalb des Hauptteils mit verschiedenen Urteilen oder Regeln (judgements or rules) zu tun haben.[fn:: \cite[45]{ranta_grammatical_2011}] Abstrakte Module, wie ~Zero~, benutzen hauptsächlich zwei Arten von Regeln, die mit folgenden Schlüsselwörtern eingeleitet werden:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - $\ast$ ~cat~ :: *Kategorien-Deklarationen*, die die Kategorien (Typen von Bäumen) beschreiben
 - $\ast$ ~fun~ :: *Funktions-Typen-Deklarationen*, die die verschiedenen Kategorien miteinander in Beziehung setzen
@@ -61,7 +126,7 @@ Nach dem Modul-Header wird der Modul-Hauptteil (der Body)mit »= {« eingeleitet
 Konkrete Module, wie ~ZeroGer~ und ~ZeroChi~, haben im Header nach dem Schlüsselwort ~conrete~ ebenso ihren Namen, müssen aber auch noch anführen, auf welche abstrakte Grammatik sie sich beziehen. In unserem Fall zeigt ~of Zero~ an, dass sie sich auf das 
 Modul in der Datei Zero.gf beziehen. Daraufhin beginnt auch hier der Modul-Body, in dem wir auch wieder zwei Arten von Regeln vorfinden:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-- $\ast$ ~lincat~ :: *Linearisierungs-Typ-Definitionen*, die den Typ der Ausgabe-Objekte des \inlst$linearize$-Kommandos definieren[fn:: Cf. Besprechung von ~tables~ und ~records~. LINK-TODO!]
+- $\ast$ ~lincat~ :: *Linearisierungs-Typ-Definitionen*, die den Typ der Ausgabe-Objekte des \inlst$linearize$-Kommandos definieren
 - $\ast$ ~lin~ :: *Linearisierungs-Regeln* für Kategorien
 
 Man beachte die Korrespondenz zwischen den ~fun~-Regeln im abstrakten Modul und den verschiedenen ~lin~-Regeln der konkreten Grammatiken: Zum Beispiel wird mit dem Ausdruck ~Compl~ in der abstrakten Grammatik eine Funktion mit dazugehöriger Typen-Deklaration hinter dem Doppelpunkt eingeführt. Die Typen-Deklaration beschreibt, welchen Typ die Objekte haben dürfen, die die Funktion ~Compl~ als Argumente nimmt.
@@ -72,14 +137,15 @@ abstract Zero = {             concrete Zero___ of Zero = {
 [...]                                                    -- ZeroChi und ZeroGer
 }                             }
 #+END_SRC
-Im Beispiel von ~Compl~ etwa bedeutet die Typen-Deklaration \inlst$V2 -> NP -> VP;$, dass zwei Argumente, zunächst vom Typ V2 und dann vom Typ NP, benötigt werden, um ein Objekt vom Typ VP zu erzeugen. Wir sagen, die Argument-Typen (engl. /argument type/) der Funktion ~Compl~ sind V2 und NP und der Wert-Typ (engl. /value type/) derselben ist VP.
+Im Beispiel von ~Compl~ etwa bedeutet die Typen-Deklaration \inlst$V2 -> NP -> VP;$, dass zwei Argumente, zunächst vom Typ V2 und dann vom Typ NP, benötigt werden, um ein Objekt vom Typ VP zu erzeugen. Wir sagen, die Argument-Typen (/argument type/) der Funktion ~Compl~ sind V2 und NP und der Wert-Typ (/value type/) derselben ist VP. Der Sachverhalt, wieviele Argumente eine Funktion nimmt, wird mathematisch auch mit den Begriff der Stelligkeit bzw. Arität beschrieben; ~Compl~ hat daher eine Arität von zwei.
 
 Welche konkreten Objekte dann mit dieser abstrakten Typen-Deklaration verbunden werden, ist ersichtlich aus den Linearisierungs-Regeln der konkreten Grammatiken. Die beiden konkreten Grammatiken ZeroChi und ZeroGer haben in unserem Beispiel dieselbe Definition von ~Compl~, nämlich \inlst$Compl v2 np = v2 ++ np;$. Die Komponenten dieser Definition sind:
-#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-- »Compl« :: der Name der Funktion für die Funktions-Definition, der mit dem Namen der Funktions-Typ-Deklaration übereinstimmen muss
-- »v2« und »np« :: die Argumente der Funktions-Definition, die prinzipiell beliebig gewählt werden dürfen, die aber hier namentlich darauf hinweisen, dass das Objekt, das sie referenzieren, vom Typ V2 bzw. NP ist
-- »=« :: das Gleichheitszeichen leitet den Funktionskörper (engl. /body/) ein
-- »v2 ++ np« :: hier werden die beiden Argumente der Funktion verkettet 
+#+ATTR_LATEX: :options [style=multiline,itemsep=4pt,parsep=0pt,leftmargin=3cm]
+- Compl :: der Name der Funktion für die Funktions-Definition, der mit dem Namen der Funktions-Typ-Deklaration übereinstimmen muss
+- v2 /und/ np :: die Argumente der Funktions-Definition, die prinzipiell beliebig gewählt werden dürfen, die aber hier namentlich darauf hinweisen, dass das Objekt, das sie referenzieren, vom Typ V2 bzw. NP ist
+- = :: das Gleichheitszeichen leitet den Funktionskörper (/funtion body/) ein
+- v2 ++ np :: hier werden die beiden Argumente der ~Compl~-Funktion mittels ~++~-Operator verkettet (String-Konketenation)
+- ; :: wie jede Regel bzw. Urteil wird der Funktionskörper mit einem Simikolon beendet
 
 ** Interaktion in der GF-Shell
 Die GF-Shell bietet über verschiedene Kommandos einen interaktiven Zugang zu den Grammatiken.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.] Um die Grammatiken der letzten Sektion in der Shell zu testen, müssen wir zunächst die Grammatik-Module laden, was am einfachsten geschieht, wenn wir zunächst in das Verzeichnis navigieren, wo sich dieselben befinden. Im jeweiligen Kommandozeilen-Interpreter[fn:: Unter Windows sollten standardmäßig zwei Shells zur Verfügung stehen: cmd.exe und Powershell; (Mac) OS X: iTerm] des Betriebssystems sollte nach der Installation von GF ein ~gf~-Programm verfügbar sein, sodass wir die GF-Shell damit starten können. Beim Aufruf kann man entweder gleich die betreffenden Grammatik-Modul-Dateien angeben (\inlst$>gf ZeroChi.gf ZeroGer.gf$), sodass man mit den geladenen Grammatiken arbeiten kann:
@@ -294,6 +360,7 @@ Compl  John   Love   Mary   Pred -- Warum wird Compl vorgeschlagen?! -- das ist 
 
 
 ** Records und Tables
+<<rectables>>
 Eyes:
 - Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
 
@@ -311,6 +378,11 @@ Determiners set the Number of an NP, and select the number of N. Thus »this« s
 With "your", you must think in a bit tricky way. There are, so to say, two variants of it: YourSg and YourPl. Many languages actually differentiate them (e.g. French and German) but in English they are the same string. But otherwise they work like This and These.
 
 You should read the GF book chapter 3 for more details, and then 4 and 9 for even more details. If you don't have the book, the book slides may give enough information.
+
+** opers
+- lambda function abstraction: \cite[1]{nederpelt_type_2014} : dummy variable
+** für Erklärung von Begriffen evtl. relevant
+- synkategorematisch: GF: 100 (This), Granström: 7
 
 * Evaluation der chinesischen Ressourcen Grammatik
 ** eng_chi2.txt:
@@ -393,6 +465,7 @@ sysu/Assign_6.gf
 #+LATEX_HEADER:    \map{
 #+LATEX_HEADER:      \step[fieldset=language, null] % exclude bib language field from printing
 #+LATEX_HEADER:      \step[fieldset=month, null] 
+#+LATEX_HEADER:      \step[fieldset=pagetotal, null] 
 #+LATEX_HEADER:    }
 #+LATEX_HEADER:  }
 #+LATEX_HEADER: }
@@ -426,14 +499,14 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: %%%% Custom Command for floating Infoboxes
 #+LATEX_HEADER: %%%% usage: \infobox{<title>}{<text>}
 #+LATEX_HEADER: %\usepackage{picins} funktioniert nicht gut mit Liste (float-Umgebung) -- jetzt ohne Float mit infobox-package                
-#+LATEX_HEADER: %\newcommand{\infobox}[2]{
-#+LATEX_HEADER: %    \parpic(0.34\textwidth,0pt)[lf]{
-#+LATEX_HEADER: %        \parbox[b]{0.32\textwidth}{
-#+LATEX_HEADER: %             {\bf #1}  \small{{{#2}}}
-#+LATEX_HEADER: %        }
-#+LATEX_HEADER: %    }
-#+LATEX_HEADER: %    \bigskip
-#+LATEX_HEADER: %}
+#+LATEX_HEADER: \newcommand{\infobox}[2]{
+#+LATEX_HEADER:     \parpic(0.34\textwidth,0pt)[lf]{
+#+LATEX_HEADER:         \parbox[b]{0.32\textwidth}{
+#+LATEX_HEADER:              {\bf #1}  \small{{{#2}}}
+#+LATEX_HEADER:         }
+#+LATEX_HEADER:     }
+#+LATEX_HEADER:     \bigskip
+#+LATEX_HEADER: }
 
 # Local Variables:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
