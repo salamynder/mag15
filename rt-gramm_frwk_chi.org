@@ -4,91 +4,268 @@
 \tableofcontents
 \pagenumbering{roman}
 \listoffigures
+\renewcommand*\lstlistlistingname{Auflistungen}
+\renewcommand*\lstlistingname{Auflistung}
 \lstlistoflistings
 # \listoftables
-* Eingrenzung des Themas
+* Einleitung
 \pagenumbering{arabic}
-Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
+Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt. Das ermöglicht wiederum einem Programmierer ohne chinesische Sprachkenntnisse chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist (BEISPIELTODO: Strauß?).[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
 - \cite{thompson_type_1991}
-** Wozu ist GF gut? Wo liegen die Vorteile?
-*** Klärung des Begriffs »multilinguale Applikationsgrammatik«
-GF ist eine Programmiersprache zum Programmieren *multilingualer Applikationsgrammatiken*. Der Aspekt der Multilingualität bedeutet für die Erstellung einer Applikationsgrammatik, dass immer zwischen sog. *konkreten Grammatiken* und *abstrakten Grammatiken* unterschieden wird. Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für konkreten Grammatiken, indem der Programmierer mit der abstrakten Grammatik ein semantisches Modell vorgibt, an das die konkreten Grammatiken gebunden sind. Dieses semantische Modell bezieht sich auf eine bestimmte Sprachdomäne und somit auch auf einen bestimmten Anwendungsfall, der sich software-technisch als Applikation, also als ein Programm bzw. eine Anwendung für einen bestimmten Zweck, manifestiert.
+** Zwischen Compiler-Technologie und NLP
+- multi-source, multi-target compiler
+- Java-Beispiel, mit konkreter und abstrakter Syntax
+** Zwischen Formalismus und Programmiersprache
+*** Zweckgerichtetheit (special purpose)
+GF ist keine Programmiersprache mit allgemeinem Anwendungszweck (general purpose [programming] language, GPL), sondern bedient den speziellen Zweck (special purpose), multilinguale Grammatiken zu erstellen. Zu diesem Zweck bietet GF verschiedene Eigenschaften was Aufbau und Infrastruktur anbelangt, welche wiederum von GPLs, wie Java, C++, Haskell und ML, sowie von typen-theoretischen Beweisassistenten, wie etwa ALF[fn:: Was die Namensgebung von GF und auch das Konzept der abstrakten Syntax angeht, so ist ALF (Another Logical Framework) sozusagen ein direkter Vorfahre von GF. Cf. \cite[22]{ranta_grammatical_2011}] und Agda[fn:: Der Algorithmus zur Prüfung der Typen in GF ist identisch zu dem in Agda. Cf. \cite[74]{angelov_mechanics_2011}, \cite[8]{maenpaa_type_1999}], inspiriert sind. Zwei der wichtigsten Punkte unter diesen Eigenschaften sind, dass zum einen der Komplexität natürlicher Sprachen Rechnung getragen wird (via Funktionen und einem statischen Typ-System), und zum andern, dass einmal formulierte Informationen einer Sprache leichthin abrufbar und damit wiederverwendbar sind (via Modularisierung, Vererbung und Instanzierung). So ist das Ergebnis der Arbeit mit GF zwar eine multilinguale Grammatik, die einen einfach zu interpretierender grammatischer Formalismus darstellt, aber der Weg dorthin ist nicht trivial und geprägt von vielfältigen Rechenabläufen (computations) und Infrastrukturangeboten. Zur Kategorisierung als /special purpose language/, siehe \cite[253]{ranta_grammatical_2011}, \cite[1]{ranta_grammatical_2004}.
+*** Parsing und Generation
+*** Turing-unmächtig
+Ein interessanter Aspekt der Charakterierung von GF als sowohl grammatischer Formalismus als auch Programmiersprache ist desweiteren, dass der angestrebte Formalismus die Mächtigkeit der Programmiersprache beschränkt: Würde GF Turing-mächtig sein, dann wäre nicht sichergestellt, dass eine Sprache mit der dazugehörigen GF-Grammatik gleichermaßen geparst als auch generiert werden könnte; der Formalismus sichert die Umkehrbarkeit (TODO: mapping between trees and strings (as tuples) is compositional and thereby homomorphic, reversible). TODO: In Einleitung damit? -- zu abstrakt, lieber nach Exposition oder Appendix (gehört ja eh zu Appendix (-- nur supplementärer Gegenstand der Arbeit))
+** Relevanz von GF
+*** für die Maschinelle Übersetzung (MÜ)
+*** für das Chinesische
+** Typographische Konventionen
+** Experimentierstoff
+Die nun verwendeten Beispiel-Grammatiken liegen (wie auch dieser Text) in einem öffentlich zugänglichen Archiv und stehen so zum eigenen Experimentieren bereit.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
+* Motivation
+GF ist sowohl ein Grammatik-Formalismus als auch eine zweckgerichtete (special purpose) Programmiersprache zum Programmieren *multilingualer Applikationsgrammatiken*. Der Aspekt der Multilingualität bedeutet für die Erstellung einer Applikationsgrammatik, dass immer zwischen sog. *konkreten Grammatiken* und *abstrakten Grammatiken* unterschieden wird. Konkrete Grammatiken werden für die Übersetzung in und aus bestimmten Sprachen erstellt; abstrakte Grammatiken dienen als Dreh- und Angelpunkt für konkrete Grammatiken, indem der Programmierer mit der abstrakten Grammatik ein semantisches Modell vorgibt, an das die konkreten Grammatiken gebunden sind. Dieses semantische Modell bezieht sich auf eine bestimmte Sprachdomäne und somit auch auf einen bestimmten Anwendungsfall, der sich software-technisch als Applikation, also als ein Programm bzw. eine Anwendung für einen bestimmten Zweck, manifestiert.
 
-Zum Beispiel könnte unser Vorhaben eine Applikationsgrammatik für einen Tierpark sein, der an bestimmten Aussichtsplätzen und auf gewissen Endgeräten, wie etwa Touchscreens, eine Applikation bereitstellt, die Informationen zu den Tieren in verschiedenen Sprachen bietet. Im Kontext der Sprachdomäne /Tierpark/ wäre es dann klar, dass es sich bei einem Strauß nicht um einen Blumenstrauß, sondern vielmehr um einen Vogelstrauß handeln muss. Der Programmierer als Domänenexperte hat dann die Verantwortung, den Sachverhalt, dass es sich bei dem Strauß um ein Tier handeln soll, in entsprechender Weise in der Applikationsgrammatik zu hinterlegen.
+Zum Beispiel könnte unser Vorhaben eine Applikationsgrammatik für einen Tierpark sein, der an bestimmten Aussichtsplätzen und auf gewissen Endgeräten, wie etwa Touchscreens, eine Applikation bereitstellt, die Informationen zu den Tieren in verschiedenen Sprachen bietet. Im Kontext der Sprachdomäne /Tierpark/ wäre es dann klar, dass es sich bei einem Strauß nicht um einen Blumenstrauß, sondern vielmehr um einen Vogelstrauß handeln muss. Der Programmierer als Domänenexperte hat dann die Verantwortung, den Sachverhalt, dass es sich bei dem Strauß um ein Tier handeln soll, in entsprechender Weise in der Applikationsgrammatik zu hinterlegen. Etwas genauer heißt das, der Domänen-Experte stellt sicher, dass das Zeichen für Vogelstrauß nur mit Aktionen, die einen Vogelstrauß auch faktisch charakterisieren, wie etwa »fressen«, »schnell laufen« oder »nicht fliegen«, kombiniert werden kann. Im folgenden Abschnitt wird dieser Sachverhalt konkret mittels GF-Code-Ausschnitten illustriert.
 
-*** Applikationsgrammatik mit Beispiel-Code, Hinweis auf RGL
-\infoBox[Info]{Die Einzelheiten zu den verschieden Begrifflichkeiten der Grammatiken werden ausführlich im Tutoriums-Kapitel abgehandelt. In dieser Sektion geht es dagegen vornehmlich darum, einen knappen aber informativen Einblick in die Leistungsfähigkeit des GF-Systems, insbesondere auch der »Resource Grammar Library« (RGL) zu geben.}
+Die Einzelheiten zu den verschieden Begrifflichkeiten der Grammatiken werden ausführlicher im GF-Expositions-Kapitel abgehandelt. In diesem Kapitel geht es dagegen vornehmlich darum, einen knappen Einblick in die Leistungsfähigkeit des GF-Systems, insbesondere auch der »Resource Grammar Library« (RGL), zu geben.
 
-Betrachten wir dazu den Satz »der Vogelstrauß frißt Beeren«, dann können wir diesen folgendermaßen in einer konkreten Grammatik für das Deutsche formalisieren:
-#+name: zoo1
+Don't guess when you know. -> Verringerung der Kosten von Grammatiken (cost of grammar)
+** Linearisierungs-Regeln
+Betrachten wir den Satz »der Strauß frißt Beeren«, dann können wir diesen folgendermaßen in einer konkreten GF-Grammatik für das Deutsche formalisieren:
+
+#+name: lst:ZooGer
 #+CAPTION[ZooGer]: Ausschnitt aus der konkreten Grammatik ZooGer.gf (./example-code/Zoo/)
-#+INCLUDE: "example-code/Zoo/ZooGer.gf" :lines "5-11" src bash
-In diesem Ausschnitt der konkreten Grammatik sind die sog. Linearisierungs-Regeln der konkreten Grammatik abgebildet. Allgemein haben sie die Form:
-#+BEGIN_SRC bash
-Name_der_Regel ( Argumente ) = Zeichenkette
-                       [ LHS | RHS ]
-#+END_SRC
-Das heißt, auf der linken Seite vom Gleichheitszeichen, der *LHS* (engl. left hand side), wird eine Name für eine Regel vergeben, darauf folgen mögliche Argumente, und rechts vom Gleichheitszeichen, der *RHS* (engl. right hand side), werden Zeichenketten angegeben, die produziert werden, wenn die dazugehörige Regel angewandt wird. Zeichenketten sind die fundamentale Datenstruktur in GF und stehen immer zwischen nicht-typographischen Anführungszeichen, i. e. \inlst$""$.
+#+INCLUDE: "example-code/Zoo/ZooGer.gf" :lines "5-11" src haskell
 
-Die Regeln sind unterteilt in konstante Regeln (\inlst$VStrauß, Fressen, Beere$) und solche Regeln, die diese Konstanten untereinander in Beziehung setzen (\inlst$Pred$). Setzen wir die Konstanten als Argumente für \inlst$Pred$ ein, erhalten wir den gesuchten Beispielsatz:
-#+BEGIN_SRC bash
-Pred VStrauß Fressen Beere = "der" ++ "Vogelstrauß" ++ "frißt" ++ "Beeren" ;
+In diesem Ausschnitt der konkreten Grammatik sind die Linearisierungs-Regeln der konkreten Grammatik in den Zeilen 2--4 sowie 6 abgebildet, welche vom GF-Compiler verarbeitet werden. Dagegen sind Zeile 1 und 5 -- mit zwei Bindestrichen (\inlst$--$) einleitend markiert und bis zum Ende der Zeile gültig -- Kommentar-Zeilen, die vom Compiler ignoriert werden.
+
+Zu linearisieren bedeutet im GF-Kontext, Zeichenketten herzustellen. Zeichenketten sind die einfachste Datenstruktur in GF und stehen immer zwischen nicht-typographischen Anführungszeichen, i. e. \inlst$""$. Das allgemeine Schema für Linearisierungs\hyp{}-Regeln ist:
+
+#+BEGIN_LATEX
+\vspace{5mm}
+\lstset{basicstyle=\small\ttfamily\setstretch{0.7},caption=Allgemeine Form einer Regel/Funktion,numbers=none,label=lin-Regel-Schema,abovecaptionskip=\bigskipamount,frameround=tttt,language={}}
+\begin{lstlisting}[frame=trbl]
+
+                              [ LHS = RHS ]
+                
+                Regelname argumente = Definition der Regel ;
+
+\end{lstlisting}
+#+END_LATEX
+Das Schema untergliedert Regeln zunächst in einen Bereich links und rechts vom Gleichheitszeichen, indem es die Abkürzungen LHS (left hand side) und RHS (right hand side) einführt. Auf der LHS wird dann als erstes ein Regelname und im Anschluss können /potentielle/ Argumentbezeichner vergeben werden. Aus Konvention beginnt der Regelname mit einem Großbuchstaben und Argumentnamen werden komplett klein geschrieben.
+
+Mit der Angabe von Argumenten sind diese als Variablen auf der RHS und damit in der Definition der Regel nutzbar. Das bedeutet nichts anderes, als dass eine Regel-Definition in GF sich so verhält, wie wir es von einer Funktions-Definition in der Mathematik erwarten würden: So ist $f(x) = x+1$ eine Funktion $f$, die auf der LHS in Abhängigkeit von der Argument-Variable $x$ gestellt wird, was wiederum das $x$ auf der RHS in $x+1$ als Platzhalter (Variable) bestimmt, sodass z. B. $f(1) = 1+1 = 2$ evaluiert werden kann.[fn::In der Theorie der Programmiersprachen wird auch unterschieden zwischen /formalen/ (Argument-Variablen) und /aktuellen Parametern/ (Werten für $x$) einer Funktion, um auch jeweils die abstrakte Platzhalterfunktion $x$ in $f(x) = x + 1$ respektive das konkrete Einsetzen von Werten für diesen Platzhalter zu beschreiben. (Vgl. \cite[300]{mehlhorn_grundlagen_2013}.) Dagegen verwende ich nun die Begriffe Parameter und Argument synonym für beide Beschreibungen, weil im Kontext leicht disambiguiert werden kann und auch weil im Lambda-Kalkül \citep[1]{nederpelt_type_2014} der /formale Parameter/ als /Variable/ beschrieben wird, was wiederum den hier gewählten Term /Argument-Variable/ motivierte.]
+Der Unterschied ist nur, dass in GF-Notation Argument-Variablen nicht in Klammern, sondern durch Nebenstellung (Juxtaposition) mit der Funktion assoziiert werden.
+
+Man beachte außerdem, dass die Reichweite (scope) der Argument-Variablen sich nur auf eine bestimmte Regel erstreckt. -- Verschiedene Regeln mit identisch benannten Argument-Variablen sind also zulässig. Auch sollte klar sein, dass über die Benennung einer Argument-Variablen frei entschieden werden darf.
+
+Die Regeln sind unterteilt in konstante Regeln (\inlst$VStrauß, Fressen, Beere$) und solche Regeln, die diese Konstanten untereinander in Beziehung setzen (\inlst$Pred$).[fn::Für konstante Regeln bzw. Konstanten gibt es auch eine Analogie in der Mathematik. Denn Konstanten sind nämlich auch Funktionen, aber solche, die nicht in Abhängigkeit von einem Argument stehen, und daher immer einen konstanten Wert produzieren.]
+Von Zeile 2--4 haben wir insgesamt drei Regeln, die in Anführungszeichen Zeichenketten definieren, welche wir für den angestrebten Satz benötigen. So definiert etwa die Regel namens \inlst$VStrauß$ mittels des Gleichheitszeichens eine Zeichenkette, \verb+"der Strauß"+, mit /zwei Tokens/, »der« und »Strauß«.[fn::Linguistisch betrachtet ist es analytisch nicht zielführend, Artikel und Nomen in eine einzige Regel zu packen. Um das Beispiel jedoch maximal zu vereinfachen, wird hier (vorerst) so vorgegangen.] Die nächsten beiden Regeln, \inlst$Fressen$ und \inlst$Beere$, definieren wiederum jeweils eine Zeichenkette, wobei jede dieser Ketten diesmal nur aus einem Token besteht, i. e. \inlst$"frißt"$ respektive \inlst$"Beeren"$.
+
+Die ~Pred~-Regel[fn:: Abkürzung für Prädikation (engl. /predication/). Als Grundlage von jeglicher Form von Aussagen spezifiziert die Prädikation einen Gegenstand oder setzt diesen in Beziehung zu anderen. Vgl. \cite[542]{busmann_lexikon_2008}.] in Zeile 6 ist nun dazu da, andere Regeln zu kombinieren. Bedingung für eine Kombination ist, dass -- im Gegensatz zu den vorigen Regeln -- \inlst$Pred$ andere Regeln als /Argumente/ nehmen kann. Die Argumente werden auf der LHS hinter dem Regelnamen eingesetzt und demnach auch auf der RHS mittels des Zeichenketten-Konkatenations-Operators (\inlst$++$) kombiniert.
+
+Die Benennung der Argumente im Beispiel ist bewusst an die konstanten Regeln (Konstanten) angelehnt, um nahezulegen, welche Konstante für welches Argument im Kontext des gesuchten Satzes eingesetzt werden sollte.[fn:: Über die abstrakte Grammatik wird dann strikt reglementiert, welche Argumente (und dadurch auch, in welcher Folge) eine Regel bzw. Funktion akzeptiert. Das heißt, wir können prinzipiell genau festlegen, was z. B. Subjekt und was Objekt eines Satzes sein darf. Siehe Exposition/[[astcat-intro]].] So können wir \inlst$Pred$ sozusagen händisch evaluieren, indem wir die Konstanten an Stelle der Argumente in \inlst$Pred$ einsetzen:
+
+#+name: EvalPred
+#+CAPTION[EvalPred]: Evaluation von ~Pred~ mit Konstanten ergibt dessen Linearisierung
+#+BEGIN_SRC haskell
+-- Die Pred-Regel als Ausgangspunkt:
+Pred vstr    fres    beer  = vstr    ++ fres    ++ beer ;
+
+-- Einsetzen der Konstanten in LHS und demnach auch in RHS:
+Pred VStrauß Fressen Beere = VStrauß ++ Fressen ++ Beere ;
+
+-- Evaluation der Konstanten auf RHS:
+Pred VStrauß Fressen Beere = "der Strauß" ++ "frißt" ++ "Beeren" ;
+
+-- Evaluation von (++),
+-- i. e. Verkettung der Zeichenketten mit einem Leerzeichen:
+Pred VStrauß Fressen Beere = "der Strauß frißt Beeren" ;
 #+END_SRC
-Nehmen wir nun eine zweite Grammatik hinzu, die eine Übersetzung unseres Satzes in Chinesische bereitstellt.
-#+name: zoo2
+Die Evaluation in Auflistung [[EvalPred]] macht also deutlich, dass wir mit der ~Pred~-Regel angewendet auf die Konstanten in der Tat den einfachen Satz »der Strauß frißt Beeren« erzeugen können. Beobachten wir außerdem die Abhängigkeit, in der ~Pred~ von seinen Argumenten steht (Abbildung [[ZooPred-vt]]), so können wir zeigen, inwiefern Linearisierung als Verflachung, also als Einebnung von Hierarchien, zu verstehen ist. 
+#+CAPTION[ZooPred-vt]: Hierarchie der Linearisierungs-Regeln von ZooGer.gf (Baumstruktur)
+#+NAME: ZooPred-vt
+#+ATTR_LATEX: :width 0.55\textwidth :float t
+[[./example-code/Zoo/Pred-all.png]]
+~Pred~ bildet in Abhängigkeit seiner Argumente eine Hierarchie aus, die jedoch durch das Linearisieren in eine Zeichenkette eingeebnet wird. Während Regeln also Abhängigkeiten modellieren können, sind Zeichenketten nur dazu in der Lage, Informationen sequentiell festzuhalten. Linearisierung ist daher zu definieren als die Abbildung (Mapping) von Baum-Strukturen in Zeichenketten. Dass zudem dieser Linearisierungs-Prozess umkehrbar ist (was durch den GF inhärenten Formalismus gesichert ist), dass also durch die GF-Grammatik eine Zeichenkette in ihre Baumrepräsentation (ein semantisches Modell aus Regeln) überführt (geparst) werden kann, das ermöglicht schließlich Übersetzung im GF-System (siehe [[parse-lin]]).
+** Interlingua
+Die Krux an der Feststellung, dass wir auf der einen Seite Regeln als Baumstrukturen und auf der andern Seite Zeichenketten haben, ist nun, dass wir dieselben Regeln in anderen Grammatiken wiederverwenden können, um aber andere Zeichenketten zu produzieren. Zur Demonstration nehmen wir daher eine zweite Grammatik hinzu, die eine Übersetzung unseres Satzes in Chinesische bereitstellt.
+#+name: ZooChi
 #+CAPTION[ZooChi]: Ausschnitt aus der konkreten Grammatik ZooChi.gf (./example-code/Zoo/)
 #+INCLUDE: "example-code/Zoo/ZooChi.gf" :lines "5-9" src bash
 Und auch hier können wir durch Einsetzen der Konstanten in die Kombinationsregel \inlst$Pred$ erkennen, was linearisiert wird:
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
+Pred vstr    fres    beer  = vstr    ++ fres    ++ beer ;
+
+Pred VStrauß Fressen Beere = VStrauß ++ Fressen ++ Beere ;
+
 Pred VStrauß Fressen Beere = "鸵鸟" ++ "吃" ++ "浆果" ;
-#+END_SRC
-Man beachte nun, dass die LHS der \inlst$Pred$-Regel sowohl in der chinesischen als auch in der deutschen Grammatik exakt dieselbe ist, nämlich \inlst$Pred VStrauß Fressen Beere$. Diese LHS kann also als Schnittstelle für die Übersetzung zwischen verschiedenen Sprachen dienen: Wir wissen, wenn wir das semantische Modell \inlst$Pred VStrauß Fressen Beere$ in einer konkreten Grammatik implementiert haben, dass uns linearisierbare Zeichenketten für das Chinesische und für das Deutsche zur Verfügung steht.
 
-Zudem ist ein Ausbau der übersetzbaren Sprachen leichthin möglich: Wenn wir wissen, dass das semantische Modell den Anforderungen unserer Anwendung (Applikation) entspricht (unser Tierpark also allein aus Straußen besteht, die nichts anderes tun, als Beeren zu fressen), dann können wir ohne Skrupel weitere Sprachen in Form von konkreten Grammatiken hinzufügen. Wir werden im Tutoriums-Kapitel genau beleuchten, wie das semantische Modell in abstrakten Grammatiken definiert und in konkreten Grammatiken implementiert wird (nur letzteres haben die Ausschnitte jetzt gezeigt). Aber schon hier sollte klar sein, wie das semantische Modell (abstrakte Grammatik) als stabiler Dreh- und Angelpunkt fungiert.
-**** Einfache Flexibilität: Permutation, Reduplikation, Suppression 
-Bietet uns das semantischen Modells nun Stabilität der ausdrückbaren Bedeutungen, so erlauben uns die konkreten Grammatiken in ihrem Zuschnitt auf eine bestimmte Zielsprache Flexibilität. Die bisherigen Beispiele waren nur in dem Sinne flexibel, als sie zeigten, dass Zeichenketten für eine bestimmte Sprache konfigurierbar sind: In der deutschen Grammatik nutzen wir \inlst$Fressen = "frißt"$; in der chinesischen \inlst$Fressen = "吃"$. Auch bot die identische Hauptsatzstruktur beider Sprachen keinerlei Anlass über eine Flexibilität nachzudenken, die über das bloße Vokabular hinausgehen: Beide Sprachen greifen auf die Satzgliedstellung Subjekt-Prädikat-Objekt (S-P-O) zurück. Ganz anders wäre es dagegen im Lateinischen, wo durchgängig die Stellung Subjekt-Objekt-Prädikat (S-O-P) herrscht. Eine einfache Grammatik für das Lateinische, die diesen Zusammenhang sicherstellt, zeigt folgende Auflistung:
+Pred VStrauß Fressen Beere = "鸵鸟 吃 浆果" ;
+#+END_SRC
+
+Wie schon angekündigt, verwenden wir also in der chinesischen konkreten Grammatik nun dieselben Konstanten mit derselben Regel (\inlst$Pred$), wie auch schon in der deutschen Grammatik, nämlich \inlst$Pred VStrauß Fressen Beere$. Diese Regel-Anwendung (und mithin diese Baumstruktur) kann also als Schnittstelle für die Übersetzung zwischen verschiedenen Sprachen dienen: Wir wissen, wenn wir das semantische Modell \inlst$Pred VStrauß Fressen Beere$ sowohl in der chinesischen als auch in der deutschen konkreten Grammatik implementiert haben, dass uns eine linearisierbare Zeichenketten für beide Sprachen zur Verfügung steht (siehe Auflistung [[lst:eq-reg]]). Das semantische Modell stellt also ein zwischen-sprachliches Konstrukt (Interlingua) dar, dass für Übersetzung genutzt werden kann. Folglich ist auch ein Ausbau der übersetzbaren Sprachen leichthin möglich, indem neue konkrete Grammatiken der übersetzbaren Sprachen an die vordefinierte Interlingua »andocken«, indem sie die Regeln des semantischen Modell mit ihren sprach-spezifischen Zeichenketten implementieren.
+#+NAME: lst:eq-reg
+#+CAPTION[Äquivalenz über Regeln]: Identische Regeln in ZooChi und ZooGer garantieren Übersetzbarkeit
+#+BEGIN_SRC haskell
+"der Strauß frißt Beeren" = Pred VStrauß Fressen Beere = "鸵鸟 吃 浆果"
+#+END_SRC
+
+Wir werden im GF-Expositions-Kapitel genau beleuchten, wie das semantische Modell in abstrakten Grammatiken definiert und in konkreten Grammatiken implementiert wird (nur letzteres haben die Ausschnitte jetzt gezeigt). Aber schon hier sollte offensichtlich sein, wie ein semantisches Modell (abstrakte Grammatik) als beständiger Dreh- und Angelpunkt fungiert.
+** Einfache Flexibilität: Permutation, Reduplikation
+Bietet uns das semantischen Modells nun eine Bestimmtheit der ausdrückbaren Bedeutungen, so erlauben uns die konkreten Grammatiken in ihrem Zuschnitt auf eine bestimmte Zielsprache Flexibilität. Die bisherigen Beispiele waren nur in dem Sinne flexibel, als sie zeigten, dass die Zeichenketten der Linearisierungs-Regeln für eine bestimmte Sprache konfigurierbar sind: In der deutschen Grammatik nutzen wir \inlst$Fressen = "frißt"$; in der chinesischen \inlst$Fressen = "吃"$. Auch bot die identische Hauptsatzstruktur beider Sprachen keinerlei Anlass über eine Flexibilität nachzudenken, die über das bloße Vokabular hinausgehen: Beide Sprachen greifen auf die Satzgliedstellung Subjekt-Prädikat-Objekt (S-P-O) zurück. Ganz anders wäre es dagegen im Lateinischen, wo durchgängig die Stellung Subjekt-Objekt-Prädikat (S-O-P) herrscht. Eine einfache Grammatik für das Lateinische, die diesen Zusammenhang sicherstellt, zeigt folgende Auflistung:
 #+CAPTION[ZooLat]: Ausschnitt aus der konkreten Grammatik ZooLat.gf (./example-code/Zoo/)
-#+INCLUDE: "example-code/Zoo/ZooLat.gf" :lines "5-13" src bash
-Die Möglichkeit Zeichenketten durch Kombinationsregeln unterschiedlich anzuordnen gehört zu den grundlegenden Freiheiten, die GF auf Zeichenketten-Ebene offeriert. Weitere Möglichkeiten, die allein mit Zeichenketten operieren sind:
-#+ATTR_LATEX: :options [style=multiline,itemsep=4pt,parsep=0pt,leftmargin=3cm]
-- Reduplikation :: \inlst$Pred vstr fres beer = vstr ++ fres ++ fres ++ beer => "鸵鸟 吃 吃 浆果"$, zu Deutsch: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs dient im Chinesischen dazu die zeitliche Ausdehnung der Handlung abzuschwächen [Attenuation][fn::\cite[149]{xiao_aspect_2004}])
-- Suppression :: \inlst$Pred vstr fres beer = vstr ++ beer$ (Also durch die Aufnahme eines Arguments durch \inlst$Pred$, aber Nicht-Anwendung in der Zeichenketten-Linearisierung. Anwendungsfall wäre z. B. das Entfallen des direkten Artikels bei Übersetzung vom Deutschen ins Russische.)
-**** Jenseits von Zeichenketten und Modularisierung: weitere Flexibilität
-Eine zusätzlich Ebene der Flexibilität wird durch Datensätze und Tabellen (/records/ respektive /tables/, siehe Tutoriums-Kapitel, [[rectables]]) geschaffen. Sie dienen dazu morphologische und syntaktische Informationen einer Sprache in Konstanten zu kodieren. Beispielsweise können wir alle grammatischen Kasus und das grammatische Geschlecht des deutschen Lexems »Beere« in folgender Datenstruktur hinterlegen:
-#+BEGIN_SRC bash
-{s = table
-       ParamX.Number
-       [table ResGer.Case ["Beere"; "Beere"; "Beere"; "Beere"];
-        table ResGer.Case ["Beeren"; "Beeren"; "Beeren"; "Beeren"]];
- g = ResGer.Fem;
-}
+#+INCLUDE: "example-code/Zoo/ZooLat.gf" :lines "5-13" src {}
+
+Die Möglichkeit, Zeichenketten durch Kombinationsregeln unterschiedlich anzuordnen (Permutation), ist eine der grundlegenden Freiheiten, die GF auf Zeichenketten-Ebene offeriert. Weitere Möglichkeiten, die allein mit Zeichenketten operieren, sind Reduplikation und Suppression. Reduplikation bedeutet, dass man Argumente in der Definition der Regel mehrmals angegeben kann:
+#+BEGIN_SRC haskell
+    Pred vstr    fres    beer  = vstr ++ fres ++ fres ++ beer ;
+    Pred VStrauß Fressen Beere = "鸵鸟" ++ "吃" ++ "吃" ++ "浆果" ;
+    Pred VStrauß Fressen Beere = "鸵鸟 吃 吃 浆果" ;
 #+END_SRC
-Und natürlich lässt sich auch mittels Hilfsfunktionen, die Erstellung dieser syntaktischen Datenstrukturen, in vielen Fällen auch über eine Regel, automatisieren. So geht in folgender Auflistung...
-#+BEGIN_SRC bash
-  reg1N : (x1 : Str) -> Gender -> N = \beere,g -> 
-    case <beere,g> of {
-      <_,  Fem> => 
-        let beere : Str = case beere of {_ + "e" => beere + "n" ; _ => beere + "en"} ; 
-            beeren = beere
-        in mk6N beere beere beere beere beere beeren g ;
+\verb$"鸵鸟 吃 吃 浆果"$, auf Deutsch etwa: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs hat eine limitierende Wirkung auf die gesamte Handlung.[fn:: Ein besseres Beispiel für Verb-Reduplikation wäre: \xpinyin*{请你尝}\xpinyin{尝}{chang}\xpinyin*{那}\xpinyin{个}{ge}\xpinyin*{菜}! (Bitte koste doch /mal/ dieses Gericht!), siehe \cite[29]{li_mandarin_1989}.])
+
+Die Suppression beschreibt hingegen die Unterdrückung bzw. Nicht-Anwendung von Argumenten bei der Linearisierung, was für Anapher-Resolution genutzt werden kann.[fn::Vgl. \cite[47,141-143]{ranta_grammatical_2011}. In \cite[10]{dybjer_machine_2012} wird ein Beispiel dazu durchgesprochen.]
+** Festhalten grammatischer Strukturen und Regeln
+Eine zusätzlich Ebene der Flexibilität wird durch Datensätze und Tabellen (/records/ respektive /tables/, siehe [[rectables]]) geschaffen. Sie dienen dazu morphologische und syntaktische Informationen einer Sprache festzuhalten. Beispielsweise können wir alle grammatischen Kasus und das grammatische Genus (i. e. alle morphologischen Eigenschaften) des deutschen Lexems »(Vogel-)Strauß« in folgender Datenstruktur aus Datensätzen und Tabellen hinterlegen:
+#+NAME: strauss_N
+#+CAPTION[Morphologischer Datensatz]: Datensätze und Tabellen für die Morphologie des Lexems »Strauß« 
+#+INCLUDE: "example-code/Zoo/ZooGer.gf" :lines "14-27" src haskell
+Aus der Konstante ~strauß_N~ können dann einzelne Elemente mittels der Operatoren Datensatz-Projektion (~.~) und Tabellenselektion (~!~) weiterverwendet werden. Zum Beispiel verwendet \verb$"strauß_N . s ! Pl ! Dat"$ den dativischen Plural, also »Straußen«.
+
+Und natürlich können wir auch mittels Hilfsfunktionen die Erstellung solcher Datenstrukturen automatisieren. So lässt sich im folgenden mit den Hilfs-Funktionen ~reg1N~ (reguläres Nomen mittels einer Zeichenkette) und ~casetable~ die schon angesprochene Datenstruktur ~strauß_N~ herstellen.
+#+NAME: reg1N_casetable
+#+CAPTION[Operations-Definitionen]: Zwei Behelfs-Operationen zur Erstellung morphologischer Eigenschaften
+#+INCLUDE: "example-code/Zoo/ZooGer.gf" :lines "31-49" src haskell
+Die beiden Funktionen gehören zu den sog. /Operations-Definitionen/, die zwar einen eigenen Bereich innerhalb der konkreten Grammatiken bestreiten (also getrennt von den Linearisierungs-Regeln zu betrachten sind),
+deren grundlegende Funktionsweise sich aber nicht von den Linearisierungs-Regeln unterscheidet. (Siehe Exposition/[[oper]])
+
+Das heißt, dass wir in Zeile 1 auf der LHS zunächst den Namen der Funktion, ~reg1N~, dann zwei Argument-Variablen, ~strauß~ sowie ~g~, haben, bevor sich die Funktionsdefinition auf der RHS anschließt. Innerhalb von ~reg1N~ wird dann in den Zeilen 6 und 7 die zweite Hilfsfunktion ~casetable~ mit jeweils vier Argumenten aufgerufen. Wird also die Funktion ~reg1N~ mit zwei Argumenten, etwa \inlst$"Strauß"$ und ~Masc~, aufgerufen, so erhalten wir die Datenstruktur ~strauß_N~, wie schon in Auflistung [[strauss_N]] gezeigt.
+
+Mit ~reg1N~ könnten wir dann die Regel ~VStrauß~ auch so schreiben:
+#+BEGIN_SRC haskell
+    VStrauß = "der" ++ (reg1N "Strauß" Masc).s ! Sg ! Nom ;
+#+END_SRC
+Was letztlich wieder identisch ist zu:
+#+BEGIN_SRC haskell
+    VStrauß = "der" ++ "Strauß" ;
+-- Evaluation von (++)
+    VStrauß = "der Strauß" ;
 #+END_SRC
 
-**** Beispiel zur Resource Grammar Library (RGL)
-dfadf
 
-GF: multilingual, Applikationsgrammatiken?
-TODO: Besonderes Augenmerk soll dabei auch auf den Fakt gelegt werden, dass die verschiedenen konkreten Grammatiken völlig frei voneinander eine Sprache beschreiben können.
+Man bemerke: Die Kombination von Funktionen, wie auch schon die Linearisierungs-Regeln kombinierbar waren
+- die Auslagerung von Berechnungsvorgängen in Funktionen ist eine Abstraktion: sie lässt uns von konkreten Berechnungen, die die Funktion erbringt, absehen
+- die Funktion ~reg1N~ ist linguistisch gesehen ein morphologisches Paradigma, das besagt, für eine Vielzahl der Nomen deutscher Sprache genügt es, eine Ausgangsform (das Lemma »Strauß«) und das Genus des Nomens an die Funktion ~reg1N~ zu übergeben, um als Resultat alle morphologischen Eigenschaften des Nomens (die Deklinations-Tabelle plus die morphologische Eigenschaft /maskulin/) zu erhalten.
+- Paradigmen, sei es zur Syntax oder Morphologie, zu finden und festzuschreiben, ist im Kontext von Programmierung und System-Architektur sinnvoll, um das wiederholte Anfertigen annähernd gleicher Datenstrukturen zu vermeiden. Die Abstraktion durch Paradigmen bedeutet etwa für die GF-RGL, dass Lexikon-Einträge /indirekt/ über Funktionen wie ~reg1N~ und nicht direkt über eine Datenstruktur (wie in Abb. [[strauss_N]]) erstellt werden.
+** Diversifikation von Paradigmen: »smarte Paradigmen«
+- ~reg1N~ sehr simpel, indem diese Funktion nur einen Fall behandelt. Eine Fallunterscheidung der Funktionsweise von ~reg1N~ wird ermöglicht über den Musterabgleich in Zeichenketten (und anderen Parametern) mittels regulärer Ausdrücke:
+#+NAME: smart-paradigma
+#+Caption[Smart-Paradigma]: Smart-Paradigma für Paradigmen, die mit einer Zeichenkette sowie Genus-Merkmal gebildet werden können
+#+BEGIN_SRC haskell
+reg1N nomen g =
+  case <nomen,g> of {
+
+    <_ + ("el"|"er"|"en") , Masc | Neutr> => [...] ; -- tue X
+
+    <_ + "e" , Masc> => [...] ; -- tue Y
+
+    <_       , Masc> => [...] ; -- der strauß_N-Fall
+
+    <_       , _   > => [...] ; -- catch-all: tue Z
+
+  } ;
+#+END_SRC
+In Abbildung [[smart-paradigma]] benutzen wir das Sprachkonstrukt \inlst$case ... of$ zum Musterabgleich, der sich auf beide Argumente, die ~reg1N~ nimmt, bezieht. Dafür werden nacheinander drei Muster geprüft,
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+1. in Zeile 4, wenn die Zeichenketten-Variable ~nomen~ auf \inlst$"el"$, \inlst$"er"$ oder \inlst$"en"$ endet und der Genus-Parameter ~g~ maskulin oder neutral ist, dann tue ~X~;
+2. in Zeile 6, wenn ~nomen~ auf \inlst$"e"$ endet und ~g~ maskulin ist, dann tue ~Y~;
+3. in Zeile 8, wenn ~nomen~ beliebig ist und ~g~ maskulin, dann erstelle die bekannte ~strauß_N~-Datenstruktur;
+3. in Zeile 10, wenn ~nomen~ und ~g~ beide beliebigen Inhaltes sind, dann tue ~Z~.
+Man beachte die sequentielle Anordnung: Wäre der Abgleich für ~Z~ zuoberst aufgeführt, dann könnten die restlichen Fälle nie abgeglichen werden, weil ~Z~ immer zuerst bejaht würde.[fn::Die sequentielle Natur des Abgleichs ermöglicht auch die Implementierung von Wahrscheinlichkeiten, vgl. \cite[646]{detrez_smart_2012}: »[\ldots]  a smart paradigm uses heuristics (informed guessing) if string matching doesn't decide the matter; the guess is informed by statistics of the distributions of different inflection classes.«]
+
+Damit wäre generell die Möglichkeit gegeben, innerhalb eines Paradigmas mehrere Möglichkeiten der Behandlung zuzulassen. Weitere Fälle, die nicht in das bisherige ~reg1N~-Paradigma passen, wie etwa die Umlaut-Modifikation von Singular zu Plural (Kuh, Kühe), müssen dagegen mit einem eigenen Paradigma erfasst werden. Der Aufruf einer eigenen paradigmatischen Funktion für diesen Fall wäre dann \inlst$reg2N$ \inlst$"Kuh"$ \inlst$"Kühe"$ ~Fem~ und das Resultat wiederum eine Deklinations-Datenstruktur samt Genus, wobei sich innerhalb dieses Paradigmas, das mit zwei Zeichenketten-Argumenten rechnet, abermals Fälle ergeben, die via Musterabgleich nunmehr als Smart-Paradigma (~reg2N~) gesammelt werden.
+
+Alsdann wäre unlängst aus Sicht der Linguistin das Wichtigste getan: Die Formulierbarkeit paradigmatischer Flexions-Regeln wird durch Funktionen erfüllt und auch die Gruppierung dieser Regeln in Smart-Paradigmen -- über die Anzahl der Argument-Zeichenketten -- ist nicht unnütz, weil sie uns die Auswahl eines konkreten Paradigmas abnimmt. Die paradigmatische Komplexität einer Sprache wird also durch Smart-Paradigmen gesenkt. 
+
+** Universal-Sprach-API der Resource Grammar Library (RGL)
+Der Ausgangspunkt dieses Kapitels war es, eine multilinguale Applikationsgrammatik zu erstellen.
+Da der Ersteller dieser Grammatik nicht in allen Sprachen, welche die Grammatik bieten bzw. mit denen sie später erweitert werden soll, bewandert sein kann, wäre es wünschenswert einen möglichst sprach-neutralen Zugang zu Morphologie und Syntax der jeweiligen Sprache zu haben. Sprach-neutral würde bedeuten, dass etwa für die Bildung eines Nomens genau eine Funktion zuständig, die in allen Sprachen implementiert ist.
+Das ist aber mit den Paradigmen, die wir bisher beispielhaft für das Deutsche entwickelt haben, unmöglich, denn die /Benennung/ der Smart-Paradigmen, wie
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+  - ~reg1N~ für u. a. »Strauß« sowie
+  - ~reg2N~ für u. a. »Kuh«, »Kühe«,
+sind allzu sprach-spezifisch, als dass sie für beliebige Sprachen gelten könnten.
+Beispielsweise benötigt das Nomen-Paradigma in der chinesischen Ressourcen-Bibliothek nur eine einzige Funktion, da Flexion hier generell nicht vorhanden ist, wobei der Bibliotheks-Autor sich dazu entschieden hat, sie ~regNoun~ nennen, was natürlich keinem der Funktionsnamen in der deutschen Paradigmatik entspricht.
+
+Man könnte nun versucht sein, Konventionen für die Benennung zu schaffen, an die sich jeder Bibliotheks-Autor halten muss, aber das würde ständige Koordinationsarbeit unter den Autoren mit dennoch sehr zweifelhafter Synchronitätsgarantie bedeuten. Außerdem sollte jedem Autor eine gewisse Freiheit bei der Benennung paradigmatischer Funktionen zugestanden werden.
+
+Da eine direkte Angleichung der Namen nicht fruchtet, scheint es angezeigt, eine weitere Abstraktionsebene für die Vereinheitlichung zu schaffen.
+Wie auch schon bei den Smart-Paradigmata, die eine Art Sammelbecken für primitive Paradigmen boten, können wir verschiedene Smart-Paradigmata (oder auch primitive, wie beim Chinesischen) in einer Funktion sammeln, wodurch die Benennungsunterschiede versteckt, also abstrahiert, werden. Vereinheitlichten wir nun etwa die Benennung /aller/ Nomen-Paradigmen mit einer übergeordneten Sammel-Funktion namens ~mkN~ (makeNomen), dann könnten wir folgendes schreiben:
+
+#+NAME: mkN-api
+#+Caption[mkN-API-Beispiel]: Namens-Vereinheitlichung von Paradigmen auf API-Ebene
+#+BEGIN_SRC haskell
+-- zwei deutsche Smart-Paradigmen:
+mkN = reg1N ;
+mkN = reg2N ;
+
+-- ein chinesisches (primitives) Paradigma: 
+mkN = regNoun ;
+#+END_SRC
+Womit offensichtlich die angestrebte Vereinheitlichung erreicht wäre -- etwas Geduld bitte für die seltsame Doppelbelegung von ~mkN~ im deutschen Teil -- d. h. wenn der Autor einer spezifischen Sprach-Bibliothek die ~mkN~-Abstraktion implementiert hat, dann hat ein Nutzer dieser Bibliothek via ~mkN~ eine simple Handhabe, Nomen zu bilden, weil er die genauen Paradigmen der Sprache nicht kennen muss. Der Autor hingegen, kann nicht nur die Paradigmen relativ frei benennen, sondern etwa auch zusätzliche (Smart-)Paradigmen für Nomen anfertigen -- gesetzt dem Fall natürlich diese werden auch wieder mit ~mkN~ verknüpft.
+
+/De facto/ entkoppeln wir also die Nutzung der Sprach-Bibliothek von deren Entwicklung, was software-architektonisch ein gängiges Verfahren darstellt und dessen Ergebnis Elemente (wie ~mkN~) einer Abstraktionsschicht sind. Diese Abstraktionsschicht wird als /Application Programming Interface/ (API), also als eine Benutzer-Schnittstelle zum Programmieren von Applikationen, bezeichnet, wobei im Falle von GF die Applikation in erster Linie eine Applikationsgrammatik ist.
+
+Nun ist da immer noch das Problem der Mehrfachbelegung von ~mkN~ mit zwei deutschen Smart-Paradigmen, was auch, da viele Sprachen morphologischen Reichtum nicht vermissen lassen, der Regelfall ist. Die Frage ist nun also, wie wir -- wenn ~mkN~ sowohl auf ~reg1N~ als auch ~reg2N~ verweisen -- den Verweis disambiguieren können, und die Antwort darauf liegt in den Argumenten der paradigmatischen Funktionen. Nämlich besteht ganz klar ein Unterschied darin, dass ~reg1N~ /eine/ Zeichenkette und ~reg2N~ /zwei/ als Argumente (neben dem ebenfalls obligatorischen Genus-Argument) benötigt, um evaluiert zu werden, und in GF können wir diesen Sachverhalt auf Typen-Ebene konkretisieren:
+
+#+NAME: type-regxn
+#+Caption[Typ-Deklarationen]: Typen-Deklarationen zu den dt. Paradigmen
+#+BEGIN_SRC haskell
+  reg1N : Str -> Gender -> N ; -- Typen-Deklaration zur Funktion reg1N
+  reg1N   strauß   g    = [...]
+
+  reg2N : Str -> Str -> Gender -> N ;
+  reg2N   kuh    kühe   g      = [...]
+#+END_SRC
+Abbildung [[type-regxn]] zeigt zusätzlich zu den schon verwendeten Funktions-Definitionen (in Zeile 2 und 5) diesmal auch die Typen-Deklarationen (in 1 und 4).[fn:: Typen einer Funktion werden also /deklariert/ während Funktionen mit den konkreten Berechnungen, die auf der RHS geschehen, /definiert/ werden.] Eingeleitet mit einem Doppelpunkt nach dem Funktions-Namen, auf die sich die Deklaration beziehen, geben die einzelnen Typ-Bezeichnungen (getrennt durch einen Pfeil nach rechts) an, welche Werte eine Argument-Variable annehmen darf. Demzufolge muss das erste Argument von ~reg1N~ vom Typ einer Zeichenkette (~Str~, String) und das zweite eines vom Typ Genus (~Gender~) sein, damit die Funktion einen Rückgabewert vom Typ Nomen (~N~) liefern kann. Analog dazu braucht ~reg2N~ ein Zeichenketten-Argument mehr. Man beachte nun, dass, wenn wir im ~reg1N~-Falle  \inlst$mkN = reg1N$ definieren, die Typen-Deklaration von ~reg1N~ sich auf ~mkN~ überträgt; natürlich analog auch für ~reg2N~:
+
+#+BEGIN_SRC haskell
+  mkN : Str -> Gender -> N ;
+  mkN = reg1N ;
+
+  mkN : Str -> Str -> Gender -> N ;
+  mkN = reg2N ;
+#+END_SRC
+
+Was bedeutet, dass ein formales Unterscheidungskriterium für die Disambiguierung innerhalb der Sammel-Funktion ~mkN~ unlängst vorhanden ist: die Typen-Deklaration. Aber auch wenn nun die paradigmatischen Funktionen in ~mkN~ auf Typen-Ebene unterschieden werden können, so ist die doppelte Nutzung der Funktions-Bezeichnung dennoch für den Compiler problematisch. Benötigt wird ein Sprach-Konstrukt, was auf die Mehrfachnutzung von Funktions-Bezeichnungen hinweist. Da hier eine Funktion mehr Arbeit auf sich nimmt als ihr eigentlich gebührt, sprechen wir vom /Überladen/ dieser, was sich in GF als ~overload~-Block entpuppt:
+
+#+BEGIN_SRC haskell
+mkN = overload {
+  mkN : Str -> Gender -> N = reg1N ;
+  mkN : Str -> Str -> Gender -> N = reg2N ;
+  } ;
+#+END_SRC
+
+- Beispiel-Code von Zoo mit Ressource! (syntaktische Funktion mkCl!)
+- TODO: GF-Shell vor/in Motivation
+- Bogen nun gespannt von Linearisierungs-Regeln über normale und smarte Paradigmen zu den überladenen API-Funktionen; Arbeitsteilung: Programmierer schafft semantisches Modell, was sich in möglichen Linearisierungs-Regeln ausdrückt; Linguist/Grammatiker erstellt Ressourcen-Grammatiken (weitere Differenzierung zwischen Lexikograph und Sprach-Experte hier möglich)
+- wo war aufgelistet, die Ratio zwischen GF-Code und expandierten Regeln?
+- [fn::Die relativ ähnlichen Benennungen von vielen Paradigmen scheint noch Zeuge davon zu sein, dass eine Vereinheitlichung der Benennungen versucht wurde. Siehe \cite[22]{ranta_molto_2012}.]
+
+- Weitere Elemente, mkV, mkA -> Synopse zeigen?
+
 
 -> pivot lang -> indirekte Übersetzung (Interlingua)\cite{carstensen_computerlinguistik_2004}: REFTODO: Seite! Gibt eine Darstellung von Interlingua bei MÜ und verweist auch auf Maegaard für das Thema Sackgasse bei Interlingua MÜ:
 - TODO:\cite{maegaard_mlim:_2001}:»Ideally, systems will employ statistical techniques to augment linguistic insights, allowing the system builder, a computational linguist, to specify the knowledge in the form most convenient to him or her, and have the system perform the tedious work of data collection, generalization, and rule creation. Such collaboration will capitalize on the (complementary) strengths of linguist and computer, and result in much more rapid construction of MT systems for new languages, with greater coverage and higher quality. Still, how exactly to achieve this optimal collaboration is far from clear. Chapter 6 discusses this tradeoff in more detail.« Fragen die GF beantworten kann? Natürlich werden Regeln nicht von GF erzeugt und statistische Methoden werden auch nicht standardmaäßig beim Parsen benutzt. Der Abschnitt lässt sich also so nicht benutzen, sondern vielmehr geht aus auf die Stärken bei GF was Arbeitsteilung/Modularisierung einzugehen. Robusteres Parsing ein zweites Thema zu den Stärken.
-* Relevanz von GF
-** für die Maschinelle Übersetzung (MÜ)
-** für das Chinesische
-* Tutorium
-** Präliminarien und Überblick
-Die nun verwendeten Beispiel-Grammatiken liegen (wie auch dieser Text) in einem öffentlich zugänglichen Archiv und stehen so zum eigenen Experimentieren bereit.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
-
-Der Ablauf der Tutoriums-Sektion gliedert sich in die aufeinander aufbauende Exposition folgender Punkte:
+* Exposition
+** Überblick
+Der Ablauf des GF-Expositions-Kapitels gliedert sich in die aufeinander aufbauende Darstellung folgender Punkte:
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - Module und Regeln für Grammatiken :: Grundlegende Terminologie in Modulen, die zusammen eine multilinguale Grammatik bilden (abstrakte und konkrete Grammatiken)
 - Interaktion mit den Grammatiken :: Demonstration der Grammatik (Übersetzung etc.) in der GF-Shell
@@ -99,7 +276,7 @@ Die folgenden 3 GF-Module (Zero.gf, ZeroGer.gf, ZeroChi.gf in Auflistung \ref{mj
 
 #+name: mj1
 #+CAPTION[Hallo GF]: 3 Module einer multilingualen Grammatik (./example-code/Zero/)
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 --Zero.gf:                   --ZeroGer.gf:                   --ZeroChi.gf:
 abstract Zero = {            concrete ZeroGer of Zero = {    concrete ZeroChi of Zero = { 
   cat                          lincat                          lincat                      
@@ -130,7 +307,7 @@ Modul in der Datei Zero.gf beziehen. Daraufhin beginnt auch hier der Modul-Body,
 - $\ast$ ~lin~ :: *Linearisierungs-Regeln* für Kategorien
 
 Man beachte die Korrespondenz zwischen den ~fun~-Regeln im abstrakten Modul und den verschiedenen ~lin~-Regeln der konkreten Grammatiken: Zum Beispiel wird mit dem Ausdruck ~Compl~ in der abstrakten Grammatik eine Funktion mit dazugehöriger Typen-Deklaration hinter dem Doppelpunkt eingeführt. Die Typen-Deklaration beschreibt, welchen Typ die Objekte haben dürfen, die die Funktion ~Compl~ als Argumente nimmt.
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 abstract Zero = {             concrete Zero___ of Zero = {
 [...]
     Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np; -- ident. Definition in
@@ -146,13 +323,13 @@ Welche konkreten Objekte dann mit dieser abstrakten Typen-Deklaration verbunden 
 - = :: das Gleichheitszeichen leitet den Funktionskörper (/funtion body/) ein
 - v2 ++ np :: hier werden die beiden Argumente der ~Compl~-Funktion mittels ~++~-Operator verkettet (String-Konketenation)
 - ; :: wie jede Regel bzw. Urteil wird der Funktionskörper mit einem Simikolon beendet
-
+       
 ** Interaktion in der GF-Shell
-Die GF-Shell bietet über verschiedene Kommandos einen interaktiven Zugang zu den Grammatiken.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie \cite[31]{ranta_grammatical_2011}.] Um die Grammatiken der letzten Sektion in der Shell zu testen, müssen wir zunächst die Grammatik-Module laden, was am einfachsten geschieht, wenn wir zunächst in das Verzeichnis navigieren, wo sich dieselben befinden. Im jeweiligen Kommandozeilen-Interpreter[fn:: Unter Windows sollten standardmäßig zwei Shells zur Verfügung stehen: cmd.exe und Powershell; (Mac) OS X: iTerm] des Betriebssystems sollte nach der Installation von GF ein ~gf~-Programm verfügbar sein, sodass wir die GF-Shell damit starten können. Beim Aufruf kann man entweder gleich die betreffenden Grammatik-Modul-Dateien angeben (\inlst$>gf ZeroChi.gf ZeroGer.gf$), sodass man mit den geladenen Grammatiken arbeiten kann:
+Die GF-Shell bietet über verschiedene Kommandos einen interaktiven Zugang zu den Grammatiken.[fn:: Für eine ausführlichere Einführung in die Arbeit mit der Shell, siehe http://www.grammaticalframework.org/doc/tutorial/gf-tutorial.html (etwas in die Jahre gekommen, aber die grundlegenden Ausführungen zur Shell und viele weitere Dinge sind noch aktuell) sowie im Handbuch zu \cite[31]{ranta_grammatical_2011}.] Um die Grammatiken der letzten Sektion in der Shell zu testen, müssen wir zunächst die Grammatik-Module laden, was am einfachsten geschieht, wenn wir zunächst in das Verzeichnis navigieren, wo sich dieselben befinden. Im jeweiligen Kommandozeilen-Interpreter[fn:: Unter Windows sollten standardmäßig zwei Shells zur Verfügung stehen: cmd.exe und Powershell; (Mac) OS X: iTerm] des Betriebssystems sollte nach der Installation von GF ein ~gf~-Programm verfügbar sein, sodass wir die GF-Shell damit starten können. Beim Aufruf kann man entweder gleich die betreffenden Grammatik-Modul-Dateien angeben (\inlst$>gf ZeroChi.gf ZeroGer.gf$), sodass man mit den geladenen Grammatiken arbeiten kann:
 
 #+BEGIN_LATEX
 \vspace{5mm}
-\lstset{basicstyle=\small\ttfamily\setstretch{0.7},caption=Direkter Aufruf von Modulen durch das gf-Programm,numbers=none,language=bash}
+\lstset{basicstyle=\small\ttfamily\setstretch{0.7},caption=Direkter Aufruf von Modulen durch das gf-Programm,numbers=none,language={}}
 \begin{lstlisting}
 ~/d/n/e/Zero $ gf ZeroChi.gf ZeroGer.gf
 
@@ -184,7 +361,7 @@ Oder man startet die GF-Shell einfach mit ~gf~ (also ohne jedwede Datei-Argument
 
 #+BEGIN_LATEX
 \vspace{5mm}
-\lstset{basicstyle=\small\ttfamily\setstretch{0.7},caption=,numbers=none,language=bash}
+\lstset{basicstyle=\small\ttfamily\setstretch{0.7},caption=,numbers=none,language={}}
 \begin{lstlisting}
 > import ZeroChi.gf ZeroGer.gf
 linking ... OK
@@ -196,11 +373,13 @@ Zero>
 %\vspace{5mm}
 #+END_LATEX
 
+** Übersetzung: parse/linearize
+<<parse-lin>>
 In jedem Fall sollte es dann möglich sein, folgende Kommando-Kombination auszuführen:
 
 #+name: pl1
 #+CAPTION[Übersetzungskommandos in der GF-Shell]: GF-Shell: Standard-Übersetzungs-Kommandoabfolge: ~parse~, »|« (Pipe), ~linearize~   
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Languages: ZeroChi ZeroGer
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
@@ -211,7 +390,8 @@ In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatike
 Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, und ein Operator benötigt, der die Ausgabe des ersten Kommandos an das zweite weiterleitet. Der genaue Ablauf sieht folgendermaßen aus:
 
 #+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
-1. Eine chinesische Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse -lang=ZeroChi~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, die einzelen Wörter (Tokens) im String durch ein Leerzeichen zu trennen. Um dies /hervorzuheben/ wird in den Auflistungen das Leerzeichen in Strings als ␣ (U+2423, Open Box) umgesetzt. (GF ist in erster Linie kein Werkzeug zur Tokenisierung chinesischer Sätze. Siehe auch: TODO: cf. Chinesisch-Tokenisierung-Problem.)]
+1. Eine chinesische Zeichenkette oder auch String (\inlst$"约翰 爱 玛丽"$) wird mittels ~parse -lang=ZeroChi~ eingelesen und verarbeitet.[fn:: Man beachte, dass ein String, der eingelesen werden soll, in Anführungszeichen eingeschlossen sein muss. Obligatorisch ist außerdem, die einzelnen Zeichenketten (Tokens) im String durch ein Leerzeichen zu trennen.]
+
 2. Das Ergebnis der Verarbeitung wird durch den sog. Pipe-Operator, ~|~, weitergeleitet \ldots{}
 3. \ldots{} an ~linearize~, das eine deutsche Übersetzung mittels ~-lang=ZeroGer~ in Zeile 3 generiert.
 
@@ -225,7 +405,7 @@ Aus der Beobachtung dieses Ablaufs ergeben sich mindestens zwei Fragen:
 Frage 1 können wir oberflächlich in der Shell beantworten, indem wir den Pipe-Operator und ~linearize~ weglassen. 
 #+name: mj-hello-ast
 #+CAPTION[AST: Klammernotation]: AST in Klammernotation
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽"
 Pred John (Compl Love Mary)
 #+END_SRC
@@ -233,8 +413,9 @@ Pred John (Compl Love Mary)
 Um diese Ausgabe zu interpretieren und auch die zweite Frage zu beantworten, müssen wir uns eingehend mit Bäumen als Datenstrukturen auseinandersetzen.
 ** Datenmodellierung und Prüfung
 *** Abstrakter Syntax Baum/Tree (AST)
-Was ~parse~ in Auflistung \ref{mj-hello-ast} zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. /Abstrakter Syntax Baum/ (Abstract Syntax Tree, kurz AST) in /Klammernotation/. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn:: Siehe http://www.graphviz.com] einsetzen:
-#+BEGIN_SRC bash
+<<astcat-intro>>
+Was ~parse~ in Auflistung \ref{mj-hello-ast} zurück liefert, sind die semantischen Einheiten unseres geparsten Satzes als sog. /Abstrakter Syntax Baum/ (Abstract Syntax Tree, kurz AST) in /Klammernotation/. Diese Notation lässt nicht intuitiv vermuten, dass es sich bei \inlst$Pred John (Compl Love Mary)$ um eine Art Baum handelt. (Obwohl die Klammern um ~Compl Love Mary~ wie in einer mathematischen Gleichung einen Hinweis darauf geben, dass etwas, nämlich ein geklammerter Ausdruck, zuerst berechnet werden muss.) Um uns nun diesen Vergleich mit einer Baum-Struktur zu verdeutlichen, können wir das GF Kommando ~visualize_tree~ in Verbindung mit dem Visualisierungs-Werkzeug »Graphviz«[fn::http://www.graphviz.com] einsetzen:
+#+BEGIN_SRC haskell
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 #+END_SRC
 Damit sollte sich ein Programm unserer Wahl (hier der Firefox-Browser) mit der PNG-Bilddatei öffnen, das uns einen auf den Kopf gestellten Baum zeigt:
@@ -244,12 +425,12 @@ Damit sollte sich ein Programm unserer Wahl (hier der Firefox-Browser) mit der P
 #+NAME: jlm-abs-graph
 #+ATTR_LATEX: :width 0.35\textwidth :float t
 [[./example-code/Zero/1-JohannesLiebtMarie.png]]
-Nun sollte ersichtlich sein, was gemeint ist, wenn wir dem Ausdruck \inlst$Pred John (Compl Love Mary)$ eine Baumstruktur zusprechen: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen, wobei sich ~Compl~ wiederum verzweigt in ~Love~ und ~Mary~.[fn:: (~Pred~: die Prädikation, TODO: Hadumot Bußmann Quelle; Ziel: P. müsste meinen, einem Gegenstand Qualitäten zu oder absprechen! TODO: Fußnote oder Infobox zu semantischen/syntaktischen Bezeichnern!)][fn:: Abkürzung für Prädikation (engl. /predication/), cf. REFTODO-Seite noch nicht richtig: \cite{busmann_lexikon_2008}.]
+Nun sollte ersichtlich sein, was gemeint ist, wenn wir dem Ausdruck \inlst$Pred John (Compl Love Mary)$ eine Baumstruktur zusprechen: Die Wurzel eines Baumes ist Ausgangspunkt für verschiedene Äste, die zu unterschiedlichen Blättern führen. Im obigen Fall ist die Wurzel nun ~Pred~ von der ausgehend Äste zum Subjekt, ~John~, und zum Prädikat (~Compl~ \ldots{}) wachsen, wobei sich ~Compl~ wiederum verzweigt in ~Love~ und ~Mary~.
 
 Vergleichen wir nun diesen Graphen mit unserem abstrakten Syntaxmodul (Zero.gf), so zeigt sich eine Übereinstimmung zwischen den geparsten semantischen Einheiten des AST und den Namen der Funktions-Deklarationen im ~fun~-Block:
 #+name: mjAbs
 # +CAPTION[Hello-Abs]
-#+begin_src bash
+#+BEGIN_SRC haskell
 abstract Zero = {
   cat                       -- Kategorien
     S; NP; VP; V2;
@@ -273,7 +454,7 @@ Die Relation zwischen Funktions-Anwendung (engl. /function application/, das Bef
 
 #+CAPTION: Typ-Fehler: keine Argumente
 #+NAME: compl-no-args
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Zero> linearize Pred John Compl
 Couldn't match expected type VP
        against inferred type V2 -> NP -> VP
@@ -287,7 +468,7 @@ Hier sehen wir nach dem Aufruf von ~linearize~ mit einem unvollständigen AST, w
 
 #+CAPTION[AST: Komplette Funktionsanwendung]: Kein Typ-Fehler: Funktion ~Compl~ vollständig mit Argumenten gesättigt
 #+NAME: compl-all-args
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Zero> linearize Pred John (Compl Love Mary)
 约翰 爱 玛丽
 Johann liebt Marie
@@ -296,7 +477,7 @@ Johann liebt Marie
 Damit hätten wir die Fälle gezeigt, in denen die ~Compl~-Funktion, entweder keine Argumente erhält (Abb. \ref{compl-no-args}) oder alle (Abb. \ref{compl-all-args}). Der Vollständigkeit halber sei auch noch gezeigt, dass eine partielle Sättigung der Funktion (im Fall von ~Compl~ also mit nur einem Argument) möglich ist und wie dieser Fall vom Compiler interpretiert wird:
 #+caption[AST: Partielle Funktionsanwendung]: Typ-Fehler: Funktion ~Compl~ partiell gesättigt
 #+NAME: compl-part-args
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Zero> linearize Pred John (Compl Love)
 Couldn't match expected type VP
        against inferred type NP -> VP
@@ -304,13 +485,13 @@ In the expression: Compl Love
 #+END_SRC
 In Auflistung \ref{compl-part-args} wird die Funktion ~Compl~ auf ein Argument vom Typ ~V2~ (Verb mit Platz für zwei Objekte: Subjekt und Objekt, ~Love~) angewandt, was für den Typ-Inferenz-Mechanismus des Compilers laut Zeile 3 bedeutet, dass der Ausdruck ~Compl Love~ den Typ ~NP -> VP~ besitzt (\inlst$Compl Love : NP -> VP$). Auf diese spezielle Art der Funktionsanwendung, die partielle Applikation, sei an dieser Stelle schon hingewiesen, weil hiermit ein Merkmal funktionaler Programmiersprachen expliziert wird, das uns auch in GF als FP immer wieder begegnen wird: Jeder Ausdruck, den wir benutzen, um etwas zu berechnen oder um Daten zu modellieren, ist eine Funktion. Vielfach nehmen Funktionen zwar Argumente entgegen und verarbeiten diese, wie etwa ~Compl~ in der Zero-Grammatik:
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
     Compl : V2 -> NP -> VP;      Compl v2 np = v2 ++ np;
 #+END_SRC
 
 Andere Ausdrücke, die keine Argumente nehmen, sind aber ebenso Funktionen, wie: 
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
     Love : V2;                   Love = "爱";
     John : NP;                   John = "约翰";
     Mary : NP;                   Mary = "玛丽";
@@ -321,7 +502,7 @@ Andere Ausdrücke, die keine Argumente nehmen, sind aber ebenso Funktionen, wie:
 
 
 Außerdem zeigt uns der Graph die Kategorien (~cat~)
-#+BEGIN_SRC bash 
+#+BEGIN_SRC haskell
 Zero> linearize Pred John Compl
 Couldn't match expected type VP
        against inferred type V2 -> NP -> VP
@@ -340,14 +521,14 @@ abstract Zero = {           concrete ZeroChi of Zero = {
 }                           }
 #+end_src
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC haskell
 Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | visualize_tree -view="firefox"
 Pred John (Compl Love Mary)
 #+END_SRC
 
-#+CAPTION[tabpress]: Inkrementelles Parsing und Vorschläge für das 
+#+CAPTION[Inkrementellse Parsing]: Inkrementelles Parsing und Vorschläge für das 
 #+NAME: jlm-tab
-#+BEGIN_SRC bash 
+#+BEGIN_SRC haskell
 Zero> linearize Pred 
 Compl  John   Love   Mary   Pred -- Warum wird Compl vorgeschlagen?! -- das ist kein richtiges Inkrementelles Parsing; klar ist ja auch linearize... :P
 #+END_SRC
@@ -357,7 +538,6 @@ Compl  John   Love   Mary   Pred -- Warum wird Compl vorgeschlagen?! -- das ist 
 
 - Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
 - fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
-
 
 ** Records und Tables
 <<rectables>>
@@ -379,8 +559,33 @@ With "your", you must think in a bit tricky way. There are, so to say, two varia
 
 You should read the GF book chapter 3 for more details, and then 4 and 9 for even more details. If you don't have the book, the book slides may give enough information.
 
-** opers
-- lambda function abstraction: \cite[1]{nederpelt_type_2014} : dummy variable
+** Operationen
+<<oper>>
+- Besonderheiten: lokale Definitionen (let-Blöcke)
+** Typ-Synonyme
+<<type-syn>>
+** Parameter
+** semantic action example
+DShopping> p "that shirt isn't very Italian "
+Pred DCloth (That DCloth Shirt) (Very DCloth (Italian DCloth))
+Pred DCloth (That DCloth Shirt) (Very DCloth (Italian DCloth))
+
+3 msec
+DShopping> p "that shirt isn't very fresh "
+The parsing is successful but the type checking failed with error(s):
+  Couldn't match expected type Quality DCloth
+         against inferred type Quality DFood
+  In the expression: Very DFood Fresh
+  Couldn't match expected type Quality DCloth
+         against inferred type Quality DFood
+  In the expression: Very DFood Fresh
+
+0 msec
+DShopping> !pwd
+system: invalid argument (null command)
+DShopping> ! pwd
+/home/rtb/doks/nlp/gf-ressource/gf-book/examples/chapter6
+
 ** für Erklärung von Begriffen evtl. relevant
 - synkategorematisch: GF: 100 (This), Granström: 7
 
@@ -389,11 +594,10 @@ You should read the GF book chapter 3 for more details, and then 4 and 9 for eve
 *** 把 nur auf Dinge beziehbar?
 - mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) 
 to answer to him that she sleeps
-把他回答说她睡 BAD 回答他说她睡了
+把他回答说她睡 !BAD 回答他说她睡了
 - mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)))
 to paint itself black
-画自己黑 BAD 把它自己画黑
-
+画自己黑 BAD 把它自己画黑 (noch nicht berichtigt, kann man es berichtigen?)
 
 ** Komplement des Resultats (结果补语) -- shi-de -- »Buch ist ausverkauft«?
 - es scheint noch nichts dafür definiert zu sein
@@ -486,10 +690,10 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: \newcommand{\mysinglespacing}{%
 #+LATEX_HEADER:   \setstretch{1}% no correction afterwards
 #+LATEX_HEADER: }
-#+LATEX_HEADER: \lstnewenvironment{my-inlst}{\lstset{basicstyle=\small\ttfamily\setstretch{1},language=bash}}{}
-#+LATEX_HEADER:  \newcommand*{\inlst}{\lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash,breaklines=true]}
+#+LATEX_HEADER: \lstnewenvironment{my-inlst}{\lstset{basicstyle=\small\ttfamily\setstretch{1},language={}}}{}
+#+LATEX_HEADER: \newcommand*{\inlst}{\lstinline[basicstyle=\ttfamily\setstretch{1},language={},breaklines=true,showstringspaces=false]}
 #+LATEX_HEADER: %\newcommand{\inlst}[1]{%
-#+LATEX_HEADER: %   \lstinline[basicstyle=\small\ttfamily\setstretch{1},language=bash]!#1!
+#+LATEX_HEADER: %   \lstinline[basicstyle=\small\ttfamily\setstretch{1},language={}]!#1!
 #+LATEX_HEADER: %}
 #+LATEX_HEADER: \newcommand{\stylst}{basicstyle=\small\ttfamily\setstretch{1}}
 #+LATEX_HEADER: 
