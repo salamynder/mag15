@@ -128,7 +128,7 @@ Die Möglichkeit, Zeichenketten durch Kombinationsregeln unterschiedlich anzuord
     Pred VStrauß Fressen Beere = "鸵鸟" ++ "吃" ++ "吃" ++ "浆果" ;
     Pred VStrauß Fressen Beere = "鸵鸟 吃 吃 浆果" ;
 #+END_SRC
-\verb$"鸵鸟 吃 吃 浆果"$, auf Deutsch etwa: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs hat eine limitierende Wirkung auf die gesamte Handlung.[fn:: Ein besseres Beispiel für Verb-Reduplikation wäre: \xpinyin*{请你尝}\xpinyin{尝}{chang}\xpinyin*{那}\xpinyin{个}{ge}\xpinyin*{菜}! (Bitte koste doch /mal/ dieses Gericht!), siehe \cite[29]{li_mandarin_1989}.])
+\verb$"鸵鸟 吃 吃 浆果"$, auf Deutsch etwa: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs hat eine limitierende Wirkung auf die gesamte Handlung.[fn:: Ein besseres Beispiel für Verb-Reduplikation wäre: \xpinyin*{请你尝}\xpinyin{尝}{chang}\xpinyin*{那}\xpinyin{个}{ge}\xpinyin*{菜}! (Bitte koste doch /mal/ jenes Gericht!), siehe \cite[29]{li_mandarin_1989}.])
 
 Die Suppression beschreibt hingegen die Unterdrückung bzw. Nicht-Anwendung von Argumenten bei der Linearisierung, was für Anapher-Resolution genutzt werden kann.[fn::Vgl. \cite[47,141-143]{ranta_grammatical_2011}. In \cite[10]{dybjer_machine_2012} wird ein Beispiel dazu durchgesprochen.]
 ** Festhalten grammatischer Strukturen und Regeln
@@ -618,7 +618,8 @@ sysu/Assign_6.gf
 - Satz müsste eher mit 售完 gebildet werden! (noch nicht in RGL-Chi)
 - und dann ist auch die Frage, ob shi...de dafür benutzt wird, wahrscheinlich schon: 这本书是售完的. (Beschreibung Motsch, S. 127: "Betonung der Eigenschaft des Beschriebenen"), es geht aber auch: »这本书已售完« (Shanghai Dt-Chin., 134)
 
-** 
+** Tabellen-Daten für Appendix?
+\csvautobooktabular[separator=semicolon]{eng_chi3.csv}
 * End
 \printbibliography
 * zotero							   :noexport:

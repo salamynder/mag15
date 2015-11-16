@@ -8,7 +8,7 @@ mkText (mkText (mkPhr (mkUtt where_IAdv)) questMarkPunct (mkText (mkPhr (mkUtt h
 mkText (mkPhr yes_Utt) fullStopPunct;yes .;对。;GOOD;
 mkText (mkPhr yes_Utt) questMarkPunct;yes ?;对？;SOSO 对吗？;
 mkText (mkPhr yes_Utt) exclMarkPunct;yes !;对！;GOOD;
-mkPhr but_PConj (mkUtt (mkImp sleep_V)) (mkVoc (mkNP i_Pron friend_N));but sleep , my friend;但是睡我的朋友 ;BAD 但是睡吧，我的朋友(if my friend comes right after 睡, 睡 becomes vt and means sleep with);
+mkPhr but_PConj (mkUtt (mkImp sleep_V)) (mkVoc (mkNP i_Pron friend_N));but sleep , my friend;但是我的朋友, 睡觉 ;BAD 但是睡吧，我的朋友(if my friend comes right after 睡, 睡 becomes vt and means sleep with);
 mkPhr (mkS futureTense negativePol (mkCl she_NP sleep_V));she won't sleep;她没在睡 ;SOSO 她不睡;
 mkPhr (mkCl she_NP sleep_V);she sleeps;她睡 ;GOOD;
 mkPhr (mkQS conditionalTense (mkQCl (mkCl she_NP sleep_V)))  ;would she sleep;她睡着吗 ;SOSO 她睡吗;
@@ -54,9 +54,9 @@ mkUtt (mkCl she_NP become_VA old_A);she becomes old;她变老 ;GOOD;
 mkUtt (mkCl she_NP become_VA (mkAP very_AdA old_A));she becomes very old;她变非常老 ;SOSO 她变得非常老;
 mkUtt (mkCl she_NP paint_V2A it_NP red_A);she paints it red;她把它画红 ;GOOD;
 mkUtt (mkCl she_NP paint_V2A it_NP (mkAP red_A));she paints it red;她把它画红 ;GOOD;
-mkUtt (mkCl she_NP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));she answers to him that we sleep;她把他回答说我们睡 ;BAD 她回答他说我们睡了;
-mkUtt (mkCl she_NP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)));she asks him who sleeps;她把他问说谁睡 ;BAD 她问他说谁睡了;
-mkUtt (mkCl she_NP beg_V2V he_NP (mkVP sleep_V));she begs him to sleep;她把他乞求睡 ;BAD 她乞求他睡;
+mkUtt (mkCl she_NP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));she answers to him that we sleep;她回答他说我们睡觉 ;GOOD 她回答他说我们睡了 (better with 了？);
+mkUtt (mkCl she_NP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)));she asks him who sleeps;她问他说谁睡觉 ;GOOD 她问他说谁睡了;
+mkUtt (mkCl she_NP beg_V2V he_NP (mkVP sleep_V));she begs him to sleep;她乞求他睡觉 ;GOOD 她乞求他睡;
 mkUtt (mkCl she_NP old_A);she is old;她是老的 ;GOOD or 她很老;
 mkUtt (mkCl she_NP old_A he_NP);she is older than he;她是比他老的 ;SOSO 她比他老/她比他大;
 mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的 ;BAD 她和他结婚了/她已婚，先生是他;
@@ -74,18 +74,18 @@ mkUtt (mkCl here_Adv (mkS (mkCl she_NP sleep_V)) );it is here that she sleeps;�
 mkUtt (mkCl rain_V0 );it rains;下雨 ;GOOD;
 mkUtt (mkCl (progressiveVP (mkVP rain_V0)));it is raining;下雨 ;SOSO 下着雨;
 mkUtt (mkCl (mkSC (mkS (mkCl she_NP sleep_V))) (mkVP good_A));that she sleeps is good;她睡是好的 ;SOSO 她睡是好事;
-mkUtt (mkS (genericCl (mkVP sleep_V)));one sleeps;睡 ;BAD 有人睡;
+mkUtt (mkS (genericCl (mkVP sleep_V)));one sleeps;睡觉 ;BAD 有人睡;
 mkUtt (mkVP sleep_V) ;to sleep;睡 ;GOOD;
 mkUtt (mkVP love_V2 he_NP) ;to love him;爱他 ;GOOD;
-mkUtt (mkVP send_V3 it_NP he_NP) ;to send it to him;把它寄他 ;BAD 把它寄给他;
+mkUtt (mkVP send_V3 it_NP he_NP) ;to send it to him;它寄他 ;BAD 把它寄给他; 4 trees when translating Eng->Chi, one being: 把它寄他
 mkUtt (mkVP want_VV (mkVP sleep_V)) ;to want to sleep;想睡 ;GOOD;
 mkUtt (mkVP know_VS (mkS (mkCl she_NP sleep_V))) ;to know that she sleeps;知道她睡 ;GOOD;
 mkUtt (mkVP wonder_VQ (mkQS (mkQCl who_IP sleep_V))) ;to wonder who sleeps;好奇谁睡 ;GOOD;
 mkUtt (mkVP become_VA (mkAP red_A));to become red;变红 ;GOOD;
 mkUtt (mkVP paint_V2A it_NP (mkAP red_A));to paint it red;把它画红 ;GOOD;
-mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) ;to answer to him that she sleeps;把他回答说她睡 ;BAD 回答他说她睡了;
-mkUtt (mkVP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V))) ;to ask him who sleeps;把他问说谁睡 ;BAD 问他说谁睡了;
-mkUtt (mkVP beg_V2V he_NP (mkVP sleep_V));to beg him to sleep;把他乞求睡 ;BAD 乞求他睡;
+mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) ;to answer to him that she sleeps;回答他说她睡觉 ;GOOD 回答他说她睡了;
+mkUtt (mkVP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V))) ;to ask him who sleeps;问他说谁睡觉 ;GOOD 问他说谁睡了;
+mkUtt (mkVP beg_V2V he_NP (mkVP sleep_V));to beg him to sleep;乞求他睡觉 ;GOOD 乞求他睡;
 mkUtt (mkVP old_A) ;to be old;是老的 ;GOOD;
 mkUtt (mkVP old_A he_NP) ;to be older than he;是比他老的 ;SOSO 比他老;
 mkUtt (mkVP married_A2 he_NP)  ;to be married to him;是结婚他的 ;BAD 和他结婚了/已婚，先生是他;
@@ -101,8 +101,8 @@ mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自�
 mkUtt (mkVP (mkComp (mkAP warm_A)));to be warm;是温暖的 ;GOOD;
 mkUtt (reflexiveVP love_V2)  ;to love itself;爱自己 ;SOSO 爱它自己;
 mkUtt (reflexiveVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自己黑 ;BAD 把它自己画黑;
-mkUtt (passiveVP love_V2);to be loved;爱 ;BAD 被爱;
-mkUtt (passiveVP love_V2 she_NP);to be loved by her;在她被爱 ;BAD 被她爱;
+mkUtt (passiveVP love_V2);to be loved;被爱 ;GOOD 被爱;
+mkUtt (passiveVP love_V2 she_NP);to be loved by her;被爱得被她 ;BAD 被她爱; 4 trees when Eng-> Chi
 mkUtt (progressiveVP (mkVP sleep_V));to be sleeping;睡 ;SOSO 在睡;
 mkUtt (mkVP (mkComp (mkAP old_A)));to be old;是老的 ;GOOD;
 mkUtt (mkVP (mkComp (mkNP this_Det man_N)));to be this man;是这个男人 ;GOOD;
@@ -110,7 +110,7 @@ mkUtt (mkVP (mkComp here_Adv));to be here;在这里 ;GOOD;
 mkSC (mkS (mkCl she_NP sleep_V));that she sleeps;她睡 ;GOOD;
 mkSC (mkQS (mkQCl who_IP sleep_V));who sleeps;谁睡 ;GOOD;
 mkSC (mkVP sleep_V);to sleep;睡 ;GOOD;
-mkUtt (mkImp (mkVP (mkVP come_V) (mkAdv to_Prep (mkNP i_Pron house_N))));come to my house;在我的房子往来 ;BAD 到我家来;
+mkUtt (mkImp (mkVP (mkVP come_V) (mkAdv to_Prep (mkNP i_Pron house_N))));come to my house;在往我的房子来 ;BAD 到我家来; 到 preferable in other cases (vs. 往)? 到我的车来？
 mkUtt (mkImp come_V);come;来 ;GOOD;
 mkUtt (mkImp buy_V2 it_NP);buy it;买它 ;GOOD;
 mkUtt (mkNP this_Quant man_N);this man;这个男人 ;GOOD;
@@ -132,7 +132,7 @@ mkUtt (mkNP this_Quant (mkNum (mkNumeral n5_Unit)));these five;这五个 ;GOOD;
 mkUtt (mkNP (mkDet the_Quant (mkNum (mkNumeral n5_Unit)) (mkOrd good_A)));the five best;五最好个 ;BAD 最好的五个;
 mkUtt (mkNP (mkCN old_A beer_N));old beer;老啤酒 ;SOSO 陈年的啤酒;
 mkUtt (mkNP beer_N);beer;啤酒 ;GOOD;
-mkUtt (mkNP only_Predet (mkNP this_Det woman_N));only this woman;只有的这个女人 ;BAD 只有这个女人;
+mkUtt (mkNP only_Predet (mkNP this_Det woman_N));only this woman;只有这个女人 ;GOOD 只有这个女人;
 mkUtt (mkNP (mkNP the_Det man_N) see_V2);the man seen;看的男人 ;SOSO 被看到的男人;
 mkUtt (mkNP (mkNP paris_PN) today_Adv);Paris today;今天的巴黎 ;GOOD;
 mkUtt (mkNP (mkNP john_PN) (mkRS (mkRCl which_RP (mkVP walk_V))));John , who walks;走的约翰 ;SOSO 走着的约翰;
@@ -154,8 +154,8 @@ mkUtt these_NP;these;这些 ;GOOD;
 mkUtt those_NP;those;那些 ;GOOD;
 mkUtt (mkNP (mkDet this_Quant (mkCard (mkNumeral n5_Unit))));these five;这五个 ;GOOD;
 mkUtt (mkNP (mkDet the_Quant (mkOrd (mkNumeral n5_Unit))));the fifth;第五个 ;GOOD;
-mkUtt (mkNP (mkDet the_Quant (mkNum (mkNumeral n5_Unit)) (mkOrd good_A)));the five best;五最好个 ;BAD 最好的五个;
-mkUtt (mkNP (mkDet this_Quant pluralNum));these;这个 ;BAD 这些;
+mkUtt (mkNP (mkDet the_Quant (mkNum (mkNumeral n5_Unit)) (mkOrd good_A)));the five best;五最好个 ;BAD 最好的五个; !duplicate
+mkUtt (mkNP (mkDet this_Quant pluralNum));these;这些 ;GOOD 这些;
 mkUtt (mkNP (mkDet (mkCard (mkNumeral n5_Unit))));five;五个 ;GOOD;
 mkUtt (mkNP (mkDet (mkNumeral n5_Unit)));five;五个 ;GOOD;
 mkUtt (mkNP (mkDet i_Pron));mine;我的个 ;BAD 我的;
@@ -179,9 +179,10 @@ mkNum (mkCard almost_AdN (mkCard (mkNumeral n5_Unit)));almost five;几乎五 ;SO
 mkNum (mkCard almost_AdN (mkCard (mkNumeral n5_Unit)));almost five;几乎五 ;SOSO 差不多五个;
 mkUtt (mkCard (mkNumeral n7_Unit));seven;七 ;GOOD;
 mkUtt (mkAP (mkOrd small_A));smallest;最小 ;GOOD;
-mkUtt (mkCard (mkAdN more_CAdv) (mkCard (mkNumeral n8_Unit)));more than eight;constantnotfound:more_CAdv ;BAD 超过八个;
-mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine;九九十九 ;BAD 九百九十;
-mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit)) (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand nine hundred and ninety - nine;九九万九千九九十九 ;BAD 九十九万九千九百九十九;
+mkUtt (mkCard (mkAdN more_CAdv) (mkCard (mkNumeral n8_Unit)));more than eight;比八 ;BAD 超过八个， 比八多（？）;
+mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine;九九十九 ;BAD 九百九十; Eng->Chi: p -lang=Chi "九 百 九 十 九" | l -lang=Eng (ok!)
+mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit)) (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand nine hundred and ninety - nine;九九万九千九九十九 ;BAD 九十九万九千九百九十九; again, this tree works for Chi and Eng: PhrUtt NoPConj (UttCard (NumNumeral (num (pot3plus (pot2plus (pot0 n9) (pot1plus n9 (pot0 n9))) (pot2plus (pot0 n9) (pot1plus n9 (pot0 n9))))))) NoVoc
+
 mkUtt (mkCard (thousandfoldNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand;九九万九千 ;BAD 九十九万九千;
 mkUtt (mkCard (mkNumeral (mkSub1000 (mkSub100 n9_Unit n9_Unit))));ninety - nine;九十九 ;GOOD;
 mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit)));nine hundred;九百 ;GOOD;
@@ -190,7 +191,7 @@ mkUtt (mkCard (mkNumeral (mkSub100 n8_Unit)));eight;八 ;GOOD;
 mkUtt (mkCard (mkNumeral (mkSub100 n8_Unit n3_Unit)));eighty - three;八十三 ;GOOD;
 mkUtt (mkCard (mkNumeral (mkSub100 n8_Unit)));eight;八 ;GOOD;
 mkUtt (mkCard (mkNumeral n1_Unit));one;一 ;GOOD;
-mkUtt (mkCard (mkNumeral n2_Unit));two;两 ;BAD 二;
+mkUtt (mkCard (mkNumeral n2_Unit));two;两 ;GOOD (二 as cardinal numeral is 两);
 mkUtt (mkCard (mkNumeral n3_Unit));three;三 ;GOOD;
 mkUtt (mkCard (mkNumeral n4_Unit));four;四 ;GOOD;
 mkUtt (mkCard (mkNumeral n5_Unit));five;五 ;GOOD;
@@ -214,16 +215,16 @@ mkUtt (mkCN (mkCN old_A man_N) (mkRS (mkRCl which_RP she_NP love_V2)) );old man 
 mkUtt (mkCN house_N (mkAdv on_Prep (mkNP the_Det hill_N)));house on the hill;在山上的房子 ;GOOD;
 mkUtt (mkCN (mkCN big_A house_N) (mkAdv on_Prep (mkNP the_Det hill_N)));big house on the hill;在山上的大房子 ;GOOD;
 mkUtt (mkCN (mkCN rule_N) (mkS (mkCl she_NP sleep_V)));rule that she sleeps;她睡规则 ;SOSO 她睡的规则;
-mkUtt (mkCN (mkCN question_N) (mkQS (mkQCl (mkCl she_NP sleep_V))));question if she sleeps;她睡吗问题 ;BAD 她睡不睡的问题;
-mkUtt (mkCN (mkCN reason_N) (mkVP sleep_V));reason to sleep;睡道理 ;BAD 睡的理由;
+mkUtt (mkCN (mkCN question_N) (mkQS (mkQCl (mkCl she_NP sleep_V))));question if she sleeps;她睡觉不睡觉问题 ;BAD 她睡不睡的问题; why using mkQCl? NB: p -lang=Chi "她 睡 觉 不 睡 觉 问 题" => about 250 trees
+mkUtt (mkCN (mkCN reason_N) (mkVP sleep_V));reason to sleep;睡道理 ;BAD 睡的理由; TODO: 的 mandatory?, lexical disamb. cause/reason : 理由/道理
 mkUtt (mkCN king_N (mkNP john_PN) );king John;约翰国王 ;GOOD or 约翰王;
 mkUtt (mkCN (mkCN old_A king_N) (mkNP john_PN));old king John;约翰老国王 ;GOOD;
 mkUtt (mkAP warm_A);warm;温暖 ;GOOD;
 mkUtt (mkAP warm_A (mkNP paris_PN));warmer than Paris;比巴黎温暖 ;GOOD;
 mkUtt (mkAP married_A2 she_NP );married to her;结婚她 ;BAD 和她结婚了/已婚，太太是她;
 mkUtt (mkAP married_A2);married;结婚 ;GOOD;
-mkUtt (mkCl (mkVP (mkAP (mkAP good_A) (mkS (mkCl she_NP sleep_V)))));it is good that she sleeps;是好她睡的 ;BAD 她睡是好事;
-mkUtt (mkCl (mkVP (mkAP (mkAP uncertain_A) (mkQS (mkQCl who_IP sleep_V)))));it is uncertain who sleeps;是不确定谁睡的 ;BAD 不确定谁睡;
+mkUtt (mkCl (mkVP (mkAP (mkAP good_A) (mkS (mkCl she_NP sleep_V)))));it is good that she sleeps;是好她睡的 ;BAD 她睡是好事;p -lang=Eng "it is good that she sleeps" | l -lang=Chi
+mkUtt (mkCl (mkVP (mkAP (mkAP uncertain_A) (mkQS (mkQCl who_IP sleep_V)))));it is uncertain who sleeps;是不确定谁睡的 ;BAD 不确定谁睡; TODO: no 的?! 是 possible?
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkVP sleep_V)));she is ready to sleep;她是准备好睡的 ;GOOD or 她准备好睡觉了;
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkSC (mkVP sleep_V))));she is ready to sleep;她是准备好睡的 ;GOOD;
 mkUtt (mkAP very_AdA old_A);very old;非常老 ;GOOD;
@@ -231,15 +232,15 @@ mkUtt (mkAP very_AdA (mkAP very_AdA old_A));very very old;非常非常老 ;GOOD;
 mkUtt (mkAP or_Conj (mkAP old_A) (mkAP young_A));old or young;老或年轻 ;GOOD;
 mkUtt (mkAP and_Conj (mkListAP (mkAP old_A) (mkListAP (mkAP big_A) (mkAP warm_A))));old , big and warm;老、大而温暖 ;GOOD;
 mkUtt (mkAP (mkOrd old_A));oldest;最老 ;GOOD;
-mkUtt (mkAP as_CAdv (mkAP old_A) she_NP);as old as she;constantnotfound:as_CAdv ;BAD 和她一样老;
+mkUtt (mkAP as_CAdv (mkAP old_A) she_NP);as old as she;和她一样老 ;GOOD 和她一样老;
 mkUtt (reflAP married_A2);married to itself;结婚自己 ;BAD 和它自己结婚了;
 mkUtt (comparAP warm_A);warmer;更温暖 ;GOOD;
 mkUtt (mkAdv warm_A);warmly;温暖 ;GOOD or 温暖地 depends on the context;
 mkUtt (mkAdv in_Prep (mkNP the_Det house_N));in the house;房子里 ;GOOD;
 mkUtt (mkAdv when_Subj (mkS (mkCl she_NP sleep_V)));when she sleeps;她睡的时候 ;GOOD;
-mkUtt (mkAdv more_CAdv warm_A he_NP  );more warmly than he;constantnotfound:more_CAdv ;BAD 比他温暖地;
-mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;constantnotfound:more_CAdv ;BAD 比他跑得温暖;
-mkUtt (mkAdv very_AdA (mkAdv warm_A) );very warmly;温暖非常 ;BAD 非常温暖地;
+mkUtt (mkAdv more_CAdv warm_A he_NP  );more warmly than he;温暖比更他 ;BAD 比他温暖地;
+mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;温暖比更他跑 ;BAD 比他跑得温暖;
+mkUtt (mkAdv very_AdA (mkAdv warm_A) );very warmly;温暖非常 ;BAD 非常温暖地; TODO: easy to fix?
 mkUtt (mkAdv and_Conj here_Adv now_Adv);here and now;这里现在 ;SOSO 现在这里/此时此刻;
 mkUtt (mkAdv and_Conj (mkListAdv (mkAdv with_Prep she_NP) (mkListAdv here_Adv now_Adv)));with her , here and now;和她一起、这里现在 ;SOSO 和她一起，此时此刻;
 mkUtt (mkQS conditionalTense anteriorAnt negativePol (mkQCl who_IP sleep_V));who wouldn't have slept;谁不睡 ;SOSO 谁可能还没睡过(?);
@@ -256,9 +257,9 @@ mkUtt (mkQCl who_IP become_VA old_A);who becomes old;谁变老 ;GOOD;
 mkUtt (mkQCl who_IP become_VA (mkAP very_AdA old_A));who becomes very old;谁变非常老 ;SOSO 谁变得非常老;
 mkUtt (mkQCl who_IP paint_V2A it_NP red_A);who paints it red;谁把它画红 ;GOOD;
 mkUtt (mkQCl who_IP paint_V2A it_NP (mkAP very_AdA red_A));who paints it very red;谁把它画非常红 ;SOSO 谁把它画得非常红;
-mkUtt (mkQCl who_IP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));who answers to him that we sleep;谁把他回答说我们睡 ;BAD 谁回答他说我们睡了;
-mkUtt (mkQCl who_IP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)));who asks him who sleeps;谁把他问说谁睡 ;BAD 谁问他说谁睡了;
-mkUtt (mkQCl who_IP beg_V2V he_NP (mkVP sleep_V));who begs him to sleep;谁把他乞求睡 ;BAD 谁求他去睡;
+mkUtt (mkQCl who_IP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));who answers to him that we sleep;谁回答他说我们睡觉 ;GOOD 谁回答他说我们睡了;
+mkUtt (mkQCl who_IP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)));who asks him who sleeps;谁问他说谁睡觉 ;GOOD 谁问他说谁睡了;
+mkUtt (mkQCl who_IP beg_V2V he_NP (mkVP sleep_V));who begs him to sleep;谁乞求他睡觉 ;GOOD 谁求他去睡;
 mkUtt (mkQCl who_IP old_A);who is old;谁是老的 ;GOOD;
 mkUtt (mkQCl who_IP old_A he_NP);who is older than he;谁是比他老的 ;GOOD or 谁比他老;
 mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的 ;BAD 谁和他结婚了;
@@ -273,7 +274,7 @@ mkUtt (mkQCl with_Prep who_IP (mkCl she_NP sleep_V)      );with whom does she sl
 mkUtt (mkQCl where_IAdv she_NP );where is she;她在哪里 ;GOOD;
 mkUtt (mkQCl (mkIComp who_IP) (mkNP this_Det man_N));who is this man;这个男人是谁 ;GOOD;
 mkUtt (mkQCl (mkIP which_IQuant city_N));which city is there;有哪个城市 ;GOOD;
-mkUtt (mkQCl who_IP she_NP);who is her;谁是她 ;BAD(?) 她是谁;
+mkUtt (mkQCl who_IP she_NP);who is her;谁是她 ;BAD 她是谁; NB: her:she_NP makes sense in real sentence?
 mkUtt (mkQCl who_IP (mkClSlash (mkClSlash she_NP love_V2) today_Adv));whom does she love today;她今天爱的是谁 ;GOOD;
 mkUtt (mkIP (mkIDet which_IQuant (mkNum (mkNumeral n5_Unit))) (mkCN big_A city_N)    );which five big cities;哪五个大城市 ;GOOD;
 mkUtt (mkIP (mkIDet which_IQuant (mkNum (mkNumeral n5_Unit))) city_N    );which five cities;哪五个城市 ;GOOD;
@@ -286,10 +287,10 @@ mkUtt what_IP;what;什么 ;GOOD;
 mkUtt who_IP;who;谁 ;GOOD;
 mkUtt (mkIAdv in_Prep (mkIP which_IQuant city_N));in which city;哪个城市里 ;GOOD;
 mkUtt (mkIAdv where_IAdv (mkAdv in_Prep (mkNP paris_PN))  );where in Paris;巴黎里哪里 ;SOSO 巴黎的哪里;
-mkUtt (mkIP (mkIDet which_IQuant pluralNum) house_N);which houses;哪间房子 ;BAD 哪些房子;
+mkUtt (mkIP (mkIDet which_IQuant pluralNum) house_N);which houses;哪些房子 ;GOOD 哪些房子;
 mkUtt (mkIP (mkIDet which_IQuant) house_N      );which house;哪间房子 ;GOOD;
 mkUtt (mkIP which_IDet house_N);which house;哪间房子 ;GOOD;
-mkUtt (mkIP whichPl_IDet house_N);which houses;哪间房子 ;BAD 那些房子;
+mkUtt (mkIP whichPl_IDet house_N);which houses;那些房子 ;GOOD 那些房子;
 mkUtt (mkCN woman_N (mkRS conditionalTense anteriorAnt negativePol (mkRCl which_RP sleep_V)));woman who wouldn't have slept;不睡的女人 ;SOSO 没睡的女人;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP sleep_V)));woman who sleeps;睡的女人 ;SOSO 睡觉的女人;
 mkUtt (mkCN woman_N (mkRS or_Conj (mkRS (mkRCl which_RP sleep_V)) (mkRS (mkRCl which_RP we_NP love_V2))));woman who sleeps or whom we love;睡的还是我们爱的女人 ;SOSO 睡觉的女人还是我们爱的女人;
@@ -304,13 +305,13 @@ mkUtt (mkCN woman_N (mkRS (mkRCl which_RP become_VA old_A)));woman who becomes o
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP become_VA (mkAP very_AdA old_A))));woman who becomes very old;变非常老的女人 ;SOSO 变得非常老的女人;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP paint_V2A it_NP red_A)));woman who paints it red;把它画红的女人 ;GOOD;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP paint_V2A it_NP (mkAP very_AdA red_A))));woman who paints it very red;把它画非常红的女人 ;SOSO 把它画得非常红的女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)))));woman who answers to him that we sleep;把他回答说我们睡的女人 ;BAD 回答他说我们睡了的女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)))));woman who asks him who sleeps;把他问说谁睡的女人 ;BAD 问他谁睡了的女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))));woman who begs him to sleep;把他乞求睡的女人 ;BAD 求他睡的女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人 ;BAD 老女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人 ;BAD 比他老的女人;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)))));woman who answers to him that we sleep;回答他说我们睡觉的女人 ;GOOD 回答他说我们睡了的女人;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)))));woman who asks him who sleeps;问他说谁睡觉的女人 ;GOOD 问他谁睡了的女人;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))));woman who begs him to sleep;乞求他睡觉的女人 ;GOOD 求他睡的女人;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人 ;BAD 老女人; TODO: is != 是, only one 的
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人 ;BAD 比他老的女人;TODO: is != 是, only one 的
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP married_A2 he_NP)));woman who is married to him;是结婚他的的女人 ;BAD 和他结了婚的女人/嫁给他的女人;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人 ;BAD 非常老的女人;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人 ;BAD 非常老的女人;TODO: is != 是 (fix relative clause in this regard), only one 的
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkNP the_Det woman_N))));woman who is the woman;是女人的女人 ;SOSO 是那个女人的女人;
 mkUtt (mkCN student_N (mkRS (mkRCl which_RP woman_N)));student who is a woman;是女人的学生 ;SOSO 女学生;
 mkUtt (mkCN student_N (mkRS (mkRCl which_RP (mkCN old_A woman_N))));student who is an old woman;是老女人的学生 ;GOOD;
@@ -318,7 +319,7 @@ mkUtt (mkCN woman_N (mkRS (mkRCl which_RP here_Adv)));woman who is here;在这�
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkVP always_AdV (mkVP sleep_V)))));woman who always sleeps;一直睡的女人 ;GOOD;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP we_NP love_V2)));woman whom we love;我们爱的女人 ;GOOD;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkClSlash (mkClSlash she_NP love_V2) today_Adv))));woman whom she loves today;她今天爱的女人 ;GOOD;
-mkRP in_Prep (mkNP all_Predet (mkNP the_Quant pluralNum city_N)) which_RP;all the cities in whom;所有的城市里的 ;BAD 谁里的所有的城市;
+mkRP in_Prep (mkNP all_Predet (mkNP the_Quant pluralNum city_N)) which_RP;all the cities in whom;在所有城市中的 ;GOOD 谁里的所有的城市; TODO: english translation to 'whom' seems wrong
 mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash she_NP (mkVPSlash see_V2));she hadn't seen;她不看了 ;SOSO 她没看过;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash see_V2)));whom does she see;她看的是谁 ;GOOD;
 mkUtt (mkQCl who_IP (mkClSlash she_NP see_V2));whom does she see;她看的是谁 ;GOOD;
@@ -327,9 +328,9 @@ mkUtt (mkQCl who_IP (mkClSlash (mkCl she_NP sleep_V) with_Prep));with whom does 
 mkUtt (mkQCl who_IP (mkClSlash (mkClSlash she_NP see_V2) today_Adv));whom does she see today;她今天看的是谁 ;GOOD;
 mkUtt (mkQCl who_IP (mkClSlash she_NP know_VS (mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash we_NP (mkVPSlash see_V2)))));whom does she know that we hadn't seen;她知道我们不看了的是谁 ;SOSO 我们没看过的人里，她认识谁;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash see_V2)));whom does she see;她看的是谁 ;GOOD;
-mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash send_V3 it_NP))  );to whom does she send it;她把它寄的是谁 ;BAD 她把它寄给谁;
+mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash send_V3 it_NP))  );to whom does she send it;她把它寄谁 ;GOOD 她把它寄给谁; NB: only 给 missing
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash paint_V2A (mkAP red_A)))  );whom does she paint red;她画红的是谁 ;GOOD;
-mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash ask_V2Q (mkQS (mkQCl where_IAdv (mkCl i_NP sleep_V)))))   );whom does she ask where I sleep;她问说我哪里睡的是谁 ;BAD 关于我哪里睡，她问的是谁;
+mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash ask_V2Q (mkQS (mkQCl where_IAdv (mkCl i_NP sleep_V))))));whom does she ask where I sleep;她问谁说我哪里睡觉 ;BAD 关于我哪里睡，她问的是谁; EvalLi: 她问谁我在哪里睡觉 (coll.: 她问的谁我睡哪儿)
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash answer_V2S (mkS (mkCl i_NP sleep_V))))   );to whom does she answer that I sleep;她回答说我睡的是谁 ;SOSO 她对谁回答说我睡了;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash beg_V2V (mkVP sleep_V))));whom does she beg to sleep;她乞求睡的是谁 ;SOSO 她求谁去睡;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash want_VV (mkVPSlash see_V2))));whom does she want to see;她想看的是谁 ;GOOD;
@@ -346,21 +347,21 @@ mkUtt (mkAdv because_Subj (mkS (mkCl she_NP sleep_V)));because she sleeps;因为
 mkUtt (mkAdv before_Prep it_NP);before it;它从前 ;GOOD;
 mkUtt (mkAdv behind_Prep it_NP);behind it;在它后面 ;GOOD;
 mkUtt (mkAdv between_Prep (mkNP and_Conj you_NP i_NP));between you and me;你和我之间 ;GOOD;
-mkUtt (mkAdv both7and_DConj here_Adv there_Adv);both here and there;constantnotfound:both7and_DConj ;BAD 既在这里，也在那里;
+mkUtt (mkAdv both7and_DConj here_Adv there_Adv);both here and there;不但这里而且那里 ;SOSO 既在这里，也在那里;
 but_PConj;but;但是 ;GOOD;
-mkUtt (mkAdv by8agent_Prep it_NP);by it;它被 ;BAD 被它;
+mkUtt (mkAdv by8agent_Prep it_NP);by it;被它 ;GOOD 被它;
 mkUtt (mkAdv by8means_Prep it_NP);by it;它旁边 ;GOOD;
 mkUtt (mkVP can8know_VV (mkVP sleep_V));to be able to sleep;会睡 ;GOOD(?);
 mkUtt (mkVP can_VV (mkVP sleep_V));to be able to sleep;能睡 ;GOOD;
 mkUtt (mkAdv during_Prep it_NP);during it;在它期间 ;GOOD;
-mkUtt (mkAdv either7or_DConj here_Adv there_Adv);either here or there;constantnotfound:either7or_DConj ;BAD 要不在这，要不在那;
+mkUtt (mkAdv either7or_DConj here_Adv there_Adv);either here or there;要么这里要么那里 ;GOOD ; TODO: comma missing
 mkUtt (mkNP every_Det woman_N);every woman;每个女人 ;GOOD;
 mkUtt everybody_NP;everybody;每个人 ;GOOD;
 mkUtt everything_NP;everything;每件事 ;GOOD;
 mkUtt (everywhere_Adv);everywhere;到处 ;GOOD;
 mkUtt (mkNP few_Det woman_N);few women;少些女人 ;SOSO 几个女人;
-mkUtt (mkAdv for_Prep it_NP);for it;它为了 ;BAD 为了它;
-mkUtt (mkAdv from_Prep it_NP);from it;它从 ;BAD 从它;
+mkUtt (mkAdv for_Prep it_NP);for it;为了它 ;GOOD 为了它;
+mkUtt (mkAdv from_Prep it_NP);from it;从它 ;GOOD 从它;
 mkUtt (mkNP he_Pron);he;他 ;GOOD;
 mkUtt (here_Adv);here;这里 ;GOOD;
 mkUtt (here7to_Adv);to here;到这里 ;GOOD;
@@ -373,11 +374,11 @@ mkUtt (mkAdv if_Subj (mkS (mkCl she_NP sleep_V)));if she sleeps;如果她睡就 
 mkUtt (mkAdv in8front_Prep it_NP);in front of it;它前边 ;GOOD;
 mkUtt (mkAdv in_Prep it_NP);in it;它里 ;SOSO 在它里;
 mkUtt (mkNP it_Pron);it;它 ;GOOD;
-less_CAdv;less;constantnotfound:less_CAdv ;BAD 更少;
+less_CAdv;less;比 ;BAD 更少/较少地?;
 mkUtt (mkNP many_Det house_N);many houses;很多房子 ;GOOD;
-more_CAdv;more;constantnotfound:more_CAdv ;BAD 更多;
+more_CAdv;more;比 ;BAD 更多/较多地;?
 most_Predet;most;大多数 ;GOOD;
-mkUtt (mkNP much_Det wine_N);much wine;多瓶酒 ;BAD 许多红酒;
+mkUtt (mkNP much_Det wine_N);much wine;多瓶酒 ;BAD 许多红酒; TODO: wine_N => 葡萄酒， definitely no classifier here?!
 must_VV;have to;必须 ;GOOD or 不得不;
 no_Utt;no;不 ;GOOD;
 mkUtt (mkAdv on_Prep it_NP);on it;在它上 ;GOOD;
@@ -403,8 +404,8 @@ mkUtt (there7from_Adv);from there;从那里 ;GOOD;
 therefore_PConj;therefore;因此 ;GOOD;
 mkUtt (mkNP they_Pron);they;他们 ;GOOD;
 mkUtt (mkNP this_Quant house_N);this house;这间房子 ;GOOD;
-mkUtt (mkAdv through_Prep it_NP);through it;它通过 ;BAD 通过它;
-mkUtt (mkAdv to_Prep it_NP);to it;它往 ;BAD 往它;
+mkUtt (mkAdv through_Prep it_NP);through it;通过它 ;GOOD 通过它;
+mkUtt (mkAdv to_Prep it_NP);to it;往它 ;GOOD 往它;
 mkUtt (mkAP too_AdA warm_A);too warm;太温暖 ;GOOD;
 mkUtt (mkAdv under_Prep it_NP);under it;它下 ;BAD (在)它的下面;
 mkUtt (mkAP very_AdA warm_A);very warm;非常温暖 ;GOOD;
@@ -420,19 +421,19 @@ mkUtt (whoPl_IP);who;谁 ;GOOD;
 mkUtt (whoSg_IP);who;谁 ;GOOD;
 mkUtt why_IAdv;why;为什么 ;GOOD;
 mkUtt (mkAdv with_Prep it_NP);with it;和它一起 ;GOOD;
-mkUtt (mkAdv without_Prep it_NP);without it;它没有 ;BAD 没有它;
+mkUtt (mkAdv without_Prep it_NP);without it;没有它 ;GOOD 没有它;
 yes_Utt;yes;对 ;GOOD;
 mkUtt (mkNP youSg_Pron);you;你 ;GOOD;
 mkUtt (mkNP youPl_Pron);you;你们 ;GOOD;
 mkUtt (mkNP youPol_Pron);you;您 ;GOOD;
 mkUtt (mkNP no_Quant house_N);no house;不间房子 ;BAD 没有房子;
-mkUtt (mkNP not_Predet everybody_NP);not everybody;不的每个人 ;BAD 不是每个人;
-mkUtt (mkAdv if_then_Conj here_Adv there_Adv);if here then there;constantnotfound:if_then_Conj ;BAD 如果这里那么那里;
+mkUtt (mkNP not_Predet everybody_NP);not everybody;不的每个人 ;BAD 不是每个人; TODO: 的 -> 是
+mkUtt (mkAdv if_then_Conj here_Adv there_Adv);if here then there;如果这里那么那里 ;GOOD;
 mkUtt (mkCard at_least_AdN (mkCard (mkNumeral n8_Unit)));at least eight;最少八 ;SOSO 最少八个 would be better(adding default counter);
 mkUtt (mkCard at_most_AdN (mkCard (mkNumeral n8_Unit)));at most eight;最多八 ;SOSO 最多八个 would be better(adding default counter);
 mkUtt nobody_NP;nobody;没人 ;GOOD;
 mkUtt nothing_NP;nothing;没有什么 ;SOSO 什么也没有 would be better;
 mkUtt (mkAdv except_Prep it_NP);except it;以外它除了 ;BAD 除了它以外;
-as_CAdv;as;constantnotfound:as_CAdv ;BAD;
+as_CAdv;as;和 ;BAD; NB:{s = "和", p = "一" ++ "样"}
 mkUtt (mkVP have_V2 it_NP);to have it;有它 ;GOOD;
 
