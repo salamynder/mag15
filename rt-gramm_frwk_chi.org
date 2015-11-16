@@ -619,7 +619,26 @@ sysu/Assign_6.gf
 - und dann ist auch die Frage, ob shi...de dafür benutzt wird, wahrscheinlich schon: 这本书是售完的. (Beschreibung Motsch, S. 127: "Betonung der Eigenschaft des Beschriebenen"), es geht aber auch: »这本书已售完« (Shanghai Dt-Chin., 134)
 
 ** Tabellen-Daten für Appendix?
-\csvautobooktabular[separator=semicolon]{eng_chi3.csv}
+# \csvautobooktabular[separator=semicolon]{tests/eng_chi3.csv}
+#+BEGIN_LaTeX
+\DTLsetseparator{;}
+\DTLloadrawdb[noheader,keys={Api,Eng,Chi,Status,Comm}]{eval}{tests/eng_chi3.csv}
+%% \DTLsort{Status=ascending}{eval}%
+\begin{longtable}[l]{p{0.33\textwidth} p{0.25\textwidth} p{0.16\textwidth} p{0.08\textwidth} p{0.28\textwidth}}
+\bfseries API-functions &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Status &
+\bfseries Kommentar \\
+\DTLforeach*{eval}{
+\api=Api,\eng=Eng,\chi=Chi,\stat=Status,\comm=Comm}{%
+\tiny         \api &
+\footnotesize \eng &
+\footnotesize \chi &
+\footnotesize \stat &
+\tiny         \comm \hline}
+\end{longtable}
+#+END_LaTeX
 * End
 \printbibliography
 * zotero							   :noexport:
