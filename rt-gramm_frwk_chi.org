@@ -590,6 +590,7 @@ DShopping> ! pwd
 - synkategorematisch: GF: 100 (This), Granström: 7
 
 * Evaluation der chinesischen Ressourcen Grammatik
+** Signpost: Why again chinese and GF?
 ** eng_chi2.txt:
 *** 把 nur auf Dinge beziehbar?
 - mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) 
@@ -621,22 +622,26 @@ sysu/Assign_6.gf
 ** Tabellen-Daten für Appendix?
 # \csvautobooktabular[separator=semicolon]{tests/eng_chi3.csv}
 #+BEGIN_LaTeX
-\DTLsetseparator{;}
-\DTLloadrawdb[noheader,keys={Api,Eng,Chi,Status,Comm}]{eval}{tests/eng_chi3.csv}
-%% \DTLsort{Status=ascending}{eval}%
-\begin{longtable}[l]{p{0.33\textwidth} p{0.25\textwidth} p{0.16\textwidth} p{0.08\textwidth} p{0.28\textwidth}}
-\bfseries API-functions &
+
+\DTLloaddbtex{\entries}{tests/eng_chi3.dbtex}
+
+\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+\bfseries API-Funktionen &
 \bfseries Englisch &
 \bfseries Chinesisch &
-\bfseries Status &
+\bfseries Ok? &
 \bfseries Kommentar \\
-\DTLforeach*{eval}{
-\api=Api,\eng=Eng,\chi=Chi,\stat=Status,\comm=Comm}{%
-\tiny         \api &
+
+\DTLforeach*{\entries}{%
+\api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}{%
+\scriptsize   \api &
 \footnotesize \eng &
 \footnotesize \chi &
 \footnotesize \stat &
-\tiny         \comm \hline}
+\DTLifnull{\comm}{}{\scriptsize{}\comm}
+\hline
+}
+%% \DTLdisplaydb*{eng_chi3}
 \end{longtable}
 #+END_LaTeX
 * End
