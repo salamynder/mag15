@@ -239,7 +239,7 @@ mkUtt (mkCN mother_N2);mother;母亲;G;;
 mkUtt (mkCN big_A house_N  );big house;大房子;G;;
 mkUtt (mkCN big_A (mkCN blue_A house_N));big blue house;大蓝房子;G;;
 mkUtt (mkCN (mkAP very_AdA big_A) house_N  );very big house;非常大的房子;G;;
-mkUtt (mkCN (mkAP very_AdA big_A) (mkCN blue_A house_N)  );very big blue house;非常大的蓝房子;G;;
+mkUtt (mkCN (mkAP very_AdA big_A) (mkCN blue_A house_N));very big blue house;非常大的蓝房子;G;;
 mkUtt (mkCN man_N (mkRS (mkRCl which_RP she_NP love_V2)));man whom she loves;她爱的男人;G;;
 mkUtt (mkCN (mkCN old_A man_N) (mkRS (mkRCl which_RP she_NP love_V2)) );old man whom she loves;她爱的老男人;G;;
 mkUtt (mkCN house_N (mkAdv on_Prep (mkNP the_Det hill_N)));house on the hill;在山上的房子;G;;
@@ -323,7 +323,7 @@ mkUtt (mkAdv between_Prep (mkNP and_Conj you_NP i_NP));between you and me;你和
 but_PConj;but;但是;G;;
 mkUtt (mkAdv by8agent_Prep it_NP);by it;被它;G;;
 mkUtt (mkAdv by8means_Prep it_NP);by it;它旁边;B;用 (with, using);TODO: lexical change
-mkUtt (mkVP can_VV (mkVP sleep_V));to be able to sleep;能睡觉;G;NOTE: Disamb. 能 pure capabillity, not knowhow,  e.g. 她能吃。(She eats like a horse.) = 她像猪一样能吃。;
+mkUtt (mkVP can_VV (mkVP sleep_V));to be able to sleep;能睡觉;G;;NOTE: Disamb. 能 pure capabillity, not knowhow,  e.g. 她能吃。(She eats like a horse.) = 她像猪一样能吃。But: 她会吃。(She is a gourmet.)
 mkUtt (mkAdv during_Prep it_NP);during it;在它期间;G;;
 mkUtt (mkNP every_Det woman_N);every woman;每个女人;G;;
 mkUtt everybody_NP;everybody;每个人;G;;
@@ -421,13 +421,13 @@ mkUtt (mkAdv more_CAdv warm_A he_NP  );more warmly than he;温暖比更他;B;比
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人;B;比他老的女人;TODO: superfluous 是，only one 的
 mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;温暖比更他跑;B;比他跑得温暖;TODO: adverbial complement (得) or prePart (地) TODO: 比-comparison as Adverb NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。ALSO NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
 mkUtt (mkNP no_Quant house_N);no house;不间房子;B;没有房子;TODO: existential with 有
-mkUtt (mkCN (mkCN reason_N) (mkVP sleep_V));reason to sleep;睡觉道理;B;睡的理由;TODO: 的 mandatory?, lexical disamb. cause/reason : 理由/道理
+mkUtt (mkCN (mkCN reason_N) (mkVP sleep_V));reason to sleep;睡觉道理;B;睡的理由;TODO: 的-insert, lexical disamb. cause/reason : 理由/道理
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人;B;老女人;TODO: superfluous 是，only one 的 (or not even one)
 mkUtt (passiveVP love_V2 she_NP);to be loved by her;被爱得被她;B;被她爱;TODO: [word order] agent of passive voice to prePart (now in complement)
 mkUtt (mkNP much_Det wine_N);much wine;多瓶酒;B;许多红酒;TODO: wine_N => 葡萄酒， definitely no classifier here?!
 mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;TODO: 结婚 constructs with 和, superfluous 是 的 [shi-de-overuse]
 mkUtt (mkCard (mkAdN more_CAdv) (mkCard (mkNumeral n8_Unit)));more than eight;比八;B;超过八个， 比八多（？）;THINK: lexical unclear, maybe default classifier
 mkUtt (mkCN distance_N3);distance;的距离;B;距离;TODO: do not hard-code 的 in distance_N3
-mkUtt (mkAdv except_Prep it_NP);except it;以外它除了;B;除了它以外;TODO: [word order]
+mkUtt (mkAdv except_Prep it_NP);except it;以外它除了;B;除了它以外;TODO: [word order] in mkAdv doesn't fit 除了...以外-construction
 mkUtt (mkAdv very_AdA (mkAdv warm_A) );very warmly;温暖非常;B;非常温暖地;TODO: adverbial complement (得) or prePart (地)
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人;B;非常老的女人;TODO: [shi-de-overuse] superfluous 是，only one 的 (or not even one)
