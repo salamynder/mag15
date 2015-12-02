@@ -132,11 +132,11 @@ mkText negativePol (mkImp sleep_V);don't sleep !;不睡觉！;S;不许睡！;TOD
 mkUtt (mkNP not_Predet everybody_NP);not everybody;不的每个人;B;不是每个人;TODO: nomen negation 不是: sentential structure instead of attributive one;
 mkUtt (mkS and_Conj (mkListS (mkS (mkCl she_NP sleep_V)) (mkListS (mkS (mkCl i_NP run_V)) (mkS (mkCl (mkNP youSg_Pron) walk_V)))));she sleeps , I run and you walk;她睡觉、我跑你走 -> 她睡觉、我跑并且你走;G;;TODO: prefer comma between the last two phrases;
 mkUtt (mkS and_Conj (mkS (mkCl she_NP sleep_V)) (mkS (mkCl i_NP run_V)));she sleeps and I run;她睡觉我跑 -> 她睡觉并且你走;G;;TODO: prefer with a comma inbetween;
-mkUtt (mkCN distance_N3 (mkNP this_Det city_N) (mkNP paris_PN) );distance from this city to Paris;巴黎这个城市的距离;B;从这个城市到巴黎的距离;TODO: prepositions from, to (cf. wrong lexical item in to_Prep);
+mkUtt (mkCN distance_N3 (mkNP this_Det city_N) (mkNP paris_PN) );distance from this city to Paris;巴黎这个城市的距离;B;从这个城市到巴黎的距离;TODO: [insert] prepositions from (从), to (到);NOTE: cf. wrong content in to_Prep
 mkUtt (mkImp (mkVP (mkVP come_V) (mkAdv to_Prep (mkNP i_Pron house_N))));come to my house;在往我的房子来;B;到我家来, disamb. 往/到：你往东三里就到了。;TODO: to_Pred = 到;
-mkUtt (mkNP much_Det wine_N);much wine;多瓶酒;B;许多红酒;TODO: wine_N => 葡萄酒， definitely no classifier here?!;
-mkText (mkPhr yes_Utt) questMarkPunct;yes ?;对？;S;对吗？;TODO: 吗-insert for short utterances, cf. mkText (mkPhr (mkQS (mkCl (mkVP correct_A)))) questMarkPunct = 是对的吗？, ConstructionChi.is_right_VP;
-mkUtt (mkAdv in_Prep it_NP);in it;它里;S;在它里;TODO: 在-insert;
+mkUtt (mkNP much_Det wine_N);much wine;多瓶酒;B;许多红酒;TODO: [classifier] not needed if substance is meant, cf. 'much wine';THINK: [lexical] grape wine = 葡萄酒, white wine =  白葡萄酒
+mkText (mkPhr yes_Utt) questMarkPunct;yes ?;对？;S;对吗？;TODO: [是-的-overuse] for '对吗？' make use of (and get rid of shi-de): mkText (mkPhr (mkQS (mkCl (mkVP correct_A)))) questMarkPunct = 是对的吗？, ConstructionChi.is_right_VP;
+mkUtt (mkAdv in_Prep it_NP);in it;它里;S;在它里;TODO: [insert] 在;
 mkPhr yes_Utt (mkVoc (mkNP i_Pron friend_N));yes , my friend;对我的朋友 - > 我的朋友，对;S;;TODO: 对(了) in front?!;
 mkUtt (mkNP few_Det woman_N);few women;少些女人;S;几个女人 (几个：some，不多的，少量的：few，but cf. dictionary examples：靠少数几个熟人的帮助。只有少数几个人一起去。;TODO: 少些 -> 几个;
 mkUtt (mkCN (mkCN rule_N) (mkS (mkCl she_NP sleep_V)));rule that she sleeps;她睡觉规则;S;她睡的规则;TODO: 的-insert;
