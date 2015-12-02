@@ -2,19 +2,19 @@ mkUtt (mkQCl who_IP she_NP);who is her;谁是她;B;她是谁;TODO: [word order] 
 mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash she_NP (mkVPSlash see_V2));she hadn't seen;她不看了;B;她没看过;TODO: perfect aspect/negation: 没看（过）– no 了！;NOOP: disamb. experience/perfect
 mkUtt (mkQCl who_IP (mkClSlash she_NP know_VS (mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash we_NP (mkVPSlash see_V2)))));whom does she know that we hadn't seen;她知道我们不看了的是谁 -> 她知道谁我们不看了;S;我们没看过的人里，她认识谁;TODO: perfect aspect/negation: 没看（过）– no 了！;NOOP: disamb. experience/perfect
 as_CAdv;as;和;G;;;NOTE:  GOOD in 'as old as she'
-mkUtt (mkVP send_V3 it_NP he_NP);to send it to him;它寄他;B;把它寄给他;TODO: 给-insert TODO: 把 needed;NOTE: 4 trees when translating Eng->Chi, one being: 把它寄他
+mkUtt (mkVP send_V3 it_NP he_NP);to send it to him;它寄他;B;把它寄给他;TODO: 给-insert |TODO: 把 needed;NOTE: 4 trees when translating Eng->Chi, one being: 把它寄他
 mkUtt (mkS (genericCl (mkVP sleep_V)));one sleeps;睡觉;B;有人睡觉;TODO: existential with 有;NOTE: cf. 'there is a house' (G)
 mkUtt (mkNP no_Quant house_N);no house;不间房子;B;没有房子;TODO: existential with 有;NOTE: cf. 'there is a house' (G)
 mkUtt (mkVP can_VV (mkVP sleep_V));to be able to sleep;能睡觉;G;;;NOTE: Disamb. 能 pure capabillity, not knowhow,  e.g. 她能吃。(She eats like a horse.) = 她像猪一样能吃。But: 她会吃。(She is a gourmet.)
-mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自己黑;B;把它自己画黑, 画黑它自己;TODO: [complement] of result: 画 and color strongly bound TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly TODO: 把-variant;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
-mkUtt (reflexiveVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自己黑;B;把它自己画黑, 画黑它自己;TODO: [complement] of result: 画 and color strongly bound TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly TODO: 把-variant;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
+mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自己黑;B;把它自己画黑, 画黑它自己;TODO: [complement] of result: 画 and color strongly bound |TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly |TODO: 把-variant;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
+mkUtt (reflexiveVP (mkVPSlash paint_V2A (mkAP black_A)));to paint itself black;画自己黑;B;把它自己画黑, 画黑它自己;TODO: [complement] of result: 画 and color strongly bound |TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly |TODO: 把-variant;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
 mkUtt (reflexiveVP love_V2) ;to love itself;爱自己;G;爱它自己;TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
-mkUtt (reflAP married_A2);married to itself;结婚自己;B;和它自己结婚了;TODO: 结婚 constructs with 和 TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
+mkUtt (reflAP married_A2);married to itself;结婚自己;B;和它自己结婚了;TODO: 结婚 constructs with 和 |TODO: [pronoun] insert default 它 for VP and for Cl make sure pronoun is modified accordingly;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
 mkUtt (mkCl house_N);there is a house;有一间房子;G;;;NOTE: existentials with 有
 mkUtt (mkCl (mkCN old_A house_N));there is an old house;有一间老房子;G;;;NOTE: existentials with 有
 mkUtt (mkCl (mkNP many_Det house_N)  );there are many houses;有很多房子;G;;;NOTE: existentials with 有
-mkUtt (mkAdv more_CAdv warm_A he_NP  );more warmly than he;温暖比更他;B;比他温暖地;TODO: [complement, compare] adverbial complement (得) or prePart (地);NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。ALSO NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
-mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;温暖比更他跑;B;比他跑得温暖;TODO: [complement, compare] adverbial complement (得) or prePart (地);NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。ALSO NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
+mkUtt (mkAdv more_CAdv warm_A he_NP  );more warmly than he;温暖比更他;B;比他温暖地;TODO: [complement, comparison] adverbial complement (得) or prePart (地);NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。|NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
+mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;温暖比更他跑;B;比他跑得温暖;TODO: [complement, comparison] adverbial complement (得) or prePart (地);NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。|NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
 mkUtt (mkVP (mkComp (mkAP warm_A)));to be warm;是温暖的;G;;;NOTE: mkComp (complement of copula) adds 的, cf. mkUtt (mkVP old_A)
 mkUtt (mkNP (mkCN old_A beer_N));old beer;老啤酒;S;陈年的啤酒 (but: 陈年 also indicates good quality of liquor by aging, which is quite not the case with beer);;NOTE: no 的-insert here (while in other cases, e.g. RCl, this takes place) 
 mkUtt (mkNP (mkNP the_Det man_N) see_V2);the man seen;看的男人;S;被看到的男人;TODO: [voice] past-participle as passive;NOTE: others means of  construction: mkNP: NP -> V2 -> NP
@@ -84,12 +84,12 @@ mkUtt (mkCN woman_N (mkRS (mkRCl which_RP paint_V2A it_NP (mkAP very_AdA red_A))
 mkUtt (mkQCl who_IP become_VA (mkAP very_AdA old_A));who becomes very old;谁变非常老;S;谁变得非常老;TODO: [complement] of degree, 得-insert complement is longer, cf. 'to become red' where no 得 is needed (this could be complement of result, though);
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP become_VA (mkAP very_AdA old_A))));woman who becomes very old;变非常老的女人;S;变得非常老的女人;TODO: [complement] of degree, 得-insert complement is longer, cf. 'to become red' where no 得 is needed (this could be complement of result, though);
 mkUtt (mkCl she_NP become_VA (mkAP very_AdA old_A));she becomes very old;她变非常老;S;她变得非常老;TODO: [complement] of degree, 得-insert complement is longer, cf. 'to become red' where no 得 is needed (this could be complement of result, though);
-mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash paint_V2A (mkAP red_A))));whom does she paint red;她画红的是谁 -> 她画谁红;B;她画红了谁，她把谁画红了;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
-mkUtt (mkVP paint_V2A it_NP (mkAP red_A));to paint it red;把它画红 -> 画它红;B;either with 把 or 画红它;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
-mkUtt (mkQCl who_IP paint_V2A it_NP red_A);who paints it red;谁把它画红 -> 谁画它红;B;either with 把 or 谁画红它;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP paint_V2A it_NP red_A)));woman who paints it red;把它画红的女人 - > 画它红的女人;B;either with 把 or 画红它的女人;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
-mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)) it_NP);to paint it black;把它画黑 -> 画它黑;B;either with 把 or 画黑它;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
-mkUtt (mkCl she_NP paint_V2A it_NP red_A);she paints it red;她把它画红 -> 她画它红;B;or 她把它画红;TODO: [complement] of result: 画 and color strongly bound TODO: 把-variant;
+mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash paint_V2A (mkAP red_A))));whom does she paint red;她画红的是谁 -> 她画谁红;B;她画红了谁，她把谁画红了;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
+mkUtt (mkVP paint_V2A it_NP (mkAP red_A));to paint it red;把它画红 -> 画它红;B;either with 把 or 画红它;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
+mkUtt (mkQCl who_IP paint_V2A it_NP red_A);who paints it red;谁把它画红 -> 谁画它红;B;either with 把 or 谁画红它;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP paint_V2A it_NP red_A)));woman who paints it red;把它画红的女人 - > 画它红的女人;B;either with 把 or 画红它的女人;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
+mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)) it_NP);to paint it black;把它画黑 -> 画它黑;B;either with 把 or 画黑它;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
+mkUtt (mkCl she_NP paint_V2A it_NP red_A);she paints it red;她把它画红 -> 她画它红;B;or 她把它画红;TODO: [complement] of result: 画 and color strongly bound |TODO: 把-variant;
 mkUtt nothing_NP;nothing;没有什么;S;什么也没有 would be better;TODO: [idiomatic wording];
 mkUtt (mkAdv and_Conj (mkListAdv (mkAdv with_Prep she_NP) (mkListAdv here_Adv now_Adv)));with her , here and now;和她一起、这里现在;S;和她一起，此时此刻 (idiomatic better);TODO: [idiomatic wording];
 mkUtt (mkCl (mkSC (mkS (mkCl she_NP sleep_V))) (mkVP good_A));that she sleeps is good;她睡觉是好的;S;她睡是好事;TODO: [lexical] add thing_N (事);
@@ -148,9 +148,9 @@ mkUtt (mkAP married_A2 she_NP );married to her;结婚她;B;和她结婚了/已�
 mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的;B;她和他结婚了/她已婚，先生是他;TODO: 结婚 constructs with 和;
 mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;TODO: 结婚 constructs with 和 & [是-的-overuse];
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash send_V3 it_NP))  );to whom does she send it;她把它寄谁;G;她把它寄给谁;TODO: 给-insert;
-mkUtt (mkCl she_NP send_V3 it_NP he_NP);she sends it to him;她把它寄他 -> 她它寄他;B;她把它寄给他;TODO: 给-insert TODO: 把 needed;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP send_V3 it_NP he_NP)));woman who sends it to him;把它寄他的女人 -> 它寄他的女人;B;把它寄给他的女人;TODO: 给-insert TODO: 把 needed;
-mkUtt (mkQCl who_IP send_V3 it_NP she_NP);who sends it to her;谁把它寄她 -> 谁它寄她;S;谁把它寄给她;TODO: 给-insert TODO: 把 needed;
+mkUtt (mkCl she_NP send_V3 it_NP he_NP);she sends it to him;她把它寄他 -> 她它寄他;B;她把它寄给他;TODO: 给-insert |TODO: 把 needed;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP send_V3 it_NP he_NP)));woman who sends it to him;把它寄他的女人 -> 它寄他的女人;B;把它寄给他的女人;TODO: 给-insert |TODO: 把 needed;
+mkUtt (mkQCl who_IP send_V3 it_NP she_NP);who sends it to her;谁把它寄她 -> 谁它寄她;S;谁把它寄给她;TODO: 给-insert |TODO: 把 needed;
 mkUtt (mkCard (thousandfoldNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand;九九万九千;B;九十九万九千;WAITING;
 mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit)) (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand nine hundred and ninety - nine;九九万九千九九十九;B;九十九万九千九百九十九, again, this tree works for Chi and Eng: PhrUtt NoPConj (UttCard (NumNumeral (num (pot3plus (pot2plus (pot0 n9) (pot1plus n9 (pot0 n9))) (pot2plus (pot0 n9) (pot1plus n9 (pot0 n9))))))) NoVoc;WAITING;
 mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine;九九十九;B;"九百九十, Eng->Chi: p -lang=Chi ""九 百 九 十 九"" | l -lang=Eng (ok!)";WAITING;
