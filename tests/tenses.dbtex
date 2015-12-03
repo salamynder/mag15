@@ -1,0 +1,933 @@
+% Created by datatooltk on Thu Dec 03 21:48:36 CET 2015
+\DTLifdbexists{tenses}%
+{\PackageError{datatool}{Database `tenses'
+already exists}{}%
+\aftergroup\endinput}{}%
+\bgroup\makeatletter
+\dtl@message{Reconstructing database
+`tenses'}%
+\expandafter\global\expandafter
+\newtoks\csname dtlkeys@tenses\endcsname
+\expandafter\global
+ \csname dtlkeys@tenses\endcsname={%
+%
+% header block for column 1
+\db@plist@elt@w %
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@key@id@w Field1%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field1%
+\db@header@id@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 2
+\db@plist@elt@w %
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@key@id@w Field2%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field2%
+\db@header@id@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 3
+\db@plist@elt@w %
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@key@id@w Field3%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field3%
+\db@header@id@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 4
+\db@plist@elt@w %
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@key@id@w Field4%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field4%
+\db@header@id@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 5
+\db@plist@elt@w %
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@key@id@w Field5%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field5%
+\db@header@id@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 6
+\db@plist@elt@w %
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@key@id@w Field6%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field6%
+\db@header@id@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 7
+\db@plist@elt@w %
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@key@id@w Field7%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field7%
+\db@header@id@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+}%
+\expandafter\global\expandafter
+\newtoks\csname dtldb@tenses\endcsname
+\expandafter\global
+\csname dtldb@tenses\endcsname={%
+%
+% Start of row 1
+\db@row@elt@w %
+\db@row@id@w 1%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (progressiveVP (mkVP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w to be sleeping%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 睡觉 -> 在睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 在睡 or 睡着%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] durative variant (着)%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w NOOP: API cannot control which to use%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 1
+\db@row@id@w 1%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 2
+\db@row@elt@w %
+\db@row@id@w 2%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkPhr (mkS futureTense negativePol (mkCl she\_NP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she won't sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她不在睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她不睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] futureTense%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 2
+\db@row@id@w 2%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 3
+\db@row@elt@w %
+\db@row@id@w 3%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkS futureTense (mkCl she\_NP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she will sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她在睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她会睡%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] futureTense%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 3
+\db@row@id@w 3%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 4
+\db@row@elt@w %
+\db@row@id@w 4%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkS anteriorAnt (mkCl she\_NP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she has slept%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她睡了%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] perfect aspect%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 4
+\db@row@id@w 4%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 5
+\db@row@elt@w %
+\db@row@id@w 5%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQS conditionalTense anteriorAnt negativePol (mkQCl who\_IP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w who wouldn't have slept%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 谁不睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 谁可能还没睡过(?)%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] perfect aspect/negation: 不 -> 没%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: [tense] conditionalTense inserting 可能/大概/会?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 5
+\db@row@id@w 5%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 6
+\db@row@elt@w %
+\db@row@id@w 6%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQS pastTense negativePol (mkQCl who\_IP sleep\_V))  %
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w who didn't sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 谁不睡觉了%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 谁没睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] perfect aspect/negation: 不 -> 没%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 6
+\db@row@id@w 6%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 7
+\db@row@elt@w %
+\db@row@id@w 7%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash she\_NP (mkVPSlash see\_V2))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she hadn't seen%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她不看了%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她没看过%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] perfect aspect/negation: 没看（过）– no 了！%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w NOOP: disamb. experience/perfect%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 7
+\db@row@id@w 7%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 8
+\db@row@elt@w %
+\db@row@id@w 8%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP know\_VS (mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash we\_NP (mkVPSlash see\_V2)))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she know that we hadn't seen%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她知道我们不看了的是谁 -> 她知道谁我们不看了%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 我们没看过的人里，她认识谁%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] perfect aspect/negation: 没看（过）– no 了！%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w NOOP: disamb. experience/perfect%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 8
+\db@row@id@w 8%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 9
+\db@row@elt@w %
+\db@row@id@w 9%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl (progressiveVP (mkVP rain\_V0)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w it is raining%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 在下雨%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 下着雨%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] progressive ([正]在) / durative (着)%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 9
+\db@row@id@w 9%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 10
+\db@row@elt@w %
+\db@row@id@w 10%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkNP (mkNP john\_PN) (mkRS (mkRCl which\_RP (mkVP walk\_V))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w John , who walks%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 走的约翰%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 走着的约翰%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [tense] progressive ([正]在) / durative (着)%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 10
+\db@row@id@w 10%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 11
+\db@row@elt@w %
+\db@row@id@w 11%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkS conditionalTense anteriorAnt negativePol (mkCl she\_NP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she wouldn't have slept%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她不睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她不可能睡过%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: [tense] conditionalTense inserting 可能/大概/会?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 11
+\db@row@id@w 11%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 12
+\db@row@elt@w %
+\db@row@id@w 12%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkPhr (mkQS conditionalTense (mkQCl (mkCl she\_NP sleep\_V))) %
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w would she sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她睡觉着吗%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她睡吗%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: [tense] conditionalTense inserting 可能/大概/会?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 12
+\db@row@id@w 12%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 13
+\db@row@elt@w %
+\db@row@id@w 13%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN woman\_N (mkRS conditionalTense anteriorAnt negativePol (mkRCl which\_RP sleep\_V)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w woman who wouldn't have slept%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 不睡觉的女人%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 没睡的女人%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: [tense] conditionalTense inserting 可能/大概/会?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 13
+\db@row@id@w 13%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 14
+\db@row@elt@w %
+\db@row@id@w 14%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkS conditionalTense (mkCl she\_NP sleep\_V))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she would sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她睡觉着%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她会睡%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: [tense] conditionalTense: 会 seems fine here. Cf. 要是你不给她钱, 她就不会给你做事。Interpretation of 会 here in between future and possibility. Cf.大家共同努力则一定能把事情做好。坚持不解则会成功。会 (knowhow) 能 (capability)%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 14
+\db@row@id@w 14%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+}%
+\expandafter\global
+ \expandafter\newcount\csname dtlrows@tenses\endcsname
+\expandafter\global
+ \csname dtlrows@tenses\endcsname=14\relax
+\expandafter\global
+ \expandafter\newcount\csname dtlcols@tenses\endcsname
+\expandafter\global
+ \csname dtlcols@tenses\endcsname=7\relax
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field1\endcsname{1}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field2\endcsname{2}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field3\endcsname{3}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field4\endcsname{4}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field5\endcsname{5}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field6\endcsname{6}%
+\expandafter
+ \gdef\csname dtl@ci@tenses@Field7\endcsname{7}%
+\egroup
+\def\dtllastloadeddb{tenses}

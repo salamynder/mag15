@@ -1,0 +1,1731 @@
+% Created by datatooltk on Thu Dec 03 14:27:15 CET 2015
+\DTLifdbexists{shideoveruse}%
+{\PackageError{datatool}{Database `shideoveruse'
+already exists}{}%
+\aftergroup\endinput}{}%
+\bgroup\makeatletter
+\dtl@message{Reconstructing database
+`shideoveruse'}%
+\expandafter\global\expandafter
+\newtoks\csname dtlkeys@shideoveruse\endcsname
+\expandafter\global
+ \csname dtlkeys@shideoveruse\endcsname={%
+%
+% header block for column 1
+\db@plist@elt@w %
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@key@id@w Field1%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field1%
+\db@header@id@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 2
+\db@plist@elt@w %
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@key@id@w Field2%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field2%
+\db@header@id@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 3
+\db@plist@elt@w %
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@key@id@w Field3%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field3%
+\db@header@id@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 4
+\db@plist@elt@w %
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@key@id@w Field4%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field4%
+\db@header@id@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 5
+\db@plist@elt@w %
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@key@id@w Field5%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field5%
+\db@header@id@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 6
+\db@plist@elt@w %
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@key@id@w Field6%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field6%
+\db@header@id@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+% header block for column 7
+\db@plist@elt@w %
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@key@id@w Field7%
+\db@key@id@end@ %
+\db@type@id@w 0%
+\db@type@id@end@ %
+\db@header@id@w Field7%
+\db@header@id@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@plist@elt@end@ %
+}%
+\expandafter\global\expandafter
+\newtoks\csname dtldb@shideoveruse\endcsname
+\expandafter\global
+\csname dtldb@shideoveruse\endcsname={%
+%
+% Start of row 1
+\db@row@elt@w %
+\db@row@id@w 1%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP (mkVPSlash beg\_V2V i\_NP (mkVPSlash see\_V2))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she beg me to see%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她乞求我看的是谁 -> 她乞求谁我看%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 1
+\db@row@id@w 1%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 2
+\db@row@elt@w %
+\db@row@id@w 2%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash (mkClSlash she\_NP love\_V2) today\_Adv))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she love today%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她今天爱的是谁 -> 她今天爱谁%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 2
+\db@row@id@w 2%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 3
+\db@row@elt@w %
+\db@row@id@w 3%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP (mkVPSlash see\_V2)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she see%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她看的是谁 -> 她看谁%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 3
+\db@row@id@w 3%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 4
+\db@row@elt@w %
+\db@row@id@w 4%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP see\_V2))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she see%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她看的是谁 -> 她看谁%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 4
+\db@row@id@w 4%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 5
+\db@row@elt@w %
+\db@row@id@w 5%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP (mkVPSlash see\_V2)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she see%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她看的是谁 -> 她看谁%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 5
+\db@row@id@w 5%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 6
+\db@row@elt@w %
+\db@row@id@w 6%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash (mkClSlash she\_NP see\_V2) today\_Adv))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she see today%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她今天看的是谁 -> 她今天看谁%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 6
+\db@row@id@w 6%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 7
+\db@row@elt@w %
+\db@row@id@w 7%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP (mkClSlash she\_NP (mkVPSlash ask\_V2Q (mkQS (mkQCl where\_IAdv (mkCl i\_NP sleep\_V))))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w whom does she ask where I sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她问说我哪里睡的是谁 -> 她问谁说我哪里睡觉%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 关于我哪里睡觉，她问的是谁, EvalLi: 她问谁我在哪里睡觉 (coll.: 她问的谁我睡哪儿)%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w DONE: [是-的-overuse] |TODO: [insert] 在 |TODO: [extract] 说%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 7
+\db@row@id@w 7%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 8
+\db@row@elt@w %
+\db@row@id@w 8%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN woman\_N (mkRS (mkRCl which\_RP married\_A2 he\_NP)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w woman who is married to him%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是结婚他的的女人%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 和他结了婚的女人/嫁给他的女人%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [insert] 和: 结婚 constructs with 和 |TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 8
+\db@row@id@w 8%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 9
+\db@row@elt@w %
+\db@row@id@w 9%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkVP married\_A2 he\_NP) %
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w to be married to him%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是结婚他的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 和他结婚了/已婚，先生是他%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [insert] 和: 结婚 constructs with 和 |TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 9
+\db@row@id@w 9%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 10
+\db@row@elt@w %
+\db@row@id@w 10%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP married\_A2 he\_NP)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is married to him%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是结婚他的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她和他结婚了/她已婚，先生是他%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [insert] 和: 结婚 constructs with 和 |TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 10
+\db@row@id@w 10%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 11
+\db@row@elt@w %
+\db@row@id@w 11%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP married\_A2 he\_NP)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w who is married to him%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 谁是结婚他的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 谁和他结婚了%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [insert] 和: 结婚 constructs with 和 |TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 11
+\db@row@id@w 11%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 12
+\db@row@elt@w %
+\db@row@id@w 12%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl (mkVP (mkAP (mkAP uncertain\_A) (mkQS (mkQCl who\_IP sleep\_V)))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w it is uncertain who sleeps%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是不确定谁睡觉的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 不确定谁睡%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse, cleft]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: 是-的 and  pseudo cleft, cleft as judgement (it is uncertain…), but judgement is only a special case of equation, with reference (it) to the subordinate sentence, right?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 12
+\db@row@id@w 12%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 13
+\db@row@elt@w %
+\db@row@id@w 13%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl (mkVP (mkAP (mkAP good\_A) (mkS (mkCl she\_NP sleep\_V)))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w it is good that she sleeps%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是好她睡觉的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她睡是好事%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse, cleft] but shi-eq-copula and nominalize 好？！%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: 是-的 and  cleft, cleft as judgement (it is good…), but judgement is only a special case of equation, with reference (it) to the subordinate sentence, right?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 13
+\db@row@id@w 13%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 14
+\db@row@elt@w %
+\db@row@id@w 14%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl here\_Adv (mkS (mkCl she\_NP sleep\_V)) )%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w it is here that she sleeps%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她睡觉的是这里%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 她(就)睡在这里, 她睡的地方是这里%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse?, cleft] shi-de or eq-copula seems unavoidable, only 她就睡在这里 comes close to emphasizing the place, but not close enough, because 就 (precisely, exactly) modifies the whole VP%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: reverse-是-的 and  reverse cleft%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 14
+\db@row@id@w 14%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 15
+\db@row@elt@w %
+\db@row@id@w 15%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN student\_N (mkRS (mkRCl which\_RP (mkCN old\_A woman\_N))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w student who is an old woman%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是老女人的学生%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or (很)老女人的学生?%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse?] GOOD but [是-的] really necessary?%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 15
+\db@row@id@w 15%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 16
+\db@row@elt@w %
+\db@row@id@w 16%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP (mkAP (mkAP ready\_A) (mkVP sleep\_V)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is ready to sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是准备好睡觉的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 她准备好睡觉了%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: final particle%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 16
+\db@row@id@w 16%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 17
+\db@row@elt@w %
+\db@row@id@w 17%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP (mkAP (mkAP ready\_A) (mkSC (mkVP sleep\_V))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is ready to sleep%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是准备好睡觉的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 她准备好睡觉了%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: final particle |NOTE: SC = embedded sentence or question%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 17
+\db@row@id@w 17%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 18
+\db@row@elt@w %
+\db@row@id@w 18%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN woman\_N (mkRS (mkRCl which\_RP (mkAP very\_AdA old\_A))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w woman who is very old%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是非常老的的女人%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 非常老的女人%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse] |TODO: [extract] 的%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: 是-的-construction as variant?%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 18
+\db@row@id@w 18%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 19
+\db@row@elt@w %
+\db@row@id@w 19%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP old\_A)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is old%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 她很老%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 19
+\db@row@id@w 19%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 20
+\db@row@elt@w %
+\db@row@id@w 20%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP (mkAP very\_AdA old\_A))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is very old%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是非常老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 她非常老%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 20
+\db@row@id@w 20%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 21
+\db@row@elt@w %
+\db@row@id@w 21%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkQCl who\_IP old\_A he\_NP)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w who is older than he%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 谁是比他老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 谁比他老%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 21
+\db@row@id@w 21%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 22
+\db@row@elt@w %
+\db@row@id@w 22%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkVP (mkAP very\_AdA old\_A))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w to be very old%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是非常老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 非常老%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 22
+\db@row@id@w 22%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 23
+\db@row@elt@w %
+\db@row@id@w 23%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN student\_N (mkRS (mkRCl which\_RP woman\_N)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w student who is a woman%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是女人的学生%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 女学生%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 23
+\db@row@id@w 23%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 24
+\db@row@elt@w %
+\db@row@id@w 24%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP old\_A he\_NP)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w she is older than he%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 她是比他老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 她比他老/她比他大%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 24
+\db@row@id@w 24%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 25
+\db@row@elt@w %
+\db@row@id@w 25%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkVP old\_A he\_NP)%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w to be older than he%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是比他老的%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w S%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 比他老%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 25
+\db@row@id@w 25%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 26
+\db@row@elt@w %
+\db@row@id@w 26%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN woman\_N (mkRS (mkRCl which\_RP old\_A he\_NP)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w woman who is older than he%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是比他老的的女人%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 比他老的女人%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 26
+\db@row@id@w 26%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 27
+\db@row@elt@w %
+\db@row@id@w 27%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCN woman\_N (mkRS (mkRCl which\_RP old\_A)))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w woman who is old%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 是老的的女人%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w B%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w 老女人%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse]%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w %
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 27
+\db@row@id@w 27%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+% Start of row 28
+\db@row@elt@w %
+\db@row@id@w 28%
+\db@row@id@end@ %
+% Column 1
+\db@col@id@w 1%
+\db@col@id@end@ %
+\db@col@elt@w mkUtt (mkCl she\_NP (mkRS (mkRCl which\_RP (mkVP sleep\_V))))%
+\db@col@elt@end@ %
+\db@col@id@w 1%
+\db@col@id@end@ %
+% Column 2
+\db@col@id@w 2%
+\db@col@id@end@ %
+\db@col@elt@w it is she who sleeps%
+\db@col@elt@end@ %
+\db@col@id@w 2%
+\db@col@id@end@ %
+% Column 3
+\db@col@id@w 3%
+\db@col@id@end@ %
+\db@col@elt@w 睡觉的是她%
+\db@col@elt@end@ %
+\db@col@id@w 3%
+\db@col@id@end@ %
+% Column 4
+\db@col@id@w 4%
+\db@col@id@end@ %
+\db@col@elt@w G%
+\db@col@elt@end@ %
+\db@col@id@w 4%
+\db@col@id@end@ %
+% Column 5
+\db@col@id@w 5%
+\db@col@id@end@ %
+\db@col@elt@w or 睡的人是她%
+\db@col@elt@end@ %
+\db@col@id@w 5%
+\db@col@id@end@ %
+% Column 6
+\db@col@id@w 6%
+\db@col@id@end@ %
+\db@col@elt@w TODO: [是-的-overuse] cf.: 'it is here that she sleeps'%
+\db@col@elt@end@ %
+\db@col@id@w 6%
+\db@col@id@end@ %
+% Column 7
+\db@col@id@w 7%
+\db@col@id@end@ %
+\db@col@elt@w THINK: reverse-是-的 and  reverse cleft ALSO NOTE:  the or-case, then 是 used as equational copula!%
+\db@col@elt@end@ %
+\db@col@id@w 7%
+\db@col@id@end@ %
+% End of row 28
+\db@row@id@w 28%
+\db@row@id@end@ %
+\db@row@elt@end@ %
+}%
+\expandafter\global
+ \expandafter\newcount\csname dtlrows@shideoveruse\endcsname
+\expandafter\global
+ \csname dtlrows@shideoveruse\endcsname=28\relax
+\expandafter\global
+ \expandafter\newcount\csname dtlcols@shideoveruse\endcsname
+\expandafter\global
+ \csname dtlcols@shideoveruse\endcsname=7\relax
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field1\endcsname{1}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field2\endcsname{2}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field3\endcsname{3}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field4\endcsname{4}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field5\endcsname{5}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field6\endcsname{6}%
+\expandafter
+ \gdef\csname dtl@ci@shideoveruse@Field7\endcsname{7}%
+\egroup
+\def\dtllastloadeddb{shideoveruse}

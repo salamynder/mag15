@@ -590,7 +590,71 @@ DShopping> ! pwd
 - synkategorematisch: GF: 100 (This), Granström: 7
 
 * Evaluation der chinesischen Ressourcen Grammatik
-** Signpost: Why again chinese and GF?
+** Signpost: Why again chinese and GF? :: move to other place!
+** Intro
+Die folgende Evaluation setzt bei den Arbeiten von Dr. Chen an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 an.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格.] Im Zuge seiner Arbeiten an der Bibliothek dokumentierte er natürlich auch seine Fortschritte anhand einer Liste, deren Einträge wie folgt aussahen:[fn:: Die Text-Datei zu dieser Liste ist hier archiviert: \cite{_eng_chi2.txt_2012}.]
+#+BEGIN_SRC empty
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
+woman who begs him to sleep
+把他乞求睡的女人 BAD 求他睡的女人
+#+END_SRC
+Jeder Eintrag besteht also aus drei Zeilen. Die erste zeigt den API-Funktions-Baum in Klammernotation, die zweite die aus diesem Baum resultierende englische Linearisierung und die dritte die chinesische zusammen mit einem Kommentar (GOOD, BAD, SOSO) bezüglich der Güte sowie evtl. einen Vorschlag, wie es gut bzw. noch besser gemacht werden könnte. Die API-Bäume mit ihren englischen Beispielen sind der RGL-Synopse entnommen.[fn::\cite{bringert_gf_2015}] Die chinesische Linearsierung lässt sich mittels des Quellcode-Moduls ~api/TryChi.gf~ bzw. des kompilierten Moduls ~alltenses/TryChi.gfo~ reproduzieren:
+#+BEGIN_SRC empty
+> i -retain alltenses/TryChi.gfo
+> cc -one mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
+乞 求 他 睡 觉 的 女 人
+#+END_SRC
+Wobei wir schon eine Abweichung von der 
+** Hervorhebung durch 是-（的） unnötig
+#+BEGIN_LaTeX
+\DTLloaddbtex{\shide}{tests/shideoveruse.dbtex}
+
+\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries besser? \\
+{\DTLforeach*{\shide}
+  {%
+  \api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}
+    {%
+    \scriptsize   \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\comm}{}{\scriptsize{}\comm}
+    \hline
+    }
+}
+\end{longtable}
+#+END_LaTeX
+** Zeiten und Konditional
+#+BEGIN_LaTeX
+\DTLloaddbtex{\tenses}{tests/tenses.dbtex}
+
+\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries besser? \\
+{\DTLforeach*{\tenses}
+  {%
+  \api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}
+    {%
+    \scriptsize   \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\comm}{}{\scriptsize{}\comm}
+    \hline
+    }
+}
+\end{longtable}
+#+END_LaTeX
 ** eng_chi2.txt:
 *** 把 nur auf Dinge beziehbar?
 - mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) 
@@ -622,27 +686,26 @@ sysu/Assign_6.gf
 ** Tabellen-Daten für Appendix?
 # \csvautobooktabular[separator=semicolon]{tests/eng_chi3.csv}
 #+BEGIN_LaTeX
+%% \DTLloaddbtex{\entries}{tests/eng_chi3.dbtex}
 
-\DTLloaddbtex{\entries}{tests/eng_chi3.dbtex}
+%% \begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+%% \bfseries API-Funktionen &
+%% \bfseries Englisch &
+%% \bfseries Chinesisch &
+%% \bfseries Ok? &
+%% \bfseries Kommentar \\
 
-\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-\bfseries Kommentar \\
-
-\DTLforeach*{\entries}{%
-\api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}{%
-\scriptsize   \api &
-\footnotesize \eng &
-\footnotesize \chi &
-\footnotesize \stat &
-\DTLifnull{\comm}{}{\scriptsize{}\comm}
-\hline
-}
+%% \DTLforeach*{\entries}{%
+%% \api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}{%
+%% \scriptsize   \api &
+%% \footnotesize \eng &
+%% \footnotesize \chi &
+%% \footnotesize \stat &
+%% \DTLifnull{\comm}{}{\scriptsize{}\comm}
+%% \hline
+%% }
 %% \DTLdisplaydb*{eng_chi3}
-\end{longtable}
+%% \end{longtable}
 #+END_LaTeX
 * End
 \printbibliography
