@@ -591,20 +591,59 @@ DShopping> ! pwd
 
 * Evaluation der chinesischen Ressourcen Grammatik
 ** Signpost: Why again chinese and GF? :: move to other place!
-** Intro
-Die folgende Evaluation setzt bei den Arbeiten von Dr. Chen an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 an.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格.] Im Zuge seiner Arbeiten an der Bibliothek dokumentierte er natürlich auch seine Fortschritte anhand einer Liste, deren Einträge wie folgt aussahen:[fn:: Die Text-Datei zu dieser Liste ist hier archiviert: \cite{_eng_chi2.txt_2012}.]
+** Arbeitsdaten
+Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. 陈鹏s Evaluationsdokument ist auffindbar unter \cite{_eng_chi2.txt_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
+#+BEGIN_SRC empty
+mkUtt (mkVP beg_V2V he_NP (mkVP sleep_V))
+to beg him to sleep
+把他乞求睡 BAD 乞求他睡
+#+END_SRC
+Die erste Zeile zeigt den API-Funktions-Baum in Klammernotation, die zweite die aus diesem Baum resultierende englische Linearisierung und die dritte die ebenso resultierende chinesische -- wobei die letztere Zeile zudem immer ein Kommentar bezüglich der Güte des Linearisierungsergebnisses sowie optional einen Korrekturvorschlag enthält.
+
+Insgesamt handelt es sich um 450 Einträge, deren Bäume und die dazugehörige engl. Muster-Linearisierung (Zeile 2) aus der RGL-API-Synopse[fn::REFTODO: auf die Synopse sollte schon früher verwiesen werden! \cite{bringert_gf_2015}] entnommen sind. Die einfachsten davon bestehen nur aus einem Funktionsaufruf, der keine Argumente benötigt:
+
+| API-Baum-Element | engl. Linear. | chin. Linear. | Güte |
+|------------------+---------------+---------------+-------|
+| therefore_PConj  | therefore     | 因此          | GOOD  |
+| always_AdV       | always        | 一直          | GOOD  |
+
+Die kompliziertesten sind Bäume wie etwa dieser verschachtelte Fragesatz:
+
+#+CAPTION[eng_chi2: Komplexer Eintrag]: Ein komplexer Satz mittels der RGL-API (API-Funktions-Baum zwecks Lesbarkeit formatiert)
+#+NAME: ec2_whom_does
+#+BEGIN_SRC empty
+mkUtt
+ (mkQCl who_IP
+        (mkClSlash she_NP know_VS
+                   (mkSSlash
+                    (mkTemp pastTense anteriorAnt)
+                    negativePol
+                    (mkClSlash we_NP
+                               (mkVPSlash see_V2)))))
+whom does she know that we hadn't seen
+她知道我们不看了的是谁 SOSO 我们没看过的人里，她认识谁
+#+END_SRC
+
+Die Auswahl der 450 Bäume erhebt keinen Anspruch auf eine vollständige Darstellung der RGL, aber in jedem Fall lassen sich anhand dieser vielerlei syntaktische Strukturen auf (a) grammatische und (b) pragmatische Korrektheit (gängiges, gutes Chinesisch) hin prüfen. ~GOOD~ bescheinigt daher, dass sowohl (a) und (b) zutreffen; ~BAD~, dass (a) nicht zutrifft; und ~SOSO~, dass zwar (a) zutrifft, aber (b) nicht.[fn::\cite[33]{_implementation_2013}. Zusätzlich zu diesen Kriterien sollte natürlich auch immer die /inhaltlich/ korrekte Umsetzung des Funktionsbaums in die Linearisierung gewährleistet sein. So ist das Ergebnis (~她知道我们不看了的是谁~) aus Auflistung [[ec2_whom_does]] nur grammatisch korrekt, insofern man es als Negation einer abgeschlossenen Handlung in der Zukunft (~不看了~) deutet. Jedoch ist die Zukunft durch den Funktionsbaum in Zeile 5 nicht gemeint, sondern vielmehr die Vergangenheit (\inlst$pastTense anteriorAnt$), welche aber nicht mittels 不 sondern mit 没（有） verneint wird, was insgesamt die Einstufung in Güteklasse ~SOSO~ wegen inhaltlich-grammatischer Inkorrektheit als sehr optimistisch erscheinen lässt. Theoretisch hätte dieses Ergebnis also genauso gut als ~BAD~ klassifiziert werden können, praktisch gesehen ist dieses Dilemma aber einerlei, da uns im Zuge der Auswertung beide Arten von Mangelfällen besonders interessieren.]
+
+Unter Anwendung dieser Kriterien gelangte Chen zu dem Resultat, dass 338 der 450 Testfälle eine gute Linearisierung besitzen, womit auf die beiden Mangelkategorien insgesamt 112 -- aufgeschlüsselt in 80 mal ~SOSO~, 32 mal ~BAD~ -- entfielen. Auch wenn nur 7% der Ergebnisse schlecht ausfielen, so wies Chen doch darauf hin, dass chinesische Charakteristika, wie Wortstellung, Funktionswörter und verschiedene Arten von komlexen und flexiblen Phrasenstrukturen, noch nicht gut gehandhabt werden.[fn::\cite[34]{_implementation_2013}.]
+** Auswertungsmethodik
+Zur besseren Handhabbarkeit der einzelnen Einträge sowie der verschiedenen Kategorien innerhalb dieser wurde Chens Dokument in ein simples Tabellen-Dateiformat überführt.[fn:: Zu finden unter https://github.com/salamynder/mag15/blob/master/tests/eng_chi3.csv .]
+
+Aufgabe meinerseits war es nun, Chens Liste erneut durchzusehen, um zu klären, welche chinesischen C
+- 
+- eine Fehler-Kategorisierung innerhalb dieser Liste vorzunehmDie chinesische Linearsierung ließ sich mittels des Quellcode-Moduls ~api/TryChi.gf~ bzw. des kompilierten Moduls ~alltenses/TryChi.gfo~ reproduzieren, wobei hier auch schon Abweichungen, wie in den eben angeführten Beispiel, zu beobachten waren:
 #+BEGIN_SRC empty
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
 woman who begs him to sleep
 把他乞求睡的女人 BAD 求他睡的女人
 #+END_SRC
-Jeder Eintrag besteht also aus drei Zeilen. Die erste zeigt den API-Funktions-Baum in Klammernotation, die zweite die aus diesem Baum resultierende englische Linearisierung und die dritte die chinesische zusammen mit einem Kommentar (GOOD, BAD, SOSO) bezüglich der Güte sowie evtl. einen Vorschlag, wie es gut bzw. noch besser gemacht werden könnte. Die API-Bäume mit ihren englischen Beispielen sind der RGL-Synopse entnommen.[fn::\cite{bringert_gf_2015}] Die chinesische Linearsierung lässt sich mittels des Quellcode-Moduls ~api/TryChi.gf~ bzw. des kompilierten Moduls ~alltenses/TryChi.gfo~ reproduzieren:
 #+BEGIN_SRC empty
 > i -retain alltenses/TryChi.gfo
 > cc -one mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
 乞 求 他 睡 觉 的 女 人
 #+END_SRC
-Wobei wir schon eine Abweichung von der 
+Diese Abweichungen resultie
 ** Hervorhebung durch 是-（的） unnötig
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shide}{tests/shideoveruse.dbtex}
