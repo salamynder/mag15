@@ -10,7 +10,7 @@
 # \listoftables
 * Einleitung
 \pagenumbering{arabic}
-Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt. Das ermöglicht wiederum einem Programmierer ohne chinesische Sprachkenntnisse chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist (BEISPIELTODO: Strauß?).[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
+Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt, was wiederum einem Programmierer ermöglicht, ohne spezifische Sprachkenntnisse syntaktisch korrekte chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist (BEISPIELTODO: Strauß?).[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
 - \cite{thompson_type_1991}
 ** Zwischen Compiler-Technologie und NLP
 - multi-source, multi-target compiler
@@ -643,27 +643,70 @@ woman who begs him to sleep
 > cc -one mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
 乞 求 他 睡 觉 的 女 人
 #+END_SRC
-Diese Abweichungen resultie
-** Hervorhebung durch 是-（的） unnötig
+** Konstruktionen mit 是-（的）
+Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der Einsatz von 是-（的） entweder unbedingt vonnöten oder aber auch sehr angeraten erscheint, und solche, in denen die Verwendung schlichtweg grammatisch falsch oder eine pragmatisch unsachgemäße Betonung hervorgerufen wird.
+*** Verwendung unnötig oder gar falsch
+Diese Einträge wurden  
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shide}{tests/shideoveruse.dbtex}
 
-\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+\begin{longtable}[l]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
 \bfseries API-Funktionen &
 \bfseries Englisch &
 \bfseries Chinesisch &
 \bfseries Ok? &
 %% \bfseries Kommentar \\
-\bfseries besser? \\
+\bfseries Vorschlag &
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][r]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
 {\DTLforeach*{\shide}
   {%
-  \api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
     {%
-    \scriptsize   \api &
-    \footnotesize \eng &
-    \footnotesize \chi &
-    \footnotesize \stat &
-    \DTLifnull{\comm}{}{\scriptsize{}\comm}
+    \scriptsize \api &
+    \scriptsize \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \DTLiflastrow{}{\hline}
+    }
+}
+\end{longtable}
+#+END_LaTeX
+*** notwendig
+#+BEGIN_LaTeX
+\DTLloaddbtex{\shideneeded}{tests/shide-needed.dbtex}
+
+\begin{longtable}[l]{p{0.28\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries Vorschlag &
+\bfseries Kategorie \\
+{\DTLforeach*{\shideneeded}
+  {%
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
+    {%
+    \scriptsize \api &
+    \scriptsize \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
     \hline
     }
 }
@@ -838,7 +881,12 @@ sysu/Assign_6.gf
 #+LATEX_HEADER:     }
 #+LATEX_HEADER:     \bigskip
 #+LATEX_HEADER: }
-
+#+LATEX_HEADER: \newcounter{rowcount}
+#+LATEX_HEADER: \setcounter{rowcount}{0}
+#+LATEX_HEADER: \preto\longtable{\setcounter{rowcount}{0}}
+#+LATEX_HEADER: \def\afterHeaderFlag{}
+#+LATEX_HEADER:
+#+LATEX_HEADER:
 # Local Variables:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
 # End:
