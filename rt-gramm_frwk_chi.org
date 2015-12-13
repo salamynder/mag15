@@ -7,7 +7,7 @@
 \renewcommand*\lstlistlistingname{Auflistungen}
 \renewcommand*\lstlistingname{Auflistung}
 \lstlistoflistings
-# \listoftables
+\listoftables
 * Einleitung
 \pagenumbering{arabic}
 Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt, was wiederum einem Programmierer ermöglicht, ohne spezifische Sprachkenntnisse syntaktisch korrekte chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist (BEISPIELTODO: Strauß?).[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
@@ -644,11 +644,13 @@ woman who begs him to sleep
 乞 求 他 睡 觉 的 女 人
 #+END_SRC
 ** Konstruktionen mit 是-（的）
+Die 是-的-Konstruktion bietet eine Möglichkeit, bestimmte Satzglieder zu betonen, und erfüllt daher dieselbe Funktion wie Spaltsätze im Deutschen oder Englischen. \xpinyin*{是} für sich genommen ist aber auch einfach das Vollverb »sein«, das für Klassifikation und Äquation zuständig ist. In den folgenden Daten wird genauer auf diese Parallelen und Funktionen eingegangen.
+
 Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der Einsatz von 是-（的） entweder unbedingt vonnöten oder aber auch sehr angeraten erscheint, und solche, in denen die Verwendung schlichtweg grammatisch falsch oder eine pragmatisch unsachgemäße Betonung hervorgerufen wird.
-*** Verwendung unnötig oder gar falsch
-Diese Einträge wurden  
+*** Verwendung unnötig oder falsch [是-的-overuse]
+**** Mit guter Bewertung:
 #+BEGIN_LaTeX
-\DTLloaddbtex{\shide}{tests/shideoveruse.dbtex}
+\DTLloaddbtex{\shideg}{tests/shideoveruse-g.dbtex}
 
 \begin{longtable}[l]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
 \bfseries API-Funktionen &
@@ -658,9 +660,9 @@ Diese Einträge wurden
 %% \bfseries Kommentar \\
 \bfseries Vorschlag &
 \bfseries Kategorie
-\gdef\afterHeaderFlag{\makebox[1em][r]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
 \\
-{\DTLforeach*{\shide}
+{\DTLforeach*{\shideg}
   {%
   \api=Field1,
   \eng=Field2,
@@ -669,29 +671,132 @@ Diese Einträge wurden
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize \api &
+    \scriptsize\raggedright \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
     \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
     \DTLifnull{\todo}{}{\scriptsize{}\todo}
-    \DTLiflastrow{}{\hline}
+    \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
 #+END_LaTeX
-*** notwendig
-#+BEGIN_LaTeX
-\DTLloaddbtex{\shideneeded}{tests/shide-needed.dbtex}
+Man beachte, dass die ersten drei Zeilen der obigen Tabelle die angestrebte Korrektur schon zeitigen, d.h. 是-的 wird hier standardmäßig nicht mehr benutzt, was sich anhand der Chinesisch-Spalte zeigt, in der geteilt durch einen Pfeil (~->~) ein älteres und ein aktuelles Linearisierungsergebnis dokumentiert ist.[fn:: Diese positive Veränderung ist dokumentiert in Commit ba6bd33b vom 08.10.2013 und betrifft vor allem die Funktion ~QuestSlash~ aus \inlst$chinese/QuestionChi.gf$, die aufgerufen wird, wenn ~mkQCl~ als zweites Argument eines vom Typ ~ClSlash~ -- also einem Satz (Clause), der ohne sein Subjekt (~NP~) prädiziert wird -- nimmt. REFTODO:Explanation:Slash!]
 
-\begin{longtable}[l]{p{0.28\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
+In den restlichen Zeilen sieht man an der Chinesisch-Linearisierung, dass hier noch kein Paradigma vorhanden ist, welches auf die Konstruktion mit 是-的 verzichten würde. Vielmehr zeigt sich, dass 是 als Äquationalkopula in allen Fällen (mkCl : NP -> A/AP -> Cl) Anwendung findet, was vor allem in den Zeilen 5 bis 10 problematisch ist, da hier über die Äquation keine besondere Betonung realisiert wird. Zum Beispiel ist in der Aussage von Zeile 8 »she is old« grammatisch völlig unbetont, weswegen das chinesische Äquivalent eher heißen sollte 「她很老」 anstatt 「她是老的」.[fn:: Für die Unterscheidung zwischen der Bildung des Ajektivprädikats mittels 很 oder 是， siehe \cite[126f.]{motsch_grundlagen_2010}. A.a.O. ist auch bemerkenswert, dass die Klassifizierung als alt in 「她是老的」 abwertend gemeint sein kann, wie in 姓王的， 不过是个教书的 -- wobei man hier einwenden mag, dass auch 个教书的 (»einer der aus Büchern lehrt«) schon keine Respektsbezeugung darstellt. Dennoch bliebe festzuhalten, dass hier 是 als Äquationskopula den formalen Rahmen für die Klassifikation durch Äquation schafft.] 
+
+Umgekehrt scheint aber eine grammatische Betonung von »here« in Zeile 4 [(a) »it is here that she sleeps«] durchaus vorzuliegen, denn die Satzaussage könnte auch einfacher mit (b) »she sleeps here« gebildet werden, wobei die Auslagerung eines zu betonenden Satzgliedes in einen vorangestellten unpersönlichen Satz (»it is \ldots{}«) gemeinhin als Kluft- oder /Spaltsatz/ bekannt ist.[fn::REFTODO Hadumod] Mit der gegebenen grammatischen Betonung im Englischen sollte also auch das chinesische Äquivalent eine Hervorhebung des Ortes, also 这里/儿, genießen dürfen, woraus sich mindestens zwei Möglichkeiten ergeben:
+
+- (1) 「她睡觉的是这里」\hspace{0.3em}(s. Zeile 4)
+  - Hier wäre eine Voranstellung von "hier/这里" und sodann auch das Einfügen von 就 möglich: 「这（里）（就）是她睡觉的地方」
+- (2) 「她就睡在这儿」\hspace{0.3em}(Ohne 是-的 wird 这里/儿 hier indirekt über die Verbalhandlung mittels des Adverbs 就 betont: »Sie schläft genau hier.«/ »She sleeps precisely here.« )
+
+Dazu ist tentativ noch anzumerken, dass eine Konsultation unter Muttersprachlern erbrachte, dass eine Konstruktion wie in (2) schon als durchaus angemessen erachtet wird, um eine (wenn auch indirekte) Betonung des Ortes zu forcieren.
+***** TODO eval[THINK: argument: for wide-coverage shi-de needed?]
+Die jetzige (1--3) bzw. angestrebte (5--10) Linearisierung ohne 是-的 liefert gute Ergebnisse und ist tendenziell auch für den Fall aus Zeile 4 geeignet. Dennoch sollte die Möglichkeit, für alle Fälle eine 是-的-Variante zu erstellen, gegeben sein. (Wie sich dies in der RGL-API realisieren lässt, ist aber sehr unklar.) 
+**** Mit schlechter Bewertung:
+#+BEGIN_LaTeX
+\DTLloaddbtex{\shideb}{tests/shideoveruse-b.dbtex}
+\begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
 \bfseries API-Funktionen &
 \bfseries Englisch &
 \bfseries Chinesisch &
 \bfseries Ok? &
 %% \bfseries Kommentar \\
 \bfseries Vorschlag &
-\bfseries Kategorie \\
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
+{\DTLforeach*{\shideb}
+  {%
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
+    {%
+    \scriptsize\raggedright \api \par &
+    \scriptsize \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \DTLiflastrow{}{\\}
+    }
+}
+\end{longtable}
+#+END_LaTeX
+Fall Nr. 1 ist besonders interessant, weil wir es hier mit einem Spaltsatz zu tun haben, der ziemlich sicher ohne 是-的 auskommen muss, was mit dem Zustandsverb \xpinyin*{确定} (sicher sein) zusammenhängen könnte. Hier noch einmal der /gute/ Spaltsatz aus der letzten Sektion, der 是 benutzen darf, und Fall Nr. 1 im Vergleich:
+#+BEGIN_SRC empty
+mkUtt                              mkUtt
+ (mkCl here_Adv                    (mkCl
+       (mkS                         (mkVP
+         (mkCl she_NP sleep_V)))     (mkAP
+                                      (mkAP uncertain_A)
+                                      (mkQS
+                                       (mkQCl who_IP sleep_V)))))
+
+it is here that she sleeps         it is uncertain who sleeps
+她睡觉的是这里 G (...)              是不确定谁睡觉的 B 不确定谁睡
+#+END_SRC
+
+Was Fall Nr. 1 betrifft, so urteilt Chen also, dass die Linearisierung unzulässig ist. Auch eine Befragung unter Muttersprachlern ergab, dass das Ergebnis von 1 eher wie eine direkte Übersetzung aus westlichen Sprachen klingt bzw. als eine solche zu erkennen ist, und als hervorstechender Grund hierfür ließe sich anführen, dass der Adjektivphrase 「不确定」 mit 确定 als Zustandsverb schon zuviel »Sein« innewohnt, als dass 「不确定」 in irgendeiner Weise mit 是 -- sei es 「是不确定」 oder 「不是确定」 -- kombiniert werden dürfte. Adverbiale Bestimmungen, wie 这里 aus dem /guten/ Spaltsatz, scheinen sich jedenfalls eher, mit 是-（的） kombinieren zu lassen.[fn:: In diesem Zusammenhang darf auch daran erinnert werden, dass das eingefügte 很 bei der Adjektivprädizierung, wie etwa 「这间屋子很大」 （»dieses Zimmer ist groß«）, eigentlich keine Kopula ist, sondern ein Adverb (mit der Bedeutung »sehr«, die aber so gut wie verblasst ist, insofern man 很 nicht sehr stark betont ausspricht), dessen vorrangige Aufgabe es ist, das Zustandsverb 大 derart zu bestimmen, dass es auch wirklich »groß« bedeutet; nimmt man 很 nämlich weg, dann nimmt 大 den Komparativ an. Cf. \cite[239]{kneussel_grammatik_2005}]
+
+Unabhängig von den postulierten Gründen für die Mängel am Ergebnis von Fall 1 können wir aber auch konstatieren, dass der Vorschlag 「不确定谁睡」 im Vergleich zur englischen Version genau die Elemente in der für das Chinesischen richtigen grammatischen Sequenz aufweist, die essentiell notwendig sind, um die Bedeutung von »it is uncertain who sleeps« zu bewahren, nämlich als Hauptsatz die Aussage »nicht sicher« sowie diesem untergeordnet die Frage »wer schläft«. Aus dieser Perspektive nicht essentiell sind also das unpersönliche Pronomen »it« sowie die unterordnende Konjunktion »that«; die Kopula-Form »is« bleibt hingegen essentiell, ist aber versteckt im Zustandsverb 确定. Daher ist der Vorschlag ein Spaltsatz.
+
+Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is uncertain«, was den Sinn des gespaltenen aber nur ambig wiedergibt, denn er könnte bedeuten, dass die schlafenden Subjekte in sich selbst unsicher sind (»wer schläft, der ist auch unsicher«) weswegen ist der angesprochene Spaltsatz doch kein richtiger
+**** Mit mittelmäßiger Bewertung:
+
+#+BEGIN_LaTeX
+\DTLloaddbtex{\shides}{tests/shideoveruse-s.dbtex}
+
+\begin{longtable}[l]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries Vorschlag &
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
+{\DTLforeach*{\shides}
+  {%
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
+    {%
+    \scriptsize\raggedright \api \par &
+    \scriptsize \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \DTLiflastrow{}{\\}
+    }
+}
+\end{longtable}
+#+END_LaTeX
+
+*** notwendig
+#+BEGIN_LaTeX
+\DTLloaddbtex{\shideneeded}{tests/shide-needed.dbtex}
+
+\begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries Vorschlag &
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
 {\DTLforeach*{\shideneeded}
   {%
   \api=Field1,
@@ -701,13 +806,13 @@ Diese Einträge wurden
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize \api &
+    \scriptsize\raggedright \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
     \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
     \DTLifnull{\todo}{}{\scriptsize{}\todo}
-    \hline
+    \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
@@ -716,23 +821,32 @@ Diese Einträge wurden
 #+BEGIN_LaTeX
 \DTLloaddbtex{\tenses}{tests/tenses.dbtex}
 
-\begin{longtable}[l]{p{0.28\textwidth} p{0.24\textwidth} p{0.16\textwidth} p{0.04\textwidth} p{0.28\textwidth}}
+\begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
 \bfseries API-Funktionen &
 \bfseries Englisch &
 \bfseries Chinesisch &
 \bfseries Ok? &
 %% \bfseries Kommentar \\
-\bfseries besser? \\
+\bfseries Vorschlag &
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
 {\DTLforeach*{\tenses}
   {%
-  \api=Field1, \eng=Field2, \chi=Field3, \stat=Field4, \comm=Field5}
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
     {%
-    \scriptsize   \api &
-    \footnotesize \eng &
-    \footnotesize \chi &
-    \footnotesize \stat &
-    \DTLifnull{\comm}{}{\scriptsize{}\comm}
-    \hline
+    \scriptsize\raggedright   \api \par &
+    \scriptsize \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
@@ -884,8 +998,11 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: \newcounter{rowcount}
 #+LATEX_HEADER: \setcounter{rowcount}{0}
 #+LATEX_HEADER: \preto\longtable{\setcounter{rowcount}{0}}
+#+LATEX_HEADER: \preto\longtable{\def\afterHeaderFlag{}}
+#+LATEX_HEADER: \preto\tabular{\def\afterHeaderFlag{}}
 #+LATEX_HEADER: \def\afterHeaderFlag{}
-#+LATEX_HEADER:
+#+LATEX_HEADER: %TODO: Bug? erste Zelle einer longtable (unter Header): baselinestretch zu hoch
+#+LATEX_HEADER:  
 #+LATEX_HEADER:
 # Local Variables:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))

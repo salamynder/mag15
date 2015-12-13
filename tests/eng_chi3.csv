@@ -43,10 +43,6 @@ mkUtt (mkS and_Conj (mkS (mkCl she_NP sleep_V)) (mkS (mkCl i_NP run_V)));she sle
 mkText (mkPhr yes_Utt) questMarkPunct;yes ?;对？;S;对吗？;[insert] 吗 *TODO*; THINK: [是-的-overuse] for '对吗？' make use of (and get rid of shi-de): mkText (mkPhr (mkQS (mkCl (mkVP correct_A)))) questMarkPunct = 是对的吗？, ConstructionChi.is_right_VP
 mkUtt (mkAP married_A2 she_NP );married to her;结婚她;B;和她结婚了/已婚，太太是她;[insert] 和: 结婚 constructs with 和 *TODO*;
 mkUtt (reflAP married_A2);married to itself;结婚自己;B;和它自己结婚了;[insert] 和: 结婚 constructs with 和 *TODO*| [insert ]default 它 for VP and for Cl make sure pronoun is modified accordingly *TODO*;NOTE: example: 我自己最了解我自己。(I know myself best.) Maybe the first 自己 can be dropped?
-mkUtt (mkVP married_A2 he_NP) ;to be married to him;是结婚他的;B;和他结婚了/已婚，先生是他;[insert] 和 for 结婚 *TODO*| [是-的-overuse] *TODO*;
-mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的;B;她和他结婚了/她已婚，先生是他;[insert] 和 for 结婚 *TODO*| [是-的-overuse] *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP married_A2 he_NP)));woman who is married to him;是结婚他的的女人;B;和他结了婚的女人/嫁给他的女人;[insert] 和 for 结婚 *TODO*| [是-的-overuse] *TODO*;
-mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;[insert] 和 for 结婚 *TODO*| [是-的-overuse] *TODO*;
 mkUtt (mkAdv under_Prep it_NP);under it;它下;B;(在)它的下面;[insert] 在 (under_Prep => placeAdvType) *TODO*;THINK: lexical change: add 面？
 mkUtt (mkAdv both7and_DConj here_Adv there_Adv);both here and there;不但这里而且那里;S;既在这里，也在那里;[insert] 在 *TODO*;THINK: lexical change (既, 也)
 mkUtt (mkAdv in_Prep it_NP);in it;它里;S;在它里;[insert] 在 *TODO*;
@@ -99,6 +95,13 @@ mkUtt (mkCl she_NP (mkRS (mkRCl which_RP (mkVP sleep_V))));it is she who sleeps;
 mkUtt (mkNP not_Predet everybody_NP);not everybody;不的每个人;B;不是每个人;[是-的-necessary?] noun negation 不是: sentential structure instead of attributive one *TODO*;
 mkUtt (mkCl (mkSC (mkS (mkCl she_NP sleep_V))) (mkVP good_A));that she sleeps is good;她睡觉是好的;S;她睡是好事;[是-的-necessary] *DONE*| add thing_N (事) *TODO*;
 mkUtt (mkCl (mkVP (mkAP (mkAP uncertain_A) (mkQS (mkQCl who_IP sleep_V)))));it is uncertain who sleeps;是不确定谁睡觉的;B;不确定谁睡;[是-的-overuse, cleft without 是] *TODO*;THINK: 是-的 and  pseudo cleft, cleft as judgement (it is uncertain…), but judgement is only a special case of equation, with reference (it) to the subordinate sentence, right?
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人;B;比他老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人;B;老女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人;B;非常老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;THINK: 是-的-construction as variant?
+mkUtt (mkVP married_A2 he_NP) ;to be married to him;是结婚他的;B;和他结婚了/已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的;B;她和他结婚了/她已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP married_A2 he_NP)));woman who is married to him;是结婚他的的女人;B;和他结了婚的女人/嫁给他的女人;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*|  [extract] 的 *TODO*;
 mkUtt (mkQCl who_IP (mkClSlash (mkClSlash she_NP love_V2) today_Adv));whom does she love today;她今天爱的是谁 -> 她今天爱谁;G;;[是-的-overuse] *DONE*;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash see_V2)));whom does she see;她看的是谁 -> 她看谁;G;;[是-的-overuse] *DONE*;
 mkUtt (mkQCl who_IP (mkClSlash she_NP see_V2));whom does she see;她看的是谁 -> 她看谁;G;;[是-的-overuse] *DONE*;
@@ -106,15 +109,12 @@ mkUtt (mkCl here_Adv (mkS (mkCl she_NP sleep_V)) );it is here that she sleeps;�
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkSC (mkVP sleep_V))));she is ready to sleep;她是准备好睡觉的;G;or 她准备好睡觉了;[是-的-overuse] *TODO*;THINK: final particle |NOTE: SC = embedded sentence or question
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkVP sleep_V)));she is ready to sleep;她是准备好睡觉的;G;or 她准备好睡觉了;[是-的-overuse] *TODO*;THINK: final particle
 mkUtt (mkCl she_NP (mkAP very_AdA old_A));she is very old;她是非常老的;G;or 她非常老;[是-的-overuse] *TODO*;
-mkUtt (mkCl she_NP old_A he_NP);she is older than he;她是比他老的;S;她比他老/她比他大;[是-的-overuse] *TODO*;
 mkUtt (mkCl she_NP old_A);she is old;她是老的;G;or 她很老;[是-的-overuse] *TODO*;
-mkUtt (mkCN student_N (mkRS (mkRCl which_RP woman_N)));student who is a woman;是女人的学生;S;女学生;[是-的-overuse] *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人;B;比他老的女人;[是-的-overuse] *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人;B;老女人;[是-的-overuse] *TODO*;
 mkUtt (mkQCl who_IP old_A he_NP);who is older than he;谁是比他老的;G;or 谁比他老;[是-的-overuse] *TODO*;
 mkUtt (mkVP (mkAP very_AdA old_A));to be very old;是非常老的;G;or 非常老;[是-的-overuse] *TODO*;
+mkUtt (mkCl she_NP old_A he_NP);she is older than he;她是比他老的;S;她比他老/她比他大;[是-的-overuse] *TODO*;
+mkUtt (mkCN student_N (mkRS (mkRCl which_RP woman_N)));student who is a woman;是女人的学生;S;女学生;[是-的-overuse] *TODO*;
 mkUtt (mkVP old_A he_NP);to be older than he;是比他老的;S;比他老;[是-的-overuse] *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人;B;非常老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;THINK: 是-的-construction as variant?
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash ask_V2Q (mkQS (mkQCl where_IAdv (mkCl i_NP sleep_V))))));whom does she ask where I sleep;她问说我哪里睡的是谁 -> 她问谁说我哪里睡觉;S;关于我哪里睡觉，她问的是谁, Li: 她问谁我在哪里睡觉 (coll.: 她问的谁我睡哪儿);[是-的-topical/cleft?] *TODO*| [insert] 在 *TODO*| [extract] 说 *TODO*| [是-的-overuse] *DONE*;
 mkUtt (mkNP no_Quant house_N);no house;不间房子;B;没有房子;existential with 有 *TODO*;NOTE: cf. 'there is a house' (G)
 mkUtt (mkS (genericCl (mkVP sleep_V)));one sleeps;睡觉;B;有人睡觉;existential with 有 *TODO*;NOTE: cf. 'there is a house' (G)
