@@ -1,13 +1,13 @@
 mkNum (mkCard almost_AdN (mkCard (mkNumeral n5_Unit)));almost five;几乎五;S;差不多五个;[classifier] add default for stand-alone use? *TODO*;THINK: [classifier] add default, but: classifier will be inserted when mkNP (=cc -one mkNP this_Quant (mkNum (mkCard almost_AdN (mkCard (mkNumeral n5_Unit)))) house_N: 这几乎五间房子)
 mkUtt (mkNP somePl_Det woman_N);some women;一些个女人;S;一些女人;[classifier] avoid multiple classifiers, 些 must prevail *TODO*;
 mkUtt (mkNP (mkDet i_Pron));mine;我的个;B;我的;[classifier] extract 个: mkNP->DetNP  adds it, case split on DTPoss *TODO*;
+mkUtt (mkCl she_NP (mkCN old_A woman_N));she is an old woman;她是老女人;G;or 她是个老女人;[classifier] is there API-function for (一)个 *TODO*;NOTE: cc -one mkUtt (mkVP (mkNP (mkDet (mkCard (mkNumeral n1_Unit))) (mkCN old_A woman_N))) = 是一个老女人
+mkUtt (mkQCl who_IP woman_N);who is a woman;谁是女人;G;or 谁是个女人;[classifier] is there API-function for (一)个 *TODO*;NOTE: there should be another API-tree for getting 个, this one  not quite: mkUtt (mkQCl who_IP (mkNP a_Det woman_N)) = 谁是一女人
+mkUtt (mkVP (mkCN old_A woman_N));to be an old woman;是老女人;G;or 是个老女人;[classifier] is there API-function for (一)个 *TODO*;
 mkUtt (mkCard almost_AdN (mkCard (mkNumeral n8_Unit)));almost eight;几乎八;S;几乎八个;[classifier] is there API-function for (一)个 *TODO*;
 mkUtt (mkCard at_least_AdN (mkCard (mkNumeral n8_Unit)));at least eight;最少八;S;最少八个 would be better;[classifier] is there API-function for (一)个 *TODO*;
 mkUtt (mkCard at_most_AdN (mkCard (mkNumeral n8_Unit)));at most eight;最多八;S;最多八个 would be better;[classifier] is there API-function for (一)个 *TODO*;
-mkUtt (mkCl she_NP (mkCN old_A woman_N));she is an old woman;她是老女人;G;or 她是个老女人;[classifier] is there API-function for (一)个 *TODO*;NOTE: cc -one mkUtt (mkVP (mkNP (mkDet (mkCard (mkNumeral n1_Unit))) (mkCN old_A woman_N))) = 是一个老女人
 mkUtt (mkIP (mkIDet which_IQuant (mkNum (mkNumeral n5_Unit))));which five;哪五;S;哪五个;[classifier] is there API-function for (一)个 *TODO*;
-mkUtt (mkQCl who_IP woman_N);who is a woman;谁是女人;G;or 谁是个女人;[classifier] is there API-function for (一)个 *TODO*;NOTE: there should be another API-tree for getting 个, this one  not quite: mkUtt (mkQCl who_IP (mkNP a_Det woman_N)) = 谁是一女人
-mkUtt (mkVP (mkCN old_A woman_N));to be an old woman;是老女人;G;or 是个老女人;[classifier] is there API-function for (一)个 *TODO*;
 mkUtt (mkNP much_Det wine_N);much wine;多瓶酒;B;许多红酒;[classifier] not needed if substance is meant, cf. 'much wine' *TODO*;THINK: [lexical] grape wine = 葡萄酒, white wine =  白葡萄酒
 mkUtt (mkNP someSg_Det wine_N);some wine;一些瓶酒;S;一些红酒;[classifier] not needed if substance is meant, cf. 'much wine' *TODO*;
 mkUtt (mkAdv more_CAdv warm_A (mkS (mkCl he_NP run_V))  );more warmly than he runs;温暖比更他跑;B;比他跑得温暖;[complement, adverbial, comparison] adverbial complement (得) or prePart (地) *TODO*;NOTE: Li-approved example: 我比他把茶水弄/做得更热/温暖。|NOTE: Motsch, 63: adverbial comparison more likely expressed with complement of degree
@@ -54,8 +54,8 @@ mkUtt (mkCN (mkCN reason_N) (mkVP sleep_V));reason to sleep;睡觉道理;B;睡�
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash send_V3 it_NP))  );to whom does she send it;她把它寄谁;G;她把它寄给谁;[insert] 给 *TODO*| use 把 *DONE* ;
 mkUtt (mkCl she_NP send_V3 it_NP he_NP);she sends it to him;她把它寄他 -> 她它寄他;B;她把它寄给他;[insert] 给 *TODO*| 把 needed *TODO*;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP send_V3 it_NP he_NP)));woman who sends it to him;把它寄他的女人 -> 它寄他的女人;B;把它寄给他的女人;[insert] 给 *TODO*| 把 needed *TODO*;
-mkUtt (mkQCl who_IP send_V3 it_NP she_NP);who sends it to her;谁把它寄她 -> 谁它寄她;S;谁把它寄给她;[insert] 给 *TODO*| 把 needed *TODO*;
 mkUtt (mkVP send_V3 it_NP he_NP);to send it to him;它寄他;B;把它寄给他;[insert] 给 *TODO*| 把 needed *TODO*;NOTE: 4 trees when translating Eng->Chi, one being: 把它寄他
+mkUtt (mkQCl who_IP send_V3 it_NP she_NP);who sends it to her;谁把它寄她 -> 谁它寄她;S;谁把它寄给她;[insert] 给 *TODO*| 把 needed *TODO*;
 mkUtt (mkCN distance_N3);distance;的距离;B;距离;[lexical, extract] do not hard-code 的 in distance_N3 *TODO*;
 mkUtt (mkAdv through_Prep it_NP);through it;通过它;G;or: 经过;[lexical] add variant *TODO*;
 mkUtt (mkAdv by8means_Prep it_NP);by it;它旁边;B;用 (with, using);[lexical] change *TODO*;
@@ -77,7 +77,6 @@ mkUtt (mkQCl who_IP (mkClSlash she_NP want_VV see_V2));whom does she want to see
 mkUtt (mkAdv except_Prep it_NP);except it;以外它除了;B;除了它以外;[order] in mkAdv doesn't fit 除了...以外-construction *TODO*;
 mkUtt (mkQCl who_IP she_NP);who is her;谁是她;B;她是谁;[order] keep who_IP at end *TODO*;BUG: engl. her => she
 mkPhr yes_Utt (mkVoc (mkNP i_Pron friend_N));yes , my friend;对我的朋友 - > 我的朋友，对;S;;[order] 对(了) in front?! *TODO*;
-mkUtt (progressiveVP (mkVP sleep_V));to be sleeping;睡觉 -> 在睡觉;S;在睡 or 睡着;[tense] durative variant (着) *TODO*;NOOP: API cannot control which to use
 mkPhr (mkS futureTense negativePol (mkCl she_NP sleep_V));she won't sleep;她不在睡觉;S;她不睡觉;[tense] futureTense *TODO*;
 mkUtt (mkS futureTense (mkCl she_NP sleep_V));she will sleep;她在睡觉;S;她会睡;[tense] futureTense *TODO*;
 mkUtt (mkS anteriorAnt (mkCl she_NP sleep_V));she has slept;她睡觉;B;她睡了;[tense] perfect aspect *TODO*;
@@ -85,26 +84,19 @@ mkUtt (mkQS conditionalTense anteriorAnt negativePol (mkQCl who_IP sleep_V));who
 mkUtt (mkQS pastTense negativePol (mkQCl who_IP sleep_V))  ;who didn't sleep;谁不睡觉了;S;谁没睡觉;[tense] perfect aspect/negation: 不 -> 没 *TODO*;
 mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash she_NP (mkVPSlash see_V2));she hadn't seen;她不看了;B;她没看过;[tense] perfect aspect/negation: 没看（过）– no 了！ *TODO*;NOOP: disamb. experience/perfect
 mkUtt (mkQCl who_IP (mkClSlash she_NP know_VS (mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash we_NP (mkVPSlash see_V2)))));whom does she know that we hadn't seen;她知道我们不看了的是谁 -> 她知道谁我们不看了;S;我们没看过的人里，她认识谁;[tense] perfect aspect/negation: 没看（过）– no 了！ *TODO*;NOOP: disamb. experience/perfect
-mkUtt (mkCl (progressiveVP (mkVP rain_V0)));it is raining;在下雨;S;下着雨;[tense] progressive ([正]在) / durative (着) *TODO*;
+mkUtt (progressiveVP (mkVP sleep_V));to be sleeping;睡觉 -> 在睡觉;S;在睡 or 睡着;[tense] progressive ([正]在) / durative (着) *TODO*;NOOP: API cannot control which to use
+mkUtt (mkCl (progressiveVP (mkVP rain_V0)));it is raining;在下雨;S;下着雨;[tense] progressive ([正]在) / durative (着) *TODO*;NOTE: impersonal verb
 mkUtt (mkNP (mkNP john_PN) (mkRS (mkRCl which_RP (mkVP walk_V))));John , who walks;走的约翰;S;走着的约翰;[tense] progressive ([正]在) / durative (着) *TODO*;
 mkUtt (mkNP (mkNP the_Det man_N) see_V2);the man seen;看的男人;S;被看到的男人;[voice] past-participle as passive *FEATURE-TODO*;NOTE: others means of  construction: mkNP: NP -> V2 -> NP
 mkUtt (mkCl (mkVP (mkAP (mkAP good_A) (mkS (mkCl she_NP sleep_V)))));it is good that she sleeps;是好她睡觉的;B;她睡是好事;[是-的-necessary?, cleft] use shi-eq-copula and nominalize 好?! *TODO*;THINK: 是-的 and  cleft: cleft as judgement (it is good…), but judgement is only a special case of equation, with reference ('it') to the subordinate sentence, right?
-mkUtt (mkCN student_N (mkRS (mkRCl which_RP (mkCN old_A woman_N))));student who is an old woman;是老女人的学生;G;or 老女人的学生;[是-的-necessary?] *TODO*;
-mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash beg_V2V i_NP (mkVPSlash see_V2))));whom does she beg me to see;她乞求我看的是谁 -> 她乞求谁我看;S;她乞求我看的是谁;[是-的-necessary?] *TODO* ;NOTE:  我乞求他留下来，但他却不辞而别。(I begged him to stay, but he left without even saying goodbye.)
 mkUtt (mkCl she_NP (mkRS (mkRCl which_RP (mkVP sleep_V))));it is she who sleeps;睡觉的是她;G;or 睡的人是她;[是-的-necessary?] cf.: 'it is here that she sleeps' *TODO*;THINK: reverse-是-的 and  reverse cleft ALSO NOTE:  the or-case, then 是 used as equational copula!
 mkUtt (mkNP not_Predet everybody_NP);not everybody;不的每个人;B;不是每个人;[是-的-necessary?] noun negation 不是: sentential structure instead of attributive one *TODO*;
 mkUtt (mkCl (mkSC (mkS (mkCl she_NP sleep_V))) (mkVP good_A));that she sleeps is good;她睡觉是好的;S;她睡是好事;[是-的-necessary] *DONE*| add thing_N (事) *TODO*;
-mkUtt (mkCl (mkVP (mkAP (mkAP uncertain_A) (mkQS (mkQCl who_IP sleep_V)))));it is uncertain who sleeps;是不确定谁睡觉的;B;不确定谁睡;[是-的-overuse, cleft without 是] *TODO*;THINK: 是-的 and  pseudo cleft, cleft as judgement (it is uncertain…), but judgement is only a special case of equation, with reference (it) to the subordinate sentence, right?
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人;B;比他老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人;B;老女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人;B;非常老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;THINK: 是-的-construction as variant?
-mkUtt (mkVP married_A2 he_NP) ;to be married to him;是结婚他的;B;和他结婚了/已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
-mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的;B;她和他结婚了/她已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
-mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP married_A2 he_NP)));woman who is married to him;是结婚他的的女人;B;和他结了婚的女人/嫁给他的女人;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*|  [extract] 的 *TODO*;
+mkUtt (mkCl (mkVP (mkAP (mkAP uncertain_A) (mkQS (mkQCl who_IP sleep_V)))));it is uncertain who sleeps;是不确定谁睡觉的;B;不确定谁睡;[是-的-overuse, no cleft sentence, just subordination] *TODO*;THINK: 是-的 and  pseudo cleft, cleft as judgement (it is uncertain…), but judgement is only a special case of equation, with reference (it) to the subordinate sentence, right?
 mkUtt (mkQCl who_IP (mkClSlash (mkClSlash she_NP love_V2) today_Adv));whom does she love today;她今天爱的是谁 -> 她今天爱谁;G;;[是-的-overuse] *DONE*;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash see_V2)));whom does she see;她看的是谁 -> 她看谁;G;;[是-的-overuse] *DONE*;
 mkUtt (mkQCl who_IP (mkClSlash she_NP see_V2));whom does she see;她看的是谁 -> 她看谁;G;;[是-的-overuse] *DONE*;
+mkUtt (mkCN student_N (mkRS (mkRCl which_RP (mkCN old_A woman_N))));student who is an old woman;是老女人的学生;B;or 老女人的学生;[是-的-overuse] *TODO*;
 mkUtt (mkCl here_Adv (mkS (mkCl she_NP sleep_V)) );it is here that she sleeps;她睡觉的是这里;G;or 她(就)睡在这里, 她睡的地方是这里;[是-的-overuse] *TODO*;NOTE: shi-de or eq-copula seems unavoidable, only 她就睡在这里 comes close to emphasizing the place, but not close enough, because 就 (precisely, exactly) modifies the whole VP |THINK: reverse-是-的 and  reverse cleft
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkSC (mkVP sleep_V))));she is ready to sleep;她是准备好睡觉的;G;or 她准备好睡觉了;[是-的-overuse] *TODO*;THINK: final particle |NOTE: SC = embedded sentence or question
 mkUtt (mkCl she_NP (mkAP (mkAP ready_A) (mkVP sleep_V)));she is ready to sleep;她是准备好睡觉的;G;or 她准备好睡觉了;[是-的-overuse] *TODO*;THINK: final particle
@@ -115,6 +107,14 @@ mkUtt (mkVP (mkAP very_AdA old_A));to be very old;是非常老的;G;or 非常老
 mkUtt (mkCl she_NP old_A he_NP);she is older than he;她是比他老的;S;她比他老/她比他大;[是-的-overuse] *TODO*;
 mkUtt (mkCN student_N (mkRS (mkRCl which_RP woman_N)));student who is a woman;是女人的学生;S;女学生;[是-的-overuse] *TODO*;
 mkUtt (mkVP old_A he_NP);to be older than he;是比他老的;S;比他老;[是-的-overuse] *TODO*;
+mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash beg_V2V i_NP (mkVPSlash see_V2))));whom does she beg me to see;她乞求我看的是谁 -> 她乞求谁我看;G;她乞求我看(的是)谁;[是-的-overuse] *TODO* ;NOTE:  我乞求他留下来，但他却不辞而别。(I begged him to stay, but he left without even saying goodbye.)
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A he_NP)));woman who is older than he;是比他老的的女人;B;比他老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP old_A)));woman who is old;是老的的女人;B;老女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP (mkAP very_AdA old_A))));woman who is very old;是非常老的的女人;B;非常老的女人;[是-的-overuse] *TODO*| [extract] 的 *TODO*;THINK: 是-的-construction as variant?
+mkUtt (mkVP married_A2 he_NP) ;to be married to him;是结婚他的;B;和他结婚了/已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkCl she_NP married_A2 he_NP);she is married to him;她是结婚他的;B;她和他结婚了/她已婚，先生是他;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkQCl who_IP married_A2 he_NP);who is married to him;谁是结婚他的;B;谁和他结婚了;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*;
+mkUtt (mkCN woman_N (mkRS (mkRCl which_RP married_A2 he_NP)));woman who is married to him;是结婚他的的女人;B;和他结了婚的女人/嫁给他的女人;[是-的-overuse] *TODO*| [insert] 和 for 结婚 *TODO*|  [extract] 的 *TODO*;
 mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash ask_V2Q (mkQS (mkQCl where_IAdv (mkCl i_NP sleep_V))))));whom does she ask where I sleep;她问说我哪里睡的是谁 -> 她问谁说我哪里睡觉;S;关于我哪里睡觉，她问的是谁, Li: 她问谁我在哪里睡觉 (coll.: 她问的谁我睡哪儿);[是-的-topical/cleft?] *TODO*| [insert] 在 *TODO*| [extract] 说 *TODO*| [是-的-overuse] *DONE*;
 mkUtt (mkNP no_Quant house_N);no house;不间房子;B;没有房子;existential with 有 *TODO*;NOTE: cf. 'there is a house' (G)
 mkUtt (mkS (genericCl (mkVP sleep_V)));one sleeps;睡觉;B;有人睡觉;existential with 有 *TODO*;NOTE: cf. 'there is a house' (G)
@@ -123,6 +123,7 @@ mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine h
 mkUtt (mkCard (mkNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine;九九十九;B;九百九十九;WAITING;
 mkUtt (mkCard (thousandfoldNumeral (mkSub1000 n9_Unit (mkSub100 n9_Unit n9_Unit))));nine hundred and ninety - nine thousand;九九万九千;B;九十九万九千;WAITING;
 mkUtt (mkQCl who_IP paint_V2A it_NP (mkAP very_AdA red_A));who paints it very red;谁把它画非常红 -> 谁画它非常红;S;谁把它画得非常红;把-variant *TODO*;
+mkPhr (mkQS conditionalTense (mkQCl (mkCl she_NP sleep_V))) ;would she sleep;她睡觉着吗;B;她睡吗;;THINK: [tense] conditionalTense inserting 可能/大概/会?
 always_AdV;always;一直;G;;;
 as_CAdv;as;和;G;;;
 but_PConj;but;但是;G;;;
@@ -132,7 +133,6 @@ mkPhr (lets_Utt (mkVP sleep_V));let's sleep;咱们睡觉吧;G;;;
 mkPhr (mkCl she_NP sleep_V);she sleeps;她睡觉;G;;;
 mkPhr (mkImp sleep_V);sleep;睡觉;G;;;
 mkPhr (mkPConj and_Conj) (mkUtt now_Adv);and now;现在;G;;;
-mkPhr (mkQS conditionalTense (mkQCl (mkCl she_NP sleep_V))) ;would she sleep;她睡觉着吗;B;她睡吗;;THINK: [tense] conditionalTense inserting 可能/大概/会?
 mkRP in_Prep (mkNP all_Predet (mkNP the_Quant pluralNum city_N)) which_RP;all the cities in whom;在所有城市中的;G;;;
 mkSC (mkQS (mkQCl who_IP sleep_V));who sleeps;谁睡觉;G;;;
 mkSC (mkS (mkCl she_NP sleep_V));that she sleeps;她睡觉;G;;;
@@ -152,7 +152,6 @@ mkUtt (here7from_Adv);from here;从这里;G;;;
 mkUtt (here7to_Adv);to here;到这里;G;;;
 mkUtt (mkAdv above_Prep it_NP);above it;它上边;G;;;
 mkUtt (mkAdv after_Prep it_NP);after it;它以后;G;;;
-mkUtt (mkAdv and_Conj here_Adv now_Adv);here and now;这里现在;S;此时此刻;;THINK: [idiomatic wording] how easy to switch to this idiomatic expression, when mkAdv and_Conj ?
 mkUtt (mkAdv because_Subj (mkS (mkCl she_NP sleep_V)));because she sleeps;因为她睡觉所以;G;;;
 mkUtt (mkAdv before_Prep it_NP);before it;它从前 -> 它之前;G;;;
 mkUtt (mkAdv behind_Prep it_NP);behind it;在它后面;G;;;
@@ -209,20 +208,18 @@ mkUtt (mkCard (mkNumeral n9_Unit));nine;九;G;;;
 mkUtt (mkCl (mkCN old_A house_N));there is an old house;有一间老房子;G;;;NOTE: existentials with 有
 mkUtt (mkCl (mkNP many_Det house_N));there are many houses;有很多房子;G;;;NOTE: existentials with 有
 mkUtt (mkCl house_N);there is a house;有一间房子;G;;;NOTE: existentials with 有
-mkUtt (mkCl rain_V0 );it rains;下雨;G;;;
+mkUtt (mkCl rain_V0 );it rains;下雨;G;;;NOTE: impersonal verb
 mkUtt (mkCl she_NP (mkVP always_AdV (mkVP sleep_V)));she always sleeps;她一直睡觉;G;;;
-mkUtt (mkCl she_NP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));she answers to him that we sleep;她回答他说我们睡觉;G;她回答他说我们睡觉了 (better with 了？);;THINK: final particle
+mkUtt (mkCl she_NP answer_V2S he_NP (mkS (mkCl we_NP sleep_V)));she answers to him that we sleep;她回答他说我们睡觉;G;她回答他说我们睡觉了;;THINK: final particle
 mkUtt (mkCl she_NP ask_V2Q he_NP (mkQS (mkQCl who_IP sleep_V)));she asks him who sleeps;她问他说谁睡觉;G;她问他说谁睡觉了;;THINK: final particle
 mkUtt (mkCl she_NP become_VA old_A);she becomes old;她变老;G;;;
 mkUtt (mkCl she_NP beg_V2V he_NP (mkVP sleep_V));she begs him to sleep;她乞求他睡觉;G;;;
 mkUtt (mkCl she_NP here_Adv);she is here;她在这里;G;;;
 mkUtt (mkCl she_NP love_V2 he_NP);she loves him;她爱他;G;;;
-mkUtt (mkCl she_NP say_VS (mkS (mkCl i_NP sleep_V)));she says that I sleep;她说我睡觉;S;(naked verb, preferably with 她说我睡了, or 她说我在睡 or etc);;THINK: final particle
 mkUtt (mkCl she_NP sleep_V);she sleeps;她睡觉;G;;;
 mkUtt (mkCl she_NP sleep_V);she sleeps;她睡觉;G;;;
 mkUtt (mkCl she_NP want_VV (mkVP sleep_V));she wants to sleep;她想睡觉;G;;;
 mkUtt (mkCl she_NP woman_N);she is a woman;她是女人;G;;;
-mkUtt (mkCl she_NP wonder_VQ (mkQS (mkQCl who_IP sleep_V)));she wonders who sleeps;她好奇谁睡觉;S;(naked verb, preferably with 她好奇谁睡了, or 她好奇谁在睡 or etc);;THINK: final particle
 mkUtt (mkCN (mkAP very_AdA big_A) (mkCN blue_A house_N));very big blue house;非常大的蓝房子;G;;;
 mkUtt (mkCN (mkAP very_AdA big_A) house_N  );very big house;非常大的房子;G;;;
 mkUtt (mkCN (mkCN big_A house_N) (mkAdv on_Prep (mkNP the_Det hill_N)));big house on the hill;在山上的大房子;G;;;
@@ -251,7 +248,6 @@ mkUtt (mkCN woman_N (mkRS (mkRCl which_RP sleep_V)));woman who sleeps;睡觉的�
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP want_VV (mkVP sleep_V))));woman who wants to sleep;想睡觉的女人;G;;;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP we_NP love_V2)));woman whom we love;我们爱的女人;G;;;
 mkUtt (mkCN woman_N (mkRS (mkRCl which_RP wonder_VQ (mkQS (mkQCl who_IP sleep_V)))));woman who wonders who sleeps;好奇谁睡觉的女人;G;;;
-mkUtt (mkCN woman_N (mkRS conditionalTense anteriorAnt negativePol (mkRCl which_RP sleep_V)));woman who wouldn't have slept;不睡觉的女人;S;没睡的女人;;THINK: [tense] conditionalTense inserting 可能/大概/会?
 mkUtt (mkCN woman_N (mkRS or_Conj (mkRS (mkRCl which_RP sleep_V)) (mkRS (mkRCl which_RP we_NP love_V2))));woman who sleeps or whom we love;睡觉的还是我们爱的女人;G;睡觉的女人还是我们爱的女人;;
 mkUtt (mkIAdv in_Prep (mkIP which_IQuant city_N));in which city;哪个城市里;G;;;
 mkUtt (mkIAdv where_IAdv (mkAdv in_Prep (mkNP paris_PN)));where in Paris;巴黎里哪里 -> 在巴黎中哪里;G;;;
@@ -269,7 +265,6 @@ mkUtt (mkIP which_IQuant city_N);which city;哪个城市;G;;;
 mkUtt (mkIP which_IQuant house_N);which house;哪间房子;G;;;
 mkUtt (mkIP whichPl_IDet house_N);which houses;那些房子;G;;;
 mkUtt (mkIP who_IP (mkAdv in_Prep (mkNP paris_PN)));who in Paris;在巴黎中的谁;G;;;THINK: cf. 'where in Paris' (no 的-insert)
-mkUtt (mkNP (mkCN old_A beer_N));old beer;老啤酒;S;陈年的啤酒 (but: 陈年 also indicates good quality of liquor by aging, which is not quite the case with beer);;NOTE: no 的-insert here (while in other cases, e.g. RCl, this takes place) 
 mkUtt (mkNP (mkDet (mkCard (mkNumeral n5_Unit))));five;五个;G;;;
 mkUtt (mkNP (mkDet (mkNumeral n5_Unit)));five;五个;G;;;
 mkUtt (mkNP (mkDet i_Pron  (mkNum (mkNumeral n5_Unit))));my five;我的五个;G;;;
@@ -331,7 +326,6 @@ mkUtt (mkQCl (mkIComp who_IP) (mkNP this_Det man_N));who is this man;这个男�
 mkUtt (mkQCl (mkIP which_IQuant city_N));which city is there;有哪个城市;G;;;
 mkUtt (mkQCl where_IAdv she_NP );where is she;她在哪里;G;;;
 mkUtt (mkQCl who_IP (mkAP very_AdA old_A));who is very old;谁是非常老的;G;;;
-mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash beg_V2V (mkVP sleep_V))));whom does she beg to sleep;她乞求谁睡觉;S;她求谁去睡觉;;THINK: [insert] 去 only necessary if the addressee is not yet lying in bed?!
 mkUtt (mkQCl who_IP (mkCN old_A woman_N));who is an old woman;谁是老女人;G;;;
 mkUtt (mkQCl who_IP (mkVP (mkVP sleep_V) here_Adv));who sleeps here;谁在这里睡觉;G;;;
 mkUtt (mkQCl who_IP (mkVP always_AdV (mkVP sleep_V)));who always sleeps;谁一直睡觉;G;;;
@@ -350,8 +344,6 @@ mkUtt (mkQCl who_IP wonder_VQ (mkQS (mkQCl who_IP sleep_V)));who wonders who sle
 mkUtt (mkQCl why_IAdv (mkCl she_NP sleep_V));why does she sleep;她为什么睡觉;G;;;
 mkUtt (mkQCl with_Prep who_IP (mkCl she_NP sleep_V));with whom does she sleep;她和谁一起睡觉;G;;;
 mkUtt (mkQS (mkCl she_NP sleep_V));does she sleep;她睡觉吗;G;;;
-mkUtt (mkS conditionalTense (mkCl she_NP sleep_V));she would sleep;她睡觉着;S;她会睡;;THINK: [tense] conditionalTense: 会 seems fine here. Cf. 要是你不给她钱, 她就不会给你做事。Interpretation of 会 here in between future and possibility. Cf.大家共同努力则一定能把事情做好。坚持不解则会成功。会 (knowhow) 能 (capability)
-mkUtt (mkS conditionalTense anteriorAnt negativePol (mkCl she_NP sleep_V));she wouldn't have slept;她不睡觉;S;她不可能睡过;;THINK: [tense] conditionalTense inserting 可能/大概/会?
 mkUtt (mkS negativePol (mkCl she_NP sleep_V));she doesn't sleep;她不睡觉;G;她不睡觉;;THINK: final particle
 mkUtt (mkS pastTense (mkCl she_NP sleep_V));she slept;她睡觉了;G;;;
 mkUtt (mkS pastTense (mkCl she_NP sleep_V));she slept;她睡觉了;G;;;
@@ -398,15 +390,11 @@ mkUtt how8much_IAdv;how much;多少;G;;;
 mkUtt i_NP;I;我;G;;;
 mkUtt it_NP;it;它;G;;;
 mkUtt nobody_NP;nobody;没人;G;;;
-mkUtt pluralImpForm (mkImp (mkVP man_N));be men;是男人;S;作男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
-mkUtt politeImpForm (mkImp (mkVP man_N));be a man;是男人;S;作个男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
 mkUtt she_NP;she;她;G;;;
-mkUtt singularImpForm (mkImp (mkVP man_N));be a man;是男人;S;作个男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
 mkUtt somebody_NP;somebody;某人;G;;;
 mkUtt something_NP;something;某事;G;;;
 mkUtt that_NP;that;那个;G;;;
 mkUtt these_NP;these;这些;G;;;
-mkUtt they_NP;they;他们;S;;;NOTE: though he, she, it all have its corresponding plural term: 他们，她们，它们
 mkUtt this_NP;this;这个;G;;;
 mkUtt those_NP;those;那些;G;;;
 mkUtt we_NP;we;我们;G;;;
@@ -427,3 +415,15 @@ only_Predet;only;只有;G;;;
 please_Voc;please;请;G;;;
 therefore_PConj;therefore;因此;G;;;
 yes_Utt;yes;对;G;;;
+mkUtt (mkAdv and_Conj here_Adv now_Adv);here and now;这里现在;S;此时此刻;;THINK: [idiomatic wording] how easy to switch to this idiomatic expression, when mkAdv and_Conj ?
+mkUtt (mkCl she_NP say_VS (mkS (mkCl i_NP sleep_V)));she says that I sleep;她说我睡觉;S;(naked verb, preferably with 她说我睡了, or 她说我在睡 or etc);;THINK: final particle
+mkUtt (mkCl she_NP wonder_VQ (mkQS (mkQCl who_IP sleep_V)));she wonders who sleeps;她好奇谁睡觉;S;(naked verb, preferably with 她好奇谁睡了, or 她好奇谁在睡 or etc);;THINK: final particle
+mkUtt (mkCN woman_N (mkRS conditionalTense anteriorAnt negativePol (mkRCl which_RP sleep_V)));woman who wouldn't have slept;不睡觉的女人;S;没睡的女人;;THINK: [tense] conditionalTense inserting 可能/大概/会?
+mkUtt (mkNP (mkCN old_A beer_N));old beer;老啤酒;S;陈年的啤酒 (but: 陈年 also indicates good quality of liquor by aging, which is not quite the case with beer);;NOTE: no 的-insert here (while in other cases, e.g. RCl, this takes place) 
+mkUtt (mkQCl who_IP (mkClSlash she_NP (mkVPSlash beg_V2V (mkVP sleep_V))));whom does she beg to sleep;她乞求谁睡觉;S;她求谁去睡觉;;THINK: [insert] 去 only necessary if the addressee is not yet lying in bed?!
+mkUtt (mkS conditionalTense (mkCl she_NP sleep_V));she would sleep;她睡觉着;S;她会睡;;THINK: [tense] conditionalTense: 会 seems fine here. Cf. 要是你不给她钱, 她就不会给你做事。Interpretation of 会 here in between future and possibility. Cf.大家共同努力则一定能把事情做好。坚持不解则会成功。会 (knowhow) 能 (capability)
+mkUtt (mkS conditionalTense anteriorAnt negativePol (mkCl she_NP sleep_V));she wouldn't have slept;她不睡觉;S;她不可能睡过;;THINK: [tense] conditionalTense inserting 可能/大概/会?
+mkUtt pluralImpForm (mkImp (mkVP man_N));be men;是男人;S;作男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
+mkUtt politeImpForm (mkImp (mkVP man_N));be a man;是男人;S;作个男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
+mkUtt singularImpForm (mkImp (mkVP man_N));be a man;是男人;S;作个男人;;THINK: [imperative] full verb 是 -> 作？yes! cf. 'to be the woman' (no imperativ)
+mkUtt they_NP;they;他们;S;;;NOTE: though he, she, it all have its corresponding plural term: 他们，她们，它们

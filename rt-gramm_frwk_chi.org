@@ -591,27 +591,28 @@ DShopping> ! pwd
 
 * Evaluation der chinesischen Ressourcen Grammatik
 ** Signpost: Why again chinese and GF? :: move to other place!
-** Arbeitsdaten
-Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. 陈鹏s Evaluationsdokument ist auffindbar unter \cite{_eng_chi2.txt_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
-#+BEGIN_SRC empty
+** Daten und Arbeitsschritte
+*** Ergebnisse der ersten Implementierung als Grundlage
+Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. Das Evaluationsdokument von 陈鹏 ist auffindbar bei \cite{_eng_chi2.txt_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
+#+BEGIN_src haskell
 mkUtt (mkVP beg_V2V he_NP (mkVP sleep_V))
 to beg him to sleep
 把他乞求睡 BAD 乞求他睡
 #+END_SRC
-Die erste Zeile zeigt den API-Funktions-Baum in Klammernotation, die zweite die aus diesem Baum resultierende englische Linearisierung und die dritte die ebenso resultierende chinesische -- wobei die letztere Zeile zudem immer ein Kommentar bezüglich der Güte des Linearisierungsergebnisses sowie optional einen Korrekturvorschlag enthält.
+Die erste Zeile zeigt den API-Funktions-Baum in Klammernotation, die zweite die aus diesem Baum resultierende englische Linearisierung und die dritte die ebenso resultierende chinesische -- wobei die letztere Zeile zudem immer ein Kommentar bezüglich der Güte des Linearisierungsergebnisses (~GOOD~, ~BAD~ oder ~SOSO~) sowie optional einen Korrekturvorschlag enthält.
 
 Insgesamt handelt es sich um 450 Einträge, deren Bäume und die dazugehörige engl. Muster-Linearisierung (Zeile 2) aus der RGL-API-Synopse[fn::REFTODO: auf die Synopse sollte schon früher verwiesen werden! \cite{bringert_gf_2015}] entnommen sind. Die einfachsten davon bestehen nur aus einem Funktionsaufruf, der keine Argumente benötigt:
 
-| API-Baum-Element | engl. Linear. | chin. Linear. | Güte |
-|------------------+---------------+---------------+-------|
-| therefore_PConj  | therefore     | 因此          | GOOD  |
-| always_AdV       | always        | 一直          | GOOD  |
+| API-Funktion    | engl. Linear. | chin. Linear. | Güte |
+|-----------------+---------------+---------------+-------|
+| therefore_PConj | therefore     | 因此          | GOOD  |
+| always_AdV      | always        | 一直          | GOOD  |
 
 Die kompliziertesten sind Bäume wie etwa dieser verschachtelte Fragesatz:
 
 #+CAPTION[eng_chi2: Komplexer Eintrag]: Ein komplexer Satz mittels der RGL-API (API-Funktions-Baum zwecks Lesbarkeit formatiert)
 #+NAME: ec2_whom_does
-#+BEGIN_SRC empty
+#+BEGIN_src haskell
 mkUtt
  (mkQCl who_IP
         (mkClSlash she_NP know_VS
@@ -623,30 +624,48 @@ mkUtt
 whom does she know that we hadn't seen
 她知道我们不看了的是谁 SOSO 我们没看过的人里，她认识谁
 #+END_SRC
+# TODO: Relation zu »whom does she beg me to see«? (-> andere Verbkonstruktion: beg / 乞求 braucht ein Pronomen im Anschluss; bei 知道 aber kann im Anschluss das Fragepronomen kommen!)
+# aktuelle Linear.: 她 知 道 谁 我 们 不 看 了
 
-Die Auswahl der 450 Bäume erhebt keinen Anspruch auf eine vollständige Darstellung der RGL, aber in jedem Fall lassen sich anhand dieser vielerlei syntaktische Strukturen auf (a) grammatische und (b) pragmatische Korrektheit (gängiges, gutes Chinesisch) hin prüfen. ~GOOD~ bescheinigt daher, dass sowohl (a) und (b) zutreffen; ~BAD~, dass (a) nicht zutrifft; und ~SOSO~, dass zwar (a) zutrifft, aber (b) nicht.[fn::\cite[33]{_implementation_2013}. Zusätzlich zu diesen Kriterien sollte natürlich auch immer die /inhaltlich/ korrekte Umsetzung des Funktionsbaums in die Linearisierung gewährleistet sein. So ist das Ergebnis (~她知道我们不看了的是谁~) aus Auflistung [[ec2_whom_does]] nur grammatisch korrekt, insofern man es als Negation einer abgeschlossenen Handlung in der Zukunft (~不看了~) deutet. Jedoch ist die Zukunft durch den Funktionsbaum in Zeile 5 nicht gemeint, sondern vielmehr die Vergangenheit (\inlst$pastTense anteriorAnt$), welche aber nicht mittels 不 sondern mit 没（有） verneint wird, was insgesamt die Einstufung in Güteklasse ~SOSO~ wegen inhaltlich-grammatischer Inkorrektheit als sehr optimistisch erscheinen lässt. Theoretisch hätte dieses Ergebnis also genauso gut als ~BAD~ klassifiziert werden können, praktisch gesehen ist dieses Dilemma aber einerlei, da uns im Zuge der Auswertung beide Arten von Mangelfällen besonders interessieren.]
+Die Auswahl der 450 Bäume erhebt keinen Anspruch auf eine vollständige Darstellung der RGL, aber in jedem Fall lassen sich anhand dieser vielerlei syntaktische Strukturen auf (a) grammatische und (b) praktische Korrektheit (gängiges, gutes Chinesisch, das dem gewohnten Sprachgebrauch entspricht) hin prüfen. ~GOOD~ bescheinigt daher, dass sowohl (a) und (b) zutreffen; ~BAD~, dass (a) nicht zutrifft; und ~SOSO~, dass zwar (a) zutrifft, aber (b) nicht.[fn::\cite[33]{_implementation_2013}.]
+
+# TODO: Beispiel für die Güteklassen hier?
 
 Unter Anwendung dieser Kriterien gelangte Chen zu dem Resultat, dass 338 der 450 Testfälle eine gute Linearisierung besitzen, womit auf die beiden Mangelkategorien insgesamt 112 -- aufgeschlüsselt in 80 mal ~SOSO~, 32 mal ~BAD~ -- entfielen. Auch wenn nur 7% der Ergebnisse schlecht ausfielen, so wies Chen doch darauf hin, dass chinesische Charakteristika, wie Wortstellung, Funktionswörter und verschiedene Arten von komlexen und flexiblen Phrasenstrukturen, noch nicht gut gehandhabt werden.[fn::\cite[34]{_implementation_2013}.]
-** Auswertungsmethodik
-Zur besseren Handhabbarkeit der einzelnen Einträge sowie der verschiedenen Kategorien innerhalb dieser wurde Chens Dokument in ein simples Tabellen-Dateiformat überführt.[fn:: Zu finden unter https://github.com/salamynder/mag15/blob/master/tests/eng_chi3.csv .]
 
-Aufgabe meinerseits war es nun, Chens Liste erneut durchzusehen, um zu klären, welche chinesischen C
-- 
-- eine Fehler-Kategorisierung innerhalb dieser Liste vorzunehmDie chinesische Linearsierung ließ sich mittels des Quellcode-Moduls ~api/TryChi.gf~ bzw. des kompilierten Moduls ~alltenses/TryChi.gfo~ reproduzieren, wobei hier auch schon Abweichungen, wie in den eben angeführten Beispiel, zu beobachten waren:
-#+BEGIN_SRC empty
-mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
-woman who begs him to sleep
-把他乞求睡的女人 BAD 求他睡的女人
-#+END_SRC
-#+BEGIN_SRC empty
+*** Auswertungsschritte und Datenaufbereitung
+Anhand der von Chen aufgezeigten Problemfälle bewerte ich das grammatische Phänomen, das diesem Problemfall zu Grunde liegt, hinsichtlich der Implementierbarkeit in die chinesische Ressourcen Grammatik. Mit anderen Worten sind die Schritte, die bei der Evaluation durchlaufen werden, folgende:
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- Ist das Problem durch GF und innerhalb der RGL lösbar?
+   - wenn ja, dann: Lösung andeuten / Problematik untersuchen
+   - wenn nein, dann:
+     a. Limitationen von GF/RGL aufzeigen und/oder
+     b. generelle Schwierigkeit/Unmöglichkeit besprechen (bezieht sich meist auf Kontextbasiertheit des Problems)
+
+Bevor mit der Identifizierung von Problemen und Problemfeldern begonnen werden konnte, wurden Chens Daten bereinigt (z.B. gab es vereinzelte Duplikate) und Linearisierungen aktualisiert, die sich seit Ende 2012 verändert haben (siehe nächste Sektion [[how-to-test]]).
+
+Zur besseren Handhabbarkeit der einzelnen Einträge sowie der verschiedenen Kategorien innerhalb dieser (Sortierbarkeit) wurde Chens Dokument in ein simples Tabellen-Dateiformat überführt.[fn:: Siehe: https://github.com/salamynder/mag15/blob/master/tests/eng_chi3.csv . Die einzelnen Zellen einer Zeile sind durch jeweils ein Semikolon getrennt.] Aus dieser neuen Tabellen-Datei werden wiederum alle Auswertungs-Tabellen, die sich in diesem Dokument befinden, generiert.
+
+*** Reproduktion der Linearisierungen
+<<how-to-test>>
+Die chinesische Linearisierung der API-Funktionen lässt sich mittels des Quellcode-Moduls ~api/TryChi.gf~ (bzw. des kompilierten Moduls ~alltenses/TryChi.gfo~) sowie des GF-Kommandos ~compute_concrete~ (~cc~) reproduzieren:
+#+BEGIN_src haskell
 > i -retain alltenses/TryChi.gfo
 > cc -one mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
 乞 求 他 睡 觉 的 女 人
 #+END_SRC
-** Konstruktionen mit 是-（的）
-Die 是-的-Konstruktion bietet eine Möglichkeit, bestimmte Satzglieder zu betonen, und erfüllt daher dieselbe Funktion wie Spaltsätze im Deutschen oder Englischen. \xpinyin*{是} für sich genommen ist aber auch einfach das Vollverb »sein«, das für Klassifikation und Äquation zuständig ist. In den folgenden Daten wird genauer auf diese Parallelen und Funktionen eingegangen.
+# TODO: explain -one here ?!
 
-Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der Einsatz von 是-（的） entweder unbedingt vonnöten oder aber auch sehr angeraten erscheint, und solche, in denen die Verwendung schlichtweg grammatisch falsch oder eine pragmatisch unsachgemäße Betonung hervorgerufen wird.
+#  wobei hier auch schon Abweichungen, wie in den eben angeführten Beispiel, zu beobachten waren:
+# #+BEGIN_src haskell
+# mkUtt (mkCN woman_N (mkRS (mkRCl which_RP beg_V2V he_NP (mkVP sleep_V))))
+# woman who begs him to sleep
+# 把他乞求睡的女人 BAD 求他睡的女人
+# #+END_SRC
+** Konstruktionen mit 是-（的）
+Die 是-的-Konstruktion bietet eine Möglichkeit, bestimmte Satzglieder zu betonen, und erfüllt daher dieselbe Funktion wie Sperr- und Spaltsätze im Deutschen oder Englischen. 是 (shì) für sich genommen ist aber auch einfach das Vollverb »sein«, das für Klassifikation und Äquation zuständig ist. In den folgenden Daten wird genauer auf diese Parallelen und Funktionen eingegangen.
+
+Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der Einsatz von 是-（的）\hspace{0.2em} entweder unbedingt vonnöten oder aber auch sehr angeraten erscheint, und solche, in denen die Verwendung schlichtweg grammatisch falsch ist oder durch diese eine ungewöhnliche Betonung hervorgerufen wird.
 *** Verwendung unnötig oder falsch [是-的-overuse]
 **** Mit guter Bewertung:
 #+BEGIN_LaTeX
@@ -671,7 +690,7 @@ Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der E
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright \api \par &
+    \scriptsize\raggedright\tt \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -682,19 +701,121 @@ Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der E
 }
 \end{longtable}
 #+END_LaTeX
-Man beachte, dass die ersten drei Zeilen der obigen Tabelle die angestrebte Korrektur schon zeitigen, d.h. 是-的 wird hier standardmäßig nicht mehr benutzt, was sich anhand der Chinesisch-Spalte zeigt, in der geteilt durch einen Pfeil (~->~) ein älteres und ein aktuelles Linearisierungsergebnis dokumentiert ist.[fn:: Diese positive Veränderung ist dokumentiert in Commit ba6bd33b vom 08.10.2013 und betrifft vor allem die Funktion ~QuestSlash~ aus \inlst$chinese/QuestionChi.gf$, die aufgerufen wird, wenn ~mkQCl~ als zweites Argument eines vom Typ ~ClSlash~ -- also einem Satz (Clause), der ohne sein Subjekt (~NP~) prädiziert wird -- nimmt. REFTODO:Explanation:Slash!]
 
-In den restlichen Zeilen sieht man an der Chinesisch-Linearisierung, dass hier noch kein Paradigma vorhanden ist, welches auf die Konstruktion mit 是-的 verzichten würde. Vielmehr zeigt sich, dass 是 als Äquationalkopula in allen Fällen (mkCl : NP -> A/AP -> Cl) Anwendung findet, was vor allem in den Zeilen 5 bis 10 problematisch ist, da hier über die Äquation keine besondere Betonung realisiert wird. Zum Beispiel ist in der Aussage von Zeile 8 »she is old« grammatisch völlig unbetont, weswegen das chinesische Äquivalent eher heißen sollte 「她很老」 anstatt 「她是老的」.[fn:: Für die Unterscheidung zwischen der Bildung des Ajektivprädikats mittels 很 oder 是， siehe \cite[126f.]{motsch_grundlagen_2010}. A.a.O. ist auch bemerkenswert, dass die Klassifizierung als alt in 「她是老的」 abwertend gemeint sein kann, wie in 姓王的， 不过是个教书的 -- wobei man hier einwenden mag, dass auch 个教书的 (»einer der aus Büchern lehrt«) schon keine Respektsbezeugung darstellt. Dennoch bliebe festzuhalten, dass hier 是 als Äquationskopula den formalen Rahmen für die Klassifikation durch Äquation schafft.] 
+<<mkqcl-better>>
+Man beachte, dass die ersten vier Zeilen der obigen Tabelle die angestrebte Korrektur schon zeitigen, d.h. 是-的 wird hier standardmäßig nicht mehr benutzt, was sich anhand der Chinesisch-Spalte zeigt, in der geteilt durch einen Pfeil (~->~) ein älteres und ein aktuelles Linearisierungsergebnis dokumentiert ist.[fn:: Diese positive Veränderung ist dokumentiert in Commit ba6bd33b vom 08.10.2013 und betrifft vor allem die Funktion ~QuestSlash~ aus \inlst$chinese/QuestionChi.gf$, die aufgerufen wird, wenn ~mkQCl~ als zweites Argument eines vom Typ ~ClSlash~ -- also einem Satz (Clause), der ohne sein Objekt (~NP~) prädiziert wird -- nimmt. REFTODO:Explanation:Slash!]
 
-Umgekehrt scheint aber eine grammatische Betonung von »here« in Zeile 4 [(a) »it is here that she sleeps«] durchaus vorzuliegen, denn die Satzaussage könnte auch einfacher mit (b) »she sleeps here« gebildet werden, wobei die Auslagerung eines zu betonenden Satzgliedes in einen vorangestellten unpersönlichen Satz (»it is \ldots{}«) gemeinhin als Kluft- oder /Spaltsatz/ bekannt ist.[fn::REFTODO Hadumod] Mit der gegebenen grammatischen Betonung im Englischen sollte also auch das chinesische Äquivalent eine Hervorhebung des Ortes, also 这里/儿, genießen dürfen, woraus sich mindestens zwei Möglichkeiten ergeben:
+#+name: good-whom-does-she-see
+#+caption[whom-does-she-see]: »whom does she see« / 谁 richtig positioniert
+#+BEGIN_SRC haskell
+mkUtt
+ (mkQCl who_IP
+        (mkClSlash she_NP
+                   (mkVPSlash see_V2)))
+$\Downarrow$ 她 看 谁
+#+END_SRC
 
-- (1) 「她睡觉的是这里」\hspace{0.3em}(s. Zeile 4)
-  - Hier wäre eine Voranstellung von "hier/这里" und sodann auch das Einfügen von 就 möglich: 「这（里）（就）是她睡觉的地方」
+Zusätzlich zu Zeile 4: »whom does she beg me to see«
+
+Auch wenn die eben erwähnte Regel gut für diesen Fall funktioniert, ist die Position des Interrogativpronomens 谁 (shéi, wer) falsch gewählt. Die Behebung dieses Fehlers ist höchstwahrscheinlich nicht problematisch, da hier nur die Kernfunktion ~QuestSlash~ (aufgerufen durch mkQCl: IP -> CLSlash -> QCl) angepasst werden muss.
+# TODO: Inwieweit hier Lösungsweg illustrieren?
+
+#+caption[whom-does-she-beg-me-to-see]: »whom does she beg me to see« / 谁 falsch positioniert
+#+BEGIN_SRC haskell
+mkUtt
+ (mkQCl who_IP
+        (mkClSlash she_NP
+                   (mkVPSlash beg_V2V i_NP
+                              (mkVPSlash see_V2))))
+$\Downarrow$ 她 乞 求 谁 我 看
+#+end_src
+# -- aus der Synopse das API-Beispiel für die Funktion:
+# --     mkVPSlash : V2V -> NP -> VPSlash -> VPSlash
+
+# -- mkQCl muss dann diese Datenstruktur anders nutzen:
+# > cc mkClSlash she_NP (mkVPSlash beg_V2V i_NP (mkVPSlash see_V2))
+# {s = table
+#        ParamX.Polarity
+#        [table
+#           ResChi.Aspect
+#           ["她" ++ ("乞" ++ "求") ++ "我" ++ "看";
+#            "她" ++ (("乞" ++ "求") ++ "了") ++ "我" ++ "看";
+#            "她" ++ (("乞" ++ "求") ++ "着") ++ "我" ++ "看";
+#            "她" ++ ("在" ++ "乞" ++ "求") ++ "我" ++ "看";
+#            "她" ++ (("乞" ++ "求") ++ "过") ++ "我" ++ "看"];
+#         table
+#           ResChi.Aspect
+#           ["她" ++ ("不" ++ "乞" ++ "求") ++ "我" ++ "看";
+#            "她" ++ ("不" ++ ("乞" ++ "求") ++ "了") ++ "我" ++ "看";
+#            "她" ++ ("不" ++ "乞" ++ "求") ++ "我" ++ "看";
+#            "她" ++ ("不" ++ "在" ++ "乞" ++ "求") ++ "我" ++ "看";
+#            "她" ++ ("不" ++ ("乞" ++ "求") ++ "过") ++ "我" ++ "看"]];
+#  np = "她";
+#  vp = {compl = "我" ++ "看"; prePart = []; topic = [];
+#        verb = {s = "乞" ++ "求";
+#                c2 = {advType = ResChi.ATPlace Prelude.False; prepPost = [];
+#                      prepPre = []; lock_Prep = <>};
+#                c3 = {advType = ResChi.ATPlace Prelude.False; prepPost = [];
+#                      prepPre = []; lock_Prep = <>};
+#                dp = "在"; ds = "着"; ep = "过"; hasPrep = Prelude.False; neg = "不";
+#                part = []; pp = "了"; sn = "乞" ++ "求"; lock_V2V = <>}};
+#  c2 = {advType = ResChi.ATPlace Prelude.False; prepPost = [];
+#        prepPre = []; lock_Prep = <>};
+
+# mkUtt
+#  (mkQCl who_IP
+#         (mkClSlash she_NP
+#                    (mkVPSlash beg_V2V i_NP -- beg me to buy
+#                               (mkVPSlash see_V2))))
+# Wenn zu 她乞求我看谁 linearisiert wird, dann auch gut.
+
+# -- whom does she love today
+# mkUtt
+#  (mkQCl who_IP
+#         (mkClSlash
+#          (mkClSlash she_NP love_V2) today_Adv))
+# TODO: this qu-case is interesting!
+# -- whom does she beg to sleep, now: 她乞求谁睡觉, req: 她求谁去(!)睡觉
+# mkUtt
+#  (mkQCl who_IP
+#         (mkClSlash she_NP
+#                    (mkVPSlash beg_V2V
+#                               (mkVP sleep_V))))
+# -- \cite[228]{yip_chinese:_2004}: 去 + zweites Verb: Einleitung des Ziels/Absicht; vor dieser Kombination ist aber eigentlich ein Koverb, aber auch bei den angegebenen Beispielen fungieren die Koverben scheinbar eher als richtige Verben benutzt.
+
+<<besser-kein-shi-de-weil-unbetont>>
+Die restlichen Zeilen (5--11) haben gemeinsam, dass hier noch kein Paradigma vorhanden ist, welches auf die Konstruktion mit 是-的 verzichten würde. 是 findet als Äquationalkopula in allen Fällen (mkCl : NP -> A/AP -> Cl) Anwendung, was vor allem in den Zeilen 5 bis 10 problematisch ist, da hier über die Äquation keine besondere Betonung realisiert wird. Zum Beispiel ist in der Aussage von Zeile 8 »she is old« grammatisch völlig unbetont, weswegen das chinesische Äquivalent eher heißen sollte \hspace{0.2em}「她很老」\hspace{0.2em} anstatt \hspace{0.2em}「她是老的」.[fn:: Für die Unterscheidung zwischen der Bildung des Ajektivprädikats mittels 很 oder 是， siehe \cite[126f.]{motsch_grundlagen_2010}: Die Klassifizierung mittels  是+Adjektiv+的 kann z.B. pejorativ gebraucht werden, wie etwa in 「姓王的， 不过是个教书的！」\hspace{0.3em} （Dieser Wang ist bloß Lehrer!） -- wobei hier aber allein schon die Vokabel 个教书的 (jmd. der aus Büchern lehrt) gegenüber den respektsbezeugenden Anreden 教授 (jiàoshòu, Professor) und 老师 (lǎoshī, Lehrer) despektierlich ist.\\
+Für die Unterscheidung der Nutzung von 是 oder nicht ist allgemein auch anzumerken, dass nicht-steigerbare Adjektive standardmäßig mit 是 prädiziert werden. Cf. \cite[69]{yip_chinese:_2004}.]
+
+#+name: lst:what-to-change
+#+caption[Suche nach relevanten Funktionen]: Ob nun Fragesatz oder Aussagesatz: Viele der unterliegenden Kernfunktionen von mkCl und mkQCl sind gleich; angepasst werden müssen nur ~PredVP~ und ~QuestVP~.
+#+BEGIN_SRC haskell
+-- api/Constructors.gf
+      mkCl : NP -> A -> NP -> Cl
+        = \x,y,z -> PredVP  x (UseComp (CompAP (ComparA y z))) ;
+
+      mkQCl : IP -> A -> NP -> QCl
+        = \x,y,z -> QuestVP x (UseComp (CompAP (ComparA y z))) ;
+#+END_SRC
+
+
+Zu Zeile 11 (»it is here that she sleeps«):
+
+Umgekehrt scheint aber eine grammatische Betonung von »here« in Zeile 4 [(a) »it is here that she sleeps«] durchaus vorzuliegen, denn die Satzaussage könnte auch einfacher mit (b) »she sleeps here« gebildet werden, wobei die Auslagerung eines zu betonenden Satzgliedes in einen vorangestellten unpersönlichen Satz (»it is \ldots{}«) gemeinhin als /Spaltsatz/ bekannt ist.[fn::\cite[636]{busmann_lexikon_2008} Auch Kluftsatz (engl. cleft sentence) genannt. Chinesisch: 分裂句 (fēnlièjù).] Mit der gegebenen grammatischen Betonung im Englischen sollte also auch das chinesische Äquivalent eine Hervorhebung des Ortes, also 这里/儿, genießen dürfen, woraus sich mindestens zwei Möglichkeiten ergeben:
+
+- (1) 「她睡觉的是这里」\hspace{0.3em}(s. Zeile 11)
+  - Hier wäre eine Voranstellung von 这里 und sodann auch das Einfügen von 就 möglich: 「这（里）（就）是她睡觉的地方」
 - (2) 「她就睡在这儿」\hspace{0.3em}(Ohne 是-的 wird 这里/儿 hier indirekt über die Verbalhandlung mittels des Adverbs 就 betont: »Sie schläft genau hier.«/ »She sleeps precisely here.« )
 
-Dazu ist tentativ noch anzumerken, dass eine Konsultation unter Muttersprachlern erbrachte, dass eine Konstruktion wie in (2) schon als durchaus angemessen erachtet wird, um eine (wenn auch indirekte) Betonung des Ortes zu forcieren.
-***** TODO eval[THINK: argument: for wide-coverage shi-de needed?]
-Die jetzige (1--3) bzw. angestrebte (5--10) Linearisierung ohne 是-的 liefert gute Ergebnisse und ist tendenziell auch für den Fall aus Zeile 4 geeignet. Dennoch sollte die Möglichkeit, für alle Fälle eine 是-的-Variante zu erstellen, gegeben sein. (Wie sich dies in der RGL-API realisieren lässt, ist aber sehr unklar.) 
+Eine Konsultation unter Muttersprachlern erbrachte, dass eine Konstruktion wie in (2) schon als durchaus angemessen erachtet wird, um eine (wenn auch indirekte) Betonung des Ortes zu forcieren. Ein tentatives Urteil wäre also, (2) als Standard zu setzen.
+
+Zeile 8 und 9 (»she is ready to sleep«):
+
+Man beachte, dass die Vorschläge eine Version mit der Partikel 了 (le) anführen. Diese Partikel ist ein Final-Marker, der darauf hinweist, dass der Sprecher auf eine neue Situation (»Sie ist /nun/ fertig zum Schlafen(-gehen).«) hinweist. Diese Form sollte standardmäßig für diesen Baum benutzt werden. Generell ist allerdings problematisch, ob ein Satz diesen Final-Marker erhält oder nicht. Siehe auch 了-Final-Partikel (REFTODO).
+
+***** TODO eval [THINK: argument: for wide-coverage shi-de needed?] :noexport:
+Die jetzige (1--3) bzw. angestrebte (5--10) Linearisierung ohne 是-的 liefert gute Ergebnisse und ist tendenziell auch für den Fall aus Zeile 4 geeignet. Dennoch sollte die Möglichkeit, für alle Fälle eine 是-的-Variante zu erstellen, gegeben sein. (Wie sich dies in der RGL-API realisieren lässt, ist aber sehr unklar.) [keine Variante, gezielte Erstellung einer Form! => mit API möglich oder nicht?! In Lexikon verbauen???]
+Wide-Coverage lässt du außen vor?! Es geht hier zunächst einmal um die API-Möglichkeiten.
 **** Mit schlechter Bewertung:
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shideb}{tests/shideoveruse-b.dbtex}
@@ -717,7 +838,7 @@ Die jetzige (1--3) bzw. angestrebte (5--10) Linearisierung ohne 是-的 liefert 
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright \api \par &
+    \scriptsize\raggedright\tt \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -728,27 +849,58 @@ Die jetzige (1--3) bzw. angestrebte (5--10) Linearisierung ohne 是-的 liefert 
 }
 \end{longtable}
 #+END_LaTeX
-Fall Nr. 1 ist besonders interessant, weil wir es hier mit einem Spaltsatz zu tun haben, der ziemlich sicher ohne 是-的 auskommen muss, was mit dem Zustandsverb \xpinyin*{确定} (sicher sein) zusammenhängen könnte. Hier noch einmal der /gute/ Spaltsatz aus der letzten Sektion, der 是 benutzen darf, und Fall Nr. 1 im Vergleich:
-#+BEGIN_SRC empty
-mkUtt                              mkUtt
- (mkCl here_Adv                    (mkCl
-       (mkS                         (mkVP
-         (mkCl she_NP sleep_V)))     (mkAP
-                                      (mkAP uncertain_A)
-                                      (mkQS
-                                       (mkQCl who_IP sleep_V)))))
+Allen Fällen dieser Gruppe ergeben mit 是-的 schlechte Linearisierungen. Die Zusammenstellung unterteilt sich in
+- Subordination-Konstruktion (1),
+- Gemeines Nomen (CN) (REFTODO: Bußmann: CN so übersetzbar?) mit Relativsatz (RCl) (2--5),
+- und Sätze oder Verbphrasen, die mit 结婚 (jiéhūn, heiraten) gebildet werden (6--9).
 
-it is here that she sleeps         it is uncertain who sleeps
-她睡觉的是这里 G (...)              是不确定谁睡觉的 B 不确定谁睡
+Subordination, Zeile 1 (»it is uncertain who sleeps«):
+<<subordinate-1>>
+
+Was den Fall in Zeile 1 betrifft, so urteilt Chen also, dass die Linearisierung unzulässig ist. Auch eine Befragung unter Muttersprachlern ergab, dass das Ergebnis von 1 eher wie eine direkte Übersetzung aus westlichen Sprachen klingt. Sowohl 「\hspace{0.2em}不是确定的谁睡觉」\hspace{0.2em} als auch \hspace{0.2em}「是不确定的谁睡觉」\hspace{0.2em} wurden als schlechte Übersetzungen eingestuft; gut wären hingegen \hspace{0.2em}「不确定谁在睡觉/睡着了」\hspace{0.2em} und 「不能确定谁在睡觉/睡着了」.
+
+#+name: lst:it-is-foo
+#+CAPTION[Strukturgleichheit]: Bearbeitungs-Dilemma
+#+BEGIN_SRC haskell
+-- B                                  -- C
+-- it is uncertain who sleeps         -- it is good that she sleeps
+mkUtt                                 mkUtt
+ (mkCl                                 (mkCl
+  (mkVP                                 (mkVP
+   (mkAP                                 (mkAP
+    (mkAP uncertain_A)                    (mkAP good_A)
+    (mkQS                                 (mkS
+     (mkQCl who_IP sleep_V)))))            (mkCl she_NP sleep_V)))))
 #+END_SRC
+<<uncertain-who-sleeps>>
+Daher sollte eine Linearisierung ohne 是-的 stark in Betracht gezogen werden. Beim Vergleich mit dem strukturgleichen Ausdrck (C) »it is good that she sleeps« (siehe Auflistung [[lst:it-is-foo]] und Sektion REFTODO) wird aber auch klar, dass hier 是 (「她睡是好事」) wiederum gebraucht wird. Auch die Nominalisierung von 好 zu 好事 ist problematisch.
 
-Was Fall Nr. 1 betrifft, so urteilt Chen also, dass die Linearisierung unzulässig ist. Auch eine Befragung unter Muttersprachlern ergab, dass das Ergebnis von 1 eher wie eine direkte Übersetzung aus westlichen Sprachen klingt bzw. als eine solche zu erkennen ist, und als hervorstechender Grund hierfür ließe sich anführen, dass der Adjektivphrase 「不确定」 mit 确定 als Zustandsverb schon zuviel »Sein« innewohnt, als dass 「不确定」 in irgendeiner Weise mit 是 -- sei es 「是不确定」 oder 「不是确定」 -- kombiniert werden dürfte. Adverbiale Bestimmungen, wie 这里 aus dem /guten/ Spaltsatz, scheinen sich jedenfalls eher, mit 是-（的） kombinieren zu lassen.[fn:: In diesem Zusammenhang darf auch daran erinnert werden, dass das eingefügte 很 bei der Adjektivprädizierung, wie etwa 「这间屋子很大」 （»dieses Zimmer ist groß«）, eigentlich keine Kopula ist, sondern ein Adverb (mit der Bedeutung »sehr«, die aber so gut wie verblasst ist, insofern man 很 nicht sehr stark betont ausspricht), dessen vorrangige Aufgabe es ist, das Zustandsverb 大 derart zu bestimmen, dass es auch wirklich »groß« bedeutet; nimmt man 很 nämlich weg, dann nimmt 大 den Komparativ an. Cf. \cite[239]{kneussel_grammatik_2005}]
+#+latex: {\footnotesize
+|   | engl. Linear.              | chin.                  | Ok? | Vorschlag      |
+|---+----------------------------+------------------------+-----+----------------|
+| B | it is uncertain who sleeps | 是不确定谁睡觉的       | B   | 不确定谁睡     |
+| C | it is good that she sleeps | 是好她睡觉的           | B   | 她睡是好事 ??  |
+# | A | it is here that she sleeps | 她睡觉的（地方）是这里 | G   | 她(就)睡在这里 |
+#+latex: }
 
-Unabhängig von den postulierten Gründen für die Mängel am Ergebnis von Fall 1 können wir aber auch konstatieren, dass der Vorschlag 「不确定谁睡」 im Vergleich zur englischen Version genau die Elemente in der für das Chinesischen richtigen grammatischen Sequenz aufweist, die essentiell notwendig sind, um die Bedeutung von »it is uncertain who sleeps« zu bewahren, nämlich als Hauptsatz die Aussage »nicht sicher« sowie diesem untergeordnet die Frage »wer schläft«. Aus dieser Perspektive nicht essentiell sind also das unpersönliche Pronomen »it« sowie die unterordnende Konjunktion »that«; die Kopula-Form »is« bleibt hingegen essentiell, ist aber versteckt im Zustandsverb 确定. Daher ist der Vorschlag ein Spaltsatz.
+\begin{center}
+\line(1,0){250}
+\end{center}
 
-Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is uncertain«, was den Sinn des gespaltenen aber nur ambig wiedergibt, denn er könnte bedeuten, dass die schlafenden Subjekte in sich selbst unsicher sind (»wer schläft, der ist auch unsicher«) weswegen ist der angesprochene Spaltsatz doch kein richtiger
+Zeilen 2--5 (CN + »who is« + AP/Adjektiv):
+
+In diesen Fällen kann 是-的 bedenkenlos entfernt werden.
+# »student who is an old woman« war ursprünglich als gut eingestuft?!
+
+\begin{center}
+\line(1,0){250}
+\end{center}
+
+Zeilen 6--9 (结婚 mit 和)：
+
+Die lexikalische Einheit \inlst$married_A2$ muss mit Informationen über die Präposition 和 versorgt werden, sodass diese bei der Konstruktion durch mkVP, mkCl, mkRCl und mkQCl genutzt werden kann. Dies ist nicht problematisch.
+
 **** Mit mittelmäßiger Bewertung:
-
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shides}{tests/shideoveruse-s.dbtex}
 
@@ -771,7 +923,7 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright \api \par &
+    \scriptsize\raggedright\tt \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -782,8 +934,26 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
 }
 \end{longtable}
 #+END_LaTeX
+Zeile 1 und 3: »she is older than he«, war in anderer Form (»who is older than he«) unter den Entscheidungen gegen die Nutzung von 是-的 aus der Sektion mit guter Beurteilung (siehe Abschnitt [[besser-kein-shi-de-weil-unbetont]]) und ist damit als Problem schon erfasst. Dasselbe gilt für Zeile 3, »to be older than he«.
 
-*** notwendig
+Zeile 2, »student who is a woman«: Dass der Relativsatz nicht mit 是 eingeleitet werden sollte, wurde ebenfalls schon beanstandet und ist abgedeckt. Die im Vorschlag beschriebene Denominalisierung von 女人 zu 女 ist problematisch.
+
+In Zeile 4, »whom does she ask where I sleep«, ist die vormalige betonte Konstruktion per 是-的 schon aufgelöst in eine sequentiell subordinierte (cf. [[subordinate-1]]). Das überflüssige 说 (shuō, sprechen) wird über die API-Funktion ~mkVPSlash~ eingefügt und muss entfernt werden.
+
+# -- TODO: folgendes auch als gutes Beispiel für die Kernfunktionen vs. API-Funktionen!
+# Lang> l QuestVP whoSg_IP (UseComp (CompAP (ComparA old_A (UsePron he_Pron))))
+# 谁 是 比 他 老 的
+# Lang> l PredVP (UsePron she_Pron) (UseComp (CompAP (ComparA old_A (UsePron he_Pron))))
+# 她 是 比 他 老 的
+# Lang> l (UseComp (CompAP (ComparA old_A (UsePron he_Pron))))
+# 比 他 老 的
+# QuestionChi.gf:
+#     QuestVP ip vp = {
+#       s = \\_,p,a => ip.s ++ vp.prePart ++ useVerb vp.verb ! p ! a ++ vp.compl
+#       } ;
+# SentenceChi.gf
+#     PredVP np vp = mkClause np.s vp ;
+*** Verwendung notwendig
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shideneeded}{tests/shide-needed.dbtex}
 
@@ -806,7 +976,7 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright \api \par &
+    \scriptsize\raggedright\tt \api \par &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -817,8 +987,31 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
 }
 \end{longtable}
 #+END_LaTeX
-** Zeiten und Konditional
+Zeile 1 und 4 (»it is good that she sleeps«, »that she sleeps is good«):
+
+Auf den Fall in Zeile 1 wurde schon beim Vergleich mit »it is uncertain who sleeps« eingegangen (siehe Abschnitt [[uncertain-who-sleeps]]). Der Vergleich zwischen Zeile 1 und 5 in diesem Abschnitt macht aber noch deutlich, dass die optimale Reihenfolge von Teilsätzen im Chinesischen einer strikteren Ordnung unterliegt als z.B. im Englischen. Darauf macht zumindest der Vorschlag Chens aufmerksam, der für beide Fälle (a) »it is good that she sleeps« und (b) »that she sleeps is good« derselbe ist, nämlich \hspace{0.2em}「她睡是好事」.
+
+Während die aktuelle Linearisierung von (b) in Chinesische, (c) \hspace{0.2em}「她睡是好的」, immerhin mittelmäßig ist, so ist die von (a) \hspace{0.2em}「是好她睡觉的」\hspace{0.2em} inakzeptabel. Es wäre noch zu ergründen, ob die exakte Umkehr von (c), \hspace{0.2em}「好的是她睡（觉）」， akzeptabel ist, denn generell sind Äquationen umkehrbar.[fn:: Cf. \cite[245]{yip_chinese:_2004}: »Rosen sind am schönsten.«/ »Am schönsten sind Rosen.« \hspace{0.2em}「玫瑰花是最美的」\hspace{0.2em}/ \hspace{0.2em}「最美的是玫瑰花」.] Wenn dem so ist, dann wäre dies ein guter Kompromiss für die Bibliothek, da so die verschiedenen Reihenfolgen doch abbildbar wären.
+
+# Zur Fußnote über 玫瑰花: kein direkter Vergleich mit Adjektivprädikat, sondern per Klasifikation und bestimmten Artikel: »Rosen sind die schönsten (Blumen).«/ »Die schönsten Blumen sind Rosen.« Vergl. mit »it is here that she sleeps« Ein Vorschlag war 她睡的地方是这里 was 地方 einfügt, genau wie hier Blumen eingefügt werden muss. ???!!! /(bzw. Vorschlag von »it is here she sleeps« -> 睡的人是她 -> attributive Verwendung von 睡 implizit auch Nominalisierung?!)
+
+Zeile 2 (»it is she who sleeps«) ist ein simpler Fall von Äquation, der 是 notwendig macht.
+
+# TODO: [Spaltsatz] Das hier anmerken? Eigentlich habe ich hier die Definition der Kluftsätze?!
+# -- There are also special forms in which a noun phrase or an adverb is
+# -- emphasized.
+
+#       mkCl : NP  -> RS -> Cl   -- it is she who sleeps   --: 
+#       = CleftNP    ; --% 
+#       mkCl : Adv -> S  -> Cl   -- it is here that she sleeps    --:
+#       = CleftAdv   ; --% 
+
+Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv einem NP untergeordnet werden kann. Es braucht vielmehr immer ein Verb, auf das es sich beziehen kann; und wenn kein besonderes Verb vorhanden ist, dann muss 是 angenommen werden. Beachtenswert an diesem Verhalten ist außerdem, dass der Satz seine attributive Struktur (das 的 entfällt) verliert und so eine prädikative Struktur annimmmt. Eine Verbesserung sollte nicht problematisch sein.
+# $leicht-behebbar
+
+** Zeitformen (Aspekt)
 #+BEGIN_LaTeX
+
 \DTLloaddbtex{\tenses}{tests/tenses.dbtex}
 
 \begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
@@ -840,8 +1033,8 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright   \api \par &
-    \scriptsize \eng &
+    \scriptsize\raggedright\tt   \api \par &
+    \scriptsize\raggedright \eng &
     \scriptsize \chi &
     \scriptsize \stat &
     \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
@@ -851,17 +1044,44 @@ Der simple englische Satz zu dem gespaltenen wäre übrigens »who sleeps is unc
 }
 \end{longtable}
 #+END_LaTeX
-** eng_chi2.txt:
-*** 把 nur auf Dinge beziehbar?
-- mkUtt (mkVP answer_V2S he_NP (mkS (mkCl she_NP sleep_V))) 
-to answer to him that she sleeps
-把他回答说她睡 !BAD 回答他说她睡了
-- mkUtt (mkVP (mkVPSlash paint_V2A (mkAP black_A)))
-to paint itself black
-画自己黑 BAD 把它自己画黑 (noch nicht berichtigt, kann man es berichtigen?)
+Zeile 1--3: (»to be sleeping«, »it is raining«, »John, who walks«)
 
-** Komplement des Resultats (结果补语) -- shi-de -- »Buch ist ausverkauft«?
-- es scheint noch nichts dafür definiert zu sein
+
+** Konditional
+#+BEGIN_LaTeX
+\DTLloaddbtex{\condit}{tests/condTense.dbtex}
+
+\begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
+\bfseries API-Funktionen &
+\bfseries Englisch &
+\bfseries Chinesisch &
+\bfseries Ok? &
+%% \bfseries Kommentar \\
+\bfseries Vorschlag &
+\bfseries Kategorie
+\gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
+\\
+{\DTLforeach*{\condit}
+  {%
+  \api=Field1,
+  \eng=Field2,
+  \chi=Field3,
+  \stat=Field4,
+  \vorschl=Field5,
+  \todo=Field6}
+    {%
+    \scriptsize\raggedright\tt   \api \par &
+    \scriptsize\raggedright \eng &
+    \scriptsize \chi &
+    \scriptsize \stat &
+    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
+    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \DTLiflastrow{}{\\}
+    }
+}
+\end{longtable}
+#+END_LaTeX
+** Komplement des Resultats (结果补语) -- shi-de -- »Buch ist ausverkauft«?- es scheint noch nichts dafür definiert zu sein
 - versuche Satz zu bilden: "Dieses Buch ist ausverkauft"
 - ~/d/n/G/l/s/chinese git:master ❯❯❯
 - gf AllChi.gfo
@@ -907,8 +1127,6 @@ sysu/Assign_6.gf
 \printbibliography
 * zotero							   :noexport:
 # Local Variables:
-# zotero-collection: #("4" 0 1 (name "ChinGrammar"))
-# End:
 # zotero-collection: #("4" 0 1 (name "ChinGrammar"))
 # Ende:
 * Header							    :ARCHIVE: :noexport:
@@ -1001,7 +1219,6 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: \preto\longtable{\def\afterHeaderFlag{}}
 #+LATEX_HEADER: \preto\tabular{\def\afterHeaderFlag{}}
 #+LATEX_HEADER: \def\afterHeaderFlag{}
-#+LATEX_HEADER: %TODO: Bug? erste Zelle einer longtable (unter Header): baselinestretch zu hoch
 #+LATEX_HEADER:  
 #+LATEX_HEADER:
 # Local Variables:
