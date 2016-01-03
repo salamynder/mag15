@@ -79,7 +79,7 @@ mkUtt (mkQCl who_IP she_NP);who is her;谁是她;B;她是谁;[order] keep who_IP
 mkPhr yes_Utt (mkVoc (mkNP i_Pron friend_N));yes , my friend;对我的朋友 - > 我的朋友，对;S;;[order] 对(了) in front?! *TODO*;
 mkPhr (mkS futureTense negativePol (mkCl she_NP sleep_V));she won't sleep;她不在睡觉;S;她不睡觉;[tense] futureTense *TODO*;
 mkUtt (mkS futureTense (mkCl she_NP sleep_V));she will sleep;她在睡觉;S;她会睡;[tense] futureTense *TODO*;
-mkUtt (mkS anteriorAnt (mkCl she_NP sleep_V));she has slept;她睡觉;B;她睡了;[tense] perfect aspect *TODO*;
+mkUtt (mkS anteriorAnt (mkCl she_NP sleep_V));she has slept;她睡觉了;B;她睡了;[tense] perfect aspect *TODO*;
 mkUtt (mkQS conditionalTense anteriorAnt negativePol (mkQCl who_IP sleep_V));who wouldn't have slept;谁不睡觉;S;谁可能还没睡过(?);[tense] perfect aspect/negation: 不 -> 没 *TODO*;THINK: [tense] conditionalTense inserting 可能/大概/会?
 mkUtt (mkQS pastTense negativePol (mkQCl who_IP sleep_V))  ;who didn't sleep;谁不睡觉了;S;谁没睡觉;[tense] perfect aspect/negation: 不 -> 没 *TODO*;
 mkSSlash (mkTemp pastTense anteriorAnt) negativePol (mkClSlash she_NP (mkVPSlash see_V2));she hadn't seen;她不看了;B;她没看过;[tense] perfect aspect/negation: 没看（过）– no 了！ *TODO*;NOOP: disamb. experience/perfect

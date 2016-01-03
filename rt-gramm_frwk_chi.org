@@ -1,3 +1,4 @@
+\VerbatimFootnotes
 #+INCLUDE: "title.org"
 \pagenumbering{gobble}
 #+INCLUDE: "erklaerung.org"
@@ -672,15 +673,14 @@ Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der E
 \DTLloaddbtex{\shideg}{tests/shideoveruse-g.dbtex}
 
 \begin{longtable}[l]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\shideg}
   {%
   \api=Field1,
@@ -690,7 +690,7 @@ Diese Kategorie lässt sich zunächst grob unterteilen in Sätze, in denen der E
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -820,15 +820,14 @@ Wide-Coverage lässt du außen vor?! Es geht hier zunächst einmal um die API-M�
 #+BEGIN_LaTeX
 \DTLloaddbtex{\shideb}{tests/shideoveruse-b.dbtex}
 \begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\shideb}
   {%
   \api=Field1,
@@ -838,7 +837,7 @@ Wide-Coverage lässt du außen vor?! Es geht hier zunächst einmal um die API-M�
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -905,15 +904,14 @@ Die lexikalische Einheit \inlst$married_A2$ muss mit Informationen über die Pr�
 \DTLloaddbtex{\shides}{tests/shideoveruse-s.dbtex}
 
 \begin{longtable}[l]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\shides}
   {%
   \api=Field1,
@@ -923,7 +921,7 @@ Die lexikalische Einheit \inlst$married_A2$ muss mit Informationen über die Pr�
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -958,15 +956,14 @@ In Zeile 4, »whom does she ask where I sleep«, ist die vormalige betonte Konst
 \DTLloaddbtex{\shideneeded}{tests/shide-needed.dbtex}
 
 \begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\shideneeded}
   {%
   \api=Field1,
@@ -976,7 +973,7 @@ In Zeile 4, »whom does she ask where I sleep«, ist die vormalige betonte Konst
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -1015,15 +1012,14 @@ Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv ein
 \DTLloaddbtex{\tenses}{tests/tenses.dbtex}
 
 \begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\tenses}
   {%
   \api=Field1,
@@ -1033,7 +1029,7 @@ Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv ein
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt   \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize\raggedright \eng &
     \scriptsize \chi &
     \scriptsize \stat &
@@ -1044,23 +1040,111 @@ Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv ein
 }
 \end{longtable}
 #+END_LaTeX
-Zeile 1--3: (»to be sleeping«, »it is raining«, »John, who walks«)
 
+Zeile 1--2: (»to be sleeping« , »it is raining«)
+
+In Fall 1 gibt es zwei Vorschläge: (a) 在 (zài) vor dem Verb, 在睡, oder (b) 着 (zhe) nach dem Verb, 睡着. Vorschlag (a) wurde in der Zwischenzeit in der API-Funktion ~progressiveVP~ umgesetzt, sodass auch Fall 2, der dieselbe API-Funktion nutzt, diesen Vorschlag übernimmt.
+
+Es ist jedoch umstritten, ob es eine exakt demarkierbare Semantik in der Anwendung von 在 und 着 zum Ausdruck einer kontinuierlichen Handlung existiert, um zu entscheiden, welcher der beiden Vorschläge (oder gar beide) mittels ~progressiveVP~ umgesetzt werden muss.
+
+Es gibt zwar sehr wohl Beispiele, die auf eine exakte Unterscheidbarkeit schließen lassen, u.a. wenn 在 oder 着 eine bestimmte Bedeutung des Verbs selektieren, wie etwa bei 穿 (chuān: wort-wörtlich: etw. durchbohren, to pierce through):
+
+#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
+- a. \xpinyin*{他在穿大衣}。 :: Er /zieht/ gerade den Mantel /an/. -- He is just /putting/ on his coat.[fn:at_gerade-trans]
+- b. \xpinyin*{他穿}\xpinyin{着}{zhe}\xpinyin*{大衣}。 :: Er /trägt/ einen Mantel. -- *(He /wears/ a coat.)[fn:at_star] / He is /wearing/ a coat.
+
+[fn:at_gerade-trans] Die deutsche Übersetzung wurde gewählt, weil sie in diesem Fall (d.h. dieses Verb betreffend) m.E. die gebräuchlichste und kürzeste Variante in einem gesprochenen Dialog ist. Andere mögliche Varianten, wie »Er ist dabei, den Mantel anzuziehen.« oder »Er ist beim Mantel anziehen.« weisen zwar (wie noch zu zeigen sein wird) eine in gewisser Hinsicht bessere (wie sich zeigen wird: wort-wörtliche) Übersetzung auf, aber diese Art von Weitschweifigkeit ist meistens nicht akzeptabel in gesprochener Rede und wird eher mit dem literarischen und narrativen Stil (»Er war im Begriff den Mantel anzuziehen, als der Einbrecher anklopfte«.) assoziiert. Siehe aber auch \cite{gargyan_am-progressiv_2014}, die die Gebräuchlichkeit des am-Progressiv (»Er ist am Schreiben eines Artikels.«) nachweist und auch versucht diesen als hinreichend grammatikalisiertes Phänomen zu verorten.
+# eist, die auch ohne /gerade/ den Verlauf einer gegenwärtigen Handlung für das Subjekt ausdrückt. Entfernt man aber die Konstruktion »X ist dabei, Y zu tun«, dann ist /gerade/ im Deutschen unerlässlich dafür, den Sinn des gegenwärtigen Verlaufs angemessen auszudrücken; denn, wenn man nur den einfachen Satz »Er zieht den Mantel an.« vor sich hat, dann fehlt diesem gewiss etwas, was die anderen beiden Konstruktionen ihm an Sinn hinzufügen.
+[fn:at_star] Alle anzweifelbaren bzw. unakzeptablen Sätze oder sonstige Einheiten von Sätzen sind mit einem Stern gekennzeichnet. In diesem Fall mag die Version ohne die Präsens-Progressiv-Kennzeichnung des Englischen (Form von /be/ ++ Verb + /ing/ -- i.e. present progressive/continious) (vor allem auch aus dt. Perspektive) Sinn machen, weil »wear« (genauso wie »tragen«) einen andauernden Zustand beschreibt. Es scheint jedoch im Englischen eine gewisse Tendenz zu geben, solche Zustandsverben in das Präsens Progressiv zu setzen. Cf. \cite[6]{bland_present_1986}: »I'm wearing a jacket.«.
+
+Solche klaren Unterscheidungen fördern die Bildung zweier Aspekt-Kategorien:[fn:: So bei \cite[160f.]{fan_kaitai_xiandai_2000} und \cite[467f.]{liu_danqing_yufa_2008}]
+
+#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
+- a. Progressiv[fn:progr] -- 进行体/态 (jìnxíngtǐ/tài) :: Sprecher kennzeichnet gegenwärtige Involvierung des Satz-Subjekts in einen Prozess mittels 在: (auch paraphrasiert als »dabei sein, etwas zu tun«)
+- b. Kontinuativ[fn:dur_too] -- 持续体/态 (chíxùtǐ/tài) :: Fortsetzung eines durch die Verbalhandlung erreichten Zustandes (Der Mantel wurde von jmd. anzogen und nun wird er von diesem jmd. getragen.)
+
+Leider gibt es aber auch Fälle, wie den folgenden, in dem 在 durch ein vorangestelltes Adverb (一直: yīzhí, always, immer) modifiziert wird, sodass der Sinn der gesamten Aussage kontinuativ zu interpretieren ist:
+
+#+NAME: fang:gloss-shiyan
+#+CAPTION[Progressiv-Kontinuativ]: Modifikation des Progressiv ergibt Kontinuativ
+#+BEGIN_SRC haskell
+他  一直      在    试验。
+ta1 yi1zhi2  zai4  shi4yan4
+he  always   at    experiment
+--
+Er ist immer(zu) am Experimentieren.
+He is  always       experimenting.
+#+END_SRC
+# 他 一直 在 怀念 着 一 个 人 ， 默默 地 ， 偷偷 地 ， 苦苦 地 。(real-life sentence lancaster)
+
+Es mag nicht verwundern, dass der Satz durch das neue Adverb auch eine neue Wendung erfährt. Unklar ist jedoch, warum die eben definierte Bedeutung von 在 so einfach verdrängt werden kann. Zudem wird 在 oft auch im Zusammenhang mit 正 (zhèng: just, richtig, gerade) abgehandelt, das als weiterer Indikator für den Progressiv an die Stelle von 在 bzw. in Kombination mit diesem als 正在 treten können soll -- setzen wir jedoch diesen neuen oder den erweiterten Marker für 在 ein, so ist der so entstandene Satz inakzeptabel (*他一直正在试验/ *他一直正试验[fn:fang-yq-584]), weil die zwei Adverbien sich weitestgehend gegenseitig ausschließen.[fn:: Eventuell ergäben sie kombiniert einen Sinn, wenn man als Situation eine Beschwerde über jmd. annimmt, der immerzu »gerade« keine Zeit hat. Eine Auswertung drei verschiedener chin. Korpora (http://corpus.leeds.ac.uk/query-zh.html) ergab, dass \verb*+「一直 正」+ nur dreimal vorkommt und immer nimmt 正 eine andere Bedeutung als »gerade (jetzt)« an sowie \verb*+「一直 正在」+ genau einmal mit \hspace{0.2em}「我们一直正在做中国风的系列报告。」\hspace{0.2em} -- eine zeitliche Interpretation von 正在 fällt auch hier schwer. Daher können wir annehmen, dass der genannte sehr ungewöhnlich und damit wahrscheinlich inakteptabel wäre.]
+
+[fn:fang-yq-584] Das hier besprochene aus Auflistung [[fang:gloss-shiyan]] ist ein Beispiel aus: \cite[583]{fang_yuqing_shiyong_1992}. Fang zählt 在 und 正 übrigens nicht zu den Aspekt-Partikeln, sondern zu den Zeitadverbien （时间副词）.
+
+
+Die beiden Vorschläge setzen unterschiedliche Akzente bei der Beschreibung des imperfektiven Aspekts einer Handlung: Während mittels (a) dem Subjekt der Handlung vom Sprecher zugestanden wird, dass es derzeit /dabei ist/, eine gewisse Handlung auszuführen, wird mittels (b) ein Andauern der Handlung selbst bzw. eines durch die Handlung erreichten Zustandes beschrieben.[fn:yip_zai]
+
+---> Bezeichenbar sind diese beiden Akzente als (a) Progressiv und (b) Durativ
+
+[fn:yip_zai] \cite[304]{yip_chinese:_2004}: (a) »[...] 在 *zài* indicates ongoing action on the part of the subject.« Diese Aussage bezieht sich auf das Beispiel \hspace{0.1em}「王老师在备课。」. Außerdem sei (S. 303) die Konstruktion mit 在 eine der Arten des deskriptiven Satzmodells, dass beschreibt, »[...] what is going on through the action of the verb /at the moment of speaking/ [...]« (meine Hervorhebung). Sowie für (b): 着 markiert »[...] a state that has resulted from the action of the verb.« (S.\nbsp303) betont aber auch (S.\nbsp305) die Verbalhandlung selbst (»calls attention to the action itself, and therefore carries a descriptive flavour.«)
+
+Vgl. auch \cite[468]{liu_danqing_yufa_2008} der für (a) beschreibt, dass 在 als Abkürzung der halb-funktionalisierten Lokalangabe (半虚化的“在那儿”), die oft auch in Verbindung mit dem Satzfinal-Modalpartikel 呢 (ne) der Pekinger Mundart steht, den Progressiv (进行体) markiert; für (b), S.\nbsp467, Kontinutativ/Durativ (持续体), diskutiert Liu Zustandsverben (静态动词)，wie sitzen, liegen, tragen (走着，躺着，提着) und Tätigkeitsverben (动态动词), die im Muster Lokativ + Verb + 着 + Nomen vorkommen (墙上挂着一幅画儿，地上写着一个大字). Der Satz 他在房间里挂着画, in dem 在 als Teil einer Ortsangabe vorliegt, ist laut Liu zweideutig. \cite[304]{yip_chinese:_2004} weisen aber darauf hin, dass auch dieser Fall den Progressiv induziert.
+
+# sitzen, liegen kann man als posturale Verben bezeichnen? Cf. Bybee, Evolution of Grammar, 129 unten
+# 130: location -> "be in the place of verbing"
+
+
+
+Tabelle [[tbl:cont-prog]] gibt zwei weitere charakteristische Beispiele und macht auf mögliche äquivalente grammatische Markierungen sowie Übersetzungen im Deutschen und Englischen aufmerksam.
+
+#+latex: \bgroup\def\arraystretch{1.3}%
+#+name: tbl:cont-prog
+#+CAPTION[Durativ-vs-Progressiv]: Gegenüberstellung von Progressiv und Durativ/Kontinuativ
+#+attr_latex: :align p{0.7cm} p{6.0cm} p{6.6cm} 
+|     | (a) Progressiv 进行体                                       | (b) Kontinuativ/Durativ 持续体                               |
+|-----+-------------------------------------------------------------+--------------------------------------------------------------|
+| Chi | 王老师在备课。                                              | 你永远想着过去。[fn:fang_ex1]                                |
+|-----+-------------------------------------------------------------+--------------------------------------------------------------|
+| Ger | Lehrer Wang bereitet gerade den Unterricht vor.             | Du denkst immer an die Vergangenheit.[fn:ger_no_dur]         |
+|     | Lehrer Wang ist gerade dabei, den Unterricht vorzubereiten. | Immer bist du am Grübeln über die Vergangenheit.[fn:rhein] |
+|-----+-------------------------------------------------------------+--------------------------------------------------------------|
+| Eng | Teacher Wang is preparing lessons (right now).              | You're always thinking about the past.                       |
+|     |                                                             | You're always mulling over the past.                         |
+#+latex: \egroup
+
+
+
+[fn:fang_ex1] Abgewandeltes Beispiel von \cite[455]{fang_yuqing_shiyong_1992}: \hspace{0.2em}「儿呀！ 你要永远想着过去，记着今天。\hspace{0.2em}（杨朔）」\hspace{0.1em}.
+
+[fn:ger_no_dur] Auch wenn die deutsche Grammatik gewisse Formen der Verbmarkierung bietet (siehe Fußnote [fn:rhein]), so ist doch gewöhnlich eine Übersetzung mittels Präsens mehr als ausreichend. 
+
+[fn:rhein] REFTODO: Rheinische Verlaufsform Gabriella Gárgyán: Der am-Progressiv im heutigen Deutsch. Peter Lang Edition, Frankfurt 2014, S. 105
+
+
+
+
+[fn:motsch_zhe] Siehe \cite[28f.]{motsch_grundlagen_2010}: Man unterscheidet in (a) einen progressiven Aspekt und (b) einen durativen. (a) wäre z.B. 她在看书 (sie liest gerade ein Buch), während (b) 她看着书 (sie ist beim/am Lesen des Buchs).
+
+
+Zeile 3: (»John, who walks«)
+
+
+# [fn:prim_subj] Deskriptive Aktualität/Realität der Handlung: Man beachte den teilweise vorkommenden subjektiven Standpunkt des Sprechers, der innerhalb seines begrenzten Wissens die Handlungen eines Subjekts beschreibt: »Er liest gerade ein Buch« bzw. »Er ist gerade dabei, ein Buch zu lesen« (他在看书). In diesem Zusammenhang muss sich -- zumindest aus Perspektive des dt. Sprachgebrauchs -- die aktuelle, derzeitige Handlung des Subjekts nicht mit der beschriebenen decken, denn es geht vielmehr darum, dass der Sprecher weiß, welche primären Handlungen das Subjekt vollführen müsste. In der Beschreibung des Sprechers erscheint dessen Realität. cf. 刘丹青：466 （216）[i used to play chess] -- worüber er sich dort Gedanken macht, ist genau das, was du hier versuchst auszuschließen!?
+# \cite[476]{goddard_natural_2010}: (Paraphrasing Greenberg [1966a:74]) Greenberg did not shrink from admitting that to identify different category types across languages, in order to compare them, one must rely essentially on semantic criteria. One may also appeal to functional criteria, but on closer inspection functional criteria also depend on semantic judgements, and the same applies to efforts to base cross-linguistic comparison on iventories of situation types, basic domains, conceptual spaces, or whatevery
 
 ** Konditional
 #+BEGIN_LaTeX
 \DTLloaddbtex{\condit}{tests/condTense.dbtex}
 
 \begin{longtable}[c]{@{\afterHeaderFlag} p{0.25\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.04\textwidth} p{0.15\textwidth} p{0.25\textwidth}}
-\bfseries API-Funktionen &
-\bfseries Englisch &
-\bfseries Chinesisch &
-\bfseries Ok? &
-%% \bfseries Kommentar \\
-\bfseries Vorschlag &
-\bfseries Kategorie
+API-Funktionen &
+Englisch &
+Chinesisch &
+Ok? &
+Vorschlag &
+Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\
+\\\midrule\scriptsize
 {\DTLforeach*{\condit}
   {%
   \api=Field1,
@@ -1070,7 +1154,7 @@ Zeile 1--3: (»to be sleeping«, »it is raining«, »John, who walks«)
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt   \api \par &
+    \scriptsize\raggedright\tt \api &
     \scriptsize\raggedright \eng &
     \scriptsize \chi &
     \scriptsize \stat &
