@@ -129,9 +129,10 @@ Die Möglichkeit, Zeichenketten durch Kombinationsregeln unterschiedlich anzuord
     Pred VStrauß Fressen Beere = "鸵鸟" ++ "吃" ++ "吃" ++ "浆果" ;
     Pred VStrauß Fressen Beere = "鸵鸟 吃 吃 浆果" ;
 #+END_SRC
-\verb$"鸵鸟 吃 吃 浆果"$, auf Deutsch etwa: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs hat eine limitierende Wirkung auf die gesamte Handlung.[fn:: Ein besseres Beispiel für Verb-Reduplikation wäre: \xpinyin*{请你尝}\xpinyin{尝}{chang}\xpinyin*{那}\xpinyin{个}{ge}\xpinyin*{菜}! (Bitte koste doch /mal/ jenes Gericht!), siehe \cite[29]{li_mandarin_1989}.])
+\verb$"鸵鸟 吃 吃 浆果"$, auf Deutsch etwa: »Der Strauß isst ein paar Beeren.« (Reduplikation des Verbs hat eine limitierende Wirkung auf die gesamte Handlung.[fn:: Ein besseres Beispiel für Verb-Reduplikation wäre: \xpinyin*{请你尝}\xpinyin{尝}{chang}\xpinyin*{那}\xpinyin{个}{ge}\xpinyin*{菜}! (Bitte koste doch /mal/ jenes Gericht!), siehe \cite[29]{li_mandarin_1989}. Andererseits, so \cite[158]{xiao_aspect_2004}, steigere die Limitierung auf eine kürzere Zeitspanne auch die Intensität der Handlung. Die Verbhandlung wirke so am dynamischsten: 她红了脸 (She blushed) vs. 她红红脸 (She blushed up).])
 
 Die Suppression beschreibt hingegen die Unterdrückung bzw. Nicht-Anwendung von Argumenten bei der Linearisierung, was für Anapher-Resolution genutzt werden kann.[fn::Vgl. \cite[47,141-143]{ranta_grammatical_2011}. In \cite[10]{dybjer_machine_2012} wird ein Beispiel dazu durchgesprochen.]
+# ლ(╹◡╹ლ) // Enter "vs" in fcitx
 ** Festhalten grammatischer Strukturen und Regeln
 Eine zusätzlich Ebene der Flexibilität wird durch Datensätze und Tabellen (/records/ respektive /tables/, siehe [[rectables]]) geschaffen. Sie dienen dazu morphologische und syntaktische Informationen einer Sprache festzuhalten. Beispielsweise können wir alle grammatischen Kasus und das grammatische Genus (i. e. alle morphologischen Eigenschaften) des deutschen Lexems »(Vogel-)Strauß« in folgender Datenstruktur aus Datensätzen und Tabellen hinterlegen:
 #+NAME: strauss_N
@@ -594,7 +595,7 @@ DShopping> ! pwd
 ** Signpost: Why again chinese and GF? :: move to other place!
 ** Daten und Arbeitsschritte
 *** Ergebnisse der ersten Implementierung als Grundlage
-Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. Das Evaluationsdokument von 陈鹏 ist auffindbar bei \cite{_eng_chi2.txt_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
+Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{chen_peng_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. Das Evaluationsdokument von 陈鹏 ist auffindbar bei \cite{chen_peng_evaluationsdokument:_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
 #+BEGIN_src haskell
 mkUtt (mkVP beg_V2V he_NP (mkVP sleep_V))
 to beg him to sleep
@@ -628,11 +629,11 @@ whom does she know that we hadn't seen
 # TODO: Relation zu »whom does she beg me to see«? (-> andere Verbkonstruktion: beg / 乞求 braucht ein Pronomen im Anschluss; bei 知道 aber kann im Anschluss das Fragepronomen kommen!)
 # aktuelle Linear.: 她 知 道 谁 我 们 不 看 了
 
-Die Auswahl der 450 Bäume erhebt keinen Anspruch auf eine vollständige Darstellung der RGL, aber in jedem Fall lassen sich anhand dieser vielerlei syntaktische Strukturen auf (a) grammatische und (b) praktische Korrektheit (gängiges, gutes Chinesisch, das dem gewohnten Sprachgebrauch entspricht) hin prüfen. ~GOOD~ bescheinigt daher, dass sowohl (a) und (b) zutreffen; ~BAD~, dass (a) nicht zutrifft; und ~SOSO~, dass zwar (a) zutrifft, aber (b) nicht.[fn::\cite[33]{_implementation_2013}.]
+Die Auswahl der 450 Bäume erhebt keinen Anspruch auf eine vollständige Darstellung der RGL, aber in jedem Fall lassen sich anhand dieser vielerlei syntaktische Strukturen auf (a) grammatische und (b) praktische Korrektheit (gängiges, gutes Chinesisch, das dem gewohnten Sprachgebrauch entspricht) hin prüfen. ~GOOD~ bescheinigt daher, dass sowohl (a) und (b) zutreffen; ~BAD~, dass (a) nicht zutrifft; und ~SOSO~, dass zwar (a) zutrifft, aber (b) nicht.[fn::\cite[33]{chen_peng_implementation_2013}.]
 
 # TODO: Beispiel für die Güteklassen hier?
 
-Unter Anwendung dieser Kriterien gelangte Chen zu dem Resultat, dass 338 der 450 Testfälle eine gute Linearisierung besitzen, womit auf die beiden Mangelkategorien insgesamt 112 -- aufgeschlüsselt in 80 mal ~SOSO~, 32 mal ~BAD~ -- entfielen. Auch wenn nur 7% der Ergebnisse schlecht ausfielen, so wies Chen doch darauf hin, dass chinesische Charakteristika, wie Wortstellung, Funktionswörter und verschiedene Arten von komlexen und flexiblen Phrasenstrukturen, noch nicht gut gehandhabt werden.[fn::\cite[34]{_implementation_2013}.]
+Unter Anwendung dieser Kriterien gelangte Chen zu dem Resultat, dass 338 der 450 Testfälle eine gute Linearisierung besitzen, womit auf die beiden Mangelkategorien insgesamt 112 -- aufgeschlüsselt in 80 mal ~SOSO~, 32 mal ~BAD~ -- entfielen. Auch wenn nur 7% der Ergebnisse schlecht ausfielen, so wies Chen doch darauf hin, dass chinesische Charakteristika, wie Wortstellung, Funktionswörter und verschiedene Arten von komlexen und flexiblen Phrasenstrukturen, noch nicht gut gehandhabt werden.[fn::\Cite[34]{chen_peng_implementation_2013}.]
 
 *** Auswertungsschritte und Datenaufbereitung
 Anhand der von Chen aufgezeigten Problemfälle bewerte ich das grammatische Phänomen, das diesem Problemfall zu Grunde liegt, hinsichtlich der Implementierbarkeit in die chinesische Ressourcen Grammatik. Mit anderen Worten sind die Schritte, die bei der Evaluation durchlaufen werden, folgende:
@@ -645,7 +646,7 @@ Anhand der von Chen aufgezeigten Problemfälle bewerte ich das grammatische Phä
 
 Bevor mit der Identifizierung von Problemen und Problemfeldern begonnen werden konnte, wurden Chens Daten bereinigt (z.B. gab es vereinzelte Duplikate) und Linearisierungen aktualisiert, die sich seit Ende 2012 verändert haben (siehe nächste Sektion [[how-to-test]]).
 
-Zur besseren Handhabbarkeit der einzelnen Einträge sowie der verschiedenen Kategorien innerhalb dieser (Sortierbarkeit) wurde Chens Dokument in ein simples Tabellen-Dateiformat überführt.[fn:: Siehe: https://github.com/salamynder/mag15/blob/master/tests/eng_chi3.csv . Die einzelnen Zellen einer Zeile sind durch jeweils ein Semikolon getrennt.] Aus dieser neuen Tabellen-Datei werden wiederum alle Auswertungs-Tabellen, die sich in diesem Dokument befinden, generiert.
+Zur besseren Handhabbarkeit der einzelnen Einträge sowie der verschiedenen Kategorien innerhalb dieser (Sortierbarkeit) wurde Chens Dokument in ein simples Tabellen-Dateiformat überführt.[fn:: Siehe, https://github.com/salamynder/mag15/blob/master/tests/eng_chi3.csv -- die einzelnen Zellen einer Zeile sind durch jeweils ein Semikolon getrennt.] Aus dieser neuen Tabellen-Datei werden wiederum alle Auswertungs-Tabellen, die sich in diesem Dokument befinden, generiert.
 
 *** Reproduktion der Linearisierungen
 <<how-to-test>>
@@ -850,7 +851,7 @@ Kategorie
 #+END_LaTeX
 Allen Fällen dieser Gruppe ergeben mit 是-的 schlechte Linearisierungen. Die Zusammenstellung unterteilt sich in
 - Subordination-Konstruktion (1),
-- Gemeines Nomen (CN) (REFTODO: Bußmann: CN so übersetzbar?) mit Relativsatz (RCl) (2--5),
+- Gattungsnomen (CN -- Common noun) mit Relativsatz (RCl) (2--5),
 - und Sätze oder Verbphrasen, die mit 结婚 (jiéhūn, heiraten) gebildet werden (6--9).
 
 Subordination, Zeile 1 (»it is uncertain who sleeps«):
@@ -1003,10 +1004,119 @@ Zeile 2 (»it is she who sleeps«) ist ein simpler Fall von Äquation, der 是 n
 #       mkCl : Adv -> S  -> Cl   -- it is here that she sleeps    --:
 #       = CleftAdv   ; --% 
 
-Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv einem NP untergeordnet werden kann. Es braucht vielmehr immer ein Verb, auf das es sich beziehen kann; und wenn kein besonderes Verb vorhanden ist, dann muss 是 angenommen werden. Beachtenswert an diesem Verhalten ist außerdem, dass der Satz seine attributive Struktur (das 的 entfällt) verliert und so eine prädikative Struktur annimmmt. Eine Verbesserung sollte nicht problematisch sein.
+Zeile 3 (»not everybody«) zeigt deutlich, dass 不 nicht allein attributiv einem NP untergeordnet werden kann. Es braucht vielmehr immer ein Verb, auf das es sich beziehen kann; und wenn kein besonderes Verb vorhanden ist, dann muss 是 angenommen werden. Beachtenswert an diesem Verhalten ist außerdem, dass der Satz seine attributive Struktur (das 的 entfällt) verliert und so eine prädikative Struktur annimmt. Eine Verbesserung sollte nicht problematisch sein.
 # $leicht-behebbar
 
-** Zeitformen (Aspekt)
+** »Zeitformen« und Aspekt
+# Fan Kaitai, 161/169: 别看现在正在下雪，可气候却是在一天天的变暖和。(ist täglich dabei wärmer zu werden -- 是 mostly hidden, only comes to front when emphasizing something?!)
+# shiyongxiandai, 387: 有时想着想着，我真恨不得。。。。把你这两只巧手斫下来给我接上。
+Im Chinesischen sind keine grammatischen Tempi in der Morphologie der Verben verankert. Stattdessen wird die Relation zur Sprechzeit mit Zeitadverbien (morgen 明天 /míngtiān/, letztes jahr 去年 /qùnián/, bald 快 /kuài/) oder speziellen Hilfsverben (wollen/werden 要 /yào/) ausgedrückt. Sehr wohl gibt es aber Verb-Markierungen, welche die Abgeschlossenheit (Perfektiv) einer Handlung ausdrücken, darunter etwa der Aspekt-Marker 了 /le/. Bei einem Satz, der keine weiteren Zeitadverbien enthält, wie \hspace{0.2em}「我买了三本书。」\hspace{0.1em} /Wǒ mǎile sān běn shū/ und auch sonst keinen weiteren zeitlichen Kontext bietet, kann dann vom Perfektiv auf ein Vergangenheitstempus geschlossen werden, sodass wir etwa mit dem dt. Perfekt übersetzen können: »Ich habe drei Bücher gekauft.«
+
+Ein weiterer wichtiger Aspekt ist der Progressiv, der sich aus dem Bereich ergibt, den der Perfektiv unberücksichtigt lässt, nämlich den der nicht-abgeschlossenen Handlungen (Imperfektiv). Bevor die RGL-Tabelle der Aspekte behandelt wird, soll auf den Progressiv besonders eingegangen werden, da die ersten beiden Einträge der Tabelle den Progressiv behandeln.
+
+*** Exkurs: der Progressiv im Chinesischen
+**** Progressiv und Durativ
+Der Progressiv wird im Chinesischen in Unterkategorien aufgeteilt werden, die sich aus den Funktionen der eben schon angesprochenen Indikatoren 在 und 着 ergeben. Diese beiden Unterkategorien setzen verschiedene Akzente bei der Beschreibung des imperfektiven Aspekts einer Handlung: Während (a) mittels 在 dem Subjekt der Handlung vom Sprecher zugestanden wird, dass es derzeit /(gerade) dabei ist/, eine gewisse Handlung auszuführen, wird mittels (b) ein Andauern der Handlung selbst bzw. eines durch die Handlung erreichten Zustandes beschrieben.
+
+# [fn:cat-chi] So geschehen etwa bei \cite[160f.]{fan_kaitai_xiandai_2000} und \cite[467f.]{liu_danqing_yufa_2008}.
+[fn:neutral] Dies ist die wort-wörtliche Übersetzung, die ugs. wäre: »Sie bereitet gerade den Unterricht vor.« Dem hier benutzten /gerade/ entspricht (wort-wörtlich) aber erst 正/正在, auch wenn 在 allein auch schon als /gerade/ interpretiert werden kann. Siehe Punkt 6 dieser Liste.
+
+
+Besonders deutlich kann sich dieser Unterschied zeigen, wenn andere Sprachen für /ein und dasselbe/ chinesische Verb, das entweder mit  在 oder 着 markiert ist, /zwei verschiedene/ Verben übersetzen. Ein hierfür immer wieder vorgebrachtes Beispiel betrifft das Verb 穿 chuān, das soviel wie /durchbohren/, engl. /to pierce through/, bedeutet, weil hier vermittels der Zähne 牙 /yá/ (eines Nagetiers?) ein Loch 穴 /xué/ gebohrt wird. Benutzt wird 穿 aber auch im Kontext von Kleidungstücken:
+
+#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
+- a. \xp{他在穿大衣}。 :: Er /zieht/ gerade den Mantel /an/. -- He is (just) /putting/ on his coat.[fn:at_gerade-trans]
+  - Er ist (gerade) dabei, den Mantel anzuziehen. (dabei = inmitten einer Handlung)
+- b. \xp{他穿}\xpinyin{着}{zhe}\xp{大衣}。 :: Er /trägt/ einen Mantel. -- *(He /wears/ a coat.)[fn:at_star] / He is /wearing/ a coat.
+
+In (a) wird die Verbalhandlung 穿 durch ein vorangestelltes 在 modifiziert. Das Resultat dieser Modifikation ist eine kombinierte Verbalhandlung, deren Bedeutung als `inmitten des Durchbohrens' oder `beim Durchbohren' paraphrasierbar ist. Für die grundlegende Bedeutung /durchbohren/ bietet das Deutsche im Kontext von Kleidungsstücken u. a. das sehr geläufige Verb /anziehen/, das den Vorgang beschreibt, wie man ein Kleidungsstück /an/ seinen Körper (heran-)\emph{zieht} und es dort belässt.[fn:: Ein weiteres Verb wäre /schlüpfen/, das vielleicht die Grundbedeutung von 穿 (im Kleiderkontext) am besten wiedergibt, denn es kann sowohl im Kontext von Nagetieren, wie in `die Maus schlüpfte schnell in oder durch das Loch' (das sie zuvor evtl. selbst gebohrt/genagt hat), als auch im Zusammenhang mit Kleidungsstücken, in die man sich zunächst /hineinbohren/ muss (bevor man sie mit sich herumtragen kann), genutzt werden: `Er schlüpfte in den Mantel' (und er passte ihm wie angegegossen / 大衣非常合身).] Setzen wir /anziehen/ in den Progressiv, der im Deutschen vielfach mit dem Adverb /gerade/ gebildet, dann haben wir eine adäquate Übersetzung. Gleichermaßen hält das Englische für die Bedeutung von 在穿/\emph{beim Anziehen} das Verb /to put on/ bereit.
+
+Ganz anders nun in Fall (b), in dem nun der (anhaltende) Zustand mittels 穿着 beschrieben wird, der nach dem Anziehen des Mantels in kraft tritt. Da /anziehen/ und /put on/ diesen Sachverhalt alleine nicht wiedergeben können bzw. einfach nicht dafür konzipiert sind, muss auf andere Verb, nämlich /tragen/ und /wear/, ausgewichen werden.
+
+**** Aspekt und Aktionsart (viewpoint/situation aspect)
+Im Gegenssatz zum Verb /anziehen/, das ein Ende der ihm eigenen Handlung (das Kleidungstück ist irgendwann /an/ dem Körper angelangt) andeutet,[fn:: Siehe \cite[55f.]{xiao_aspect_2004}: Verben, die das Erreichen eines Zustandes intern kodieren, werden als /achievement verbs/ bezeichnet.] deuten /tragen/ und /wear/ nun auch auf einen kontinuierlichen, durativen Zustand hin. Dass Verben in dieser oder jener internen Zeitstruktur organisiert sind, fällt gemeinhin unter die Kategorie der Aktionsart eines Verbs, die explizit im Gegensatz zu der Kodierung mittels grammatischer Aspekt-Partikel gesehen wird. In welchem Maß nun Sprachen die Aspektualität[fn::\cite[1]{zhang_contrastive_1995} führt diesen Sammelbegriff für /Aspekt/ und /Aktionsart/ ein.] einer Verbhandlung mittels lexikalischer oder grammatischer Mittel ausdrücken, ist sehr unterschiedlich und das Beispiel von 穿 legt beredtes Zeugnis davon ab.[fn:: Die Unterscheidung zwischen Aspekt und Aktionsart wird seit \cite{smith_parameter_1991} in der englischen Literatur vermehrt unter Begriffen /viewpoint aspect/ und /situation aspect/ abgehandelt.] 
+
+Nun mag es klar erscheinen, dass 在 immer eine /gerade/-andauernde Handlung beschreibt, während 着 einen kontinuierlichen Zustand kodiert, aber beide durch diese Marker entstehenden Lesarten können wiederum modifiziert werden. Hier exemplarisch für 着:[fn:: Beispiel übernommen samt engl. Übersetzung aus \cite[199]{xiao_aspect_2004}.]
+
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- (1) 着 -- Post-Kulmination :: \xp{马医生为防不测}，\xp{整天穿}着\xp{防弹背心}。
+  - In order to guard against the risk of being shot, Dr. Ma was wearing his body armour /all day long/.
+  - Um allen Eventualitäten vorzubeugen, trug Dr. Ma /den ganzen Tag über/ eine schuss-sichere Weste.
+- (2) 着 -- Pre-Kulmination :: \xp{听}\xpinyin{到}{dao}\xp{急救领响}，\xp{马医生穿}着\xp{大衣冲向急救室}。
+  - At the emergency bell, Dr. Ma rushed towards the first-aid rom while he was still putting on his overcoat.
+  - Als er die Alarmsirene hörte, stürmte Dr. Ma seinen Mantel überwerfend in Richtung Notfallaufnahme.
+Die Übersetzungen für (1) zeitigen, wie zu Erwarten, die Bedeutung von 着 als /tragen/, während (2) trotz 着 mit der Phase vor dem /Tragen/, also noch mit dem /Anziehen/, beschäftigt ist, und damit die Phase einnimmt, die eigentlich mit 在 assoziiert ist. Bei (1) wird der durative Aspekt des /Tragens/ vor allem über 整天 /zhěngtiān/, /den ganzen Tag/, hergestellt, und bei (2) evoziert die dynamische Situation des /Stürmens in eine Richtung/, in der 穿着 benutzt wird, die Lesart der Phase des /Anziehens/ bzw. wort-wörtlich des /Hineinbohrens/.
+# warum nicht zai? -> weil hier Hintergrund-Informationen zu 冲向 (Hauptverb)
+# Chinesisch -> analytisch!!!
+
+# TODO: Überleitung zum nächsten Abschnitt:??
+Das letzte Beispiel sollte auf eine sehr feine Deutungsunterschiede aufmerksam machen, die beim Gebrauch von 着 entstehen können. Von diesen sehr feinen Unterscheiden aber einmal abgesehen, können wir weitere grobe Charakteristika über die Verwendung von 在 und 着 festhalten, was hier nun in Listenform geschieht:
+# Trotz dieser möglichen Sinnverschiebungen, die rein
+
+[fn:at_gerade-trans] Die deutsche Übersetzung wurde gewählt, weil sie in diesem Fall (d. h. dieses Verb betreffend) m. E. die gebräuchlichste und kürzeste Variante in einem gesprochenen Dialog ist. Andere mögliche Varianten, wie »Er ist dabei, den Mantel anzuziehen.« oder »Er ist beim Mantel anziehen.« weisen zwar (wie noch zu zeigen sein wird) eine in gewisser Hinsicht bessere (wie sich zeigen wird: wort-wörtliche) Übersetzung auf, aber es kann doch etwas weitschweifig und allzu literarisch wirken.
+
+Siehe aber auch \cite{gargyan_am-progressiv_2010}, die die Gebräuchlichkeit des am-Progressiv (»Er ist am Schreiben eines Artikels.«) nachweist und auch versucht diesen als hinreichend grammatikalisiertes Phänomen zu verorten.
+
+
+# eist, die auch ohne /gerade/ den Verlauf einer gegenwärtigen Handlung für das Subjekt ausdrückt. Entfernt man aber die Konstruktion »X ist dabei, Y zu tun«, dann ist /gerade/ im Deutschen unerlässlich dafür, den Sinn des gegenwärtigen Verlaufs angemessen auszudrücken; denn, wenn man nur den einfachen Satz »Er zieht den Mantel an.« vor sich hat, dann fehlt diesem gewiss etwas, was die anderen beiden Konstruktionen ihm an Sinn hinzufügen.
+
+[fn:at_star] Alle anzweifelbaren bzw. unakzeptablen Sätze oder sonstige Einheiten von Sätzen sind mit einem Stern gekennzeichnet. In diesem Fall mag die Version ohne die Präsens-Progressiv-Kennzeichnung des Englischen (Form von /be/ ++ Verb + /ing/ -- i.e. present progressive/continious) (vor allem auch aus dt. Perspektive) Sinn machen, weil »wear« (genauso wie »tragen«) einen andauernden Zustand beschreibt. Es scheint jedoch im Englischen eine gewisse Tendenz zu geben, solche Zustandsverben in das Präsens Progressiv zu setzen. Cf. \cite[6]{bland_present_1986}: »I'm wearing a jacket.« und deswegen ist die unmarkierte Version sehr zweifelhaft.
+
+
+**** Zusammenfassung: Progressiv und Durativ
+#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
+- a. \xp{进行体}/\xp{态} -- »Progressiv« mittels 在 (Kurrentiv) :: Der Sprecher behauptet gegenwärtige Involvierung des Satz-Subjekts in einen voranschreitenden Prozess mittels 在 \hspace{0.2em}（她在备课。 / Sie ist dabei, den Unterricht vorzubereiten.[fn:neutral] / She is preparing her lessons.）. [fn:eng-no-disamb-etc]
+  1. Die Abhandlung von 在 in dieser Kategorie ist assoziiert mit den ebenfalls als Progressiv-Indikatoren eigestuften Markern \xp{正} (/gerade/, engl. /just/, kann auch ein anderes Verb als 在 modifizieren)，\xp{正在} (/gerade/ dabei), \xp{现在} （/jetzt/ dabei）und \xp{呢} (als Satzfinalpartikel[fn:: Der zusätzlich einen rhetorischen Ton anschlägt (\cite[105]{yip_chinese:_2004}) bzw. eine feste Überzeugung \cite[123]{motsch_grundlagen_2010} ausdrückt: »外面在下雨呢。/ (Don't you know) it's raining (outside).«]
+  2. 在 u. a. im Dt. paraphrasierbar als »dabei (sein), etwas zu tun« / »(to be) in the process of verb-ing« (postulierter universal-sprachlicher Lokativ[fn:: Cf. \cite[132]{bybee_evolution_1994}.])
+  3. letztere Beschreibung (2) macht zugleich deutlich, dass ein aktiver Akteur im Satz vorhanden sein muss oder angenommen werden kann (Subjekt-Forderung), d. h. es wird ein Individuum gefordert, das etwas tun kann bzw. dessen innerer psychologischer Zustand dargestellt werden kann. Dieser Zustand darf keine fest Disposition ausdrücken, sondern darf nur eine gewisse Phase sein:
+     - 在熟睡 -- jmd. ist fest am Schlafen / 在热恋 -- jmd. ist total verknallt / passionately in love
+     - *在聪明/笨/高/小 -- jmd. ist dabei intelligent/groß/klein zu sein -- cf. engl. »he's being stupid« (Progressiv möglich, aber drückt vielmehr die Absicht des Individuums aus, eine gewisse Disposition zur Schau zu tragen, und weniger den Verlauf der Handlung.)
+  4. aus (2) und (3) lassen sich charakteristische Satzmuster ableiten[fn:: Nach \cite[105f.]{yip_chinese:_2004}]
+     - Akteur + 在 + Aktionsverb :: \xp{演员们}+在+\xp{排演}。 / The performers are rehearsing.
+     - Akteur + 在-Lokativ + Aktionsverb :: \xp{小猫}+\xp{在火炉前}+\xp{打瞌睡}。 / The kitten is dozing in front of the fire.[fn:: \cite[468f.]{liu_danqing_yufa_2008} weist darauf hin, dass sich 在 als Progressiv-Indikator aus der Abkürzung der halb-funktionalisierten Lokalangabe »dort« (半虚化的“在那儿”) entwickelt haben könnte. Dieser Hinweis ebenso von \cite[106]{yip_chinese:_2004} und \cite[162]{cheung_practical_1994}. Siehe dazu auch der Begriff »stage property« (\cite[45,358]{smith_parameter_1991}), den \citeauthor{xiao_aspect_2004} mit 在 als Lokativ im Einklang sehen \citep[215]{xiao_aspect_2004}.]
+  5. Position von 在 nicht unbedingt vor dem Hauptverb, sondern auch vor eventuellen Koverben/Präpositionen, die zur Verbalhandlung gehören (»I am writing to a friend of mine in the USA.« / \hspace{0.1em}「我 在 给 一 个 在 美国 的 朋友 写信。」[fn:: Cf. \cite{sharoff_leeds-internet-zh_2005}, Suchstring: \verb+「我 在 给 一 个 在 美国」+.])
+  6. 在 als Progressiv-Indikator ist selbst wieder modifizierbar durch Zeitadverbiale und kann so auch Aspekte ausformen, die dem Durativ nahe stehen, zum Beispiel:
+     - \xp{正} \to :: 她正在备课。 / Sie ist /gerade/ dabei, die Unterrichtsstunde vorzubereiten. / She's just preparing the lesson. (正 verstärkt den Progressiv)
+     - \xp{经常} \to :: 她经常在练习。 / Sie ist konstant dabei zu üben. / She's constantly exercising. (Habituativ, Frequentiv)[fn::Dieses und das nächste Beispiel von: \cite[583]{fang_yuqing_shiyong_1992}.]
+     - \xp{一直} \to :: 她一直在试验。 / Sie ist immer(zu) am Experimentieren. / She is always experimenting. (Habituativ, Frequentiv)
+     - Negation (selten) \to :: 不在 oder 没（有）（在） [fn:: Siehe \cite[28]{motsch_grundlagen_2010}: bei Nutzung von 没（有） könne 在 entfallen. \cite[107]{yip_chinese:_2004}: »The negation of the continuation aspect is usually effected by the use of 不 with *bù* with 在 *zài* (but not 正在 *zhèngzài*)«, woraufhin einige Beispiele folgen, darunter auch eines, was die Nutzung in der Vergangenheit zeigt (「上星期天下午我不在看球在。」\hspace{0.1em} -- »I wasn't watching a match last sunday afternoon.«). \cite[53]{xiao_zhonghua_richard_negation_2008}: »[...] the durative aspect marked by -/zhe/ and the progressive aspect marked by zai rarely occur in negative sentences. [...]  While sentences taking /zai/ can be negated by either /bu/ or /mei/, cooccurences of /bu/ and /zai/ are typically in double negation structures or rhetoric questions, which are essentially positive in meaning.«]
+  7. größtensteils inkompatibel mit Komplementen des Resultats, weil diese einen natürlichen Endpunkt für die gerade andauernde Handlung bedeuten würden[fn:: Vgl. \cite[763]{klein_aspect_2000}. Dennoch in bestimmten Fällen Resultat auch als Prozess auffassbar \citep[213]{xiao_aspect_2004}: 「我们正在打赢这场战争。」\hspace{0.1em} -- »Gerade gewinnen wir den Krieg.«; \hspace{0.1em}「一批有远见卓识的民营企业家们正在为此作出艰辛的努力。」\hspace{0.1em} -- »Eine Gruppe weitsichtiger (Privat-)Unternehmer unternahm zu diesem Zweck große Anstrengungen.«]
+- b. \xp{持续体}/\xp{态} -- Durativ mittels 着 :: Fortsetzung eines durch die Verbalhandlung erreichten Zustandes (Der Mantel wurde von jmd. anzogen und nun wird er von diesem jmd. getragen.) bzw. eine genrelle Kontinuierlichkeit der Handlung; drei Funktionen im Einzelnen:[fn::Nach \cite[182]{xiao_aspect_2004}.]
+    1. Okkurenz mit einem Verb oder Adjektiv zur Anzeige der Kontinuierlichkeit von dynamischen oder statischen Situationen
+       - 「“九号工程”建成20多年来，一直空闲着。」\hspace{0.1em} (statisch) -- »Mehr als 20 Jahre sind seit der Fertigstellung von `Projekt Nr. 9' vergangen, seither liegt es durchgehend brach/ist es durchgehend inaktiv.«
+       - 「他正盘算着脱身之计。」\hspace{0.1em} （dynamisch） -- »Gerade war er am Nachdenken über einen Fluchplan.«
+    2. (V1+着+V2) In Verbund mit einem Verb (V1) bildet 着 ein Adverbial, das ein anderes Verb dann modifiziert. Das Adverbial bietet so Hintergrund-Informationen oder stellt überlappende Verbhandlung dar:
+       - 「吃着吃着饭猛力将饭桌一掀。」\hspace{0.1em} -- »Sie aß und aß bis sie plötzlich den Tisch rabiat umschubste.«
+    3. Satz ist in lokativer Inversionstellung und 着 impliziert existentiellen Status:
+       -「 荒山上\xp{矗立}着一座古老的\xp{碉楼}。」\hspace{0.1em} -- »Auf dem kargen Hügel ragt ein antiker Diaolou-Turm empor.«
+  - Modifikationen:
+    - Negation (selten) \to :: 没（有）（着）[fn:: \cite[308]{cheung_practical_1994}: \hspace{0.1em}「信封上没写着名字。」\hspace{0.1em} -- »There is no name written on the envelope.«, \cite[54]{xiao_zhonghua_richard_negation_2008}: »Sentences taking -\emph{zhe} are negated more frequently by /mei/ than /bu/, and -\emph{zhe} is often omitted in negative sentences unless it appears in the V-\emph{zhe} V structure where V-\emph{zhe} acts as an adverbial.«]
+
+
+# sitzen, liegen kann man als posturale Verben bezeichnen? Cf. Bybee, Evolution of Grammar, 129 unten
+# 130: location -> "be in the place of verbing"
+
+
+[fn:eng-no-disamb-etc] Man beachte, dass der Term Progressiv vielfach mit dem Sinn von (a) und (b) zugleich aufgeladen ist, wir aber für diese Kategorie (a) explizit nur den gegenwärtig laufenden Prozess, in dem sich ein Subjekt befindet, fokussieren wollen. Um explizit auf (a) zu verweisen zu können, werde ich den Term Kurrentiv verwenden.
+
+Hier ein Beispiel für den Zusammenfall von (a) und (b): 1. Sowohl (a) und (b) sind kontinuierlich und imperfekt. 2. Daher treten sie auch oft zusammen in einem Satz auf, was 3. wiederum bedeuten kann, dass die beiden Funktionen nur im Kontext sichtbar werden: Im Englischen ist »He is reading Ulysses.« an sich zweideutig. Der Kontext müsste zeigen, ob er wirklich gerade liest, oder ob er aus Studiengründen mit dem Lesen dieses Buches begann, das Lesen aber noch nicht abgeschlossen, sondern nur unterbrochen hat, um /gerade/ etwas völlig anderes zu tun. (Beispiel von https://en.wikipedia.org/wiki/Continuous_and_progressive_aspects) 4. Im Gegensatz zu der (generellen) Ambiguität im Englischen impliziert 在 nun aber in Fällen wie \hspace{0.2em}「他在穿大衣」\hspace{0.2em} verstärkt den Kurrentiv, denn (wie oben schon gezeigt) wäre eine Übersetzung mit gerade/just im Deutschen respektive Englischen naheliegend: (g) »Er zieht /gerade/ den Mantel an.« / »He's /just/ putting on the coat.«  (Cf. \cite[161]{fan_kaitai_xiandai_2000}) 5. Woher kommt nun der verstärkte kurrentive Sinn von 在 im Chinesischen? Eine erste Intuition dafür liefert die Paraphrasierung von (g) in »Er ist im Begriff, den Mantel anzuziehen.« / »He's in the process of putting ...« 
+
+# "Ich bin dabei, ein Buch zu lesen" "Ich lese gerade X" ist genauso ambig ... aber "Er ist dabei, den Mantel anzuziehen."
+# was ist hier mit der subjektiven Realität, die der Sprecher vorgibt? Das ist das, was gleich ist; was differiert ist die objektive Realität (= Kontext)!
+# Bybee ab 125, X. Es ist noch nicht geklärt, inwieweit (a) und (b) universelle Sprachkonstrukte natürlicher Sprachen sind.
+
+# TODO: diese Fußnote noch einbauen? genug Literatur hast du aber?!
+[fn:liu-dur] \cite[467f.]{liu_danqing_yufa_2008}(b), S.\nbsp467, Durativ mit 着, diskutiert Liu Zustandsverben (静态动词)，wie sitzen, liegen, tragen (走着，躺着，提着) und Tätigkeitsverben (动态动词), die im Muster Lokativ + Verb + 着 + Nomen vorkommen (墙上挂着一幅画儿，地上写着一个大字). Er erwähnt, dass der Satz 他在房间里挂着画, in dem 在 als Teil einer Ortsangabe vorliegt, zweideutig ist: \hspace{0.2em}「既可表正在挂，也可以表画挂上后持续存在的状态。」. 
+
+Ganz anders hingegen ist die Einteilung bei \cite{yip_chinese:_2004}: In ihrem deskriptiven Satzmodell weisen sie 在 zwar eine kurrentive Funktion zu (S. 303:  »[...] what is going on through the action of the verb /at the moment of speaking/ [...]« (meine Hervorhebung)), aber wenn es im Verbkapitel um die Besprechung der Aspekt-Partikel 在 an und für sich geht, dann zeigt sich an dieser eine zusätzliche durative Seite (S. 105: »[...] the action indicated can be ongoing, /continual/, or repetitive.«). So übersetzen sie etwa 小猫在火炉前打瞌睡 in »The kitten is dozing in front of the fire.« und beschreiben die Wirkung des »Koverbs« 在 in der Ortsangabe 在火炉前 als »express[ing] continuous action« (S. 106).
+
+\cite[304]{yip_chinese:_2004} geben für solche Fälle an, dass die Funktion von 在 als Aspekt-Partikel vorliegt. Als wahrscheinlichen Grund hierfür sehen sie (S.106), dass die 进行-Funktion von 在, ebenso wie schon von Liu erwähnt, von der Nutzung in Orsangaben herrührt. Ihre Definition der Funktionen von 在 beinhaltet sowohl 进行 als 持续 umfasst
+
+Weiterhin zu den beiden Fällen auch bei .  Sowie für (b): 着 markiert »[...] a state that has resulted from the action of the verb.« (S.\nbsp303) betont aber auch (S.\nbsp305) die Verbalhandlung selbst (»calls attention to the action itself, and therefore carries a descriptive flavour.«)
+
+\cite[304]{yip_chinese:_2004}: (a) »[...] 在 *zài* indicates ongoing action on the part of the subject.« Diese Aussage bezieht sich auf das Beispiel \hspace{0.1em}「王老师在备课。」
+
+*** Tabelle
 #+BEGIN_LaTeX
 
 \DTLloaddbtex{\tenses}{tests/tenses.dbtex}
@@ -1041,93 +1151,21 @@ Kategorie
 \end{longtable}
 #+END_LaTeX
 
-Zeile 1--2: (»to be sleeping« , »it is raining«)
+*** Zeile 1--2: (»to be sleeping« , »it is raining«)
 
-In Fall 1 gibt es zwei Vorschläge: (a) 在 (zài) vor dem Verb, 在睡, oder (b) 着 (zhe) nach dem Verb, 睡着. Vorschlag (a) wurde in der Zwischenzeit in der API-Funktion ~progressiveVP~ umgesetzt, sodass auch Fall 2, der dieselbe API-Funktion nutzt, diesen Vorschlag übernimmt.
+In Fall 1 gibt es zwei Vorschläge: (a) 在 (zài) vor dem Verb, 在睡, oder (b) 着 (zhe) nach dem Verb, 睡着. Vorschlag (a) wurde in der Zwischenzeit in der API-Funktion ~progressiveVP~ umgesetzt, sodass auch Fall 2, der dieselbe API-Funktion nutzt, diesen Vorschlag übernimmt. ~progressiveVP~ verweist auf die Funktion ~ProgrVP~ die sich in IdiomChi.gf befindet:
 
-Es ist jedoch umstritten, ob es eine exakt demarkierbare Semantik in der Anwendung von 在 und 着 zum Ausdruck einer kontinuierlichen Handlung existiert, um zu entscheiden, welcher der beiden Vorschläge (oder gar beide) mittels ~progressiveVP~ umgesetzt werden muss.
-
-Es gibt zwar sehr wohl Beispiele, die auf eine exakte Unterscheidbarkeit schließen lassen, u.a. wenn 在 oder 着 eine bestimmte Bedeutung des Verbs selektieren, wie etwa bei 穿 (chuān: wort-wörtlich: etw. durchbohren, to pierce through):
-
-#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
-- a. \xpinyin*{他在穿大衣}。 :: Er /zieht/ gerade den Mantel /an/. -- He is just /putting/ on his coat.[fn:at_gerade-trans]
-- b. \xpinyin*{他穿}\xpinyin{着}{zhe}\xpinyin*{大衣}。 :: Er /trägt/ einen Mantel. -- *(He /wears/ a coat.)[fn:at_star] / He is /wearing/ a coat.
-
-[fn:at_gerade-trans] Die deutsche Übersetzung wurde gewählt, weil sie in diesem Fall (d.h. dieses Verb betreffend) m.E. die gebräuchlichste und kürzeste Variante in einem gesprochenen Dialog ist. Andere mögliche Varianten, wie »Er ist dabei, den Mantel anzuziehen.« oder »Er ist beim Mantel anziehen.« weisen zwar (wie noch zu zeigen sein wird) eine in gewisser Hinsicht bessere (wie sich zeigen wird: wort-wörtliche) Übersetzung auf, aber diese Art von Weitschweifigkeit ist meistens nicht akzeptabel in gesprochener Rede und wird eher mit dem literarischen und narrativen Stil (»Er war im Begriff den Mantel anzuziehen, als der Einbrecher anklopfte«.) assoziiert. Siehe aber auch \cite{gargyan_am-progressiv_2014}, die die Gebräuchlichkeit des am-Progressiv (»Er ist am Schreiben eines Artikels.«) nachweist und auch versucht diesen als hinreichend grammatikalisiertes Phänomen zu verorten.
-# eist, die auch ohne /gerade/ den Verlauf einer gegenwärtigen Handlung für das Subjekt ausdrückt. Entfernt man aber die Konstruktion »X ist dabei, Y zu tun«, dann ist /gerade/ im Deutschen unerlässlich dafür, den Sinn des gegenwärtigen Verlaufs angemessen auszudrücken; denn, wenn man nur den einfachen Satz »Er zieht den Mantel an.« vor sich hat, dann fehlt diesem gewiss etwas, was die anderen beiden Konstruktionen ihm an Sinn hinzufügen.
-[fn:at_star] Alle anzweifelbaren bzw. unakzeptablen Sätze oder sonstige Einheiten von Sätzen sind mit einem Stern gekennzeichnet. In diesem Fall mag die Version ohne die Präsens-Progressiv-Kennzeichnung des Englischen (Form von /be/ ++ Verb + /ing/ -- i.e. present progressive/continious) (vor allem auch aus dt. Perspektive) Sinn machen, weil »wear« (genauso wie »tragen«) einen andauernden Zustand beschreibt. Es scheint jedoch im Englischen eine gewisse Tendenz zu geben, solche Zustandsverben in das Präsens Progressiv zu setzen. Cf. \cite[6]{bland_present_1986}: »I'm wearing a jacket.«.
-
-Solche klaren Unterscheidungen fördern die Bildung zweier Aspekt-Kategorien:[fn:: So bei \cite[160f.]{fan_kaitai_xiandai_2000} und \cite[467f.]{liu_danqing_yufa_2008}]
-
-#+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
-- a. Progressiv[fn:progr] -- 进行体/态 (jìnxíngtǐ/tài) :: Sprecher kennzeichnet gegenwärtige Involvierung des Satz-Subjekts in einen Prozess mittels 在: (auch paraphrasiert als »dabei sein, etwas zu tun«)
-- b. Kontinuativ[fn:dur_too] -- 持续体/态 (chíxùtǐ/tài) :: Fortsetzung eines durch die Verbalhandlung erreichten Zustandes (Der Mantel wurde von jmd. anzogen und nun wird er von diesem jmd. getragen.)
-
-Leider gibt es aber auch Fälle, wie den folgenden, in dem 在 durch ein vorangestelltes Adverb (一直: yīzhí, always, immer) modifiziert wird, sodass der Sinn der gesamten Aussage kontinuativ zu interpretieren ist:
-
-#+NAME: fang:gloss-shiyan
-#+CAPTION[Progressiv-Kontinuativ]: Modifikation des Progressiv ergibt Kontinuativ
+# 我 在 给 一 个 在 美国 的 朋友 写信
 #+BEGIN_SRC haskell
-他  一直      在    试验。
-ta1 yi1zhi2  zai4  shi4yan4
-he  always   at    experiment
---
-Er ist immer(zu) am Experimentieren.
-He is  always       experimenting.
+    ProgrVP vp = {
+      verb = regVerb zai_s ;
+      compl = vp.prePart ++ vp.verb.s ++ vp.compl ;
+      prePart, topic = []
+      }
 #+END_SRC
-# 他 一直 在 怀念 着 一 个 人 ， 默默 地 ， 偷偷 地 ， 苦苦 地 。(real-life sentence lancaster)
-
-Es mag nicht verwundern, dass der Satz durch das neue Adverb auch eine neue Wendung erfährt. Unklar ist jedoch, warum die eben definierte Bedeutung von 在 so einfach verdrängt werden kann. Zudem wird 在 oft auch im Zusammenhang mit 正 (zhèng: just, richtig, gerade) abgehandelt, das als weiterer Indikator für den Progressiv an die Stelle von 在 bzw. in Kombination mit diesem als 正在 treten können soll -- setzen wir jedoch diesen neuen oder den erweiterten Marker für 在 ein, so ist der so entstandene Satz inakzeptabel (*他一直正在试验/ *他一直正试验[fn:fang-yq-584]), weil die zwei Adverbien sich weitestgehend gegenseitig ausschließen.[fn:: Eventuell ergäben sie kombiniert einen Sinn, wenn man als Situation eine Beschwerde über jmd. annimmt, der immerzu »gerade« keine Zeit hat. Eine Auswertung drei verschiedener chin. Korpora (http://corpus.leeds.ac.uk/query-zh.html) ergab, dass \verb*+「一直 正」+ nur dreimal vorkommt und immer nimmt 正 eine andere Bedeutung als »gerade (jetzt)« an sowie \verb*+「一直 正在」+ genau einmal mit \hspace{0.2em}「我们一直正在做中国风的系列报告。」\hspace{0.2em} -- eine zeitliche Interpretation von 正在 fällt auch hier schwer. Daher können wir annehmen, dass der genannte sehr ungewöhnlich und damit wahrscheinlich inakteptabel wäre.]
-
-[fn:fang-yq-584] Das hier besprochene aus Auflistung [[fang:gloss-shiyan]] ist ein Beispiel aus: \cite[583]{fang_yuqing_shiyong_1992}. Fang zählt 在 und 正 übrigens nicht zu den Aspekt-Partikeln, sondern zu den Zeitadverbien （时间副词）.
 
 
-Die beiden Vorschläge setzen unterschiedliche Akzente bei der Beschreibung des imperfektiven Aspekts einer Handlung: Während mittels (a) dem Subjekt der Handlung vom Sprecher zugestanden wird, dass es derzeit /dabei ist/, eine gewisse Handlung auszuführen, wird mittels (b) ein Andauern der Handlung selbst bzw. eines durch die Handlung erreichten Zustandes beschrieben.[fn:yip_zai]
-
----> Bezeichenbar sind diese beiden Akzente als (a) Progressiv und (b) Durativ
-
-[fn:yip_zai] \cite[304]{yip_chinese:_2004}: (a) »[...] 在 *zài* indicates ongoing action on the part of the subject.« Diese Aussage bezieht sich auf das Beispiel \hspace{0.1em}「王老师在备课。」. Außerdem sei (S. 303) die Konstruktion mit 在 eine der Arten des deskriptiven Satzmodells, dass beschreibt, »[...] what is going on through the action of the verb /at the moment of speaking/ [...]« (meine Hervorhebung). Sowie für (b): 着 markiert »[...] a state that has resulted from the action of the verb.« (S.\nbsp303) betont aber auch (S.\nbsp305) die Verbalhandlung selbst (»calls attention to the action itself, and therefore carries a descriptive flavour.«)
-
-Vgl. auch \cite[468]{liu_danqing_yufa_2008} der für (a) beschreibt, dass 在 als Abkürzung der halb-funktionalisierten Lokalangabe (半虚化的“在那儿”), die oft auch in Verbindung mit dem Satzfinal-Modalpartikel 呢 (ne) der Pekinger Mundart steht, den Progressiv (进行体) markiert; für (b), S.\nbsp467, Kontinutativ/Durativ (持续体), diskutiert Liu Zustandsverben (静态动词)，wie sitzen, liegen, tragen (走着，躺着，提着) und Tätigkeitsverben (动态动词), die im Muster Lokativ + Verb + 着 + Nomen vorkommen (墙上挂着一幅画儿，地上写着一个大字). Der Satz 他在房间里挂着画, in dem 在 als Teil einer Ortsangabe vorliegt, ist laut Liu zweideutig. \cite[304]{yip_chinese:_2004} weisen aber darauf hin, dass auch dieser Fall den Progressiv induziert.
-
-# sitzen, liegen kann man als posturale Verben bezeichnen? Cf. Bybee, Evolution of Grammar, 129 unten
-# 130: location -> "be in the place of verbing"
-
-
-
-Tabelle [[tbl:cont-prog]] gibt zwei weitere charakteristische Beispiele und macht auf mögliche äquivalente grammatische Markierungen sowie Übersetzungen im Deutschen und Englischen aufmerksam.
-
-#+latex: \bgroup\def\arraystretch{1.3}%
-#+name: tbl:cont-prog
-#+CAPTION[Durativ-vs-Progressiv]: Gegenüberstellung von Progressiv und Durativ/Kontinuativ
-#+attr_latex: :align p{0.7cm} p{6.0cm} p{6.6cm} 
-|     | (a) Progressiv 进行体                                       | (b) Kontinuativ/Durativ 持续体                               |
-|-----+-------------------------------------------------------------+--------------------------------------------------------------|
-| Chi | 王老师在备课。                                              | 你永远想着过去。[fn:fang_ex1]                                |
-|-----+-------------------------------------------------------------+--------------------------------------------------------------|
-| Ger | Lehrer Wang bereitet gerade den Unterricht vor.             | Du denkst immer an die Vergangenheit.[fn:ger_no_dur]         |
-|     | Lehrer Wang ist gerade dabei, den Unterricht vorzubereiten. | Immer bist du am Grübeln über die Vergangenheit.[fn:rhein] |
-|-----+-------------------------------------------------------------+--------------------------------------------------------------|
-| Eng | Teacher Wang is preparing lessons (right now).              | You're always thinking about the past.                       |
-|     |                                                             | You're always mulling over the past.                         |
-#+latex: \egroup
-
-
-
-[fn:fang_ex1] Abgewandeltes Beispiel von \cite[455]{fang_yuqing_shiyong_1992}: \hspace{0.2em}「儿呀！ 你要永远想着过去，记着今天。\hspace{0.2em}（杨朔）」\hspace{0.1em}.
-
-[fn:ger_no_dur] Auch wenn die deutsche Grammatik gewisse Formen der Verbmarkierung bietet (siehe Fußnote [fn:rhein]), so ist doch gewöhnlich eine Übersetzung mittels Präsens mehr als ausreichend. 
-
-[fn:rhein] REFTODO: Rheinische Verlaufsform Gabriella Gárgyán: Der am-Progressiv im heutigen Deutsch. Peter Lang Edition, Frankfurt 2014, S. 105
-
-
-
-
-[fn:motsch_zhe] Siehe \cite[28f.]{motsch_grundlagen_2010}: Man unterscheidet in (a) einen progressiven Aspekt und (b) einen durativen. (a) wäre z.B. 她在看书 (sie liest gerade ein Buch), während (b) 她看着书 (sie ist beim/am Lesen des Buchs).
-
-
-Zeile 3: (»John, who walks«)
-
+*** Zeile 3: (»John, who walks«)
 
 # [fn:prim_subj] Deskriptive Aktualität/Realität der Handlung: Man beachte den teilweise vorkommenden subjektiven Standpunkt des Sprechers, der innerhalb seines begrenzten Wissens die Handlungen eines Subjekts beschreibt: »Er liest gerade ein Buch« bzw. »Er ist gerade dabei, ein Buch zu lesen« (他在看书). In diesem Zusammenhang muss sich -- zumindest aus Perspektive des dt. Sprachgebrauchs -- die aktuelle, derzeitige Handlung des Subjekts nicht mit der beschriebenen decken, denn es geht vielmehr darum, dass der Sprecher weiß, welche primären Handlungen das Subjekt vollführen müsste. In der Beschreibung des Sprechers erscheint dessen Realität. cf. 刘丹青：466 （216）[i used to play chess] -- worüber er sich dort Gedanken macht, ist genau das, was du hier versuchst auszuschließen!?
 # \cite[476]{goddard_natural_2010}: (Paraphrasing Greenberg [1966a:74]) Greenberg did not shrink from admitting that to identify different category types across languages, in order to compare them, one must rely essentially on semantic criteria. One may also appeal to functional criteria, but on closer inspection functional criteria also depend on semantic judgements, and the same applies to efforts to base cross-linguistic comparison on iventories of situation types, basic domains, conceptual spaces, or whatevery
@@ -1278,9 +1316,9 @@ sysu/Assign_6.gf
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \lstnewenvironment{my-inlst}{\lstset{basicstyle=\small\ttfamily\setstretch{1},language={}}}{}
 #+LATEX_HEADER: \newcommand*{\inlst}{\lstinline[basicstyle=\ttfamily\setstretch{1},language={},breaklines=true,showstringspaces=false]}
-#+LATEX_HEADER: %\newcommand{\inlst}[1]{%
-#+LATEX_HEADER: %   \lstinline[basicstyle=\small\ttfamily\setstretch{1},language={}]!#1!
-#+LATEX_HEADER: %}
+#+LATEX_HEADER: \newcommand{\xp}[1]{%
+#+LATEX_HEADER:    \xpinyin*{#1}
+#+LATEX_HEADER: }
 #+LATEX_HEADER: \newcommand{\stylst}{basicstyle=\small\ttfamily\setstretch{1}}
 #+LATEX_HEADER: 
 #+LATEX_HEADER: 
