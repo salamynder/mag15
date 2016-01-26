@@ -1,4 +1,4 @@
-% Created by datatooltk on Sat Dec 26 23:56:41 CET 2015
+% Created by datatooltk on Mon Jan 11 14:13:42 CET 2016
 \DTLifdbexists{tenses}%
 {\PackageError{datatool}{Database `tenses'
 already exists}{}%
@@ -414,7 +414,7 @@ already exists}{}%
 % Column 3
 \db@col@id@w 3%
 \db@col@id@end@ %
-\db@col@elt@w 谁不睡觉%
+\db@col@elt@w 谁不睡觉了%
 \db@col@elt@end@ %
 \db@col@id@w 3%
 \db@col@id@end@ %

@@ -1,7 +1,7 @@
 \VerbatimFootnotes
 #+INCLUDE: "title.org"
 \pagenumbering{gobble}
-#+INCLUDE: "erklaerung.org"
+# +INCLUDE: "erklaerung.org"
 \tableofcontents
 \pagenumbering{roman}
 \listoffigures
@@ -10,22 +10,15 @@
 \lstlistoflistings
 \listoftables
 * Einleitung
+# purpose of RGL: http://www.grammaticalframework.org/lib/doc/translation.html
+# As a bottle-neck of GF applications, it was soon realized that the definition of concrete syntax requires a lot of manual work and linguistic skill, because of the complexities of natural language syntax and morphology. Some of the complexities can be ignored in a small system. For instance, in a mathematical system, it may be enough to use verbs in the present tense only. But very much the same linguistic problems must be solved again and again in new applications: French verb inflection is the same in mathematics as in a tourist phrasebook. To solve this problem, the GF Resource Grammar Library (RGL) was developed, to take care of "low-level" linguistic rules such as inflection, agreement, and word order. This enables the authors of application grammars to focus on the semantics (when designing the abstract syntax) and on selecting RGL functions that produce the idioms they want. The RGL grew into an international open-source project, where more than 50 persons have contributed to implementing it for 29 languages by the time of writing this. 
 \pagenumbering{arabic}
-Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt, was wiederum einem Programmierer ermöglicht, ohne spezifische Sprachkenntnisse syntaktisch korrekte chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist (BEISPIELTODO: Strauß?).[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
-- \cite{thompson_type_1991}
-** Zwischen Compiler-Technologie und NLP
-- multi-source, multi-target compiler
-- Java-Beispiel, mit konkreter und abstrakter Syntax
+Diese Arbeit beschreibt und evaluiert eine mit »Grammatical Framework« (GF) implementierte sogenannte Ressourcen-Grammatik für das Chinesische. In einer Ressourcen-Grammatik werden durch Linguisten syntaktische und morphologische Besonderheiten einer Sprache samt lexikalischen Einträgen hinterlegt, was wiederum einem Programmierer ermöglicht, ohne spezifische Sprachkenntnisse syntaktisch korrekte chinesische Sätze zu bilden. Außerdem sind die Funktionen innerhalb aller Ressourcen-Grammatik, die eine Syntax generieren, identisch, sodass ein konsistenter Zugang über Sprachen hinweg vorhanden ist.[fn::Software-technisch handelt es sich hier um eine API, Application Programmer's Interface.REFTODO] Eine Hinführung zum Thema GF sowie in die Nutzung der »Resource Grammar Library« (RGL) von GF wird den Evaluationsprozess nachverfolgbar machen. 
 ** Zwischen Formalismus und Programmiersprache
 *** Zweckgerichtetheit (special purpose)
 GF ist keine Programmiersprache mit allgemeinem Anwendungszweck (general purpose [programming] language, GPL), sondern bedient den speziellen Zweck (special purpose), multilinguale Grammatiken zu erstellen. Zu diesem Zweck bietet GF verschiedene Eigenschaften was Aufbau und Infrastruktur anbelangt, welche wiederum von GPLs, wie Java, C++, Haskell und ML, sowie von typen-theoretischen Beweisassistenten, wie etwa ALF[fn:: Was die Namensgebung von GF und auch das Konzept der abstrakten Syntax angeht, so ist ALF (Another Logical Framework) sozusagen ein direkter Vorfahre von GF. Cf. \cite[22]{ranta_grammatical_2011}] und Agda[fn:: Der Algorithmus zur Prüfung der Typen in GF ist identisch zu dem in Agda. Cf. \cite[74]{angelov_mechanics_2011}, \cite[8]{maenpaa_type_1999}], inspiriert sind. Zwei der wichtigsten Punkte unter diesen Eigenschaften sind, dass zum einen der Komplexität natürlicher Sprachen Rechnung getragen wird (via Funktionen und einem statischen Typ-System), und zum andern, dass einmal formulierte Informationen einer Sprache leichthin abrufbar und damit wiederverwendbar sind (via Modularisierung, Vererbung und Instanzierung). So ist das Ergebnis der Arbeit mit GF zwar eine multilinguale Grammatik, die einen einfach zu interpretierender grammatischer Formalismus darstellt, aber der Weg dorthin ist nicht trivial und geprägt von vielfältigen Rechenabläufen (computations) und Infrastrukturangeboten. Zur Kategorisierung als /special purpose language/, siehe \cite[253]{ranta_grammatical_2011}, \cite[1]{ranta_grammatical_2004}.
-*** Parsing und Generation
 *** Turing-unmächtig
 Ein interessanter Aspekt der Charakterierung von GF als sowohl grammatischer Formalismus als auch Programmiersprache ist desweiteren, dass der angestrebte Formalismus die Mächtigkeit der Programmiersprache beschränkt: Würde GF Turing-mächtig sein, dann wäre nicht sichergestellt, dass eine Sprache mit der dazugehörigen GF-Grammatik gleichermaßen geparst als auch generiert werden könnte; der Formalismus sichert die Umkehrbarkeit (TODO: mapping between trees and strings (as tuples) is compositional and thereby homomorphic, reversible). TODO: In Einleitung damit? -- zu abstrakt, lieber nach Exposition oder Appendix (gehört ja eh zu Appendix (-- nur supplementärer Gegenstand der Arbeit))
-** Relevanz von GF
-*** für die Maschinelle Übersetzung (MÜ)
-*** für das Chinesische
-** Typographische Konventionen
 ** Experimentierstoff
 Die nun verwendeten Beispiel-Grammatiken liegen (wie auch dieser Text) in einem öffentlich zugänglichen Archiv und stehen so zum eigenen Experimentieren bereit.[fn:: https://github.com/salamynder/mag15 . Siehe auch zur Installation von GF auf verschiedenen Systemen: http://www.grammaticalframework.org/download/index.html . GF_LIB_PATH unter Windows setzen: http://www.grammaticalframework.org/~inari/gf-windows.html . Die von mir verwendeten GF-Version ist TODO.] 
 * Motivation
@@ -35,7 +28,7 @@ Zum Beispiel könnte unser Vorhaben eine Applikationsgrammatik für einen Tierpa
 
 Die Einzelheiten zu den verschieden Begrifflichkeiten der Grammatiken werden ausführlicher im GF-Expositions-Kapitel abgehandelt. In diesem Kapitel geht es dagegen vornehmlich darum, einen knappen Einblick in die Leistungsfähigkeit des GF-Systems, insbesondere auch der »Resource Grammar Library« (RGL), zu geben.
 
-Don't guess when you know. -> Verringerung der Kosten von Grammatiken (cost of grammar)
+# TODO: Don't guess when you know. -> Verringerung der Kosten von Grammatiken (cost of grammar)
 ** Linearisierungs-Regeln
 Betrachten wir den Satz »der Strauß frißt Beeren«, dann können wir diesen folgendermaßen in einer konkreten GF-Grammatik für das Deutsche formalisieren:
 
@@ -387,7 +380,7 @@ Zero> parse -lang=ZeroChi "约翰 爱 玛丽" | linearize -lang=ZeroGer
 Johann liebt Marie
 #+END_SRC
 
-In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter dem Label »Languages«. Sie bilden also den Geltungsbereich (engl. /scope/) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik (sofern geladen) sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der angesprochenen Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt.
+In Zeile 1 von Auflistung \ref{pl1} sehen wir die geladenen konkreten Grammatiken, die wir für eine Übersetzung heranziehen können hinter der Beschriftung »Languages«. Sie bilden also den Geltungsbereich (engl. /scope/) für die Arbeit in der Shell. Zeile 2 beginnt mit dem sogenannten Prompt, der sich aus dem Namen der geladenen abstrakten Grammatik (sofern geladen) sowie einer nach rechts ausgerichteten Spitzklammer zusammensetzt. Nach dem Prompt können wir unsere Eingaben tätigen. In der angesprochenen Auflistung ist die Eingabe eine Kombination von Kommandos, die eine Chinesisch-Deutsch-Übersetzung bewerkstelligt.
 
 Im einzelnen werden dafür zwei Kommandos, ~parse~ und ~linearize~, und ein Operator benötigt, der die Ausgabe des ersten Kommandos an das zweite weiterleitet. Der genaue Ablauf sieht folgendermaßen aus:
 
@@ -499,10 +492,6 @@ Andere Ausdrücke, die keine Argumente nehmen, sind aber ebenso Funktionen, wie:
     Mary : NP;                   Mary = "玛丽";
 #+END_SRC
 
-
-
-
-
 Außerdem zeigt uns der Graph die Kategorien (~cat~)
 #+BEGIN_SRC haskell
 Zero> linearize Pred John Compl
@@ -535,64 +524,7 @@ Zero> linearize Pred
 Compl  John   Love   Mary   Pred -- Warum wird Compl vorgeschlagen?! -- das ist kein richtiges Inkrementelles Parsing; klar ist ja auch linearize... :P
 #+END_SRC
 
-** Notizen über das verwendete Vokabular
-- Frege, Curry, Schönfinkel
-
-- Angelov, 5: cat sind abstrakte syntaktische Kategorien (syntaktische Aspekt des Frameworks); sind gleichzeitig Martin Löfs basale Typen
-- fun This,That,These,Those : Kind → Item; (grammatically this and that are determiners; *logically* they are functions)
-
-** Records und Tables
-<<rectables>>
-Eyes:
-- Agreement is indeed assumed to be one of the strengths of GF, so it is important to understand how it works! And not difficult, if you start with simple examples. Yours is simple enough, so let's look at it.
-
-I have put a minimal grammar in
-
-  http://cloud.grammaticalframework.org/gfse/
-
-entitled "Eyes", and you can play with it and extend it as you want. The main idea is that
-
-- NP has Number as inherent feature (field in a record)
-- N has Number as variable feature (argument in a table)
-
-Determiners set the Number of an NP, and select the number of N. Thus »this« sets an NP to be Sg, and selects the Sg form of the N.
-
-With "your", you must think in a bit tricky way. There are, so to say, two variants of it: YourSg and YourPl. Many languages actually differentiate them (e.g. French and German) but in English they are the same string. But otherwise they work like This and These.
-
-You should read the GF book chapter 3 for more details, and then 4 and 9 for even more details. If you don't have the book, the book slides may give enough information.
-
-** Operationen
-<<oper>>
-- Besonderheiten: lokale Definitionen (let-Blöcke)
-** Typ-Synonyme
-<<type-syn>>
-** Parameter
-** semantic action example
-DShopping> p "that shirt isn't very Italian "
-Pred DCloth (That DCloth Shirt) (Very DCloth (Italian DCloth))
-Pred DCloth (That DCloth Shirt) (Very DCloth (Italian DCloth))
-
-3 msec
-DShopping> p "that shirt isn't very fresh "
-The parsing is successful but the type checking failed with error(s):
-  Couldn't match expected type Quality DCloth
-         against inferred type Quality DFood
-  In the expression: Very DFood Fresh
-  Couldn't match expected type Quality DCloth
-         against inferred type Quality DFood
-  In the expression: Very DFood Fresh
-
-0 msec
-DShopping> !pwd
-system: invalid argument (null command)
-DShopping> ! pwd
-/home/rtb/doks/nlp/gf-ressource/gf-book/examples/chapter6
-
-** für Erklärung von Begriffen evtl. relevant
-- synkategorematisch: GF: 100 (This), Granström: 7
-
 * Evaluation der chinesischen Ressourcen Grammatik
-** Signpost: Why again chinese and GF? :: move to other place!
 ** Daten und Arbeitsschritte
 *** Ergebnisse der ersten Implementierung als Grundlage
 Die Grundlage dieser Evaluation sind die Arbeiten Dr. Chens an der chinesischen Ressourcen-Grammatik aus dem Jahre 2012 und innerhalb dieser Arbeiten insbesondere ein Dokument, dass auch ihm zur Evaluation seiner Implementierung diente.[fn:: \cite{chen_peng_implementation_2013}. Zuvor waren zudem beteiligt: 乔海燕博士 （广州）， Prof. Aarne Ranta (Göteborg) sowie 卓琳其其格, cf. \cite{ranta_gf_2012}. Das Evaluationsdokument von 陈鹏 ist auffindbar bei \cite{chen_peng_evaluationsdokument:_2012}.] Dieses Dokument besteht aus drei-zeiligen Einträgen, wie dem folgenden:
@@ -681,7 +613,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule\footnotesize
 {\DTLforeach*{\shideg}
   {%
   \api=Field1,
@@ -691,12 +623,12 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
@@ -828,7 +760,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule\footnotesize
 {\DTLforeach*{\shideb}
   {%
   \api=Field1,
@@ -838,18 +770,19 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
 #+END_LaTeX
 Allen Fällen dieser Gruppe ergeben mit 是-的 schlechte Linearisierungen. Die Zusammenstellung unterteilt sich in
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
 - Subordination-Konstruktion (1),
 - Gattungsnomen (CN -- Common noun) mit Relativsatz (RCl) (2--5),
 - und Sätze oder Verbphrasen, die mit 结婚 (jiéhūn, heiraten) gebildet werden (6--9).
@@ -873,7 +806,7 @@ mkUtt                                 mkUtt
      (mkQCl who_IP sleep_V)))))            (mkCl she_NP sleep_V)))))
 #+END_SRC
 <<uncertain-who-sleeps>>
-Daher sollte eine Linearisierung ohne 是-的 stark in Betracht gezogen werden. Beim Vergleich mit dem strukturgleichen Ausdrck (C) »it is good that she sleeps« (siehe Auflistung [[lst:it-is-foo]] und Sektion REFTODO) wird aber auch klar, dass hier 是 (「她睡是好事」) wiederum gebraucht wird. Auch die Nominalisierung von 好 zu 好事 ist problematisch.
+Daher sollte eine Linearisierung ohne 是-的 stark in Betracht gezogen werden. Beim Vergleich mit dem strukturgleichen Ausdrck (C) »it is good that she sleeps« (siehe Auflistung [[lst:it-is-foo]] und Sektion [[uncertain-who-sleeps]]) wird aber auch klar, dass hier 是 (「她睡是好事」) wiederum gebraucht wird. Auch die Nominalisierung von 好 zu 好事 ist problematisch.
 
 #+latex: {\footnotesize
 |   | engl. Linear.              | chin.                  | Ok? | Vorschlag      |
@@ -898,7 +831,14 @@ In diesen Fällen kann 是-的 bedenkenlos entfernt werden.
 
 Zeilen 6--9 (结婚 mit 和)：
 
-Die lexikalische Einheit \inlst$married_A2$ muss mit Informationen über die Präposition 和 versorgt werden, sodass diese bei der Konstruktion durch mkVP, mkCl, mkRCl und mkQCl genutzt werden kann. Dies ist nicht problematisch.
+Der Adjektiv-Status ~A2~ von 结婚 im jetzigen lexikalischen Paradigma (~married_A2~) sollte eigentlich in einen Verb-Status abgeändert werden, denn 结婚 ist eine Verb-Objekt-Kombination (binden 结 /jié/, Ehe 婚 hūn). Das hätte auch den Vorteil, dass die 是-Kopula, die jetzt durch ~mkCl~, ~mkQCl~, ~mkCN~, ~mkRCl~ etc. in Verbindung mit einem Adjektiv-Prädikat hervorgerufen wird, unterbliebe.
+#+ATTR_LATEX: :options [itemsep=0pt,parsep=0pt]
+- Allerdings dringt die gemeinsame lexikalische Basis der RGL auf den Bezeichner ~married~ sowie auch auf die Wortart Adjektiv (A).
+- Da der zweite Vorschlag Chens leider geschlechtsspezifisch （\xp{嫁给他} -- verheiraten an /ihn/) ist, käme also letztendlich nur der erste in Frage （和他结了婚的女人）
+  - Da wir im Sinne der praktikablen RGL-Nutzung die lexikalische Kategorie ~A~ beibehalten wollen, bliebe nur, dass das Verb 结婚 mit dem Perfekt-Marker 了，\hspace{0.1em} also als 结了婚，\hspace{0.1em} in das weiterhin bestehende Paradigma ~married_A2~ »eingeschmuggelt« wird.
+  - Das lexikalische Paradigma \inlst$married_A2$ muss mit Informationen über die Präposition 和 versorgt werden, sodass diese bei der Konstruktion durch mkVP, mkCl, mkRCl und mkQCl genutzt werden kann.
+    - Dies in den letzten beiden Punkten festgestellten Anpassungen sollten nicht problematisch sein.
+# mkUtt (mkCl she_NP married_A2 he_NP)
 
 **** Mit mittelmäßiger Bewertung:
 #+BEGIN_LaTeX
@@ -912,7 +852,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule\footnotesize
 {\DTLforeach*{\shides}
   {%
   \api=Field1,
@@ -922,12 +862,12 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
@@ -964,7 +904,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule\footnotesize
 {\DTLforeach*{\shideneeded}
   {%
   \api=Field1,
@@ -974,12 +914,12 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
@@ -1050,7 +990,7 @@ Die Übersetzungen für (1) zeitigen, wie zu Erwarten, die Bedeutung von 着 als
 # Chinesisch -> analytisch!!!
 
 # TODO: Überleitung zum nächsten Abschnitt:??
-Das letzte Beispiel sollte auf eine sehr feine Deutungsunterschiede aufmerksam machen, die beim Gebrauch von 着 entstehen können. Von diesen sehr feinen Unterscheiden aber einmal abgesehen, können wir weitere grobe Charakteristika über die Verwendung von 在 und 着 festhalten, was hier nun in Listenform geschieht:
+Das letzte Beispiel sollte auf eine sehr feine Deutungsunterschiede aufmerksam machen, die beim Gebrauch von 着 entstehen können. Von diesen sehr feinen Unterschieden aber einmal abgesehen, können wir weitere grobe Charakteristika über die Verwendung von 在 und 着 festhalten, was hier nun in Listenform geschieht:
 # Trotz dieser möglichen Sinnverschiebungen, die rein
 
 [fn:at_gerade-trans] Die deutsche Übersetzung wurde gewählt, weil sie in diesem Fall (d. h. dieses Verb betreffend) m. E. die gebräuchlichste und kürzeste Variante in einem gesprochenen Dialog ist. Andere mögliche Varianten, wie »Er ist dabei, den Mantel anzuziehen.« oder »Er ist beim Mantel anziehen.« weisen zwar (wie noch zu zeigen sein wird) eine in gewisser Hinsicht bessere (wie sich zeigen wird: wort-wörtliche) Übersetzung auf, aber es kann doch etwas weitschweifig und allzu literarisch wirken.
@@ -1061,7 +1001,6 @@ Siehe aber auch \cite{gargyan_am-progressiv_2010}, die die Gebräuchlichkeit des
 # eist, die auch ohne /gerade/ den Verlauf einer gegenwärtigen Handlung für das Subjekt ausdrückt. Entfernt man aber die Konstruktion »X ist dabei, Y zu tun«, dann ist /gerade/ im Deutschen unerlässlich dafür, den Sinn des gegenwärtigen Verlaufs angemessen auszudrücken; denn, wenn man nur den einfachen Satz »Er zieht den Mantel an.« vor sich hat, dann fehlt diesem gewiss etwas, was die anderen beiden Konstruktionen ihm an Sinn hinzufügen.
 
 [fn:at_star] Alle anzweifelbaren bzw. unakzeptablen Sätze oder sonstige Einheiten von Sätzen sind mit einem Stern gekennzeichnet. In diesem Fall mag die Version ohne die Präsens-Progressiv-Kennzeichnung des Englischen (Form von /be/ ++ Verb + /ing/ -- i.e. present progressive/continious) (vor allem auch aus dt. Perspektive) Sinn machen, weil »wear« (genauso wie »tragen«) einen andauernden Zustand beschreibt. Es scheint jedoch im Englischen eine gewisse Tendenz zu geben, solche Zustandsverben in das Präsens Progressiv zu setzen. Cf. \cite[6]{bland_present_1986}: »I'm wearing a jacket.« und deswegen ist die unmarkierte Version sehr zweifelhaft.
-
 
 **** Zusammenfassung: Progressiv und Durativ
 #+ATTR_LATEX: :options [style=nextline,itemsep=6pt,parsep=0pt]
@@ -1116,7 +1055,7 @@ Weiterhin zu den beiden Fällen auch bei .  Sowie für (b): 着 markiert »[...]
 
 \cite[304]{yip_chinese:_2004}: (a) »[...] 在 *zài* indicates ongoing action on the part of the subject.« Diese Aussage bezieht sich auf das Beispiel \hspace{0.1em}「王老师在备课。」
 
-*** Tabelle
+*** Tabelle-Daten
 #+BEGIN_LaTeX
 
 \DTLloaddbtex{\tenses}{tests/tenses.dbtex}
@@ -1129,7 +1068,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule{}\footnotesize
 {\DTLforeach*{\tenses}
   {%
   \api=Field1,
@@ -1139,38 +1078,139 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize\raggedright \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize\raggedright \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
 #+END_LaTeX
-
 *** Zeile 1--2: (»to be sleeping« , »it is raining«)
 
-In Fall 1 gibt es zwei Vorschläge: (a) 在 (zài) vor dem Verb, 在睡, oder (b) 着 (zhe) nach dem Verb, 睡着. Vorschlag (a) wurde in der Zwischenzeit in der API-Funktion ~progressiveVP~ umgesetzt, sodass auch Fall 2, der dieselbe API-Funktion nutzt, diesen Vorschlag übernimmt. ~progressiveVP~ verweist auf die Funktion ~ProgrVP~ die sich in IdiomChi.gf befindet:
+In Fall 1 gibt es zwei Vorschläge: (a) 在 (zài) vor dem Verb, 在睡, oder (b) 着 (zhe) nach dem Verb, 睡着. Vorschlag (a) wurde in der Zwischenzeit in der API-Funktion ~progressiveVP~ umgesetzt, sodass auch Fall 2, der dieselbe API-Funktion nutzt, diesen Vorschlag übernimmt. Im folgenden sehen wir uns zunächst an, wie gut 在 in progressiveVP funktioniert (v.a. interessiert hier, ob es möglich ist 在 vor die komplette Verbphrase zu stellen, wie in \hspace{0.1em}「她给朋友写信。」\hspace{0.1em} -- »Sie schreibt einem Freund einen Brief.«) Und danach schauen wir, ob es noch eine Möglichkeit gibt 着 aufzurufen.
+
+**** progressiveVP mit 在
+Die API-Funktion ~progressiveVP~ verweist auf die Kern-Funktion ~ProgrVP~, die sich in ~IdiomChi.gf~ befindet. Diese Funktion nimmt einen ~VP~ und produziert einen weiteren ~VP~, in dem 在 ausgehend von ~zai_s~ als reguläres Verb in das record-label ~verb~ (Z. 3) gepackt wird. Die Bestandteile des Argument-VP werden hingegen in das record-label ~compl~ gesteckt.
 
 # 我 在 给 一 个 在 美国 的 朋友 写信
 #+BEGIN_SRC haskell
-    ProgrVP vp = {
-      verb = regVerb zai_s ;
-      compl = vp.prePart ++ vp.verb.s ++ vp.compl ;
-      prePart, topic = []
-      }
+ProgrVP   : VP -> VP ;     -- be sleeping // Typendefinition aus abstract/Idiom.gf
+ProgrVP vp = {
+  verb = regVerb zai_s ;
+  compl = vp.prePart ++ vp.verb.s ++ vp.compl ;
+  prePart, topic = []
+  }
 #+END_SRC
 
+Mit der eben beschriebenen Aufteilung in ~verb~ und ~compl~ ist dann auch sichergestellt, dass 在 vor dem gesamten VP steht:
+#+BEGIN_SRC haskell
+> cc mkUtt
+      (progressiveVP
+       (mkVP
+        (mkV3 "写") (mkNP (friend_N)) (mkNP (mkN "信"))
+       ))
+{s = "在" ++ ("朋" ++ "友") ++ "写" ++ "信"}
+#+END_SRC
+Was nun noch fehlt, ist die Präposition/das Koverb 给 (geben/an, /gěi/), das hinter 在 bzw. vor 朋友 (Freund, /péngyou/) stehen muss. Dies zu implementieren, sollte nicht problematisch sein.
 
+**** Kann 着 (Durativ) benutzt werden?
+Laut ~TenseChi.gf~ gibt es sechs Kernfunktionen (~TPres~, ~TPast~, ~TFut~, ~TCond~, ~ASimul~, ~AAnter~) für die jeweiligen Zeitformen, die eine (mehr oder weniger sinnvolle) Zuordnung zu den chinesischen Aspektformen vornehmen (etwa TPast \to APerf):
+ 
+#+name: lst:map-tense-asp
+#+CAPTION[Tense-Aspect-Mapping]: »Integration« der Aspekte in der RGL-Tempus-Formen
+#+BEGIN_SRC haskell
+    TPres  = {s = [] ; t = APlain} ;   -- API-Funktion `presentTense'     ruft `TPres'
+    TPast  = {s = [] ; t = APerf} ;    -- API-Funktion `pastTense'        ruft `TPast'
+    TFut   = {s = [] ; t = ADurProg} ; -- API-Funktion `futureTense'      ruft `TFut'
+    TCond  = {s = [] ; t = ADurStat} ; -- API-Funktion `conditionalTense' ruft `TCond' 
+
+    ASimul = {s = [] ; t = APlain} ;   -- API-Funktion `simultaneousAnt'  ruft `ASimul'
+    AAnter = {s = [] ; t = APerf} ;    -- API-Funktion `anteriourAnt'     ruft `AAnter'
+#+END_SRC
+Diese Kern-Funktionen können wiederum von der API-Ebene aus aufgerufen werden (wie in den Kommentaren oben beschrieben). ~ADurStat~ könnte mit dem statischen Zustand zu tun haben, den 着 mit Verben, wie 穿 in 穿着衣服 （/chuānzhe yīfu/, »Kleider tragend«）, beschreibt. Schauen wir einfach mal, ob ~conditionalTense~ etwas mit 着 zu tun hat:
+#+BEGIN_SRC haskell
+> cc mkS conditionalTense (mkCl (mkVP( mkV3 "写") (mkNP(friend_N)) (mkNP(mkN "信"))))
+$\Downarrow$ {s = ("朋" ++ "友") ++ ("写" ++ "着") ++ "信"}
+#+END_SRC
+Augenscheinlich ja, denn 着 wird nach dem Verb des Satzes eingefügt. Hier noch ein sinnvollerer Satz in lokativer Inversionsstellung: »Auf der Straße steht ein Name geschrieben.«
+#+BEGIN_SRC haskell
+> cc mkS
+      (mkAdv on_Prep
+             (mkNP road_N))
+      (mkS conditionalTense
+           (mkCl
+            (mkVP write_V2
+                  (mkNP name_N))))
+
+$\Downarrow$ {s = ("在" ++ "路" ++ "上") ++ ("写" ++ "着") ++ "名" ++ "字"}
+#+END_SRC
+
+Leider lässt sich bislang nicht von der API-Ebene aus auf den Erfahrunsaspekt (Perfektiv eines persönlich relevanten Ereignisses: \hspace{0.1em}「我去过德国。」\hspace{0.1em} -- »Ich habe schon einmal Deutschland besucht.«) zugreifen. In der unterliegenden Kernfunktion ist er aber voll zugänglich:
+
+#+NAME: lst:useVerb-core
+#+CAPTION[useVerb-core-function]: Die Kern-Funktion zur Verwendung von Verben
+#+BEGIN_SRC haskell
+  useVerb : Verb -> Polarity => Aspect => Str = \v -> 
+    table {
+          Pos => table {
+            APlain   => v.s ;
+            APerf    => v.s ++ v.pp ;
+            ADurStat => v.s ++ v.ds ;
+            ADurProg => v.dp ++ v.s ;
+            AExper   => v.s ++ v.ep   -- experiential aspect
+            } ;
+          -- [...]
+     } ;
+#+END_SRC
+
+**** »it is raining«
+<<split-verb-object>>
+Ein alternativer Vorschlag von Chen für den zweiten Fall ist noch, auch hier den durativen Aspekt mit 着 zu benutzen (下着雨). Hier ist es sehr klar, dass der Partikel zwischen die eigentliche Verbsilbe (niedergehen, unten 下 /xià/ ) und das eigentliche Objekt muss (Regen 雨 /yǔ/). Die ist jedoch mit dem jetzigen Lexem ~rain_V0~ nur schlecht möglich, da sowohl Verb als auch Objekt schon in einem »record-label« stecken:
+
+#+BEGIN_SRC haskell
+> cc rain_V0
+$\Downarrow$ {s = "下" ++ "雨"; [...]}
+#+END_SRC
+
+Idealerweise sollten die Konstituenten des ~record-labels~ /s/ auf zwei verschiedene aufgeteilt sein. (RGL-TODO:) Eine Abschätzung über diese Möglichkeit sollte erfolgen.
 *** Zeile 3: (»John, who walks«)
+Wieder der Trick mit dem ~conditionalTense~ (um Chens Vorschlag zu realisieren):
+#+BEGIN_SRC haskell
+> cc mkUtt (mkNP (mkNP john_PN) (mkRS (mkRCl which_RP (mkVP walk_V))))
+$\Downarrow$ {s = ("走" ++ "的") ++ "约" ++ "翰"}
 
-# [fn:prim_subj] Deskriptive Aktualität/Realität der Handlung: Man beachte den teilweise vorkommenden subjektiven Standpunkt des Sprechers, der innerhalb seines begrenzten Wissens die Handlungen eines Subjekts beschreibt: »Er liest gerade ein Buch« bzw. »Er ist gerade dabei, ein Buch zu lesen« (他在看书). In diesem Zusammenhang muss sich -- zumindest aus Perspektive des dt. Sprachgebrauchs -- die aktuelle, derzeitige Handlung des Subjekts nicht mit der beschriebenen decken, denn es geht vielmehr darum, dass der Sprecher weiß, welche primären Handlungen das Subjekt vollführen müsste. In der Beschreibung des Sprechers erscheint dessen Realität. cf. 刘丹青：466 （216）[i used to play chess] -- worüber er sich dort Gedanken macht, ist genau das, was du hier versuchst auszuschließen!?
-# \cite[476]{goddard_natural_2010}: (Paraphrasing Greenberg [1966a:74]) Greenberg did not shrink from admitting that to identify different category types across languages, in order to compare them, one must rely essentially on semantic criteria. One may also appeal to functional criteria, but on closer inspection functional criteria also depend on semantic judgements, and the same applies to efforts to base cross-linguistic comparison on iventories of situation types, basic domains, conceptual spaces, or whatevery
-
-** Konditional
+> cc mkUtt (mkNP (mkNP john_PN) (mkRS conditionalTense (mkRCl which_RP (mkVP walk_V))))
+$\Downarrow$ {s = (("走" ++ "着") ++ "的") ++ "约" ++ "翰"}
+#+END_SRC
+*** Zeile 4, 5, 7, 6: »she hadn't seen«, »whom does she know that we hadn't seen« ...
+Die ersten beiden Fälle behandeln das engl. Past Perfect (~pastTense~, ~anteriorAnt~) und drücken eine Negation aus. Der eminente Fehler in der chinesischen Linearisierung ist, dass der falsche Verneinungspartikel (不 anstatt 没) benutzt wird und dass, wenn diese Verneinung des Perfekt geschieht, der Perfekt-Marker 了 nicht entfällt. Dieser Fehler entsteht durch falsche Definitionen in der schon gezeigten Kernfunktion ~useVerb~ aus dem Modul ~ResChi.gf~ (nur diesmal im Negationsteil):
+#+BEGIN_SRC haskell
+useVerb : Verb -> Polarity => Aspect => Str = \v -> 
+  table {
+    Pos => table {
+      -- [...]} ;
+    Neg => table {
+      APlain   => v.neg ++ v.sn ;
+      APerf    => "不" ++ v.sn ++ v.pp ;   -- Korrektur zu: "没" ++ v.sn
+      ADurStat => "不" ++ v.sn ;           -- Hier auch 没. (Siehe Durativ-Besprechung: 
+      ADurProg => v.neg ++ v.dp ++ v.sn ;  --               Modifikation/Verneinung)
+      AExper   => v.neg ++ v.sn ++ v.ep
+    }} ; 
+#+END_SRC
+In der Auflistung in Zeile 7, wo der perfektive Aspekt (~APerf~) abgeglichen wird, müssten die angezeigten Änderungen vorgenommen werden.
+Fall Nr. 7 ist zwar nicht im Past Perfect, greift aber genauso auf ~useVerb~ zurück.
+Fall Nr. 6 (»who wouldn't have slept«) hat auch Probleme mit der Verneinung, die wie schon gezeigt, gelöst werden sollten. Die Art und Weise, wie das Konditional im Chinesischen hervorgerufen wird, überlässt man vielleicht besser dem (Satz-)Kontext. (Chens beredter Vorschlag ist auch ihm noch zweifelhaft. Andererseits ist 可能 (kěnéng -- vielleicht, möglich) ein exzellentes Signalwort für Wahrscheinlichkeit und er verwendet es auch noch als Vorschlag in »she wouldn't have slept« [nicht hier abgebildet].)
+*** Zeile 8: »she has slept«
+Hier tritt wieder das Problem von Abschnitt [[split-verb-object]] auf: Bei Verben, die Verb-Objekt-kombiniert sind, muss eine Splittung der Konstituenten erfolgen können, sodass der Marker in die Mitte kann (oder das Objekt entfällt komplett, wie in diesem Fall von Chen gezeigt).
+*** Zeile 9, 10: Futur
+Hier wird der Progressiv benutzt, aber das dürfte weniger passend sein im Chinesischen. Chens Vorschläge: Unmarkiertheit oder Markierung mit Hilfsverb (会 /huì/ -- können, werden) sollten umgesetzt werden.
+** Konklusion
+Im Zuge dieser Evaluation wurde das GF-RGL-System anhand verschiedener grammatischer Konstruktionen beleuchtet. Dabei traten viele Ungereimtheiten in den Details des grammatischen Zusammenwirkens zu Tage. Manche Probleme sind allzu schwierig, wie etwa der Wandel 好 zu 好事 in Sektion 4.3.2. Und auch die in der letzten Sektion angesprochene Problematik des Einfügens von Aspekt-Markern in Verb-Objekt-Kombinationen ist ein Problem, was man besser schon hätte bei Beginn der Chinesisch-RGL-Implementierung bedenken sollen. Dennoch wurden die meisten der hier betrachteten Probleme als behebbar eingestuft und Lösungsmöglichkeiten dazu anhand des Quelltextes aufgezeigt.
+** Konditional                                                    :noexport:
 #+BEGIN_LaTeX
 \DTLloaddbtex{\condit}{tests/condTense.dbtex}
 
@@ -1182,7 +1222,7 @@ Ok? &
 Vorschlag &
 Kategorie
 \gdef\afterHeaderFlag{\makebox[1em][l]{\scriptsize{\stepcounter{rowcount}\therowcount.}\hspace{0.5em}}}
-\\\midrule\scriptsize
+\\\midrule\footnotesize
 {\DTLforeach*{\condit}
   {%
   \api=Field1,
@@ -1192,18 +1232,19 @@ Kategorie
   \vorschl=Field5,
   \todo=Field6}
     {%
-    \scriptsize\raggedright\tt \api &
-    \scriptsize\raggedright \eng &
-    \scriptsize \chi &
-    \scriptsize \stat &
-    \DTLifnull{\vorschl}{}{\scriptsize{}\vorschl} &
-    \DTLifnull{\todo}{}{\scriptsize{}\todo}
+    \footnotesize\raggedright\tt \api &
+    \footnotesize\raggedright \eng &
+    \footnotesize \chi &
+    \footnotesize \stat &
+    \DTLifnull{\vorschl}{}{\footnotesize{}\vorschl} &
+    \DTLifnull{\todo}{}{\footnotesize{}\todo}
     \DTLiflastrow{}{\\}
     }
 }
 \end{longtable}
 #+END_LaTeX
-** Komplement des Resultats (结果补语) -- shi-de -- »Buch ist ausverkauft«?- es scheint noch nichts dafür definiert zu sein
+** Komplement des Resultats (结果补语)  :noexport:
+- shi-de -- »Buch ist ausverkauft«?- es scheint noch nichts dafür definiert zu sein
 - versuche Satz zu bilden: "Dieses Buch ist ausverkauft"
 - ~/d/n/G/l/s/chinese git:master ❯❯❯
 - gf AllChi.gfo
@@ -1221,7 +1262,7 @@ sysu/Assign_6.gf
 - Satz müsste eher mit 售完 gebildet werden! (noch nicht in RGL-Chi)
 - und dann ist auch die Frage, ob shi...de dafür benutzt wird, wahrscheinlich schon: 这本书是售完的. (Beschreibung Motsch, S. 127: "Betonung der Eigenschaft des Beschriebenen"), es geht aber auch: »这本书已售完« (Shanghai Dt-Chin., 134)
 
-** Tabellen-Daten für Appendix?
+** Tabellen-Daten für Appendix?                                  :noexport:
 # \csvautobooktabular[separator=semicolon]{tests/eng_chi3.csv}
 #+BEGIN_LaTeX
 %% \DTLloaddbtex{\entries}{tests/eng_chi3.dbtex}
@@ -1245,7 +1286,6 @@ sysu/Assign_6.gf
 %% \DTLdisplaydb*{eng_chi3}
 %% \end{longtable}
 #+END_LaTeX
-* End
 \printbibliography
 * zotero							   :noexport:
 # Local Variables:
